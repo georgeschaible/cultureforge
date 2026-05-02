@@ -1,0 +1,157 @@
+{
+  "genome_id": 31,
+  "species": "Allochromatium vinosum",
+  "primary_cultivation_mode": "phototrophic (anoxygenic, purple Type-II / FAP)",
+  "alternative_cultivation_modes": [
+    "lithotrophic_aerobic",
+    "aerobic_chemotrophic"
+  ],
+  "ingredients": [
+    {
+      "name": "Na2S\u00b79H2O",
+      "chemical_formula": "Na2S\u00b79H2O",
+      "concentration": 0.5,
+      "concentration_unit": "mM",
+      "category": "reducing_agent",
+      "rationale": "Establishes anaerobiosis. Sulfide also serves as electron donor for purple sulfur and green sulfur bacteria.",
+      "confidence": 0.9,
+      "derived_from": [
+        "anoxygenic phototrophy"
+      ]
+    },
+    {
+      "name": "Co2",
+      "chemical_formula": null,
+      "concentration": 2.0,
+      "concentration_unit": "g/L",
+      "category": "carbon_source",
+      "rationale": "Carbon source from RecipeContext: autotrophic cultivation mode detected",
+      "confidence": 0.85,
+      "derived_from": [
+        "lithotrophic_aerobic"
+      ]
+    },
+    {
+      "name": "Malate",
+      "chemical_formula": null,
+      "concentration": 2.0,
+      "concentration_unit": "g/L",
+      "category": "carbon_source",
+      "rationale": "Carbon source from RecipeContext: gapseq: L-malate degradation I (100%)",
+      "confidence": 0.85,
+      "derived_from": [
+        "phototrophic"
+      ]
+    },
+    {
+      "name": "Phosphate buffer (KH2PO4 + K2HPO4)",
+      "chemical_formula": "KH2PO4 / K2HPO4",
+      "concentration": 30.0,
+      "concentration_unit": "mM",
+      "category": "buffer",
+      "rationale": "30 mM phosphate buffer adjusted to pH 7.3",
+      "confidence": 0.85,
+      "derived_from": [
+        "pH from RecipeContext.conditions"
+      ]
+    },
+    {
+      "name": "NaCl",
+      "chemical_formula": "NaCl",
+      "concentration": 5.0,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Standard salinity baseline (5 g/L) for non-halophile",
+      "confidence": 0.85,
+      "derived_from": [
+        "RecipeContext.conditions.salinity_category"
+      ]
+    },
+    {
+      "name": "MgSO4\u00b77H2O",
+      "chemical_formula": "MgSO4\u00b77H2O",
+      "concentration": 0.2,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Magnesium and sulfur source",
+      "confidence": 0.9,
+      "derived_from": [
+        "common basal"
+      ]
+    },
+    {
+      "name": "CaCl2\u00b72H2O",
+      "chemical_formula": "CaCl2\u00b72H2O",
+      "concentration": 0.04,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Calcium baseline",
+      "confidence": 0.9,
+      "derived_from": [
+        "common basal"
+      ]
+    },
+    {
+      "name": "SL-10 trace metal solution",
+      "chemical_formula": "(see SL-10 reference)",
+      "concentration": 1.0,
+      "concentration_unit": "mL/L",
+      "category": "trace_metal",
+      "rationale": "SL-10 (Tschech & Pfennig 1984): Fe, Zn, Mn, B, Co, Cu, Ni, Mo at standard concentrations. 1 mL/L final.",
+      "confidence": 0.85,
+      "derived_from": [
+        "common basal",
+        "MeBiPred metal predictions"
+      ]
+    },
+    {
+      "name": "Wolin's vitamin solution",
+      "chemical_formula": "(see Wolin 1963 reference)",
+      "concentration": 1.0,
+      "concentration_unit": "mL/L",
+      "category": "vitamin",
+      "rationale": "Wolin's vitamins (Wolin et al. 1963): biotin, folic acid, pyridoxine, thiamine, riboflavin, nicotinic acid, pantothenate, B12, p-aminobenzoic acid, lipoic acid. 1 mL/L final.",
+      "confidence": 0.85,
+      "derived_from": [
+        "common basal",
+        "RecipeContext.cofactors"
+      ]
+    }
+  ],
+  "gas_phase": {
+    "composition": {
+      "N2": 0.95,
+      "CO2": 0.05
+    },
+    "pressure_atm": 1.0,
+    "rationale": "Anaerobic atmosphere required \u2014 anoxygenic photosynthesis."
+  },
+  "conditions": {
+    "temperature_c": 37.25316043954907,
+    "ph": 7.274391762626906,
+    "light_required": true,
+    "light_intensity_umol_per_m2_per_s": 50.0,
+    "shaking_rpm": null,
+    "rationale": "Temperature 37.25316043954907\u00b0C, pH 7.274391762626906 from genomespot"
+  },
+  "thermodynamic_checks": [
+    {
+      "capability_name": "phototrophic",
+      "primary_reaction": "Light + CO2 + e-donor \u2192 CH2O (photosynthesis, donor-dependent)",
+      "delta_g_kj_per_mol": -300.0,
+      "feasible": true,
+      "feasibility_class": "feasible",
+      "notes": ""
+    }
+  ],
+  "composition_rationale": [
+    "Phototrophy: light-driven energy conservation. Recipe provides light, appropriate atmosphere, and electron donor (organic for heterotrophic phototrophs, sulfide / H2 for autotrophic phototrophs)."
+  ],
+  "uncertainty_flags": [],
+  "limitations_referenced": [],
+  "overall_confidence": 0.79,
+  "confidence_rationale": "base from RecipeContext = 0.79 \u2192 final 0.79",
+  "similar_published_media": [],
+  "escalated": false,
+  "escalation_reason": ""
+}

@@ -1,0 +1,121 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: Methanococcus jannaschii (NC_000909.1)
+Genome ID: 8
+Domain: Archaea
+Generated: 2026-04-26 20:10:58
+CultureForge version: 2026-04-26
+══════════════════════════════════════════════════════════════════════
+
+GENOME QUALITY (Section 2)
+──────────────────────────────────────────────────────────────────────
+CheckM not available (genome stats only)
+Genome size:                1,664,970 bp (1.66 Mb)
+GC content:                 31.4%
+N50:                        1,664,970
+Acidic residue fraction:    0.1411
+QC verdict:                 NO_QC
+QC rationale:               CheckM not available — genome stats only. Marker absence is not interpretable.
+──────────────────────────────────────────────────────────────────────
+
+GROWTH CONDITIONS (Section 3) - GenomeSPOT predictions
+──────────────────────────────────────────────────────────────────────
+Predicted oxygen tolerance:     not tolerant (conf 0.85)
+  Note: GenomeSPOT oxygen predictions are unreliable for archaea; cross-check against capability results.
+Predicted pH optimum:           5.8 ±1.2 (conf 0.85)
+Predicted salinity optimum:     0.19% NaCl ±1.9 (conf 0.50)
+Predicted temperature optimum:  82.5°C ±6.8 (conf 0.91)
+──────────────────────────────────────────────────────────────────────
+
+CAPABILITY PROFILE (Section 4)
+──────────────────────────────────────────────────────────────────────
+
+PRIMARY CULTIVATION MODES
+
+  Mode: methanogenic                             conf 0.75
+    ├─ Methanogenesis                                     0.753
+    │   Pathway: 4/5 steps detected (weighted score 0.94)
+    │   methyl-CoM reduction to methane (mcrA): diagnostic marker mcrA detected (100.0% id, bs=1150)
+    │   Cofactors: 1/3 biosyntheses detected
+    │   Diagnostic markers: mcrA
+
+  DETECTED CAPABILITIES (confidence >= 0.50)
+    Methanogenesis                                     0.753  primary
+
+  REJECTED CAPABILITIES
+    Syntrophy                                  0.450  Below threshold (pathway 0.45)
+    Fermentation                               0.408  Pathway score too low (0.30)
+    Aerobic ammonia oxidation                  0.325  Pathway score too low (0.00)
+    Nitrogen fixation                          0.315  Pathway score too low (0.13)
+    Dissimilatory sulfate reduction            0.225  Pathway score too low (0.00)
+    Aerobic respiration (ETC pathway)          0.206  Pathway score too low (0.29)
+    Green sulfur phototrophy                   0.200  Pathway score too low (0.00)
+    Sulfur oxidation                           0.200  Pathway score too low (0.00)
+    Denitrification (NO3- to N2)               0.200  Pathway score too low (0.00)
+    Iron(II) oxidation (acidophilic)           0.200  Pathway score too low (0.00)
+
+  UNCERTAINTY FLAGS
+    - [Methanogenesis (hydrogeno] cofactor F420 biosynthesis not detected — may need supplementation or uses alternative pathway
+    - [Methanogenesis (hydrogeno] cofactor CoM biosynthesis not detected — may need supplementation or uses alternative pathway
+
+──────────────────────────────────────────────────────────────────────
+
+gapseq PATHWAYS (Section 5) - 32 predicted of 403 total
+──────────────────────────────────────────────────────────────────────
+  Metabolically relevant:
+    acetate and ATP formation from acetyl-CoA II                100%  ✓
+  Other predicted pathways (24 more):
+    L-arginine biosynthesis II (acetyl cycle)                   100%  ✓
+    L-aspartate degradation I                                   100%  ✓
+    L-aspartate biosynthesis                                    100%  ✓
+    L-glutamine biosynthesis I                                  100%  ✓
+    L-glutamine degradation II                                  100%  ✓
+──────────────────────────────────────────────────────────────────────
+
+DIAGNOSTIC MARKER HITS (Section 6)
+──────────────────────────────────────────────────────────────────────
+  Marker               Method   Best Hit                  Identity Bitscore Status
+  ─────────────────────────────────────────────────────────────────
+  acsB_cdhC            blastp   sp|P27988|DCMA_NEOTH         41.0%      540 POSITIVE
+  amoA                 blastp   no hit                                      (negative)
+  aprAB                blastp   no hit                                      (negative)
+  autotrophy           blastp   sp|P54205|RBL_SYNY3          38.7%      284 POSITIVE
+  cooS_cdhA            blastp   sp|P31896|COOS_RHORU         34.6%      323 POSITIVE
+  dsrAB                blastp   tr|O28607|O28607_ARCFU       44.1%      181 POSITIVE
+  hao                  blastp   tr|Q82SR3|Q82SR3_NITEU       50.2%      236 POSITIVE
+  hdh                  blastp   no hit                                      (negative)
+  hzsA                 blastp   no hit                                      (negative)
+  mcrA                 blastp   sp|Q58256|MCRA_METJA        100.0%     1150 POSITIVE
+  mcrBG                blastp   sp|P11559|MCRA_METVO         85.2%      964 POSITIVE
+  mtrC_omcB            blastp   no hit                                      (negative)
+  nifH                 blastp   sp|P00459|NIFH1_AZOVI        51.1%      284 POSITIVE
+  nosZ                 blastp   no hit                                      (negative)
+  psaA_psbA            blastp   no hit                                      (negative)
+  pscA_fmoA            blastp   no hit                                      (negative)
+  pufLM                blastp   tr|A7NQ46|A7NQ46_ROSCS       29.1%       93 POSITIVE
+  rdhA                 blastp   no hit                                      (negative)
+  rhodopsin            blastp   no hit                                      (negative)
+  soxB                 blastp   no hit                                      (negative)
+  terminal_oxidases    blastp   no hit                                      (negative)
+──────────────────────────────────────────────────────────────────────
+
+HYDROGENASES (Section 7)
+──────────────────────────────────────────────────────────────────────
+  Type       Group    Gene                      Identity Bitscore
+  ───────────────────────────────────────────────────────
+  [NiFe]     3        NC_000909.1_270           49.6%       266
+  [NiFe]     4        NC_000909.1_1100          33.7%       193
+  [NiFe]     4        NC_000909.1_545           31.5%       174
+  [FeFe]     A        NC_000909.1_1720          39.1%       135
+──────────────────────────────────────────────────────────────────────
+
+RECOMMENDED ACTION (Section 8)
+──────────────────────────────────────────────────────────────────────
+Action:    SYNTHESIZE (CheckM not run but capabilities clearly detected)
+Rationale: Cultivation mode(s): methanogenic
+
+Notes:
+  - Predicted oxygen: not tolerant
+  - Predicted pH: 5.8
+  - Predicted growth temperature: 83°C
+──────────────────────────────────────────────────────────────────────

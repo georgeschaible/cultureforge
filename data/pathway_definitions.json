@@ -1,0 +1,463 @@
+{
+  "aerobic_methanotrophy": {
+    "steps": [
+      {"name": "Methane monooxygenase (particulate, pMMO α subunit)", "gapseq_patterns": ["methane monooxygenase", "particulate methane", "pmoA", "pmoB"], "ec_numbers": ["1.14.18.3"], "weight": 2.5, "diagnostic_marker": "pmoA"},
+      {"name": "Methane monooxygenase (soluble, sMMO α subunit)", "gapseq_patterns": ["soluble methane", "mmoX", "methane mono.*soluble"], "ec_numbers": ["1.14.13.25"], "weight": 2.5, "diagnostic_marker": "mmoX"},
+      {"name": "Methanol dehydrogenase (PQQ-dependent or Ln-dependent)", "gapseq_patterns": ["methanol dehydrogenase", "mxaF", "xoxF", "methanol oxid"], "ec_numbers": ["1.1.2.7", "1.1.2.10", "1.1.99.8"], "weight": 1.0},
+      {"name": "Formaldehyde / formate metabolism (H4MPT / H4F pathway)", "gapseq_patterns": ["formaldehyde", "formate dehydrogenase", "tetrahydromethanopterin"], "ec_numbers": [], "weight": 0.5},
+      {"name": "Aerobic respiration (terminal oxidase)", "gapseq_patterns": ["cytochrome c oxidase", "cytochrome.*aa3", "cbb3 oxidase"], "ec_numbers": ["7.1.1.9"], "weight": 0.5}
+    ],
+    "required_transporters": [],
+    "product_transporters": [],
+    "cofactor_biosyntheses": [],
+    "negative_markers": [],
+    "diagnostic_marker_override": {
+      "enabled": true,
+      "marker": "pmoA",
+      "min_pident": 60.0,
+      "min_qcov": 80.0,
+      "min_evalue": 1e-30,
+      "override_confidence": 0.70,
+      "rationale": "pmoA (particulate methane monooxygenase α subunit) and mmoX (soluble methane monooxygenase α subunit) are the diagnostic enzymes for aerobic methanotrophy. Two distinct enzyme architectures serve the same metabolism — Type I methanotrophs (Gammaproteobacteria) typically encode pmoA only; Type II (Alphaproteobacteria) encode both; Type III (Verrucomicrobia Methylacidiphilum) have only highly divergent pmoA. OR-logic across both markers; either alone suffices for detection. Phase 3.5 empirically confirmed an 8-10 point pident gap between pmoA × amoA cross-reactivity (50% ceiling, Nitrosomonas) and pmoA cross-Type-I-II clade floor (58-60%). The 60% threshold cleanly separates. Type III divergent pmoA is captured via dual-clade reference architecture (Type I/II/III all represented; within-clade hits at 80%+ identity). mmoX has natural family conservation (82-99% intra-family) with zero test-set cross-reactivity, hence the more permissive 50% threshold."
+    },
+    "known_limitations": ["A.10"],
+    "limitation_summary": "Aerobic methanotrophy detection — covers Type I (Methylococcaceae), Type II (Methylocystaceae, Beijerinckiaceae), and Type III (Verrucomicrobia Methylacidiphilum) methanotrophs via dual-clade pmoA references plus mmoX OR-logic. Phase 3.5 closes LIMITATIONS A.10. Note: this is the first cultivation mode requiring methane in the gas phase (air + CH4 80:20). N-DAMO (Methylomirabilis, intra-aerobic methane oxidation in NC10 phylum) is biochemically distinct and out of scope. See methanotrophy_review.md.",
+    "description": "Aerobic methanotrophy (CH4 → CO2 via pMMO or sMMO)"
+  },
+
+  "methanogenesis": {
+    "steps": [
+      {"name": "methyl-CoM reduction to methane (mcrA)", "gapseq_patterns": ["methyl-coenzyme M reduction to methane", "methyl.coenzyme M reduct"], "ec_numbers": ["2.8.4.1"], "weight": 3.0, "diagnostic_marker": "mcrA"},
+      {"name": "methanogenesis pathway (any variant)", "gapseq_patterns": ["methanogenesis from"], "ec_numbers": [], "weight": 2.0},
+      {"name": "CoM/CoB regeneration", "gapseq_patterns": ["coenzyme B.*coenzyme M regeneration", "coenzyme M regeneration"], "ec_numbers": [], "weight": 1.0},
+      {"name": "reductive acetyl-CoA (methanogen variant)", "gapseq_patterns": ["reductive acetyl coenzyme A pathway II.*autotrophic methanogens"], "ec_numbers": [], "weight": 1.0},
+      {"name": "methanofuran biosynthesis", "gapseq_patterns": ["methanofuran biosynthesis"], "ec_numbers": [], "weight": 0.5}
+    ],
+    "required_transporters": [],
+    "product_transporters": [],
+    "cofactor_biosyntheses": [
+      {"name": "F420 biosynthesis", "patterns": ["F420 Biosynthesis", "coenzyme F420"]},
+      {"name": "CoM biosynthesis", "patterns": ["coenzyme M biosynthesis"]},
+      {"name": "CoB biosynthesis", "patterns": ["coenzyme B biosynthesis", "coenzyme B/coenzyme M regeneration"]}
+    ],
+    "negative_markers": [],
+    "diagnostic_marker_override": {
+      "enabled": true,
+      "marker": "mcrA",
+      "min_pident": 50.0,
+      "min_qcov": 70.0,
+      "min_evalue": 1e-30,
+      "override_confidence": 0.65,
+      "rationale": "mcrA (methyl-coenzyme M reductase α subunit) is THE canonical diagnostic for methanogenesis — the terminal methane-producing enzyme. The 50% pident floor captures both forward methanogens (Methanocaldococcus 83.7%, Methanosarcina 100%) and ANME (Methanoperedens 70.1%); ANME suppression happens at the recipe-time mode picker via the Phase 3.6 priority ordering, not at this detection layer. The 70% qcov is consistent with the Phase 3.4 DNRA threshold for partial-genome MAGs. The 0.65 override_confidence matches Phase 3.4 DNRA — mcrA presence alone is suggestive; full pathway integrity (with Wolfe-cycle cofactor biosynthesis F420 + CoM + CoB) provides higher confidence via the regular pathway-scoring path. Phase 3.8 added this override symmetric with the Phase 3.5+ override pattern (methanotrophy / DNRA / NOB) so marker-only sentinels can validate forward methanogens. Empirical verification: zero non-methanogen mcrA cross-reactivity in the 26-organism test set; Methanosarcina sentinel (gid=903) now classifies methanogenic primary at the override path; Methanoperedens (gid=28) remains anme_reverse_methanogenic primary because the Phase 3.6 priority ordering supersedes methanogenesis at recipe time."
+    },
+    "known_limitations": ["C.1", "E.2"],
+    "limitation_summary": "ANME archaea run this pathway in reverse (methane oxidation); mcrA cannot distinguish direction (C.1). Phase 3.6 added a parallel `anme_reverse_methanogenesis` capability with co-occurrence discriminator (mcrA + acceptor partner); recipe-time mode picker prefers ANME over methanogenesis when ANME signature fires. Deep-branching methanogen orders may have divergent mcrA below BLAST threshold (E.2). See LIMITATIONS.md.",
+    "description": "Methanogenesis (hydrogenotrophic, aceticlastic, or methylotrophic)"
+  },
+
+  "anme_reverse_methanogenesis": {
+    "steps": [
+      {"name": "Methyl-coenzyme M reductase (operating in reverse for CH4 oxidation)", "gapseq_patterns": ["methyl-coenzyme M reduction", "methyl.coenzyme M reduct"], "ec_numbers": ["2.8.4.1"], "weight": 2.5, "diagnostic_marker": "mcrA"},
+      {"name": "Reverse Wolfe-cycle / methanogenesis pathway machinery", "gapseq_patterns": ["methanogenesis from", "coenzyme M regeneration", "tetrahydromethanopterin"], "ec_numbers": [], "weight": 1.0},
+      {"name": "Acceptor-partner: dissimilatory nitrate reduction (ANME-2d signature)", "gapseq_patterns": ["nitrate reduction.*dissimilatory"], "ec_numbers": [], "weight": 1.5},
+      {"name": "Acceptor-partner: sulfate reduction (ANME-1/2/3 signature)", "gapseq_patterns": ["dissimilatory sulfate reduction", "APS reduction"], "ec_numbers": [], "weight": 1.0, "diagnostic_marker": "dsrAB"},
+      {"name": "Acceptor-partner: dissimilatory iron reduction (rare ANME signature)", "gapseq_patterns": ["iron.*reduction"], "ec_numbers": [], "weight": 0.5, "diagnostic_marker": "mtrC_omcB"}
+    ],
+    "required_transporters": [],
+    "product_transporters": [],
+    "cofactor_biosyntheses": [
+      {"name": "F420 biosynthesis", "patterns": ["F420 Biosynthesis", "coenzyme F420"]},
+      {"name": "CoM biosynthesis", "patterns": ["coenzyme M biosynthesis"]}
+    ],
+    "negative_markers": [],
+    "essential_marker_AND": ["mcrA"],
+    "essential_marker_OR": [
+      "dsrAB",
+      "mtrC_omcB",
+      {"type": "pathway_pattern", "pattern": "nitrate reduction.*dissimilatory", "min_completeness": 100, "require_predicted": true, "label": "dissimilatory_nitrate_reduction_pathway"}
+    ],
+    "essential_marker_rationale": "ANME signature requires mcrA AND ANY of (dsrAB for sulfate-coupled ANME-1/2/3, mtrC_omcB for rare iron-coupled ANME, dissimilatory nitrate-reduction pathway at 100% completeness for ANME-2d / Methanoperedens). Phase 3.6 verification confirmed Methanoperedens encodes nitrate reductase but at 24-25% pident to canonical bacterial narG — too divergent for direct curated-marker BLAST. gapseq's UniRef-based pathway annotation reaches the divergent target where curated marker BLAST cannot. The pathway-pattern OR-entry is the appropriate fallback for this case; future capabilities should justify pathway-pattern use empirically rather than defaulting to it.",
+    "known_limitations": ["C.1", "F.2"],
+    "limitation_summary": "ANME directional signature: detects organisms where mcrA + acceptor partner co-occur. Phase 3.6 RESOLVES F.2 for canonical ANME-1/2/3 (sulfate-coupled, dsrAB-detected) and ANME-2d (nitrate-coupled, gapseq pathway-detected). Edge cases: novel ANME lineages with non-canonical acceptors not in the OR-group (e.g., manganese-coupled, arsenate-coupled) would still classify as forward methanogens. See anme_review.md.",
+    "description": "Anaerobic methane oxidation (ANME archaea: reverse-direction Wolfe cycle with alternative electron acceptor)"
+  },
+
+  "acetogenesis_wood_ljungdahl": {
+    "steps": [
+      {"name": "reductive acetyl-CoA pathway (WL)", "gapseq_patterns": ["reductive acetyl coenzyme A pathway.*homoacetogenic", "reductive acetyl coenzyme A pathway I"], "ec_numbers": [], "weight": 3.0},
+      {"name": "formate assimilation to THF", "gapseq_patterns": ["formate assimilation into.*methylenetetrahydrofolate"], "ec_numbers": [], "weight": 1.5},
+      {"name": "CO dehydrogenase / acetyl-CoA synthase", "gapseq_patterns": ["carbon monoxide dehydrogenase", "CO dehydrogenase", "acetyl.*CoA.*synthase"], "ec_numbers": ["1.2.7.4", "2.3.1.169"], "weight": 2.0, "diagnostic_marker": "acsB_cdhC"},
+      {"name": "CO dehydrogenase (cooS)", "gapseq_patterns": ["carbon monoxide dehydrogenase", "cooS"], "ec_numbers": ["1.2.7.4"], "weight": 1.5, "diagnostic_marker": "cooS_cdhA"},
+      {"name": "acetate/ATP formation", "gapseq_patterns": ["acetate and ATP formation", "acetate kinase", "phosphotransacetylase"], "ec_numbers": ["2.7.2.1", "2.3.1.8"], "weight": 1.0},
+      {"name": "pyruvate ferredoxin oxidoreductase", "gapseq_patterns": ["pyruvate.*ferredoxin oxidore", "Pyruvate-ferredoxin"], "ec_numbers": [], "weight": 0.5}
+    ],
+    "required_transporters": [
+      {"name": "formate transporter", "patterns": ["formate.*transport", "focA"], "optional": true}
+    ],
+    "product_transporters": [
+      {"name": "acetate permease", "patterns": ["acetate.*permease", "actP"], "optional": true}
+    ],
+    "cofactor_biosyntheses": [
+      {"name": "corrinoid biosynthesis", "patterns": ["cobalamin", "adenosylcobalamin"]}
+    ],
+    "negative_markers": ["mcrA", "dsrAB", "aprAB", "mtrC_omcB"],
+    "description": "Acetogenesis via Wood-Ljungdahl pathway. Negative markers: mcrA (methanogen), dsrAB/aprAB (SRB using WL for autotrophic CO2 fixation), mtrC_omcB (iron reducer using WL for autotrophy)"
+  },
+
+  "ammonia_oxidation": {
+    "steps": [
+      {"name": "ammonia monooxygenase", "gapseq_patterns": ["ammonia monooxygenase", "amoA", "amoB", "amoC"], "ec_numbers": ["1.14.99.39"], "weight": 2.5, "diagnostic_marker": "amoA"},
+      {"name": "hydroxylamine oxidoreductase", "gapseq_patterns": ["hydroxylamine oxidoreductase", "haoA"], "ec_numbers": ["1.7.2.6"], "weight": 2.0, "diagnostic_marker": "hao"},
+      {"name": "cytochrome c554", "gapseq_patterns": ["cytochrome c554", "cycA"], "ec_numbers": [], "weight": 0.8},
+      {"name": "cytochrome cM552", "gapseq_patterns": ["cytochrome.*552", "cycB"], "ec_numbers": [], "weight": 0.8}
+    ],
+    "required_transporters": [
+      {"name": "ammonium transporter", "patterns": ["ammonium.*transport", "amt", "ammoni"], "optional": true}
+    ],
+    "product_transporters": [],
+    "cofactor_biosyntheses": [
+      {"name": "heme biosynthesis", "patterns": ["heme.*biosynthesis", "hemA", "hemB"]}
+    ],
+    "negative_markers": [],
+    "known_limitations": ["A.2"],
+    "limitation_summary": "Comammox amoA (Nitrospirota) too divergent from beta-proteobacterial references; may be missed entirely (A.2). See LIMITATIONS.md.",
+    "description": "Aerobic ammonia oxidation (nitrification step 1)"
+  },
+
+  "anoxygenic_phototrophy_purple": {
+    "steps": [
+      {"name": "reaction center L subunit", "gapseq_patterns": ["pufL", "reaction center.*L.*subunit"], "ec_numbers": [], "weight": 2.5, "diagnostic_marker": "pufLM"},
+      {"name": "reaction center M subunit", "gapseq_patterns": ["pufM", "reaction center.*M.*subunit"], "ec_numbers": [], "weight": 2.5, "diagnostic_marker": "pufLM"},
+      {"name": "reaction center H subunit", "gapseq_patterns": ["puhA", "reaction center.*H"], "ec_numbers": [], "weight": 1.0},
+      {"name": "bacteriochlorophyll biosynthesis", "gapseq_patterns": ["bacteriochlorophyll", "bchI", "bchD", "bchH", "bchM", "bchG"], "ec_numbers": [], "weight": 1.5},
+      {"name": "carotenoid biosynthesis", "gapseq_patterns": ["carotenoid", "crtB", "crtI"], "ec_numbers": [], "weight": 0.8},
+      {"name": "light-harvesting complex", "gapseq_patterns": ["light.harvesting", "pufA", "pufB", "pucA", "pucB"], "ec_numbers": [], "weight": 0.8}
+    ],
+    "required_transporters": [],
+    "product_transporters": [],
+    "cofactor_biosyntheses": [
+      {"name": "bacteriochlorophyll a biosynthesis", "patterns": ["bacteriochlorophyll.*biosynthesis", "bchE", "bchC"]}
+    ],
+    "negative_markers": [],
+    "diagnostic_marker_override": {
+      "enabled": true,
+      "marker": "pufLM",
+      "min_pident": 35.0,
+      "min_qcov": 60.0,
+      "min_evalue": 1e-20,
+      "override_confidence": 0.65,
+      "rationale": "pufLM (Type II reaction center L and M subunits) are diagnostic for anoxygenic phototrophy with Type II RC, including FAP-style organisms (Chloroflexus) which use different downstream pathway architecture (chlorosomes, 3HP cycle) than canonical purple bacteria."
+    },
+    "known_limitations": ["B.5"],
+    "limitation_summary": "Heliobacterial and Acidobacteria phototrophs use divergent reaction centers not covered by pufLM/pscA references (B.5). See LIMITATIONS.md.",
+    "description": "Anoxygenic phototrophy (purple bacteria, Type II reaction center)"
+  },
+
+  "anoxygenic_phototrophy_green_sulfur": {
+    "steps": [
+      {"name": "Type I reaction center", "gapseq_patterns": ["pscA", "reaction center.*type I"], "ec_numbers": [], "weight": 2.5, "diagnostic_marker": "pscA_fmoA"},
+      {"name": "Fenna-Matthews-Olson protein", "gapseq_patterns": ["fmoA", "Fenna.Matthews"], "ec_numbers": [], "weight": 2.5, "diagnostic_marker": "pscA_fmoA"},
+      {"name": "bacteriochlorophyll c/d/e biosynthesis", "gapseq_patterns": ["bchK", "bchQ", "bchR", "bchU"], "ec_numbers": [], "weight": 1.5},
+      {"name": "chlorosome proteins", "gapseq_patterns": ["chlorosome", "csmA", "csmB"], "ec_numbers": [], "weight": 1.0}
+    ],
+    "required_transporters": [],
+    "product_transporters": [],
+    "cofactor_biosyntheses": [],
+    "negative_markers": [],
+    "description": "Anoxygenic phototrophy (green sulfur bacteria, Type I reaction center)"
+  },
+
+  "oxygenic_phototrophy": {
+    "steps": [
+      {"name": "photosystem II D1 protein", "gapseq_patterns": ["psbA", "photosystem II.*D1"], "ec_numbers": [], "weight": 2.5, "diagnostic_marker": "psaA_psbA"},
+      {"name": "photosystem I PsaA", "gapseq_patterns": ["psaA", "photosystem I"], "ec_numbers": [], "weight": 2.5, "diagnostic_marker": "psaA_psbA"},
+      {"name": "cytochrome b6f complex", "gapseq_patterns": ["cytochrome b6f", "petA", "petB", "petC"], "ec_numbers": [], "weight": 1.5},
+      {"name": "oxygen-evolving complex", "gapseq_patterns": ["oxygen.evolving", "psbO", "psbP", "psbQ"], "ec_numbers": [], "weight": 1.0}
+    ],
+    "required_transporters": [],
+    "product_transporters": [],
+    "cofactor_biosyntheses": [
+      {"name": "chlorophyll a biosynthesis", "patterns": ["chlorophyll.*biosynthesis", "chlH", "chlD", "chlI", "chlG"]}
+    ],
+    "negative_markers": [],
+    "description": "Oxygenic phototrophy (cyanobacteria, algae, plants)"
+  },
+
+  "dissimilatory_sulfate_reduction": {
+    "steps": [
+      {"name": "sulfate adenylyltransferase", "gapseq_patterns": ["sulfate adenylyl", "sat ", "sulfate activat"], "ec_numbers": ["2.7.7.4"], "weight": 1.0},
+      {"name": "adenylyl-sulfate reductase", "gapseq_patterns": ["adenylylsulfate reductase", "aprA", "aprB"], "ec_numbers": ["1.8.99.2"], "weight": 1.5, "diagnostic_marker": "aprAB"},
+      {"name": "dissimilatory sulfite reductase", "gapseq_patterns": ["dissimilatory.*sulfite reductase", "dsrA", "dsrB"], "ec_numbers": ["1.8.99.5"], "weight": 2.0, "diagnostic_marker": "dsrAB"},
+      {"name": "DsrC protein", "gapseq_patterns": ["dsrC"], "ec_numbers": [], "weight": 0.8},
+      {"name": "QmoABC membrane complex", "gapseq_patterns": ["qmoA", "qmoB", "qmoC"], "ec_numbers": [], "weight": 1.0, "diagnostic_marker": "qmoA"},
+      {"name": "DsrMKJOP membrane complex", "gapseq_patterns": ["dsrM", "dsrK", "dsrJ", "dsrO", "dsrP"], "ec_numbers": [], "weight": 1.0}
+    ],
+    "required_transporters": [
+      {"name": "sulfate transporter", "patterns": ["sulfate.*transport", "sulP", "sbp", "cysUWA", "sulfate.*permease"], "optional": true}
+    ],
+    "product_transporters": [],
+    "cofactor_biosyntheses": [],
+    "negative_markers": [],
+    "essential_marker_AND": ["dsrAB", "qmoA"],
+    "essential_marker_rationale": "Forward sulfate reduction requires both dsrAB (terminal sulfite reduction) and qmoA (QmoABC complex coupling APS reduction to membrane menaquinone pool). qmoA distinguishes forward sulfate reducers from reverse-dsr sulfide oxidizers (Allochromatium, Chlorobaculum) which have dsrAB and aprAB but lack qmoA. Cap confidence at 0.40 when either marker is absent.",
+    "known_limitations": ["C.2", "E.3"],
+    "limitation_summary": "Reverse-dsr sulfide oxidizers mostly handled by qmoA AND requirement (C.2). Deep-branching SRBs may have divergent dsrAB below BLAST threshold (E.3). See LIMITATIONS.md.",
+    "description": "Dissimilatory sulfate reduction"
+  },
+
+  "sulfur_oxidation": {
+    "steps": [
+      {"name": "sulfide oxidation I (to sulfur globules)", "gapseq_patterns": ["sulfide oxidation I"], "ec_numbers": [], "weight": 2.0},
+      {"name": "sulfide oxidation III (to sulfite)", "gapseq_patterns": ["sulfide oxidation III"], "ec_numbers": [], "weight": 1.5},
+      {"name": "sulfur oxidation I (aerobic)", "gapseq_patterns": ["sulfur oxidation I.*aerobic"], "ec_numbers": [], "weight": 2.0},
+      {"name": "sulfite oxidation", "gapseq_patterns": ["sulfite oxidation I$", "sulfite oxidation III", "sulfite oxidation V"], "ec_numbers": [], "weight": 1.0},
+      {"name": "thiosulfate oxidation (SOX multienzyme)", "gapseq_patterns": ["thiosulfate oxidation III", "thiosulfate oxidation IV"], "ec_numbers": [], "weight": 1.5, "diagnostic_marker": "soxB"},
+      {"name": "thiosulfate:quinone oxidoreductase, large subunit (DoxD)", "gapseq_patterns": ["thiosulfate.*quinone", "doxD"], "ec_numbers": [], "weight": 1.5, "diagnostic_marker": "tqoDoxD"},
+      {"name": "thiosulfate:quinone oxidoreductase, small subunit (DoxA)", "gapseq_patterns": ["thiosulfate.*quinone", "doxA"], "ec_numbers": [], "weight": 1.0, "diagnostic_marker": "tqoDoxA"},
+      {"name": "tetrathionate hydrolase (acidophilic)", "gapseq_patterns": ["tetrathionate.*hydrolase", "tetH"], "ec_numbers": [], "weight": 1.5, "diagnostic_marker": "tetH"},
+      {"name": "sulfur oxygenase/reductase (cytoplasmic)", "gapseq_patterns": ["sulfur oxygenase", "sor"], "ec_numbers": [], "weight": 1.5, "diagnostic_marker": "sor"}
+    ],
+    "required_transporters": [],
+    "product_transporters": [],
+    "cofactor_biosyntheses": [],
+    "negative_markers": [],
+    "phase3_2_note": "tqoDoxD/tqoDoxA/tetH/sor added Phase 3.2 for archaeal sulfur oxidation (Sulfolobales) — distinct enzyme family from bacterial soxB. Any single archaeal-marker hit boosts the pathway score for that step. See data/diagnostic_markers/archaeal_sulfur_oxidation_review.md.",
+    "description": "Sulfur/sulfide/thiosulfate oxidation (bacterial SOX + archaeal TQO/TetH/SOR)"
+  },
+
+  "denitrification": {
+    "steps": [
+      {"name": "nitrate reduction (denitrification)", "gapseq_patterns": ["nitrate reduction.*denitrification", "nitrate reduction VII", "nitrate reduction I"], "ec_numbers": ["1.7.5.1", "1.9.6.1"], "weight": 1.5},
+      {"name": "nitrate reduction (dissimilatory)", "gapseq_patterns": ["nitrate reduction.*dissimilatory", "nitrate reduction IV", "nitrate reduction VIII"], "ec_numbers": [], "weight": 1.0},
+      {"name": "nitric oxide reductase", "gapseq_patterns": ["nitric oxide reductase", "nitric oxide biosynthesis"], "ec_numbers": ["1.7.2.5"], "weight": 1.0},
+      {"name": "nitrous oxide reductase (nosZ)", "gapseq_patterns": ["nitrous oxide reductase", "nosZ"], "ec_numbers": ["1.7.2.4"], "weight": 2.0, "diagnostic_marker": "nosZ"}
+    ],
+    "required_transporters": [
+      {"name": "nitrate/nitrite transporter", "patterns": ["nitrate.*transport", "nitrite.*transport", "narK"], "optional": true}
+    ],
+    "product_transporters": [],
+    "cofactor_biosyntheses": [],
+    "negative_markers": [],
+    "essential_marker": "nosZ",
+    "essential_marker_rationale": "Without nosZ (nitrous oxide reductase), the organism can reduce nitrate but cannot complete denitrification to N2. Cap confidence at 0.40 when nosZ is absent.",
+    "known_limitations": ["E.4"],
+    "limitation_summary": "Clade II (atypical-Z) nosZ in Bacteroidetes/Epsilonproteobacteria may be missed by essential_marker requirement (E.4). See LIMITATIONS.md.",
+    "description": "Denitrification (NO3- to N2)"
+  },
+
+  "anaerobic_respiratory_dnra": {
+    "steps": [
+      {"name": "Cytochrome c nitrite reductase (NrfA)", "gapseq_patterns": ["cytochrome c nitrite reductase", "ammonia-forming", "nrfA", "cytochrome c-552"], "ec_numbers": ["1.7.2.2"], "weight": 2.5, "diagnostic_marker": "nrfA"},
+      {"name": "Nitrate reductase (NarG/NapA)", "gapseq_patterns": ["nitrate reductase", "narG", "napA", "narH"], "ec_numbers": ["1.7.5.1", "1.9.6.1"], "weight": 1.5},
+      {"name": "Anaerobic electron transport (formate/lactate dehydrogenase)", "gapseq_patterns": ["formate dehydrogenase", "fdh", "lactate dehydrogenase"], "ec_numbers": ["1.17.1.9", "1.1.1.27"], "weight": 0.5},
+      {"name": "NrfH membrane partner (quinol dehydrogenase)", "gapseq_patterns": ["nrfH", "tetraheme cytochrome"], "ec_numbers": [], "weight": 0.5}
+    ],
+    "required_transporters": [
+      {"name": "nitrate/nitrite transporter", "patterns": ["nitrate.*transport", "nitrite.*transport", "narK", "focA"], "optional": true}
+    ],
+    "product_transporters": [],
+    "cofactor_biosyntheses": [],
+    "negative_markers": [],
+    "essential_marker": "nrfA",
+    "essential_marker_rationale": "nrfA is the unique diagnostic enzyme for canonical NrfA-based DNRA. Without it, the pathway-integrity score can fire spuriously on denitrifiers (which share the nitrate-reduction step at the gapseq EC level) and on facultative anaerobes generally. Cap confidence at 0.40 when nrfA marker is absent at the 65% pident / 80% qcov threshold. See dnra_review.md for empirical cross-reactivity assessment.",
+    "diagnostic_marker_override": {
+      "enabled": true,
+      "marker": "nrfA",
+      "min_pident": 65.0,
+      "min_qcov": 80.0,
+      "min_evalue": 1e-30,
+      "override_confidence": 0.65,
+      "rationale": "nrfA is the unique pentaheme cytochrome c nitrite reductase diagnostic for canonical NrfA-based DNRA. Diagnostic features: 5 c-type heme-binding motifs (4 CXXCH + 1 distinctive CXXCK active-site Lys-coordinated heme). The CXXCK motif distinguishes NrfA from related multi-heme cytochromes c (Otr/HAO octaheme, NrfH tetraheme, sulfite reductases). Phase 3.4 empirical scan confirmed: protein family is more divergent than nxrA — cross-class identity drops to ~32% — but the 65% threshold catches all canonical NrfA in Enterobacteriaceae (E. coli, Salmonella), Pasteurellaceae (Mannheimia), Shewanellaceae, Wolinella-class Epsilonproteobacteria, and Desulfovibrio-class Deltaproteobacteria. Divergent NrfA in some Bacillota (Syntrophomonas at 34%) and Geobacteraceae (Geobacter at 33%) is missed at this threshold but those organisms classify correctly via other primary modes (syntrophic, iron reduction). Future enhancement: paired nrfA + nrfH operon-marker logic with relaxed pident would catch divergent cases — deferred unless external testers need it."
+    },
+    "known_limitations": ["B.2"],
+    "limitation_summary": "Canonical NrfA-based DNRA detection. Divergent NrfA (Bacillota / Geobacteraceae lineages, ~32-34% pident to canonical refs) below 65% threshold and not detected — those organisms' practical classification is unaffected because they have stronger non-DNRA primary modes. Otr-family DNRA (Campylobacter-class, octaheme architecture lacking CXXCK active-site motif) is a different enzyme and out of Phase 3.4 scope. See dnra_review.md.",
+    "description": "Dissimilatory nitrate reduction to ammonium (DNRA via NrfA)"
+  },
+
+  "lithotrophic_aerobic_nitrite": {
+    "steps": [
+      {"name": "Nitrite oxidoreductase (NxrAB)", "gapseq_patterns": ["nitrite oxidoreductase", "nxrA", "nxrB"], "ec_numbers": ["1.7.99.4"], "weight": 2.5, "diagnostic_marker": "nxrA"},
+      {"name": "CO2 fixation (rTCA or CBB cycle)", "gapseq_patterns": ["rubisco", "RuBisCO", "ribulose-1,5-bisphosphate carboxylase", "ATP-citrate", "2-oxoglutarate.*ferredoxin", "reductive citric acid"], "ec_numbers": ["4.1.1.39", "2.3.3.8", "1.2.7.3"], "weight": 1.5},
+      {"name": "Aerobic respiration (terminal oxidase)", "gapseq_patterns": ["cytochrome c oxidase", "cbb3 oxidase", "cytochrome.*aa3", "coxA", "coxB"], "ec_numbers": ["7.1.1.9"], "weight": 1.0},
+      {"name": "Ammonia assimilation", "gapseq_patterns": ["glutamine synthetase", "glutamate dehydrogenase", "GS-GOGAT"], "ec_numbers": ["6.3.1.2", "1.4.1.4"], "weight": 0.5}
+    ],
+    "required_transporters": [
+      {"name": "nitrite/nitrate transporter", "patterns": ["nitrite.*transport", "nitrate.*transport", "focA", "narK"], "optional": true}
+    ],
+    "product_transporters": [],
+    "cofactor_biosyntheses": [],
+    "negative_markers": [],
+    "essential_marker": "nxrA",
+    "essential_marker_rationale": "nxrA is the unique discriminator for canonical NOB. Without it, the pathway-integrity score can fire spuriously on denitrifiers (which have narG-family enzymes with the same gapseq EC annotation) and on aerobes generally (terminal oxidase + ammonia assimilation are near-universal). Cap confidence at 0.40 when nxrA marker is absent at the 75% pident / 80% qcov threshold. See nitrite_oxidation_review.md for the empirical narG cross-reactivity assessment.",
+    "diagnostic_marker_override": {
+      "enabled": true,
+      "marker": "nxrA",
+      "min_pident": 75.0,
+      "min_qcov": 80.0,
+      "min_evalue": 1e-30,
+      "override_confidence": 0.70,
+      "rationale": "nxrA is the unique diagnostic enzyme for canonical aerobic nitrite oxidation. Two well-separated clades exist (Type A cytoplasmic — Nitrospira/Nitrotoga; Type B periplasmic — Nitrobacter/Nitrolancea) with <25% sequence identity between them. The 8-reference set covers both clades; OR-logic best-hit determines lineage. Phase 3.3 narG cross-reactivity assessment empirically confirmed a 39-point gap between narG-family false positives (max 48% pident over full coverage) and intra-clade NOB true positives (87% pident floor), so the 75% threshold cleanly discriminates. Pathway integrity scoring is unreliable because gapseq's nitrite oxidation pathway annotation overlaps with denitrification's nitrate reduction (same EC numbers, same superfamily), so the marker override carries the detection."
+    },
+    "known_limitations": [],
+    "limitation_summary": "Canonical NOB detection — covers Nitrospira / Nitrobacter / Nitrotoga / Nitrolancea / Nitrococcus lineages. Comammox (single-organism complete ammonia oxidation) requires both nxrA AND comammox-specific amoA detection — deferred to a future sub-phase. See data/diagnostic_markers/nitrite_oxidation_review.md.",
+    "description": "Aerobic nitrite oxidation (canonical NOB)"
+  },
+
+  "iron_ii_oxidation": {
+    "steps": [
+      {"name": "Cyc2 outer membrane cytochrome", "gapseq_patterns": ["cyc2", "outer.*membrane.*cytochrome.*c"], "ec_numbers": [], "weight": 2.5, "diagnostic_marker": "cyc2"},
+      {"name": "rusticyanin", "gapseq_patterns": ["rusticyanin"], "ec_numbers": [], "weight": 2.0},
+      {"name": "cytochrome c4", "gapseq_patterns": ["cytochrome c4"], "ec_numbers": [], "weight": 1.0},
+      {"name": "aa3-type cytochrome oxidase", "gapseq_patterns": ["cytochrome.*aa3", "cytochrome c oxidase", "coxA", "coxB"], "ec_numbers": ["7.1.1.9"], "weight": 1.0}
+    ],
+    "required_transporters": [],
+    "product_transporters": [],
+    "cofactor_biosyntheses": [],
+    "negative_markers": [],
+    "known_limitations": ["A.3", "A.4"],
+    "limitation_summary": "cyc2 reference contains wrong accession (A.3). Neutrophilic/microaerophilic iron oxidation (mtoA pathway) not covered (A.4). See LIMITATIONS.md.",
+    "description": "Acidophilic Fe(II) oxidation"
+  },
+
+  "iron_iii_reduction": {
+    "steps": [
+      {"name": "outer membrane conduit (MtrABC/OmcBC)", "gapseq_patterns": ["mtrA", "mtrB", "mtrC", "omcB", "omcC", "outer.*membrane.*cytochrome"], "ec_numbers": [], "weight": 2.5, "diagnostic_marker": "mtrC_omcB"},
+      {"name": "periplasmic cytochromes", "gapseq_patterns": ["ppcA", "periplasmic.*cytochrome"], "ec_numbers": [], "weight": 1.0},
+      {"name": "outer surface cytochromes", "gapseq_patterns": ["omcS", "omcZ", "omcA", "outer.*surface.*cytochrome"], "ec_numbers": [], "weight": 1.5},
+      {"name": "conductive pili", "gapseq_patterns": ["pilA", "type IV pil"], "ec_numbers": [], "weight": 0.8}
+    ],
+    "required_transporters": [],
+    "product_transporters": [],
+    "cofactor_biosyntheses": [],
+    "negative_markers": [],
+    "known_limitations": ["D.2"],
+    "limitation_summary": "Only covers Geobacter/Shewanella-type mtrC/omcB. Firmicutes, archaeal, and Geothrix-class iron reducers use different electron transfer mechanisms (D.2). See LIMITATIONS.md.",
+    "description": "Dissimilatory Fe(III) reduction via extracellular electron transfer"
+  },
+
+  "bacteriorhodopsin": {
+    "steps": [
+      {"name": "bacteriorhodopsin/proteorhodopsin", "gapseq_patterns": ["bacteriorhodopsin", "proteorhodopsin", "rhodopsin"], "ec_numbers": [], "weight": 2.5, "diagnostic_marker": "rhodopsin"},
+      {"name": "retinal biosynthesis", "gapseq_patterns": ["retinal", "blh", "brp", "beta.*carotene.*15,15"], "ec_numbers": ["1.14.99.36"], "weight": 1.5},
+      {"name": "carotenoid precursor biosynthesis", "gapseq_patterns": ["crtY", "crtI", "lycopene.*cyclase"], "ec_numbers": [], "weight": 0.8}
+    ],
+    "required_transporters": [],
+    "product_transporters": [],
+    "cofactor_biosyntheses": [],
+    "negative_markers": [],
+    "diagnostic_marker_override": {
+      "enabled": true,
+      "marker": "rhodopsin",
+      "min_pident": 40.0,
+      "min_qcov": 60.0,
+      "min_evalue": 1e-20,
+      "override_confidence": 0.60,
+      "rationale": "Bacteriorhodopsin and proteorhodopsin are self-contained light-driven proton pumps. Their presence indicates the capability regardless of whether retinal biosynthesis is annotated as predicted in gapseq output."
+    },
+    "description": "Bacteriorhodopsin/proteorhodopsin light-driven proton pump"
+  },
+
+  "nitrogen_fixation": {
+    "steps": [
+      {"name": "nitrogenase Fe protein", "gapseq_patterns": ["nitrogenase.*Fe protein", "nifH", "nitrogen.*fixation.*Fe"], "ec_numbers": ["1.18.6.1"], "weight": 2.5, "diagnostic_marker": "nifH"},
+      {"name": "nitrogenase MoFe protein alpha", "gapseq_patterns": ["nitrogenase.*MoFe.*alpha", "nifD"], "ec_numbers": ["1.18.6.1"], "weight": 1.5},
+      {"name": "nitrogenase MoFe protein beta", "gapseq_patterns": ["nitrogenase.*MoFe.*beta", "nifK"], "ec_numbers": ["1.18.6.1"], "weight": 1.5},
+      {"name": "Fe-Mo cofactor biosynthesis", "gapseq_patterns": ["nifB", "nifE", "nifN", "FeMo.*cofactor"], "ec_numbers": [], "weight": 1.0},
+      {"name": "electron donor to nitrogenase", "gapseq_patterns": ["nifF", "nifJ", "ferredoxin.*nitrogenase"], "ec_numbers": [], "weight": 0.8}
+    ],
+    "required_transporters": [],
+    "product_transporters": [],
+    "cofactor_biosyntheses": [],
+    "negative_markers": [],
+    "known_limitations": ["B.1"],
+    "limitation_summary": "Only Mo-dependent nifH covered. Vanadium (vnfH) and iron-only (anfH) alternative nitrogenases may be missed (B.1). See LIMITATIONS.md.",
+    "description": "Biological nitrogen fixation (N2 to NH3)"
+  },
+
+  "aerobic_respiration": {
+    "steps": [
+      {"name": "NADH dehydrogenase (Complex I)", "gapseq_patterns": ["NADH.*dehydrogenase", "NADH.*ubiquinone", "nuoA", "nuoB", "nuo"], "ec_numbers": ["7.1.1.2"], "weight": 1.0},
+      {"name": "succinate dehydrogenase (Complex II)", "gapseq_patterns": ["succinate dehydrogenase", "sdhA", "sdhB"], "ec_numbers": ["1.3.5.1"], "weight": 0.8},
+      {"name": "cytochrome bc1 (Complex III)", "gapseq_patterns": ["cytochrome bc1", "ubiquinol.*cytochrome c", "petA", "petB"], "ec_numbers": ["7.1.1.8"], "weight": 1.0},
+      {"name": "terminal oxidase", "gapseq_patterns": ["cytochrome.*oxidase", "terminal oxidase", "bo3", "bd.*oxidase", "cbb3", "coxA"], "ec_numbers": ["7.1.1.3", "7.1.1.7", "7.1.1.9"], "weight": 1.5},
+      {"name": "F1F0 ATP synthase", "gapseq_patterns": ["ATP synthase", "F1F0", "atpA", "atpB", "atpD"], "ec_numbers": ["7.1.2.2"], "weight": 0.8}
+    ],
+    "required_transporters": [],
+    "product_transporters": [],
+    "cofactor_biosyntheses": [
+      {"name": "ubiquinone/menaquinone biosynthesis", "patterns": ["ubiquinone.*biosynthesis", "menaquinone.*biosynthesis"]}
+    ],
+    "negative_markers": [],
+    "description": "Aerobic respiration via electron transport chain"
+  },
+
+  "fermentation_mixed": {
+    "steps": [
+      {"name": "glycolysis (EMP)", "gapseq_patterns": ["glycolysis I.*from glucose", "glycolysis III.*from glucose", "glycolysis II.*from fructose", "glycolysis IV"], "ec_numbers": [], "weight": 2.0},
+      {"name": "Entner-Doudoroff pathway", "gapseq_patterns": ["Entner-Doudoroff"], "ec_numbers": [], "weight": 1.0},
+      {"name": "pyruvate fermentation to lactate", "gapseq_patterns": ["pyruvate fermentation to.*lactate"], "ec_numbers": ["1.1.1.27", "1.1.1.28"], "weight": 1.5},
+      {"name": "pyruvate fermentation to ethanol", "gapseq_patterns": ["pyruvate fermentation to ethanol"], "ec_numbers": [], "weight": 1.0},
+      {"name": "pyruvate fermentation to acetate", "gapseq_patterns": ["pyruvate fermentation to acetate"], "ec_numbers": [], "weight": 1.0},
+      {"name": "pyruvate fermentation to acetoin", "gapseq_patterns": ["pyruvate fermentation to.*acetoin"], "ec_numbers": [], "weight": 0.8},
+      {"name": "pyruvate fermentation to butanoate", "gapseq_patterns": ["pyruvate fermentation to butano", "fermentation.*butanoate"], "ec_numbers": [], "weight": 1.0},
+      {"name": "heterolactic fermentation", "gapseq_patterns": ["heterolactic fermentation"], "ec_numbers": [], "weight": 1.0},
+      {"name": "pyruvate fermentation to butanol", "gapseq_patterns": ["pyruvate fermentation to butanol"], "ec_numbers": [], "weight": 0.8}
+    ],
+    "required_transporters": [
+      {"name": "sugar uptake", "patterns": ["PTS", "sugar.*transport", "glucose.*transport"], "optional": true}
+    ],
+    "product_transporters": [
+      {"name": "organic acid efflux", "patterns": ["lactate.*transport", "acetate.*transport"], "optional": true}
+    ],
+    "cofactor_biosyntheses": [],
+    "negative_markers": [],
+    "description": "Substrate-level phosphorylation fermentation (mixed products)"
+  },
+
+  "anammox": {
+    "steps": [
+      {"name": "nitrite reduction to nitric oxide", "gapseq_patterns": ["nitrite reduction", "nirS", "nirK"], "ec_numbers": ["1.7.2.1"], "weight": 1.0},
+      {"name": "hydrazine synthesis from ammonium and nitric oxide", "gapseq_patterns": ["hydrazine synth", "hzsA", "hzsB", "hzsC"], "ec_numbers": ["1.7.2.7"], "weight": 2.5, "diagnostic_marker": "hzsA"},
+      {"name": "hydrazine oxidation to dinitrogen", "gapseq_patterns": ["hydrazine.*dehydrogenase", "hydrazine.*oxidoreductase", "hdh", "hzo"], "ec_numbers": ["1.7.2.8"], "weight": 2.0, "diagnostic_marker": "hdh"}
+    ],
+    "required_transporters": [
+      {"name": "ammonium transporter", "patterns": ["amt", "ammonium.*transport"], "optional": true},
+      {"name": "nitrite transporter", "patterns": ["nitrite.*transport", "nirC"], "optional": true}
+    ],
+    "product_transporters": [],
+    "cofactor_biosyntheses": [
+      {"name": "heme c biosynthesis", "patterns": ["heme.*biosynthesis", "ccmA"]}
+    ],
+    "negative_markers": [],
+    "known_limitations": ["E.1"],
+    "limitation_summary": "Scalindua-type hzsA too divergent for BLAST or HMM detection. Deep-branching anammox lineages may be missed entirely (E.1). See LIMITATIONS.md.",
+    "description": "Anaerobic ammonium oxidation (anammox), ammonium + nitrite to dinitrogen via hydrazine"
+  },
+
+  "organohalide_respiration": {
+    "steps": [
+      {"name": "reductive dehalogenase", "gapseq_patterns": ["reductive.*dehalogenase", "rdhA", "pceA", "tceA", "vcrA"], "ec_numbers": ["1.21.99.5", "1.97.1.8"], "weight": 3.0, "diagnostic_marker": "rdhA"},
+      {"name": "hydrogenase (electron donor input)", "gapseq_patterns": ["hydrogenase"], "ec_numbers": ["1.12.7.2", "1.12.99.6"], "weight": 1.0},
+      {"name": "menaquinone biosynthesis", "gapseq_patterns": ["menaquinone biosynthesis", "menB", "menC"], "ec_numbers": ["2.5.1.74"], "weight": 0.5}
+    ],
+    "required_transporters": [],
+    "product_transporters": [],
+    "cofactor_biosyntheses": [
+      {"name": "corrinoid biosynthesis", "patterns": ["cobalamin", "cbi"]},
+      {"name": "iron-sulfur cluster assembly", "patterns": ["iron-sulfur", "isc", "suf"]}
+    ],
+    "negative_markers": [],
+    "diagnostic_marker_override": {
+      "enabled": true,
+      "marker": "rdhA",
+      "min_pident": 34.0,
+      "min_qcov": 50.0,
+      "min_evalue": 1e-20,
+      "override_confidence": 0.65,
+      "rationale": "rdhA is the unique diagnostic enzyme for organohalide respiration. Pathway architecture varies across organohalide respirers (Dehalococcoides, Desulfitobacterium, Dehalobacter, Sulfurospirillum), so pathway integrity scoring is unreliable. Phase 1.5n cross-contamination test found Prometheoarchaeum (Asgard archaeon) carries an rdhA-superfamily homolog (likely glycine reductase or RamA-class) at 33.2% identity — single query protein, not a paralog family. min_pident raised from 30 to 34 to exclude this case while retaining Dehalococcoides (multiple paralogs at 33-35% identity, 4 distinct queries clear the 34% threshold)."
+    },
+    "known_limitations": ["A.1", "D.1"],
+    "limitation_summary": "rdhA detects the family but cannot determine substrate specificity (PCE, TCE, vinyl chloride, etc.) (A.1/D.1). See LIMITATIONS.md.",
+    "description": "Reductive dehalogenation of organohalide compounds as terminal electron acceptors"
+  }
+}

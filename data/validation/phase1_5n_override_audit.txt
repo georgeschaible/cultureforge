@@ -1,0 +1,18 @@
+--- rdhA override (pident≥30, qcov≥50, evalue≤1e-20) ---
+id  organism         max_pid  max_bs  max_qcov  n_override_eligible
+--  ---------------  -------  ------  --------  -------------------
+29  GCA_900196725.1  33.2     177.0   86.0      5                  
+25  GCF_000011905.1  35.3     151.0   95.0      9                  
+
+--- pufLM override (pident≥35, qcov≥60, evalue≤1e-20) ---
+id  organism                max_pid  max_bs  max_qcov  n_override_eligible
+--  ----------------------  -------  ------  --------  -------------------
+31  Allochromatium vinosum  72.9     462.0   99.0      8                  
+19  NC_005296.1             74.1     461.0   99.0      8                  
+24  GCF_000018865.1         47.8     246.0   95.0      8                  
+
+--- rhodopsin override (pident≥40, qcov≥60, evalue≤1e-20) ---
+id  organism     max_pid  max_bs  max_qcov  n_override_eligible
+--  -----------  -------  ------  --------  -------------------
+20  NC_002607.1  54.1     212.0   92.0      2                  
+

@@ -1,0 +1,133 @@
+================================================================================
+CULTUREFORGE VALIDATION: Acidithiobacillus_ferrooxidans
+================================================================================
+
+================================================================================
+  SYNTHESIZED RECIPE — derived from template 'BHI MEDIUM'
+  Query: NC_011761.1  (10 relatives, best identity 100.0%)
+================================================================================
+
+  Overall Confidence: LOW (0.53)
+  → min of 10 (template = 0.53)
+
+  Thermal sources: user_supplied=30°C
+  → user-supplied 30.0°C
+
+  COMPONENTS:
+    [Complex nutrient sources]
+      Brain heart infusion                     37.0 g/L         [0.53] ⚠ (template)
+
+    [Trace metals]
+      NiCl2·6H2O                               50 μg/L          [0.95] (mebipred)
+          → MeBiPred: 378 Ni-binding proteins (max_p=1.00); template 'BHI MEDIUM' lacks a direct Ni salt
+          → fraction 0.12 > typical ceiling 0.10 — flag for review
+      MnCl2·4H2O                               500 μg/L         [0.95] (mebipred)
+          → MeBiPred: 342 Mn-binding proteins (max_p=1.00); template 'BHI MEDIUM' lacks a direct Mn salt
+      ZnSO4·7H2O                               500 μg/L         [0.95] (mebipred)
+          → MeBiPred: 240 Zn-binding proteins (max_p=0.98); template 'BHI MEDIUM' lacks a direct Zn salt
+      CuSO4·5H2O                               50 μg/L          [0.95] (mebipred)
+          → MeBiPred: 222 Cu-binding proteins (max_p=1.00); template 'BHI MEDIUM' lacks a direct Cu salt
+          → max_p 1.00 on rare metal — verify with BRENDA
+      CoCl2·6H2O                               50 μg/L          [0.95] (mebipred)
+          → MeBiPred: 124 Co-binding proteins (max_p=1.00); template 'BHI MEDIUM' lacks a direct Co salt
+          → max_p 1.00 on rare metal — verify with BRENDA
+
+    [Auxotrophy supplements]
+      molybdopterin                            1.0 mg/L         [0.65] ⚠ (auxotrophy)
+          → gapseq reports auxotrophy (best biosynthesis pathway 66%); template 'BHI MEDIUM' lacks a direct source for molybdopterin
+          → partial biosynthesis (66%); test 0, 0.5×, 1×, 2× to verify requirement
+      siroheme                                 1.0 mg/L         [0.72] ⚠ (auxotrophy)
+          → gapseq reports auxotrophy (best biosynthesis pathway 50%); template 'BHI MEDIUM' lacks a direct source for siroheme
+          → partial biosynthesis (50%); test 0, 0.5×, 1×, 2× to verify requirement
+
+    [Electron donor]
+      Na2S2O3·5H2O                             5.0 g/L          [0.95] (energy:sulfur-oxidation)
+          → user-specified energy metabolism 'sulfur-oxidation'; adding electron_donor per CLAUDE.md reference table
+
+================================================================================
+  CARBON SOURCE ANALYSIS
+================================================================================
+  Organism can utilize 13 predicted carbon sources:
+    ✓ aspartate            (100% pathway — L-aspartate degradation I)
+    ✓ CO2                  (100% pathway — Calvin-Benson-Bassham cycle)
+    ✓ glutamine            (100% pathway — L-glutamine degradation II)
+    ✓ glutamate            (100% pathway — L-glutamate degradation II)
+    ✓ cysteine             (100% pathway — L-cysteine degradation II)
+    ✓ pyruvate             (100% pathway — pyruvate fermentation to acetate II)
+    ✓ ethanol              (100% pathway — ethanol degradation II)
+    ✓ oxalate              (100% pathway — oxalate degradation IV)
+    ✓ galactose            (100% pathway — L-galactose degradation)
+    ✓ malate               (100% pathway — L-malate degradation I)
+
+================================================================================
+  GAS PHASE RECOMMENDATION
+================================================================================
+  Headspace: Aerobic (air) — no special headspace needed
+    → no anaerobic or H₂-dependent metabolism detected
+  BLAST-confirmed hydrogenases (5 hits):
+    • [NiFe]  Group 2  NC_011761.1_3027       52.6%id  bs=343
+    • [FeFe]  Group A  NC_011761.1_286        64.5%id  bs=287
+    • [NiFe]  Group 4  NC_011761.1_1975       29.0%id  bs=187
+    • [NiFe]  Group 4  NC_011761.1_2411       28.7%id  bs=136
+    • [NiFe]  Group 2  NC_011761.1_664        28.9%id  bs=112
+  gapseq H₂ pathways (2):
+    • uptake         100%  hydrogen oxidation I (aerobic)
+    • uptake         100%  hydrogen to fumarate electron transfer
+
+================================================================================
+  PHYSICAL FORMAT
+================================================================================
+  Recommended: Solid agar plates (1.5%) for isolation; liquid broth for cultivation  [0.85]
+    → Standard aerobic/facultative organism — no special format needed.
+  Solidifying agent: Gellan gum (Gelrite) 0.5-0.8%
+    → pH <4 — agar hydrolyzes at low pH during autoclaving. Gellan gum + divalent cation.
+  ⚠ LOW pH — use gellan gum, NOT agar
+
+================================================================================
+  THERMODYNAMIC VIABILITY CHECK (Amend & Shock 2001)
+================================================================================
+    Reaction:  S(s) + 1.5 O2(aq) + H2O(l) -> SO4(2-) + 2 H+
+    Temperature: 30°C
+    ΔG°r (standard state): -530.79 kJ/mol
+    Activities:  H+=1.0e-07, O2(aq)=2.0e-04, SO4(2-)=1.0e-03
+    ΔGr (actual):  -597.25 kJ/mol
+    Verdict:   ✓ VIABLE (< -20 kJ/mol)
+
+  ⚠ UNCERTAINTY FLAGS (3 components <0.75):
+    • Brain heart infusion (0.53) — from template 'BHI MEDIUM' — min of 2 (phylo_16s = 0.53)
+    • molybdopterin (0.65) — gapseq reports auxotrophy (best biosynthesis pathway 66%); template 'BHI MEDIUM' lacks a direct source for molybdopterin
+    • siroheme (0.72) — gapseq reports auxotrophy (best biosynthesis pathway 50%); template 'BHI MEDIUM' lacks a direct source for siroheme
+
+  EXPERIMENTAL VARIATION MATRIX:
+    • Brain heart infusion
+        reason:   53% confidence
+        variants: Test variants experimentally
+    • molybdopterin supplement
+        reason:   partial biosynthesis (66%); test 0, 0.5×, 1×, 2× to verify requirement
+        variants: Test 0×, 0.5×, 1×, 2× molybdopterin (0 / 0.00 / 0.001 / 0.00 g/L)
+    • siroheme supplement
+        reason:   partial biosynthesis (50%); test 0, 0.5×, 1×, 2× to verify requirement
+        variants: Test 0×, 0.5×, 1×, 2× siroheme (0 / 0.00 / 0.001 / 0.00 g/L)
+    • Ni trace supplement
+        reason:   fraction 0.12 > typical ceiling 0.10 — flag for review
+        variants: Test with and without NiCl2·6H2O
+    • Cu trace supplement
+        reason:   max_p 1.00 on rare metal — verify with BRENDA
+        variants: Test with and without CuSO4·5H2O
+    • Co trace supplement
+        reason:   max_p 1.00 on rare metal — verify with BRENDA
+        variants: Test with and without CoCl2·6H2O
+
+================================================================================
+  PROVENANCE
+================================================================================
+    Template medium:   BHI MEDIUM (215)
+    Phylogenetic match: MediaDive + BacDive via 16S BLAST (best 100.0%)
+    Metabolic analysis: gapseq 1.4.0 → 7 auxotrophy compound(s) required
+    Environmental:     multi-source thermal inference (1 source(s))
+    Metal profile:     MeBiPred (10 strong metals: Mg, Ca, K, Fe, Na, Ni, Mn, Zn, Cu, Co)
+    Genome biomass:    Gram_neg
+    Energy overlay:    user-specified 'sulfur-oxidation'
+    Thermo check:      Amend & Shock 2001 (Sulfur oxidation to sulfate; ΔGr = -597.3 kJ/mol → viable)
+================================================================================
+  → layered 2 auxotrophy + 5 metal + 1 energy-metabolism components onto template baseline

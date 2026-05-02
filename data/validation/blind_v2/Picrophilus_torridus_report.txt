@@ -1,0 +1,43 @@
+=================================================================
+CultureForge Capability Report
+Organism: Blind v2: Picrophilus_torridus
+Genome: GCF_000010165.1
+Generated: 2026-04-25 13:23
+
+GENOME QUALITY
+-----------------------------------------------------------------
+CheckM: not available (genome stats only)
+Genome size: 6,296,436 bp
+GC content: 47.3%
+N50: 6,296,436
+Acidic residue fraction (D+E): 0.1204
+Quality verdict: NO_QC
+
+PRIMARY CAPABILITIES (detected, confidence >= 0.50)
+-----------------------------------------------------------------
+1. Aerobic respiration
+   Confidence: 0.90
+   - cbb3 oxidase complex complete (high-affinity, microaerophilic)
+   - cytochrome c oxidase: 15 hits + TCA 88% (strong combined aerobic signal)
+   - TCA cycle 88% complete
+
+2. Substrate-level phosphorylation fermentation (mixed products)
+   Confidence: 0.73
+   - Pathway: 7/9 steps detected (weighted score 0.75)
+
+CONSIDERED AND REJECTED
+-----------------------------------------------------------------
+- Syntrophy (composite signature)                    0.350 (below threshold, pathway score 0.35)
+- Aerobic ammonia oxidation (nitrification step 1)   0.325 (below threshold, pathway score 0.00)
+- Dissimilatory sulfate reduction                    0.317 (below threshold, pathway score 0.13)
+- Acidophilic Fe(II) oxidation                       0.308 (below threshold, pathway score 0.15)
+- Anoxygenic phototrophy (green sulfur bacteria, Typ 0.225 (below threshold, pathway score 0.00)
+- Aerobic respiration via electron transport chain   0.206 (below threshold, pathway score 0.29)
+- Sulfur/sulfide/thiosulfate oxidation               0.200 (below threshold, pathway score 0.00)
+- Denitrification (NO3- to N2)                       0.200 (below threshold, pathway score 0.00)
+
+RECOMMENDED ACTION
+-----------------------------------------------------------------
+Action: flag_uncertain
+
+=================================================================

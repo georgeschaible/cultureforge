@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "dbname": "blastdb_pmoA",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": "pmoA",
+  "number-of-letters": 1492,
+  "number-of-sequences": 6,
+  "last-updated": "2026-05-01T21:03:00",
+  "number-of-volumes": 1,
+  "bytes-total": 39697,
+  "bytes-to-cache": 1635,
+  "files": [
+    "blastdb_pmoA.pdb",
+    "blastdb_pmoA.phr",
+    "blastdb_pmoA.pin",
+    "blastdb_pmoA.pot",
+    "blastdb_pmoA.psq",
+    "blastdb_pmoA.ptf",
+    "blastdb_pmoA.pto"
+  ]
+}

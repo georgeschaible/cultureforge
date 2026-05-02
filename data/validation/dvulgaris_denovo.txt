@@ -1,0 +1,238 @@
+
+[1/5] Extracting 16S rRNA from data/genomes/dvulgaris_hildenborough.fasta ...
+      1546 bp 16S extracted.
+
+[2/5] BLASTing against /home/george/cultureforge/data/blastdb/16s_ref ...
+      10 hits, best 99.8% (Nitratidesulfovibrio vulgaris)
+
+[3/5] Looking up genome in DB (accession=NC_002937.3) ...
+      genome_id=7
+
+[4/5] Synthesizing de novo recipe ...
+      Energy metabolism: sulfate_reducer [0.95]
+      Components: 21, auxotrophies: 10
+
+[5/5] Getting template comparison ...
+      Template: DESULFOVIBRIO (POSTGATE) MEDIUM
+
+================================================================================
+  DE NOVO RECIPE — composed from genomic evidence
+  Query: NC_002937.3
+================================================================================
+
+  Overall Confidence: LOW (0.50)
+  → min of 18 (gapseq = 0.65); −0.15 compatibility penalty (8 warnings)
+
+  ENERGY METABOLISM: Sulfate Reducer
+    Electron donor:    organic acids (lactate/pyruvate/acetate) or H2
+    Electron acceptor: SO4²⁻
+    Autotrophic:       No
+    Genomic evidence:  user-specified
+    Confidence:        [0.95] VERY HIGH
+    → user-specified: sulfate-reduction
+
+  ELECTRON DONOR:
+    Sodium DL-lactate                        2.38 g/L        [0.95]
+      → electron_donor for sulfate_reducer; calibrated: median=2.38 g/L [P10=2.04, P90=250.00] (n=292, metabolism_proxy:sulfate_reducer)
+
+  ELECTRON ACCEPTOR:
+    Na2SO4                                   1.99 g/L        [0.95]
+      → electron_acceptor for sulfate_reducer; calibrated: median=1.99 g/L [P10=0.10, P90=30.00] (n=1246, metabolism_proxy:sulfate_reducer)
+
+  CARBON SOURCE:
+    NaHCO3                                   4.49 g/L        [0.70] ⚠
+      → autotroph — Calvin cycle (CBB) 76% complete; calibrated: median=4.49 g/L (n=76, metabolism_proxy:sulfate_reducer)
+
+  NITROGEN SOURCE:
+    NH4Cl                                    490.0 mg/L      [0.75]
+      → NH4Cl default (universal prokaryotic N source); calibrated median=0.49 g/L (n=1141)
+
+  COMPLEX NUTRIENT SOURCE:
+    Yeast extract                            1.0 g/L         [0.80]
+      → 10 auxotrophies detected (>5 threshold); yeast extract covers vitamins + amino acids; calibrated: median=1.00 g/L (n=1802)
+      ⚠ 10 auxotrophies; yeast extract covers most; test without if pure culture needed
+
+  PHOSPHATE / BUFFER:
+    K2HPO4                                   500.0 mg/L      [0.85]
+      → high-affinity pst phosphate transporter detected → P-limited environment; pH 7.3 ≈ phosphate pKa 7.2; calibrated: median=0.50 g/L (n=952)
+
+  BUFFER:
+    KH2PO4                                   149.0 mg/L      [0.80]
+      → KH2PO4/K2HPO4 ratio maintains pH 7.0-7.4
+
+  VITAMINS / COFACTORS:
+    heme                                     5.0 mg/L        [0.65] ⚠
+      → gapseq auxotrophy: biosynthesis pathway 66% complete (gap probability 34%)
+      ⚠ partial biosynthesis (66%); test with/without to confirm requirement
+    molybdopterin                            1.0 mg/L        [0.72] ⚠
+      → gapseq auxotrophy: biosynthesis pathway 50% complete (gap probability 50%)
+      ⚠ partial biosynthesis (50%); test with/without to confirm requirement
+
+  TRACE METALS:
+    MgSO4·7H2O                               500.0 mg/L      [0.95]
+      → MeBiPred: 952 Mg-binding proteins (max_p=0.94, fraction=30.2%)
+    CaCl2·2H2O                               50.0 mg/L       [0.95]
+      → MeBiPred: 695 Ca-binding proteins (max_p=1.00, fraction=22.0%)
+    FeSO4·7H2O                               5.0 mg/L        [0.95]
+      → MeBiPred: 612 Fe-binding proteins (max_p=1.00, fraction=19.4%)
+    NaCl                                     1.0 g/L         [0.91]
+      → MeBiPred: 552 Na-binding proteins (max_p=0.89, fraction=17.5%)
+    NiCl2·6H2O                               50 μg/L         [0.95]
+      → MeBiPred: 495 Ni-binding proteins (max_p=1.00, fraction=15.7%)
+      ⚠ fraction 0.16 > typical ceiling 0.10 — flag for review
+    MnCl2·4H2O                               500 μg/L        [0.95]
+      → MeBiPred: 429 Mn-binding proteins (max_p=1.00, fraction=13.6%)
+    ZnSO4·7H2O                               500 μg/L        [0.95]
+      → MeBiPred: 287 Zn-binding proteins (max_p=0.98, fraction=9.1%)
+    CuSO4·5H2O                               50 μg/L         [0.95]
+      → MeBiPred: 227 Cu-binding proteins (max_p=1.00, fraction=7.2%)
+      ⚠ max_p 1.00 on rare metal — verify with BRENDA
+    CoCl2·6H2O                               50 μg/L         [0.95]
+      → MeBiPred: 140 Co-binding proteins (max_p=1.00, fraction=4.4%)
+      ⚠ max_p 1.00 on rare metal — verify with BRENDA
+
+  ATMOSPHERE / REDOX:
+    Na2S·9H2O                                500.0 mg/L      [0.90]
+      → reducing agent for sulfate_reducer: Standard for SRB; sulfide is also a metabolic product
+    N₂:CO₂ (80:20) — OR H₂:CO₂ (80:20) if testing lithoautotrophic growth                 [0.85]
+      → sulfate reducer with uptake hydrogenase — can use H₂ or organic donors; N₂:CO₂ is standard for heterotrophic growth with lactate/pyruvate; H₂:CO₂ enables autotrophic growth
+    Resazurin                                500 μg/L        [0.95]
+
+  AUXOTROPHY SUMMARY: 10 auxotrophies detected
+    → >5 auxotrophies: yeast extract added to cover vitamins + amino acids
+
+================================================================================
+  COMPATIBILITY WARNINGS
+================================================================================
+    ✗ [HIGH] FePO4 / Fe3(PO4)2 (vivianite / iron phosphate)
+        FeSO4·7H2O  +  K2HPO4  (condition: pH > 5.5)
+        → Prepare iron and phosphate solutions SEPARATELY; autoclave separately; combine post-cooling. OR add chelator (NTA 0.1-1 mg/L or Na-EDTA 0.5-5 mg/L) to iron solution before combining. OR use ferric citrate (pre-chelated iron).
+
+    ✗ [HIGH] FeS / FeS2 (iron sulfide / pyrite)
+        FeSO4·7H2O  +  Na2S·9H2O  (condition: any pH)
+        → Prepare iron and reducing-agent/sulfide solutions SEPARATELY; combine under anaerobic conditions post-autoclaving. Consider titanium(III) citrate as alternative reductant if FeS precipitation is problematic.
+
+    ✗ [HIGH] CuS (covellite)
+        CuSO4·5H2O  +  Na2S·9H2O  (condition: any pH)
+        → Prepare trace metals and sulfide/reducing agent SEPARATELY; combine post-autoclaving under anaerobic conditions.
+
+    ✗ [HIGH] ZnS (sphalerite)
+        ZnSO4·7H2O  +  Na2S·9H2O  (condition: any pH)
+        → Prepare trace metals and sulfide/reducing agent SEPARATELY; combine post-autoclaving under anaerobic conditions.
+
+    ✗ [HIGH] NiS (millerite)
+        NiCl2·6H2O  +  Na2S·9H2O  (condition: neutral-alkaline pH)
+        → Prepare trace metals and sulfide/reducing agent SEPARATELY; combine post-autoclaving under anaerobic conditions.
+
+    ✗ [HIGH] CoS (cobalt sulfide)
+        NaHCO3  +  Na2S·9H2O  (condition: neutral-alkaline pH)
+        → Prepare trace metals and sulfide/reducing agent SEPARATELY; combine post-autoclaving under anaerobic conditions.
+
+    ⚠ [MEDIUM] Ca3(PO4)2 (apatite / calcium phosphate)
+        CaCl2·2H2O  +  K2HPO4  (condition: pH > 6.5)
+        → Autoclave calcium and phosphate solutions separately; combine post-cooling.
+
+    ○ [LOW] CaSO4 (gypsum)
+        CaCl2·2H2O  +  Na2SO4  (condition: high concentrations (>20 mM each))
+        → Usually not problematic at typical medium concentrations. If both Ca and SO4 are at high levels, reduce one or prepare separately.
+
+  PREPARATION INSTRUCTIONS (auto-generated from compatibility check)
+
+  SOLUTION A — Phosphate/buffer (autoclave separately):
+    - K2HPO4
+    - KH2PO4
+    → Dissolve in partial volume H₂O, autoclave 121°C 15 min
+
+  SOLUTION B — Metals/iron (autoclave separately):
+    - CoCl2·6H2O
+    - CuSO4·5H2O
+    - FeSO4·7H2O
+    - MnCl2·4H2O
+    - NaHCO3
+    - NiCl2·6H2O
+    - N₂:CO₂ (80:20) — OR H₂:CO₂ (80:20) if testing lithoautotrophic growth
+    - ZnSO4·7H2O
+    - Na-EDTA or NTA (chelator, 0.5-5 mg/L)
+    → Dissolve in partial volume H₂O, autoclave 121°C 15 min
+
+  SOLUTION C — Reducing agents/sulfide (prepare under N₂, add LAST):
+    - Na2SO4
+    - Na2S·9H2O
+    → Prepare under N₂ atmosphere; autoclave separately or
+      prepare from sterile anaerobic stock; add to cooled
+      combined medium under anaerobic conditions
+
+  COMBINE: Cool all solutions to ~50°C under sterile conditions.
+           Add solutions in order: base salts → phosphate →
+           metals (with chelator) → reducing agents/sulfide (last).
+           Adjust pH to target with sterile NaOH/HCl.
+
+================================================================================
+  PHYSICAL FORMAT
+================================================================================
+  Primary: Liquid in sealed tubes (Hungate/Balch technique)
+    → Strict anaerobe — requires O₂-free conditions. Use Hungate tubes or Balch tubes with butyl rubber stoppers and aluminum crimps. Prepare under N₂ or N₂:CO₂ atmosphere.
+  Solidifying agent: Agar (Bacto or Noble) 1.2-2.0%
+  Alternative: Roll tubes (anaerobic + solid surface) OR anaerobic chamber + agar plates if colony isolation needed
+  ⚠ STRICT ANAEROBE — all manipulation must use Hungate technique or anaerobic glove box
+
+================================================================================
+  EXPERIMENTAL VARIATION MATRIX
+================================================================================
+  • NaHCO3 (CO2 source / buffer) (70% confidence)
+      → Test alternative carbon sources alongside NaHCO3
+  • Yeast extract (10 auxotrophies; yeast extract covers most; test without if pure culture needed)
+      → Test variants experimentally
+  • heme supplement (partial biosynthesis (66%); test with/without to confirm requirement)
+      → Test variants experimentally
+  • molybdopterin supplement (partial biosynthesis (50%); test with/without to confirm requirement)
+      → Test variants experimentally
+  • Ni trace metal (NiCl2·6H2O) (fraction 0.16 > typical ceiling 0.10 — flag for review)
+      → Test with and without NiCl2·6H2O
+  • Cu trace metal (CuSO4·5H2O) (max_p 1.00 on rare metal — verify with BRENDA)
+      → Test with and without CuSO4·5H2O
+  • Co trace metal (CoCl2·6H2O) (max_p 1.00 on rare metal — verify with BRENDA)
+      → Test with and without CoCl2·6H2O
+
+================================================================================
+  TEMPLATE COMPARISON (for reference)
+================================================================================
+  Nearest template: DESULFOVIBRIO (POSTGATE) MEDIUM
+  Phylogenetic identity (best): 99.8%
+  Template match score: 4.80
+
+  Component                           De novo      Template   Match
+  --------------------------------------------------------------------
+  ascorbic acid                             —     10.00 g/L       ✗
+  cacl2 x 2 h2o                             —      0.10 g/L       ✗
+  cacl2·2h2o                        50.0 mg/L             —       +
+  cocl2·6h2o                          50 μg/L             —       +
+  cuso4·5h2o                          50 μg/L             —       +
+  feso4 x 7 h2o                             —     50.00 g/L       ✗
+  feso4·7h2o                         5.0 mg/L             —       +
+  heme                               5.0 mg/L             —       +
+  k2hpo4                           500.0 mg/L      0.51 g/L       ✓
+  kh2po4                           149.0 mg/L             —       +
+  mgso4 x 7 h2o                             —      2.04 g/L       ✗
+  mgso4·7h2o                       500.0 mg/L             —       +
+  mncl2·4h2o                         500 μg/L             —       +
+  molybdopterin                      1.0 mg/L             —       +
+  na-dl-lactate                             —      2.04 g/L       ✗
+  na-thioglycolate                          —     10.00 g/L       ✗
+  na2so4                             1.99 g/L      1.02 g/L       ✓
+  na2s·9h2o                        500.0 mg/L             —       +
+  nacl                                1.0 g/L             —       +
+  nahco3                             4.49 g/L             —       +
+  nh4cl                            490.0 mg/L      1.02 g/L       ~
+  nicl2·6h2o                          50 μg/L             —       +
+  n₂:co₂ (80:20) — or h₂:co₂ (              —             —       +
+  resazurin                          500 μg/L             —       +
+  sodium dl-lactate                  2.38 g/L             —       +
+  sodium resazurin                          —      0.00 g/L       ✗
+  yeast extract                       1.0 g/L      1.02 g/L       ✓
+  znso4·7h2o                         500 μg/L             —       +
+  --------------------------------------------------------------------
+  Agreement: 4/28 components within 2x → 14%
+
+
+[dry run — not persisted]

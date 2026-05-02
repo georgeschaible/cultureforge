@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "dbname": "blastdb_mtrC_omcB",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": "mtrC_omcB",
+  "number-of-letters": 2051,
+  "number-of-sequences": 3,
+  "last-updated": "2026-04-27T21:19:00",
+  "number-of-volumes": 1,
+  "bytes-total": 39682,
+  "bytes-to-cache": 2183,
+  "files": [
+    "blastdb_mtrC_omcB.pdb",
+    "blastdb_mtrC_omcB.phr",
+    "blastdb_mtrC_omcB.pin",
+    "blastdb_mtrC_omcB.pot",
+    "blastdb_mtrC_omcB.psq",
+    "blastdb_mtrC_omcB.ptf",
+    "blastdb_mtrC_omcB.pto"
+  ]
+}

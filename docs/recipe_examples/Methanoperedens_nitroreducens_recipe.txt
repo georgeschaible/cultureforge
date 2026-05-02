@@ -1,0 +1,97 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: Candidatus Methanoperedens nitroreducens (GCA_000315995.1)
+Genome ID: 28
+Domain: Gram_neg
+Generated: 2026-04-28 16:58:45
+CultureForge version: 2026-04-28
+══════════════════════════════════════════════════════════════════════
+
+RECIPE (Section 10)
+──────────────────────────────────────────────────────────────────────
+
+PRIMARY CULTIVATION MODE: methanogenic
+ALTERNATIVE MODES (also detected): fermentative
+
+GAS PHASE
+  H2:    80%
+  CO2:   20%
+  Pressure: 2.0 atm
+    H2/CO2 80:20 at 2 atm overpressure — H2 is the electron
+    donor; CO2 is both terminal electron acceptor and carbon
+    source. Pressurized headspace increases dissolved H2.
+
+INCUBATION CONDITIONS
+  Temperature: 30.0°C
+  pH:          7.0
+  Light:       not required
+  Shaking:     static
+    Temperature 30.0°C, pH 7.0 (default — no GenomeSPOT/TEMPURA
+    data)
+
+INGREDIENTS
+  Buffer:
+    NaHCO3                                          2.5 g/L
+      Bicarbonate buffer in equilibrium with CO2 headspace —
+      couples buffering capacity to the carbon source.
+      (confidence 0.85)
+  Salt:
+    NaCl                                              5 g/L
+      Standard salinity baseline (5 g/L) for non-halophile
+      (confidence 0.85)
+    MgSO4·7H2O                                      0.2 g/L
+      Magnesium and sulfur source
+      (confidence 0.90)
+    CaCl2·2H2O                                     0.04 g/L
+      Calcium baseline
+      (confidence 0.90)
+  Carbon Source:
+    CO2 (from headspace + bicarbonate)               20 % v/v
+      Autotrophic C source; supplied via H2/CO2 headspace +
+      dissolved bicarbonate.
+      (confidence 0.90)
+  Reducing Agent:
+    Na2S·9H2O                                       0.5 mM
+      Removes residual O2 and establishes strict
+      anaerobiosis (methanogens are obligate anaerobes; mcrA
+      is O2-sensitive).
+  Supplement:
+    Resazurin                                         1 mg/L
+      Oxygen indicator — pink in oxidized state, colorless
+      when reduced.
+    NiCl2·6H2O (Ni supplement, elevated)             10 μM
+      Elevated Ni (~10 μM total) for F430 cofactor in mcrA.
+      Standard SL-10 includes lower Ni; this top-up matters.
+      (confidence 0.90)
+  Trace Metal:
+    SL-10 trace metal solution                        1 mL/L
+      SL-10 (Tschech & Pfennig 1984): Fe, Zn, Mn, B, Co, Cu,
+      Ni, Mo at standard concentrations. 1 mL/L final.
+      (confidence 0.85)
+  Vitamin:
+    Wolin's vitamin solution                          1 mL/L
+      Wolin's vitamins (Wolin et al. 1963): biotin, folic
+      acid, pyridoxine, thiamine, riboflavin, nicotinic
+      acid, pantothenate, B12, p-aminobenzoic acid, lipoic
+      acid. 1 mL/L final.
+      (confidence 0.85)
+
+THERMODYNAMIC CHECK
+  Reaction: 4 H2 + CO2 → CH4 + 2 H2O
+  ΔG (standard, default activities): -135.6 kJ/mol
+  Feasibility: feasible (feasible)
+
+UNCERTAINTY FLAGS
+    - ANME directional ambiguity: genome has methanogenesis enzymes
+      (mcrA + WL pathway) but the metabolism may run in reverse
+      (anaerobic methane oxidation). If suspected ANME, replace
+      H2/CO2 with CH4 + electron acceptor (NO3-, SO4-2, or Fe(III))
+      and verify direction experimentally.
+
+LIMITATIONS REFERENCED: C.1
+  See LIMITATIONS.md for details on each category.
+
+OVERALL CONFIDENCE: 0.52 (low)
+    RATIONALE: base from RecipeContext = 0.57; -0.05 from
+      uncertainty flags → final 0.52
+──────────────────────────────────────────────────────────────────────

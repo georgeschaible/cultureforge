@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "dbname": "blastdb_hao",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": "hao",
+  "number-of-letters": 1689,
+  "number-of-sequences": 3,
+  "last-updated": "2026-04-27T21:19:00",
+  "number-of-volumes": 1,
+  "bytes-total": 39247,
+  "bytes-to-cache": 1805,
+  "files": [
+    "blastdb_hao.pdb",
+    "blastdb_hao.phr",
+    "blastdb_hao.pin",
+    "blastdb_hao.pot",
+    "blastdb_hao.psq",
+    "blastdb_hao.ptf",
+    "blastdb_hao.pto"
+  ]
+}

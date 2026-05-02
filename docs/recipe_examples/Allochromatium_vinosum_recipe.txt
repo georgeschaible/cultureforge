@@ -1,0 +1,83 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: Allochromatium vinosum (GCF_000025485.1)
+Genome ID: 31
+Domain: Bacteria
+Generated: 2026-04-28 16:58:35
+CultureForge version: 2026-04-28
+══════════════════════════════════════════════════════════════════════
+
+RECIPE (Section 10)
+──────────────────────────────────────────────────────────────────────
+
+PRIMARY CULTIVATION MODE: phototrophic (anoxygenic, purple Type-II / FAP)
+ALTERNATIVE MODES (also detected): lithotrophic_aerobic, aerobic_chemotrophic
+
+GAS PHASE
+  N2:    95%
+  CO2:   5%
+  Pressure: 1.0 atm
+    Anaerobic atmosphere required — anoxygenic photosynthesis.
+
+INCUBATION CONDITIONS
+  Temperature: 37.3°C
+  pH:          7.3
+  Light:       required  (50 µmol/m²/s)
+  Shaking:     static
+    Temperature 37.25316043954907°C, pH 7.274391762626906 from
+    genomespot
+
+INGREDIENTS
+  Buffer:
+    Phosphate buffer (KH2PO4 + K2HPO4)               30 mM
+      30 mM phosphate buffer adjusted to pH 7.3
+      (confidence 0.85)
+  Salt:
+    NaCl                                              5 g/L
+      Standard salinity baseline (5 g/L) for non-halophile
+      (confidence 0.85)
+    MgSO4·7H2O                                      0.2 g/L
+      Magnesium and sulfur source
+      (confidence 0.90)
+    CaCl2·2H2O                                     0.04 g/L
+      Calcium baseline
+      (confidence 0.90)
+  Carbon Source:
+    Co2                                               2 g/L
+      Carbon source from RecipeContext: autotrophic
+      cultivation mode detected
+      (confidence 0.85)
+    Malate                                            2 g/L
+      Carbon source from RecipeContext: gapseq: L-malate
+      degradation I (100%)
+      (confidence 0.85)
+  Reducing Agent:
+    Na2S·9H2O                                       0.5 mM
+      Establishes anaerobiosis. Sulfide also serves as
+      electron donor for purple sulfur and green sulfur
+      bacteria.
+      (confidence 0.90)
+  Trace Metal:
+    SL-10 trace metal solution                        1 mL/L
+      SL-10 (Tschech & Pfennig 1984): Fe, Zn, Mn, B, Co, Cu,
+      Ni, Mo at standard concentrations. 1 mL/L final.
+      (confidence 0.85)
+  Vitamin:
+    Wolin's vitamin solution                          1 mL/L
+      Wolin's vitamins (Wolin et al. 1963): biotin, folic
+      acid, pyridoxine, thiamine, riboflavin, nicotinic
+      acid, pantothenate, B12, p-aminobenzoic acid, lipoic
+      acid. 1 mL/L final.
+      (confidence 0.85)
+
+THERMODYNAMIC CHECK
+  Reaction: Light + CO2 + e-donor → CH2O (photosynthesis, donor-dependent)
+  ΔG (standard, default activities): -300.0 kJ/mol
+  Feasibility: feasible (feasible)
+
+UNCERTAINTY FLAGS
+  None significant for this recipe.
+
+OVERALL CONFIDENCE: 0.79 (high)
+    RATIONALE: base from RecipeContext = 0.79 → final 0.79
+──────────────────────────────────────────────────────────────────────

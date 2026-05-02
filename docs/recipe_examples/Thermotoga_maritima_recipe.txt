@@ -1,0 +1,87 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: Thermotoga maritima (GCF_000008545.1)
+Genome ID: 27
+Domain: Gram_neg
+Generated: 2026-04-28 16:58:43
+CultureForge version: 2026-04-28
+══════════════════════════════════════════════════════════════════════
+
+RECIPE (Section 10)
+──────────────────────────────────────────────────────────────────────
+
+PRIMARY CULTIVATION MODE: fermentative
+ALTERNATIVE MODES (also detected): none
+
+GAS PHASE
+  N2:    100%
+  Pressure: 1.0 atm
+    N2 anaerobic headspace; no CO2 needed.
+
+INCUBATION CONDITIONS
+  Temperature: 30.0°C
+  pH:          7.0
+  Light:       not required
+  Shaking:     static
+    Temperature 30.0°C, pH 7.0 (default — no GenomeSPOT/TEMPURA
+    data)
+
+INGREDIENTS
+  Buffer:
+    Phosphate buffer (KH2PO4 + K2HPO4)               30 mM
+      30 mM phosphate buffer adjusted to pH 7.0
+      (confidence 0.85)
+  Salt:
+    NaCl                                              5 g/L
+      Standard salinity baseline (5 g/L) for non-halophile
+      (confidence 0.85)
+    MgSO4·7H2O                                      0.2 g/L
+      Magnesium and sulfur source
+      (confidence 0.90)
+    CaCl2·2H2O                                     0.04 g/L
+      Calcium baseline
+      (confidence 0.90)
+  Carbon Source:
+    Glucose                                           2 g/L
+      Carbon source from RecipeContext: gapseq: glycolysis
+      III (from glucose) (100%)
+      (confidence 0.85)
+    Fructose                                          2 g/L
+      Carbon source from RecipeContext: gapseq: glycolysis
+      II (from fructose 6-phosphate) (90%)
+      (confidence 0.85)
+  Nitrogen Source:
+    Yeast extract                                     2 g/L
+      Yeast extract supplies amino acids, B-vitamins, and
+      growth factors that fermenters typically can't
+      biosynthesize.
+      (confidence 0.85)
+  Reducing Agent:
+    L-Cysteine·HCl                                  0.5 g/L
+      Cysteine as reducing agent (gentler than Na2S for
+      fermenters; supplies sulfur amino acid).
+      (confidence 0.85)
+  Trace Metal:
+    SL-10 trace metal solution                        1 mL/L
+      SL-10 (Tschech & Pfennig 1984): Fe, Zn, Mn, B, Co, Cu,
+      Ni, Mo at standard concentrations. 1 mL/L final.
+      (confidence 0.85)
+  Vitamin:
+    Wolin's vitamin solution                          1 mL/L
+      Wolin's vitamins (Wolin et al. 1963): biotin, folic
+      acid, pyridoxine, thiamine, riboflavin, nicotinic
+      acid, pantothenate, B12, p-aminobenzoic acid, lipoic
+      acid. 1 mL/L final.
+      (confidence 0.85)
+
+THERMODYNAMIC CHECK
+  Reaction: glucose → 2 lactate (or other fermentation products)
+  ΔG (standard, default activities): -196.0 kJ/mol
+  Feasibility: feasible (feasible)
+
+UNCERTAINTY FLAGS
+  None significant for this recipe.
+
+OVERALL CONFIDENCE: 0.62 (medium)
+    RATIONALE: base from RecipeContext = 0.62 → final 0.62
+──────────────────────────────────────────────────────────────────────

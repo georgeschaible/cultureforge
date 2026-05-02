@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "dbname": "blastdb_amoA",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": "amoA",
+  "number-of-letters": 765,
+  "number-of-sequences": 4,
+  "last-updated": "2026-04-27T21:19:00",
+  "number-of-volumes": 1,
+  "bytes-total": 38528,
+  "bytes-to-cache": 898,
+  "files": [
+    "blastdb_amoA.pdb",
+    "blastdb_amoA.phr",
+    "blastdb_amoA.pin",
+    "blastdb_amoA.pot",
+    "blastdb_amoA.psq",
+    "blastdb_amoA.ptf",
+    "blastdb_amoA.pto"
+  ]
+}

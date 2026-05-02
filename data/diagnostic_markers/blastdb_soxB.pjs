@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "dbname": "blastdb_soxB",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": "soxB",
+  "number-of-letters": 1712,
+  "number-of-sequences": 3,
+  "last-updated": "2026-04-27T21:19:00",
+  "number-of-volumes": 1,
+  "bytes-total": 39262,
+  "bytes-to-cache": 1836,
+  "files": [
+    "blastdb_soxB.pdb",
+    "blastdb_soxB.phr",
+    "blastdb_soxB.pin",
+    "blastdb_soxB.pot",
+    "blastdb_soxB.psq",
+    "blastdb_soxB.ptf",
+    "blastdb_soxB.pto"
+  ]
+}

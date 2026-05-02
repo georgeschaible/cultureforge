@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "dbname": "blastdb_mcrBG",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": "mcrBG",
+  "number-of-letters": 2061,
+  "number-of-sequences": 6,
+  "last-updated": "2026-04-27T21:19:00",
+  "number-of-volumes": 1,
+  "bytes-total": 40487,
+  "bytes-to-cache": 2212,
+  "files": [
+    "blastdb_mcrBG.pdb",
+    "blastdb_mcrBG.phr",
+    "blastdb_mcrBG.pin",
+    "blastdb_mcrBG.pot",
+    "blastdb_mcrBG.psq",
+    "blastdb_mcrBG.ptf",
+    "blastdb_mcrBG.pto"
+  ]
+}

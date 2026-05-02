@@ -1,0 +1,56 @@
+Phase 1.5k — Allochromatium vinosum DSM 180 Diagnostic Marker BLAST Results
+=============================================================================
+Date: 2026-04-26
+Genome: GCF_000025485.1 (3.67 Mb, 3261 predicted proteins)
+
+Marker               Result     Best hit details
+-------              ------     ----------------
+pufLM                POSITIVE   9 hits, best bs=381 pid=65.8% qcov=99%
+autotrophy (rbcL)    POSITIVE   4 hits, best bs=731 pid=76.0% qcov=98%
+nifH                 POSITIVE   7 hits, best bs=874 pid=83.6% qcov=99%
+dsrAB                POSITIVE   2 hits, best bs=329 pid=43.1% qcov=98%
+aprAB                POSITIVE   1 hit,  best bs=413 pid=38.9% qcov=99%
+soxB                 POSITIVE   1 hit,  best bs=97  pid=55.6% qcov=91%
+hao                  POSITIVE   7 hits, best bs=176 pid=40.1% qcov=94%
+terminal_oxidases    POSITIVE   2 hits, best bs=125 pid=32.1% qcov=98%
+pscA_fmoA            POSITIVE   1 hit,  best bs=110 pid=30.2% qcov=98%
+mcrA                 POSITIVE   1 hit,  best bs=116 pid=38.9% qcov=93%
+
+qmoA                 NEGATIVE   No positive hits (critical test - PASSED)
+
+acsB_cdhC            negative
+amoA                 negative
+cooS_cdhA            negative
+cyc2                 negative
+hdh                  negative
+hzsA                 negative
+mcrBG                negative
+mtrC_omcB            negative
+nosZ                 negative
+psaA_psbA            negative
+rdhA                 negative
+rhodopsin            negative
+
+Key findings:
+1. qmoA: NEGATIVE — Allochromatium lacks the QmoABC complex, confirming it is a
+   reverse-dsr organism (sulfide oxidizer), not a forward sulfate reducer.
+
+2. dsrAB: POSITIVE at 43.1% identity — This is the exact case Phase 1.5k was designed
+   to handle. Allochromatium's reverse-dsr dsrAB is closely homologous to forward-dsr
+   dsrAB and would have been incorrectly classified as a sulfate reducer under Phase
+   1.5j rules (dsrAB-only requirement). The qmoA AND requirement correctly discriminates.
+
+3. pufLM: POSITIVE at 65.8% identity — Confirms Type II reaction center (purple
+   bacteria anoxygenic phototrophy).
+
+4. autotrophy (rbcL): POSITIVE at 76.0% — Calvin-Benson cycle, autotrophic CO2 fixation.
+
+5. nifH: POSITIVE at 83.6% — Nitrogen fixation capability (known for Allochromatium).
+
+6. aprAB: POSITIVE at 38.9% — Also present in reverse-dsr organisms (same pathway,
+   reverse direction).
+
+7. mcrA: POSITIVE hit at bs=116 but below mcrA's strict threshold (pident=35%, bs=300).
+   This is a spurious flavoprotein homology, not real methyl-CoM reductase.
+
+VALIDATION VERDICT: qmoA discriminator works exactly as designed for the reverse-dsr case.

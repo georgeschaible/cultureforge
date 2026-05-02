@@ -1,0 +1,64 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: Rhodopseudomonas palustris (NC_005296.1)
+Genome ID: 19
+Domain: Gram_neg
+Generated: 2026-04-26 21:11:13
+CultureForge version: 2026-04-26
+══════════════════════════════════════════════════════════════════════
+
+RECIPE CONTEXT (Section 9)
+──────────────────────────────────────────────────────────────────────
+
+ATMOSPHERE
+  Primary:        phototrophic
+  Alternatives:   aerobic
+
+CARBON SOURCES
+  CO2                       type=CO2             conf 0.85
+    autotrophic cultivation mode detected
+  malate                    type=organic_acid    conf 0.85
+    gapseq: malate/L-aspartate shuttle pathway (100%)
+  glucose                   type=sugar           conf 0.85
+    gapseq: glycogen biosynthesis I (from ADP-D-Glucose) (100%)
+  fructose                  type=sugar           conf 0.81
+    gapseq: glycolysis II (from fructose 6-phosphate) (81%)
+  lactose                   type=sugar           conf 0.85
+    gapseq: UDP-&alpha;-D-galactose biosynthesis (100%)
+
+ELECTRON DONORS
+  H2S / thiosulfate         conf 0.80  (sulfur_oxidation)
+  organic carbon            conf 0.75  (heterotrophic)
+
+ELECTRON ACCEPTORS
+  O2                             conf 0.90  (aerobic)
+  NO3-                           conf 0.75  (denitrification)
+
+NITROGEN SOURCES
+  NH4+                                          conf 0.80
+    standard inorganic nitrogen source
+  N2 (if NH4+ unavailable)                      conf 0.60
+    nifH detected: organism can fix atmospheric N2
+
+TRACE METALS
+  Mo    essential    nitrogenase: Mo-Fe cofactor
+
+COFACTORS
+  thiamin (B1)              needs supplementation     (50% pathway)
+  pyridoxal-5P (B6)         needs supplementation     (71% pathway)
+  cobalamin (B12)           needs supplementation     (33% pathway)
+  molybdopterin             needs supplementation     (66% pathway)
+
+GROWTH CONDITIONS
+  Salinity:       non_halophile
+
+SPECIAL REQUIREMENTS
+  - light: Requires a light source for phototrophic growth (tungsten lamp or LED, wave
+  - microaerophile: Microaerophilic conditions recommended. Use reduced O2 (2-5%) with N2/CO2 b
+
+INCOMPLETENESS FLAGS
+  ! Growth temperature unknown (no GenomeSPOT/TEMPURA data)
+  ! pH optimum unknown
+
+OVERALL CONFIDENCE: 0.72
+──────────────────────────────────────────────────────────────────────

@@ -1,0 +1,19 @@
+organism	n_v8	n_post1_5m	v8_set	post_1_5m_set	gained	lost
+Escherichia_coli	2	2	aerobic_resp,fermentation	aerobic_resp,fermentation		
+Nitratidesulfovibrio_vulgaris	3	2	aerobic_resp,fermentation,sulfate_red	fermentation,sulfate_red		aerobic_resp
+Methanococcus_jannaschii	1	1	methanogenesis	methanogenesis		
+Thermus_aquaticus	2	1	aerobic_resp,fermentation	aerobic_resp		fermentation
+Lactobacillus_plantarum	1	1	fermentation	fermentation		
+Acidithiobacillus_ferrooxidans	4	4	N2_fix,aerobic_resp,fermentation,sulfur_ox	Fe_ox_acidophilic,N2_fix,aerobic_resp,sulfur_ox	Fe_ox_acidophilic	fermentation
+Clostridium_acetobutylicum	2	2	N2_fix,fermentation	N2_fix,fermentation		
+Geobacter_sulfurreducens	5	2	Fe_red,N2_fix,aerobic_resp,fermentation,sulfate_red	Fe_red,N2_fix		aerobic_resp,fermentation,sulfate_red
+Sulfolobus_acidocaldarius	1	1	aerobic_resp	aerobic_resp		
+Campylobacter_jejuni	3	3	aerobic_etc,aerobic_resp,fermentation	aerobic_etc,aerobic_resp,fermentation		
+Magnetospirillum_magneticum	5	3	N2_fix,aerobic_resp,denitrification,fermentation,sulfate_red	N2_fix,aerobic_resp,denitrification		fermentation,sulfate_red
+Sulfurimonas_denitrificans	3	2	aerobic_resp,fermentation,sulfur_ox	denitrification,sulfur_ox	denitrification	aerobic_resp,fermentation
+Nitrosomonas_europaea	4	3	aerobic_resp,ammonia_ox,fermentation,sulfur_ox	aerobic_resp,ammonia_ox,sulfur_ox		fermentation
+Rhodopseudomonas_palustris	6	5	N2_fix,aerobic_resp,denitrification,fermentation,phototrophy_purple,sulfur_ox	N2_fix,aerobic_resp,denitrification,phototrophy_purple,sulfur_ox		fermentation
+Halobacterium_salinarum	3	1	aerobic_resp,fermentation,rhodopsin	aerobic_resp		fermentation,rhodopsin
+Syntrophomonas_wolfei	1	1	fermentation	Syntrophy (composite signature	Syntrophy (composite signature	fermentation
+Acetobacterium_woodii	3	3	N2_fix,acetogenesis_WL,fermentation	N2_fix,acetogenesis_WL,fermentation		
+Allochromatium_vinosum	3	4	N2_fix,phototrophy_purple,sulfur_ox	N2_fix,aerobic_resp,phototrophy_purple,sulfur_ox	aerobic_resp	

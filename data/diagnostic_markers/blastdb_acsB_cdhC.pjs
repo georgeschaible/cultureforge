@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "dbname": "blastdb_acsB_cdhC",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": "acsB_cdhC",
+  "number-of-letters": 2856,
+  "number-of-sequences": 5,
+  "last-updated": "2026-04-27T21:19:00",
+  "number-of-volumes": 1,
+  "bytes-total": 41083,
+  "bytes-to-cache": 3006,
+  "files": [
+    "blastdb_acsB_cdhC.pdb",
+    "blastdb_acsB_cdhC.phr",
+    "blastdb_acsB_cdhC.pin",
+    "blastdb_acsB_cdhC.pot",
+    "blastdb_acsB_cdhC.psq",
+    "blastdb_acsB_cdhC.ptf",
+    "blastdb_acsB_cdhC.pto"
+  ]
+}

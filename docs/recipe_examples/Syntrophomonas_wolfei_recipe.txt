@@ -1,0 +1,92 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: Syntrophomonas wolfei (NC_008346.1)
+Genome ID: 21
+Domain: Gram_neg
+Generated: 2026-04-28 16:58:32
+CultureForge version: 2026-04-28
+══════════════════════════════════════════════════════════════════════
+
+RECIPE (Section 10)
+──────────────────────────────────────────────────────────────────────
+
+PRIMARY CULTIVATION MODE: syntrophic
+ALTERNATIVE MODES (also detected): none
+
+GAS PHASE
+  N2:    80%
+  CO2:   20%
+  Pressure: 1.0 atm
+    N2/CO2 anaerobic headspace; partner methanogen produces CH4.
+
+INCUBATION CONDITIONS
+  Temperature: 30.0°C
+  pH:          7.0
+  Light:       not required
+  Shaking:     static
+    Temperature 30.0°C, pH 7.0 (default — no GenomeSPOT/TEMPURA
+    data)
+
+INGREDIENTS
+  Buffer:
+    Phosphate buffer (KH2PO4 + K2HPO4)               30 mM
+      30 mM phosphate buffer adjusted to pH 7.0
+      (confidence 0.85)
+  Salt:
+    NaCl                                              5 g/L
+      Standard salinity baseline (5 g/L) for non-halophile
+      (confidence 0.85)
+    MgSO4·7H2O                                      0.2 g/L
+      Magnesium and sulfur source
+      (confidence 0.90)
+    CaCl2·2H2O                                     0.04 g/L
+      Calcium baseline
+      (confidence 0.90)
+  Nitrogen Source:
+    Yeast extract                                     1 g/L
+      Yeast extract supplies vitamins / growth factors.
+      (confidence 0.80)
+  Electron Donor:
+    Sodium butyrate                                 2.2 g/L
+      Butyrate (~20 mM) as syntroph donor; oxidized via
+      β-oxidation.
+      (confidence 0.85)
+  Reducing Agent:
+    Na2S·9H2O                                       0.5 mM
+      Establishes anaerobiosis.
+  Supplement:
+    REQUIRED CO-CULTURE: hydrogenotrophic meth (co-inoculate)
+      Pure-culture growth is thermodynamically impossible.
+      Co-inoculate with Methanospirillum hungatei,
+      Methanobacterium formicicum, or similar. The partner
+      consumes H2 produced by syntroph fatty-acid oxidation,
+      making the reaction exergonic.
+  Trace Metal:
+    SL-10 trace metal solution                        1 mL/L
+      SL-10 (Tschech & Pfennig 1984): Fe, Zn, Mn, B, Co, Cu,
+      Ni, Mo at standard concentrations. 1 mL/L final.
+      (confidence 0.85)
+  Vitamin:
+    Wolin's vitamin solution                          1 mL/L
+      Wolin's vitamins (Wolin et al. 1963): biotin, folic
+      acid, pyridoxine, thiamine, riboflavin, nicotinic
+      acid, pantothenate, B12, p-aminobenzoic acid, lipoic
+      acid. 1 mL/L final.
+      (confidence 0.85)
+
+THERMODYNAMIC CHECK
+  Reaction: butyrate + 2 H2O → 2 acetate + 2 H2 + H+ (requires H2-consuming partner)
+  ΔG (standard, default activities): +48.3 kJ/mol
+  Feasibility: marginal (feasible)
+    Reaction is endergonic alone (ΔG > 0). Becomes feasible only
+    when [H2] is kept low by a syntrophic partner — recipe
+    explicitly requires partner co-inoculation.
+
+UNCERTAINTY FLAGS
+    - Partner organism MUST be added — pure-culture growth is
+      endergonic
+
+OVERALL CONFIDENCE: 0.53 (low)
+    RATIONALE: base from RecipeContext = 0.58; -0.05 from
+      uncertainty flags → final 0.53
+──────────────────────────────────────────────────────────────────────

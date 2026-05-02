@@ -1,0 +1,27 @@
+gid	label	set	primary_mode	alt_modes	T_c	ph	gas	delta_g	feasibility	confidence	limitations	escalated
+7	Nitratidesulfovibrio_vulgaris	dev	anaerobic_respiratory (sulfate reduction)	fermentative	28.8	7.3	{'N2': 0.8, 'CO2': 0.2}	-160.1	feasible	0.77	C.2	no
+8	Methanococcus_jannaschii	dev	methanogenic		82.5	5.8	{'H2': 0.8, 'CO2': 0.2}	-135.6	feasible	0.73		no
+9	Thermus_aquaticus	dev	aerobic_chemotrophic		70.0	7.5	{'air': 1.0}	-2880.0	feasible	0.61		no
+10	Lactobacillus_plantarum	dev	fermentative		18.8	5.8	{'N2': 1.0}	-196.0	feasible	0.70		no
+11	Acidithiobacillus_ferrooxidans	dev	lithotrophic_aerobic (Fe(II) oxidation, acidophilic)	aerobic_chemotrophic	34.9	2.0	{'air': 0.98, 'CO2': 0.02}	-32.0	feasible	0.79		no
+12	Clostridium_acetobutylicum	dev	fermentative		36.3	6.2	{'N2': 1.0}	-196.0	feasible	0.82		no
+13	Geobacter_sulfurreducens	dev	anaerobic_respiratory (iron reduction)		31.5	6.5	{'N2': 0.8, 'CO2': 0.2}	-210.0	feasible	0.64		no
+14	Sulfolobus_acidocaldarius	dev	aerobic_chemotrophic		74.9	4.0	{'air': 1.0}	-2880.0	feasible	0.58		no
+15	Campylobacter_jejuni	dev	aerobic_chemotrophic	fermentative	24.5	6.6	{'air': 1.0}	-2880.0	feasible	0.82		no
+16	Magnetospirillum_magneticum	dev	aerobic_chemotrophic	anaerobic_respiratory	25.3	6.5	{'air': 1.0}	-2880.0	feasible	0.79		no
+17	Sulfurimonas_denitrificans	dev	lithotrophic_aerobic (sulfur oxidation)	anaerobic_respiratory	37.7	6.5	{'air': 0.98, 'CO2': 0.02}	-787.3	feasible	0.74		no
+18	Nitrosomonas_europaea	dev	lithotrophic_aerobic (ammonia oxidation)	aerobic_chemotrophic	30.0	7.0	{'air': 0.98, 'CO2': 0.02}	-274.7	feasible	0.71		no
+19	Rhodopseudomonas_palustris	dev	phototrophic (anoxygenic, purple Type-II / FAP)	anaerobic_respiratory;aerobic_chemotrophic;lithotrophic_aerobic	30.0	7.0	{'N2': 0.95, 'CO2': 0.05}	-300.0	feasible	0.72		no
+20	Halobacterium_salinarum	dev	halophilic_with_rhodopsin	aerobic_chemotrophic	30.0	7.0	{'air': 1.0}	-10.0	feasible	0.52		no
+21	Syntrophomonas_wolfei	dev	syntrophic		30.0	7.0	{'N2': 0.8, 'CO2': 0.2}	48.3	marginal	0.53		no
+22	Acetobacterium_woodii	dev	acetogenic	fermentative	30.0	7.0	{'H2': 0.8, 'CO2': 0.2}	-94.9	feasible	0.61		no
+31	Allochromatium_vinosum	dev	phototrophic (anoxygenic, purple Type-II / FAP)	lithotrophic_aerobic;aerobic_chemotrophic	37.3	7.3	{'N2': 0.95, 'CO2': 0.05}	-300.0	feasible	0.79		no
+32	Escherichia_coli	dev	aerobic_chemotrophic	fermentative	30.0	7.0	{'air': 1.0}	-2880.0	feasible	0.55		no
+23	Nitrospira_moscoviensis	blind	acetogenic	lithotrophic_aerobic	30.0	7.0	{'H2': 0.8, 'CO2': 0.2}	-94.9	feasible	0.52		no
+24	Chloroflexus_aurantiacus	blind	phototrophic (anoxygenic, purple Type-II / FAP)	aerobic_chemotrophic;fermentative;acetogenic;lithotrophic_aerobic	30.0	7.0	{'N2': 0.95, 'CO2': 0.05}	-300.0	feasible	0.67		no
+25	Dehalococcoides_mccartyi	blind	anaerobic_respiratory (organohalide respiration)		30.0	7.0	{'H2': 0.2, 'N2': 0.6, 'CO2': 0.2}	-130.0	feasible	0.50	A.1;D.1	no
+26	Picrophilus_torridus	blind	aerobic_chemotrophic	fermentative	30.0	7.0	{'air': 1.0}	-2880.0	feasible	0.70		no
+27	Thermotoga_maritima	blind	fermentative		30.0	7.0	{'N2': 1.0}	-196.0	feasible	0.62		no
+28	Methanoperedens_nitroreducens	blind	methanogenic	fermentative	30.0	7.0	{'H2': 0.8, 'CO2': 0.2}	-135.6	feasible	0.52	C.1	no
+29	Prometheoarchaeum_syntrophicum	blind	syntrophic	methanogenic;acetogenic	30.0	7.0	{'N2': 0.8, 'CO2': 0.2}	48.3	marginal	0.65		no
+30	Scalindua_profunda	blind	fermentative	aerobic_chemotrophic	30.0	7.0	{'N2': 1.0}	-196.0	feasible	0.11	E.1	yes

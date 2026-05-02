@@ -1,0 +1,32 @@
+Phase 1.5k — qmoA BLAST Results
+=================================
+Date: 2026-04-19
+
+qmoA BLAST run against all genomes in the database (9 genomes).
+Thresholds: evalue < 1e-30, pident >= 30%, qcov >= 70%
+
+BLAST hits (all, including non-positive):
+Organism                                           bitscore  pident  qcov   positive
+Nitratidesulfovibrio vulgaris (hit 1)                 622     72.6    99.0   YES
+Nitratidesulfovibrio vulgaris (hit 2)                 622     71.5    99.0   YES
+Nitratidesulfovibrio vulgaris (hit 3)                 607     68.5    99.0   YES
+Nitratidesulfovibrio vulgaris (hit 4)                 264     36.0    66.0   NO (qcov < 70%)
+Geobacter sulfurreducens (hit 1)                      253     34.8    66.0   NO (qcov < 70%)
+Geobacter sulfurreducens (hit 2)                      233     32.8    66.0   NO (qcov < 70%)
+Geobacter sulfurreducens (hit 3)                      226     32.6    64.0   NO (qcov < 70%)
+Nitratidesulfovibrio vulgaris (hit 5)                 249     34.2    66.0   NO (qcov < 70%)
+Nitratidesulfovibrio vulgaris (hit 6)                 209     32.5    65.0   NO (qcov < 70%)
+Acidithiobacillus ferrooxidans (hit 1)                122     30.4    70.0   NO (bs < 200)
+Acidithiobacillus ferrooxidans (hit 2)                120     31.3    69.0   NO (qcov < 70%)
+Acidithiobacillus ferrooxidans (hit 3)                119     32.2    67.0   NO (qcov < 70%)
+Sulfolobus acidocaldarius (hit 1)                     111     31.4    65.0   NO (qcov < 70%)
+
+POSITIVE qmoA calls: Only Nitratidesulfovibrio vulgaris (3 high-confidence hits at 68-73% identity)
+
+Interpretation:
+- D. vulgaris: As expected, strong qmoA hits — it is a well-characterized forward sulfate reducer
+- Geobacter: Low-scoring hits from related flavoproteins, correctly filtered by qcov threshold
+- Acidithiobacillus: Very low bitscores, not related to QmoA
+- Sulfolobus: Single weak hit, correctly filtered
+- All other organisms (E. coli, C. jejuni, C. acetobutylicum, Thermus, Sulfurimonas,
+  Campylobacter): No BLAST hits at all for qmoA

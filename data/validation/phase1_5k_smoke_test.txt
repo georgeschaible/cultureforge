@@ -1,0 +1,41 @@
+Phase 1.5k — Sulfate Reduction Smoke Test (essential_marker_AND)
+=================================================================
+Date: 2026-04-19
+
+After implementing essential_marker_AND: ["dsrAB", "qmoA"] for sulfate reduction,
+re-ran capability detection on all 9 database genomes.
+
+Results:
+Organism                                            SR conf  SR det  dsrAB  qmoA
+----------------------------------------------------------------------------------
+Acidithiobacillus ferrooxidans                        0.317   False  False  False
+Campylobacter jejuni                                  0.225   False  False  False
+Clostridium acetobutylicum                            0.321   False  False  False
+Escherichia coli                                      0.317   False  False  False
+Geobacter sulfurreducens                              0.400   False  False  False
+Nitratidesulfovibrio vulgaris                         0.818   TRUE    True   True
+Sulfolobus acidocaldarius                             0.225   False   True  False
+Sulfurimonas denitrificans                            0.317   False  False  False
+Thermus aquaticus                                     0.316   False   True  False
+
+Key outcomes:
+1. Nitratidesulfovibrio vulgaris (D. vulgaris): CORRECTLY DETECTED (0.818)
+   - Both dsrAB and qmoA present — forward sulfate reducer confirmed
+
+2. Geobacter sulfurreducens: CORRECTLY EXCLUDED (0.400, not detected)
+   - Neither dsrAB nor qmoA present — iron reducer, not sulfate reducer
+   - No regression from Phase 1.5j
+
+3. Sulfolobus acidocaldarius: CORRECTLY EXCLUDED (0.225, not detected)
+   - Has dsrAB but NOT qmoA — dsrAB alone insufficient under AND requirement
+   - This is exactly the discrimination Phase 1.5k adds
+
+4. Thermus aquaticus: CORRECTLY EXCLUDED (0.316, not detected)
+   - Has dsrAB but NOT qmoA — similar to Sulfolobus case
+
+5. All other organisms: CORRECTLY EXCLUDED
+   - No sulfate reduction machinery detected
+
+VERDICT: No regressions. essential_marker_AND working correctly.
+D. vulgaris remains the only detected sulfate reducer (correct).
+The AND requirement adds qmoA as a discriminator without breaking existing detections.

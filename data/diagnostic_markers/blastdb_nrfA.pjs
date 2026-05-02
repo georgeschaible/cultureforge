@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "dbname": "blastdb_nrfA",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": "nrfA",
+  "number-of-letters": 2980,
+  "number-of-sequences": 6,
+  "last-updated": "2026-05-01T20:24:00",
+  "number-of-volumes": 1,
+  "bytes-total": 41261,
+  "bytes-to-cache": 3123,
+  "files": [
+    "blastdb_nrfA.pdb",
+    "blastdb_nrfA.phr",
+    "blastdb_nrfA.pin",
+    "blastdb_nrfA.pot",
+    "blastdb_nrfA.psq",
+    "blastdb_nrfA.ptf",
+    "blastdb_nrfA.pto"
+  ]
+}

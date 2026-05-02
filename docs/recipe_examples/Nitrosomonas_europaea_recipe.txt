@@ -1,0 +1,79 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: Nitrosomonas europaea (NC_004757.1)
+Genome ID: 18
+Domain: Gram_neg
+Generated: 2026-04-28 16:58:28
+CultureForge version: 2026-04-28
+══════════════════════════════════════════════════════════════════════
+
+RECIPE (Section 10)
+──────────────────────────────────────────────────────────────────────
+
+PRIMARY CULTIVATION MODE: lithotrophic_aerobic (ammonia oxidation)
+ALTERNATIVE MODES (also detected): aerobic_chemotrophic
+
+GAS PHASE
+  air:   98%
+  CO2:   2%
+  Pressure: 1.0 atm
+    Aerobic atmosphere with elevated CO2 for autotrophic carbon
+    fixation.
+
+INCUBATION CONDITIONS
+  Temperature: 30.0°C
+  pH:          7.0
+  Light:       not required
+  Shaking:     150 rpm
+    Temperature 30.0°C, pH 7.0 (default — no GenomeSPOT/TEMPURA
+    data); shaking 150 rpm for O2 + CO2 transfer
+
+INGREDIENTS
+  Buffer:
+    Phosphate buffer (KH2PO4 + K2HPO4)               30 mM
+      30 mM phosphate buffer adjusted to pH 7.0
+      (confidence 0.85)
+  Salt:
+    NaCl                                              5 g/L
+      Standard salinity baseline (5 g/L) for non-halophile
+      (confidence 0.85)
+    MgSO4·7H2O                                      0.2 g/L
+      Magnesium and sulfur source
+      (confidence 0.90)
+    CaCl2·2H2O                                     0.04 g/L
+      Calcium baseline
+      (confidence 0.90)
+  Carbon Source:
+    CO2 / NaHCO3 (autotrophic carbon)                 2 g/L NaHCO3
+      CO2 from headspace + bicarbonate buffer. Autotrophic
+      lithotrophs fix CO2 via CBB cycle (rbcL detected) or
+      rTCA.
+      (confidence 0.85)
+  Electron Donor:
+    (NH4)2SO4                                         2 g/L
+      Ammonium as electron donor (~15 mM).
+      (confidence 0.90)
+  Trace Metal:
+    SL-10 trace metal solution                        1 mL/L
+      SL-10 (Tschech & Pfennig 1984): Fe, Zn, Mn, B, Co, Cu,
+      Ni, Mo at standard concentrations. 1 mL/L final.
+      (confidence 0.85)
+  Vitamin:
+    Wolin's vitamin solution                          1 mL/L
+      Wolin's vitamins (Wolin et al. 1963): biotin, folic
+      acid, pyridoxine, thiamine, riboflavin, nicotinic
+      acid, pantothenate, B12, p-aminobenzoic acid, lipoic
+      acid. 1 mL/L final.
+      (confidence 0.85)
+
+THERMODYNAMIC CHECK
+  Reaction: NH4+ + 1.5 O2 → NO2- + H2O + 2 H+
+  ΔG (standard, default activities): -274.7 kJ/mol
+  Feasibility: feasible (feasible)
+
+UNCERTAINTY FLAGS
+  None significant for this recipe.
+
+OVERALL CONFIDENCE: 0.71 (medium)
+    RATIONALE: base from RecipeContext = 0.71 → final 0.71
+──────────────────────────────────────────────────────────────────────

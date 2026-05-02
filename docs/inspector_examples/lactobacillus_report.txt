@@ -1,0 +1,122 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: Validation organism: Lactobacillus_plantarum (NC_004567.2)
+Genome ID: 10
+Domain: Gram_pos
+Generated: 2026-04-26 20:01:34
+CultureForge version: 2026-04-26
+══════════════════════════════════════════════════════════════════════
+
+GENOME QUALITY (Section 2)
+──────────────────────────────────────────────────────────────────────
+CheckM not available (genome stats only)
+Genome size:                3,308,273 bp (3.31 Mb)
+GC content:                 44.5%
+N50:                        3,308,273
+Acidic residue fraction:    0.1011
+QC verdict:                 NO_QC
+QC rationale:               CheckM not available — genome stats only. Marker absence is not interpretable.
+──────────────────────────────────────────────────────────────────────
+
+GROWTH CONDITIONS (Section 3) - GenomeSPOT predictions
+──────────────────────────────────────────────────────────────────────
+Predicted oxygen tolerance:     tolerant (conf 0.95)
+Predicted pH optimum:           5.8 ±1.3 (conf 0.85)
+Predicted salinity optimum:     2.06% NaCl ±2.2 (conf 0.50)
+Predicted temperature optimum:  18.8°C ±7.8 (conf 0.76)
+──────────────────────────────────────────────────────────────────────
+
+CAPABILITY PROFILE (Section 4)
+──────────────────────────────────────────────────────────────────────
+
+PRIMARY CULTIVATION MODES
+
+  Mode: fermentative                             conf 0.71
+    ├─ Substrate-level phosphorylation fermentation (mixed pro 0.706
+    │   Pathway: 6/9 steps detected (weighted score 0.72)
+
+  DETECTED CAPABILITIES (confidence >= 0.50)
+    Substrate-level phosphorylation fermentation (mixe   0.706  primary
+
+  REJECTED CAPABILITIES
+    Syntrophy (composite signature)            0.450  confidence capped at 0.70 — syntrophy is inferential
+    Aerobic respiration                        0.350  TCA incomplete (0%) + no oxidase → capped at 0.40
+    Aerobic ammonia oxidation (nitrification   0.325  Below threshold (pathway score 0.00)
+    Dissimilatory sulfate reduction            0.317  Below threshold (pathway score 0.13)
+    Aerobic respiration via electron transpo   0.316  cofactor ubiquinone/menaquinone biosynthesis biosynthesis no
+    Acidophilic Fe(II) oxidation               0.308  Below threshold (pathway score 0.15)
+    Reductive dehalogenation of organohalide   0.256  cofactor corrinoid biosynthesis biosynthesis not detected — 
+    Anoxygenic phototrophy (green sulfur bac   0.225  Below threshold (pathway score 0.00)
+    Sulfur/sulfide/thiosulfate oxidation       0.200  Below threshold (pathway score 0.00)
+    Denitrification (NO3- to N2)               0.200  Below threshold (pathway score 0.00)
+
+──────────────────────────────────────────────────────────────────────
+
+gapseq PATHWAYS (Section 5) - Top 20 of 1922 total
+──────────────────────────────────────────────────────────────────────
+  L-alanine degradation II (to D-lactate)                     100%  ✓
+  L-alanine biosynthesis II                                   100%  ✓
+  L-phenylalanine degradation II (anaerobic)                  100%  ✓
+  L-arginine biosynthesis II (acetyl cycle)                   100%  ✓
+  L-asparagine biosynthesis I                                 100%  ✓
+  L-asparagine biosynthesis II                                100%  ✓
+  L-aspartate degradation I                                   100%  ✓
+  L-aspartate biosynthesis                                    100%  ✓
+  lactose degradation III                                     100%  ✓
+  coenzyme A biosynthesis I (bacteria)                        100%  ✓
+  ethanol degradation I                                       100%  ✓
+  L-glutamine biosynthesis I                                  100%  ✓
+  N-acetylglucosamine degradation I                           100%  ✓
+  D-gluconate degradation                                     100%  ✓
+  L-glutamate degradation I                                   100%  ✓
+  L-glutamate biosynthesis II                                 100%  ✓
+  L-glutamine degradation I                                   100%  ✓
+  glutathione biosynthesis                                    100%  ✓
+  L-glutamate degradation II                                  100%  ✓
+  L-glutamate biosynthesis III                                100%  ✓
+──────────────────────────────────────────────────────────────────────
+
+DIAGNOSTIC MARKER HITS (Section 6)
+──────────────────────────────────────────────────────────────────────
+  Marker               Method   Best Hit                  Identity Bitscore Status
+  ─────────────────────────────────────────────────────────────────
+  acsB_cdhC            blastp   no hit                                      (negative)
+  amoA                 blastp   no hit                                      (negative)
+  aprAB                blastp   sp|Q72AU3|SYGB_NITV2         32.8%      352 POSITIVE
+  autotrophy           blastp   no hit                                      (negative)
+  cooS_cdhA            blastp   no hit                                      (negative)
+  dsrAB                blastp   sp|O28606|SAT_ARCFU          26.7%      152 (weak)
+  hao                  blastp   tr|Q82SR3|Q82SR3_NITEU       38.6%      166 POSITIVE
+  hdh                  blastp   no hit                                      (negative)
+  hzsA                 blastp   no hit                                      (negative)
+  mcrA                 blastp   no hit                                      (negative)
+  mcrBG                blastp   no hit                                      (negative)
+  mtrC_omcB            blastp   no hit                                      (negative)
+  nifH                 blastp   no hit                                      (negative)
+  nosZ                 blastp   no hit                                      (negative)
+  psaA_psbA            blastp   no hit                                      (negative)
+  pscA_fmoA            blastp   sp|P0C0Y4|NMTDH_ALTAL        30.1%      106 POSITIVE
+  pufLM                blastp   tr|A7NQ46|A7NQ46_ROSCS       42.7%      197 POSITIVE
+  rdhA                 blastp   no hit                                      (negative)
+  rhodopsin            blastp   no hit                                      (negative)
+  soxB                 blastp   no hit                                      (negative)
+  terminal_oxidases    blastp   sp|P39484|DHG3_PRIMG         33.7%      149 POSITIVE
+──────────────────────────────────────────────────────────────────────
+
+HYDROGENASES (Section 7)
+──────────────────────────────────────────────────────────────────────
+  Type       Group    Gene                      Identity Bitscore
+  ───────────────────────────────────────────────────────
+  [FeFe]     A        NC_004567.2_1993          61.2%       277
+──────────────────────────────────────────────────────────────────────
+
+RECOMMENDED ACTION (Section 8)
+──────────────────────────────────────────────────────────────────────
+Action:    FLAG_UNCERTAIN
+Rationale: Cultivation mode(s): fermentative
+
+Notes:
+  - Predicted oxygen: tolerant
+  - Predicted pH: 5.8
+  - Predicted growth temperature: 19°C
+──────────────────────────────────────────────────────────────────────

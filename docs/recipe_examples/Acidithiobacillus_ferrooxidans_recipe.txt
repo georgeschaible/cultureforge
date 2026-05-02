@@ -1,0 +1,81 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: Acidithiobacillus ferrooxidans (NC_011761.1)
+Genome ID: 11
+Domain: Gram_neg
+Generated: 2026-04-28 16:58:22
+CultureForge version: 2026-04-28
+══════════════════════════════════════════════════════════════════════
+
+RECIPE (Section 10)
+──────────────────────────────────────────────────────────────────────
+
+PRIMARY CULTIVATION MODE: lithotrophic_aerobic (Fe(II) oxidation, acidophilic)
+ALTERNATIVE MODES (also detected): aerobic_chemotrophic
+
+GAS PHASE
+  air:   98%
+  CO2:   2%
+  Pressure: 1.0 atm
+    Aerobic atmosphere with elevated CO2 for autotrophic carbon
+    fixation.
+
+INCUBATION CONDITIONS
+  Temperature: 34.9°C
+  pH:          2.0
+  Light:       not required
+  Shaking:     150 rpm
+    Temperature 34.85997456811431°C, pH 4.25941867411751 from
+    genomespot; shaking 150 rpm for O2 + CO2 transfer — pH 2.0
+    (acidophilic; Fe(II) soluble)
+
+INGREDIENTS
+  Buffer:
+    H2SO4 (pH adjustment)                      (adjust to pH 2.0)
+      Adjust pH to 2.0 with H2SO4 — acidophile.
+      (confidence 0.90)
+  Salt:
+    NaCl                                              5 g/L
+      Standard salinity baseline (5 g/L) for non-halophile
+      (confidence 0.85)
+    MgSO4·7H2O                                      0.2 g/L
+      Magnesium and sulfur source
+      (confidence 0.90)
+    CaCl2·2H2O                                     0.04 g/L
+      Calcium baseline
+      (confidence 0.90)
+  Carbon Source:
+    CO2 / NaHCO3 (autotrophic carbon)                 2 g/L NaHCO3
+      CO2 from headspace + bicarbonate buffer. Autotrophic
+      lithotrophs fix CO2 via CBB cycle (rbcL detected) or
+      rTCA.
+      (confidence 0.85)
+  Electron Donor:
+    FeSO4·7H2O                                       20 g/L
+      Ferrous iron as electron donor (~70 mM). Acidic pH
+      (~2) keeps Fe(II) soluble.
+      (confidence 0.90)
+  Trace Metal:
+    SL-10 trace metal solution                        1 mL/L
+      SL-10 (Tschech & Pfennig 1984): Fe, Zn, Mn, B, Co, Cu,
+      Ni, Mo at standard concentrations. 1 mL/L final.
+      (confidence 0.85)
+  Vitamin:
+    Wolin's vitamin solution                          1 mL/L
+      Wolin's vitamins (Wolin et al. 1963): biotin, folic
+      acid, pyridoxine, thiamine, riboflavin, nicotinic
+      acid, pantothenate, B12, p-aminobenzoic acid, lipoic
+      acid. 1 mL/L final.
+      (confidence 0.85)
+
+THERMODYNAMIC CHECK
+  Reaction: 4 Fe(II) + O2 + 4 H+ → 4 Fe(III) + 2 H2O
+  ΔG (standard, default activities): -32.0 kJ/mol
+  Feasibility: feasible (feasible)
+
+UNCERTAINTY FLAGS
+  None significant for this recipe.
+
+OVERALL CONFIDENCE: 0.79 (high)
+    RATIONALE: base from RecipeContext = 0.79 → final 0.79
+──────────────────────────────────────────────────────────────────────

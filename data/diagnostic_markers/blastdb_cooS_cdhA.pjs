@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "dbname": "blastdb_cooS_cdhA",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": "cooS_cdhA",
+  "number-of-letters": 2527,
+  "number-of-sequences": 4,
+  "last-updated": "2026-04-27T21:19:00",
+  "number-of-volumes": 1,
+  "bytes-total": 40394,
+  "bytes-to-cache": 2668,
+  "files": [
+    "blastdb_cooS_cdhA.pdb",
+    "blastdb_cooS_cdhA.phr",
+    "blastdb_cooS_cdhA.pin",
+    "blastdb_cooS_cdhA.pot",
+    "blastdb_cooS_cdhA.psq",
+    "blastdb_cooS_cdhA.ptf",
+    "blastdb_cooS_cdhA.pto"
+  ]
+}

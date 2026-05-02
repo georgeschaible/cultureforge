@@ -1,0 +1,146 @@
+{
+  "genome_id": 17,
+  "species": "Sulfurimonas denitrificans",
+  "primary_cultivation_mode": "lithotrophic_aerobic (sulfur oxidation)",
+  "alternative_cultivation_modes": [
+    "anaerobic_respiratory"
+  ],
+  "ingredients": [
+    {
+      "name": "CO2 / NaHCO3 (autotrophic carbon)",
+      "chemical_formula": "CO2 / NaHCO3",
+      "concentration": 2.0,
+      "concentration_unit": "g/L NaHCO3",
+      "category": "carbon_source",
+      "rationale": "CO2 from headspace + bicarbonate buffer. Autotrophic lithotrophs fix CO2 via CBB cycle (rbcL detected) or rTCA.",
+      "confidence": 0.85,
+      "derived_from": [
+        "RecipeContext.carbon_sources=CO2",
+        "rbcL/aclA detected"
+      ]
+    },
+    {
+      "name": "Na2S2O3\u00b75H2O (thiosulfate)",
+      "chemical_formula": "Na2S2O3\u00b75H2O",
+      "concentration": 5.0,
+      "concentration_unit": "g/L",
+      "category": "electron_donor",
+      "rationale": "Thiosulfate as electron donor (~20 mM); SOX-pathway substrate.",
+      "confidence": 0.85,
+      "derived_from": [
+        "RecipeContext.electron_donors=thiosulfate",
+        "soxB detected"
+      ]
+    },
+    {
+      "name": "Phosphate buffer (KH2PO4 + K2HPO4)",
+      "chemical_formula": "KH2PO4 / K2HPO4",
+      "concentration": 30.0,
+      "concentration_unit": "mM",
+      "category": "buffer",
+      "rationale": "30 mM phosphate buffer adjusted to pH 6.5",
+      "confidence": 0.85,
+      "derived_from": [
+        "pH from RecipeContext.conditions"
+      ]
+    },
+    {
+      "name": "NaCl",
+      "chemical_formula": "NaCl",
+      "concentration": 5.0,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Standard salinity baseline (5 g/L) for non-halophile",
+      "confidence": 0.85,
+      "derived_from": [
+        "RecipeContext.conditions.salinity_category"
+      ]
+    },
+    {
+      "name": "MgSO4\u00b77H2O",
+      "chemical_formula": "MgSO4\u00b77H2O",
+      "concentration": 0.2,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Magnesium and sulfur source",
+      "confidence": 0.9,
+      "derived_from": [
+        "common basal"
+      ]
+    },
+    {
+      "name": "CaCl2\u00b72H2O",
+      "chemical_formula": "CaCl2\u00b72H2O",
+      "concentration": 0.04,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Calcium baseline",
+      "confidence": 0.9,
+      "derived_from": [
+        "common basal"
+      ]
+    },
+    {
+      "name": "SL-10 trace metal solution",
+      "chemical_formula": "(see SL-10 reference)",
+      "concentration": 1.0,
+      "concentration_unit": "mL/L",
+      "category": "trace_metal",
+      "rationale": "SL-10 (Tschech & Pfennig 1984): Fe, Zn, Mn, B, Co, Cu, Ni, Mo at standard concentrations. 1 mL/L final.",
+      "confidence": 0.85,
+      "derived_from": [
+        "common basal",
+        "MeBiPred metal predictions"
+      ]
+    },
+    {
+      "name": "Wolin's vitamin solution",
+      "chemical_formula": "(see Wolin 1963 reference)",
+      "concentration": 1.0,
+      "concentration_unit": "mL/L",
+      "category": "vitamin",
+      "rationale": "Wolin's vitamins (Wolin et al. 1963): biotin, folic acid, pyridoxine, thiamine, riboflavin, nicotinic acid, pantothenate, B12, p-aminobenzoic acid, lipoic acid. 1 mL/L final.",
+      "confidence": 0.85,
+      "derived_from": [
+        "common basal",
+        "RecipeContext.cofactors"
+      ]
+    }
+  ],
+  "gas_phase": {
+    "composition": {
+      "air": 0.98,
+      "CO2": 0.02
+    },
+    "pressure_atm": 1.0,
+    "rationale": "Aerobic atmosphere with elevated CO2 for autotrophic carbon fixation."
+  },
+  "conditions": {
+    "temperature_c": 37.68212443049103,
+    "ph": 6.543363392306474,
+    "light_required": false,
+    "light_intensity_umol_per_m2_per_s": null,
+    "shaking_rpm": 150,
+    "rationale": "Temperature 37.68212443049103\u00b0C, pH 6.543363392306474 from genomespot; shaking 150 rpm for O2 + CO2 transfer"
+  },
+  "thermodynamic_checks": [
+    {
+      "capability_name": "lithotrophic_aerobic",
+      "primary_reaction": "HS- + 2 O2 \u2192 SO4-2 + H+",
+      "delta_g_kj_per_mol": -787.3,
+      "feasible": true,
+      "feasibility_class": "feasible",
+      "notes": ""
+    }
+  ],
+  "composition_rationale": [
+    "Lithotrophic aerobic: inorganic electron donor + O2 acceptor. Autotrophic CO2 fixation supplies carbon."
+  ],
+  "uncertainty_flags": [],
+  "limitations_referenced": [],
+  "overall_confidence": 0.74,
+  "confidence_rationale": "base from RecipeContext = 0.74 \u2192 final 0.74",
+  "similar_published_media": [],
+  "escalated": false,
+  "escalation_reason": ""
+}

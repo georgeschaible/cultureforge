@@ -1,0 +1,69 @@
+RecipeContext — Allochromatium vinosum DSM 180
+================================================
+Phase 1.5k validation organism (reverse-dsr sulfide oxidizer)
+Genome: GCF_000025485.1 (3.67 Mb, 3 contigs, 3261 predicted proteins)
+
+CAPABILITY PROFILE
+------------------
+Quality: PROCEED (completeness 99.9%, contamination 0.0%)
+Action: SYNTHESIZE
+
+Detected capabilities (primary metabolisms):
+  1. Anoxygenic phototrophy (purple bacteria, Type II RC)  conf=0.768
+     - pufLM diagnostic marker: 65.8% identity, bs=381
+     - bacteriochlorophyll biosynthesis detected
+  2. Sulfur/sulfide/thiosulfate oxidation                  conf=0.838
+     - 4/5 pathway steps detected (weighted score 0.88)
+  3. Biological nitrogen fixation (N2 to NH3)              conf=0.614
+     - nifH diagnostic marker: 83.6% identity, bs=874
+
+NOT detected (critical discrimination):
+  * Dissimilatory sulfate reduction                        conf=0.400 (capped)
+    - dsrAB POSITIVE (43.1% id, bs=329) — reverse dsr uses same enzyme
+    - aprAB POSITIVE (38.9% id, bs=413) — also present in reverse dsr
+    - qmoA  NEGATIVE — forward-dsr-specific QmoABC complex ABSENT
+    - Essential marker(s) missing: qmoA → confidence capped at 0.40
+    - This is the Phase 1.5k discrimination working correctly
+
+RECIPE CONTEXT
+--------------
+Primary atmosphere: PHOTOTROPHIC
+Cultivation modes: lithotrophic_aerobic, phototrophic
+
+Carbon sources:
+  - CO2 (autotrophic, from lithotrophic mode)              conf=0.85
+  - malate (organic acid, from phototrophic mode)           conf=0.85
+
+Electron donors:
+  - H2S / thiosulfate (sulfur oxidation pathway)            conf=0.80
+
+Electron acceptors:
+  - O2 (aerobic respiration)                                conf=0.90
+
+Nitrogen sources:
+  - NH4+ (standard inorganic)                               conf=0.80
+  - N2 (if NH4+ unavailable; nifH detected)                 conf=0.60
+  - Amino acid supplements (4 auxotrophies)                  conf=0.70
+
+Special requirements:
+  - Light source (tungsten lamp or LED, for phototrophy)
+
+Trace metals: 11 predicted (Fe, Mg, Ca, K, Na, Ni, Mn, Zn, Cu, Co, Mo)
+  - Ni flagged as anomalous (15.5% of proteome) — likely [NiFe] hydrogenase requirement
+
+BIOLOGICAL INTERPRETATION
+-------------------------
+Allochromatium vinosum is a purple sulfur bacterium that uses light energy
+to oxidize sulfide to sulfur/sulfate via the reverse-dsr pathway. It fixes
+CO2 via the Calvin-Benson cycle and can also fix N2. The qmoA discriminator
+correctly classifies this organism as a phototrophic sulfide oxidizer rather
+than a sulfate reducer, despite having strong dsrAB sequence homology.
+
+Recommended medium: Modified Pfennig's medium for purple sulfur bacteria
+  - NaHCO3 buffer (CO2 source)
+  - Na2S·9H2O (1-2 mM, electron donor)
+  - NH4Cl (nitrogen source)
+  - Trace element solution SL-10
+  - Light at 600-1000 nm (infrared/near-infrared)
+  - Anaerobic atmosphere (N2/CO2 80:20)
+  - pH 7.0-7.5, 25-30°C

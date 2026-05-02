@@ -1,0 +1,171 @@
+
+[1/5] Extracting 16S rRNA from data/genomes/Geobacter_sulfurreducens.fasta ...
+      1553 bp 16S extracted.
+
+[2/5] BLASTing against /home/george/cultureforge/data/blastdb/16s_ref ...
+      10 hits, best 98.2% (Geobacter soli)
+
+[3/5] Looking up genome in DB (accession=NC_002939.5) ...
+      genome_id=13
+
+[4/5] Synthesizing de novo recipe ...
+      Energy metabolism: iron_reducer [0.95]
+      Components: 21, auxotrophies: 7
+
+[5/5] (Use --compare-template to see side-by-side comparison)
+
+================================================================================
+  DE NOVO RECIPE — composed from genomic evidence
+  Query: NC_002939.5
+================================================================================
+
+  Overall Confidence: MEDIUM (0.61)
+  → weighted: 70% critical_min (0.70) + 30% secondary_mean (0.89); 6 critical, 16 secondary components; −0.15 compatibility penalty (3 warnings)
+
+  ENERGY METABOLISM: Iron Reducer
+    Electron donor:    acetate or organic acids
+    Electron acceptor: Fe(III)
+    Autotrophic:       No
+    Genomic evidence:  user-specified
+    Confidence:        [0.95] VERY HIGH
+    → user-specified: iron-reduction
+
+  ELECTRON DONOR:
+    Sodium acetate                           810.0 mg/L      [0.95]
+      → electron_donor for iron_reducer; calibrated: median=0.81 g/L [P10=0.53, P90=2.47] (n=20, metabolism_proxy:iron_reducer)
+
+  ELECTRON ACCEPTOR:
+    Ferric citrate                           13.55 g/L       [0.95]
+      → electron_acceptor for iron_reducer; calibrated: median=13.55 g/L [P10=9.98, P90=13.55] (n=5, metabolism_proxy:iron_reducer)
+
+  CARBON SOURCE:
+    NaHCO3                                   160.0 mg/L      [0.70] ⚠
+      → autotroph — Calvin cycle (CBB) 53% complete; calibrated: median=0.16 g/L (n=57, metabolism_proxy:iron_reducer)
+
+  NITROGEN SOURCE:
+    NH4Cl                                    490.0 mg/L      [0.75]
+      → N2 fixation genes detected (100%); NH4Cl still preferred for cultivation; calibrated median=0.49 g/L (n=1141)
+
+  COMPLEX NUTRIENT SOURCE:
+    Yeast extract                            1.0 g/L         [0.80]
+      → 7 auxotrophies detected (>5 threshold); yeast extract covers vitamins + amino acids; calibrated: median=1.00 g/L (n=1802)
+      ⚠ 7 auxotrophies; yeast extract covers most; test without if pure culture needed
+
+  PHOSPHATE / BUFFER:
+    K2HPO4                                   500.0 mg/L      [0.85]
+      → high-affinity pst phosphate transporter detected → P-limited environment; pH 6.5 ≈ phosphate pKa 7.2; calibrated: median=0.50 g/L (n=952)
+
+  BUFFER:
+    KH2PO4                                   149.0 mg/L      [0.80]
+      → KH2PO4/K2HPO4 ratio maintains pH 7.0-7.4
+
+  VITAMINS / COFACTORS:
+    molybdopterin                            1.0 mg/L        [0.65] ⚠
+      → gapseq auxotrophy: biosynthesis pathway 66% complete (gap probability 34%)
+      ⚠ partial biosynthesis (66%); test with/without to confirm requirement
+    siroheme                                 1.0 mg/L        [0.72] ⚠
+      → gapseq auxotrophy: biosynthesis pathway 50% complete (gap probability 50%)
+      ⚠ partial biosynthesis (50%); test with/without to confirm requirement
+
+  TRACE METALS:
+    MgSO4·7H2O                               500.0 mg/L      [0.95]
+      → MeBiPred: 1065 Mg-binding proteins (max_p=0.96, fraction=31.2%)
+    CaCl2·2H2O                               50.0 mg/L       [0.95]
+      → MeBiPred: 834 Ca-binding proteins (max_p=1.00, fraction=24.4%)
+    FeSO4·7H2O                               5.0 mg/L        [0.95]
+      → MeBiPred: 611 Fe-binding proteins (max_p=1.00, fraction=17.9%)
+    NaCl                                     1.0 g/L         [0.95]
+      → MeBiPred: 570 Na-binding proteins (max_p=1.00, fraction=16.7%)
+    NiCl2·6H2O                               50 μg/L         [0.95]
+      → MeBiPred: 537 Ni-binding proteins (max_p=1.00, fraction=15.7%)
+      ⚠ fraction 0.16 > typical ceiling 0.10 — flag for review
+    MnCl2·4H2O                               500 μg/L        [0.95]
+      → MeBiPred: 421 Mn-binding proteins (max_p=1.00, fraction=12.3%)
+    ZnSO4·7H2O                               500 μg/L        [0.95]
+      → MeBiPred: 303 Zn-binding proteins (max_p=0.99, fraction=8.9%)
+    CuSO4·5H2O                               50 μg/L         [0.95]
+      → MeBiPred: 222 Cu-binding proteins (max_p=1.00, fraction=6.5%)
+      ⚠ max_p 1.00 on rare metal — verify with BRENDA
+    CoCl2·6H2O                               50 μg/L         [0.95]
+      → MeBiPred: 129 Co-binding proteins (max_p=0.99, fraction=3.8%)
+      ⚠ max_p 0.99 on rare metal — verify with BRENDA
+
+  ATMOSPHERE / REDOX:
+    Ti(III) citrate                          0.8 mM          [0.90]
+      → reducing agent for iron_reducer: Avoids FeS precipitation that occurs with Na2S + Fe(III)
+    H₂:CO₂ (80:20)                                           [0.85]
+      → anaerobe with uptake hydrogenase — can use H₂ as electron donor
+    Resazurin                                500 μg/L        [0.95]
+
+  AUXOTROPHY SUMMARY: 7 auxotrophies detected
+    → >5 auxotrophies: yeast extract added to cover vitamins + amino acids
+
+================================================================================
+  COMPATIBILITY WARNINGS
+================================================================================
+    ✗ [HIGH] FePO4 / Fe3(PO4)2 (vivianite / iron phosphate)
+        Ferric citrate  +  K2HPO4  (condition: pH > 5.5)
+        → Prepare iron and phosphate solutions SEPARATELY; autoclave separately; combine post-cooling. OR add chelator (NTA 0.1-1 mg/L or Na-EDTA 0.5-5 mg/L) to iron solution before combining. OR use ferric citrate (pre-chelated iron).
+
+    ✗ [HIGH] Fe(OH)3 (ferrihydrite)
+        Ferric citrate  +  siroheme  (condition: pH > 3 (ferric only))
+        → Use ferrous (Fe2+) salts instead of ferric (Fe3+) at neutral pH. Add chelator (citrate or NTA) to keep iron in solution.
+
+    ○ [LOW] CaSO4 (gypsum)
+        CaCl2·2H2O  +  MgSO4·7H2O  (condition: high concentrations (>20 mM each))
+        → Usually not problematic at typical medium concentrations. If both Ca and SO4 are at high levels, reduce one or prepare separately.
+
+  PREPARATION INSTRUCTIONS (auto-generated from compatibility check)
+
+  SOLUTION A — Phosphate/buffer (autoclave separately):
+    - K2HPO4
+    - KH2PO4
+    → Dissolve in partial volume H₂O, autoclave 121°C 15 min
+
+  SOLUTION B — Metals/iron (autoclave separately):
+    - CoCl2·6H2O
+    - CuSO4·5H2O
+    - FeSO4·7H2O
+    - Ferric citrate
+    - H₂:CO₂ (80:20)
+    - MnCl2·4H2O
+    - NaHCO3
+    - NiCl2·6H2O
+    - ZnSO4·7H2O
+    - Na-EDTA or NTA (chelator, 0.5-5 mg/L)
+    → Dissolve in partial volume H₂O, autoclave 121°C 15 min
+
+  COMBINE: Cool all solutions to ~50°C under sterile conditions.
+           Add solutions in order: base salts → phosphate →
+           metals (with chelator) → reducing agents/sulfide (last).
+           Adjust pH to target with sterile NaOH/HCl.
+
+================================================================================
+  PHYSICAL FORMAT
+================================================================================
+  Primary: Liquid in sealed tubes (Hungate/Balch technique)
+    → Strict anaerobe — requires O₂-free conditions. Use Hungate tubes or Balch tubes with butyl rubber stoppers and aluminum crimps. Prepare under N₂ or N₂:CO₂ atmosphere.
+  Solidifying agent: Agar (Bacto or Noble) 1.2-2.0%
+  Alternative: Roll tubes (anaerobic + solid surface) OR anaerobic chamber + agar plates if colony isolation needed
+  ⚠ STRICT ANAEROBE — all manipulation must use Hungate technique or anaerobic glove box
+
+================================================================================
+  EXPERIMENTAL VARIATION MATRIX
+================================================================================
+  • NaHCO3 (CO2 source / buffer) (70% confidence)
+      → Test alternative carbon sources alongside NaHCO3
+  • Yeast extract (7 auxotrophies; yeast extract covers most; test without if pure culture needed)
+      → Test variants experimentally
+  • molybdopterin supplement (partial biosynthesis (66%); test with/without to confirm requirement)
+      → Test variants experimentally
+  • siroheme supplement (partial biosynthesis (50%); test with/without to confirm requirement)
+      → Test variants experimentally
+  • Ni trace metal (NiCl2·6H2O) (fraction 0.16 > typical ceiling 0.10 — flag for review)
+      → Test with and without NiCl2·6H2O
+  • Cu trace metal (CuSO4·5H2O) (max_p 1.00 on rare metal — verify with BRENDA)
+      → Test with and without CuSO4·5H2O
+  • Co trace metal (CoCl2·6H2O) (max_p 0.99 on rare metal — verify with BRENDA)
+      → Test with and without CoCl2·6H2O
+
+
+[dry run — not persisted]

@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "dbname": "blastdb_nosZ",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": "nosZ",
+  "number-of-letters": 3211,
+  "number-of-sequences": 5,
+  "last-updated": "2026-04-27T21:19:00",
+  "number-of-volumes": 1,
+  "bytes-total": 41278,
+  "bytes-to-cache": 3353,
+  "files": [
+    "blastdb_nosZ.pdb",
+    "blastdb_nosZ.phr",
+    "blastdb_nosZ.pin",
+    "blastdb_nosZ.pot",
+    "blastdb_nosZ.psq",
+    "blastdb_nosZ.ptf",
+    "blastdb_nosZ.pto"
+  ]
+}

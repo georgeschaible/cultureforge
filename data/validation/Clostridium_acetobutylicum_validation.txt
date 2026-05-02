@@ -1,0 +1,172 @@
+================================================================================
+CULTUREFORGE VALIDATION: Clostridium_acetobutylicum
+================================================================================
+
+================================================================================
+  SYNTHESIZED RECIPE — derived from template 'CHOPPED MEAT MEDIUM'
+  Query: NC_003030.1  (10 relatives, best identity 99.3%)
+================================================================================
+
+  Overall Confidence: MEDIUM (0.60)
+  → min of 14 (gapseq = 0.65) MINUS 0.05 for precipitation risk (2 warnings)
+
+  Thermal sources: user_supplied=37°C
+  → user-supplied 37.0°C
+
+  COMPONENTS:
+    [Complex nutrient sources]
+      Yeast extract                            5.0 g/L          [0.92] (template)
+
+    [Carbon sources]
+      Ethanol                                  950.0 g/L        [0.92] (template)
+      Ethanol                                  9.5 g/L          [0.92] (template)
+
+    [Phosphate]
+      K2HPO4                                   5.0 g/L          [0.92] (template)
+
+    [Trace metals]
+      MnCl2·4H2O                               500 μg/L         [0.95] (mebipred)
+          → MeBiPred: 368 Mn-binding proteins (max_p=1.00); template 'CHOPPED MEAT MEDIUM' lacks a direct Mn salt
+      NiCl2·6H2O                               50 μg/L          [0.95] (mebipred)
+          → MeBiPred: 368 Ni-binding proteins (max_p=1.00); template 'CHOPPED MEAT MEDIUM' lacks a direct Ni salt
+          → max_p 1.00 on rare metal — verify with BRENDA
+      ZnSO4·7H2O                               500 μg/L         [0.95] (mebipred)
+          → MeBiPred: 268 Zn-binding proteins (max_p=0.94); template 'CHOPPED MEAT MEDIUM' lacks a direct Zn salt
+      CuSO4·5H2O                               50 μg/L          [0.95] (mebipred)
+          → MeBiPred: 187 Cu-binding proteins (max_p=1.00); template 'CHOPPED MEAT MEDIUM' lacks a direct Cu salt
+          → max_p 1.00 on rare metal — verify with BRENDA
+      CoCl2·6H2O                               50 μg/L          [0.95] (mebipred)
+          → MeBiPred: 120 Co-binding proteins (max_p=1.00); template 'CHOPPED MEAT MEDIUM' lacks a direct Co salt
+          → max_p 1.00 on rare metal — verify with BRENDA
+
+    [Amino acids]
+      Haemin                                   500.0 mg/L       [0.92] (template)
+      L-Cysteine HCl                           500.0 mg/L       [0.92] (template)
+
+    [Auxotrophy supplements]
+      molybdopterin                            1.0 mg/L         [0.65] ⚠ (auxotrophy)
+          → gapseq reports auxotrophy (best biosynthesis pathway 66%); template 'CHOPPED MEAT MEDIUM' lacks a direct source for molybdopterin
+          → partial biosynthesis (66%); test 0, 0.5×, 1×, 2× to verify requirement
+      siroheme                                 1.0 mg/L         [0.72] ⚠ (auxotrophy)
+          → gapseq reports auxotrophy (best biosynthesis pathway 50%); template 'CHOPPED MEAT MEDIUM' lacks a direct source for siroheme
+          → partial biosynthesis (50%); test 0, 0.5×, 1×, 2× to verify requirement
+
+    [Gelling agent]
+      Agar                                     15.0 g/L         [0.70] ⚠ (template)
+
+    [Other]
+      NaOH                                     1.0 ml           [0.92] (template)
+      Ground beef                              500.0 g/L        [0.92] (template)
+      Casitone                                 30.0 g/L         [0.92] (template)
+      NaOH                                     25.0 ml          [0.92] (template)
+      Resazurin                                976 μg/L         [0.92] (template)
+      Vitamin K1                               0.1 ml           [0.92] (template)
+      Vitamin K3                               50.0 mg/L        [0.92] (template)
+
+================================================================================
+  CARBON SOURCE ANALYSIS
+================================================================================
+  Organism can utilize 17 predicted carbon sources:
+    ✓ alanine              (100% pathway — L-alanine degradation II (to D-lactate))
+    ✓ aspartate            (100% pathway — L-aspartate degradation I)
+    ✓ pyruvate             (100% pathway — pyruvate fermentation to butanoate)
+    ✓ glutamate            (100% pathway — L-glutamate degradation I)
+    ✓ glutamine            (100% pathway — L-glutamine degradation I)
+    ✓ lactose              (100% pathway — lactose degradation I)
+    ✓ cysteine             (100% pathway — L-cysteine degradation II)
+    ✓ mannitol             (100% pathway — mannitol degradation I)
+    ✓ sucrose              (100% pathway — sucrose degradation II (sucrose synthase))
+    ✓ galactose            (100% pathway — D-galactose degradation I (Leloir pathway))
+
+================================================================================
+  GAS PHASE RECOMMENDATION
+================================================================================
+  Headspace: N₂:CO₂ (80:20) — do NOT add H₂ (inhibits H₂-producing fermentation)
+    → fermentative H₂ producer — adding H₂ would make fermentation thermodynamically unfavorable
+  BLAST-confirmed hydrogenases (2 hits):
+    • [FeFe]  Group A  NC_003030.1_28         71.5%id  bs=877
+    • [FeFe]  Group A  NC_003030.1_2270       63.6%id  bs=279
+  ⚠ STRICT ANAEROBE — all manipulation must be under anoxic conditions (glove box or Hungate technique)
+
+================================================================================
+  PHYSICAL FORMAT
+================================================================================
+  Recommended: Liquid in sealed tubes (Hungate/Balch technique)  [0.90]
+    → Strict anaerobe — requires O₂-free conditions. Use Hungate tubes or Balch tubes with butyl rubber stoppers and aluminum crimps. Prepare under N₂ or N₂:CO₂ atmosphere.
+  Alternative: Roll tubes (anaerobic + solid surface) OR anaerobic chamber + agar plates if colony isolation needed
+  Solidifying agent: Agar (Bacto or Noble) 1.2-2.0%
+    → Standard — works for most organisms at moderate T and pH.
+  ⚠ STRICT ANAEROBE — all manipulation must use Hungate technique or anaerobic glove box
+
+================================================================================
+  COMPATIBILITY WARNINGS (2 precipitation risks detected)
+================================================================================
+    ⚠ [MEDIUM] Ca3(PO4)2 (apatite / calcium phosphate)
+        Casitone  +  K2HPO4  (condition: pH > 6.5)
+        → Autoclave calcium and phosphate solutions separately; combine post-cooling.
+
+    ○ [LOW] CaSO4 (gypsum)
+        Casitone  +  ZnSO4·7H2O  (condition: high concentrations (>20 mM each))
+        → Usually not problematic at typical medium concentrations. If both Ca and SO4 are at high levels, reduce one or prepare separately.
+
+  PREPARATION INSTRUCTIONS (auto-generated from compatibility check)
+
+  SOLUTION A — Phosphate/buffer (autoclave separately):
+    - K2HPO4
+    → Dissolve in partial volume H₂O, autoclave 121°C 15 min
+
+  SOLUTION B — Metals/iron (autoclave separately):
+    - CoCl2·6H2O
+    - CuSO4·5H2O
+    - MnCl2·4H2O
+    - NiCl2·6H2O
+    - ZnSO4·7H2O
+    → Dissolve in partial volume H₂O, autoclave 121°C 15 min
+
+  SOLUTION C — Reducing agents/sulfide (prepare under N₂, add LAST):
+    - L-Cysteine HCl
+    → Prepare under N₂ atmosphere; autoclave separately or
+      prepare from sterile anaerobic stock; add to cooled
+      combined medium under anaerobic conditions
+
+  COMBINE: Cool all solutions to ~50°C under sterile conditions.
+           Add solutions in order: base salts → phosphate →
+           metals (with chelator) → reducing agents/sulfide (last).
+           Adjust pH to target with sterile NaOH/HCl.
+
+  ⚠ UNCERTAINTY FLAGS (3 components <0.75):
+    • Agar (0.70) — from template 'CHOPPED MEAT MEDIUM' — min of 2 (phylo_16s = 0.87) +0.05 agreement bonus
+    • molybdopterin (0.65) — gapseq reports auxotrophy (best biosynthesis pathway 66%); template 'CHOPPED MEAT MEDIUM' lacks a direct source for molybdopterin
+    • siroheme (0.72) — gapseq reports auxotrophy (best biosynthesis pathway 50%); template 'CHOPPED MEAT MEDIUM' lacks a direct source for siroheme
+
+  EXPERIMENTAL VARIATION MATRIX:
+    • Agar
+        reason:   70% confidence
+        variants: Test variants experimentally
+    • molybdopterin supplement
+        reason:   partial biosynthesis (66%); test 0, 0.5×, 1×, 2× to verify requirement
+        variants: Test 0×, 0.5×, 1×, 2× molybdopterin (0 / 0.00 / 0.001 / 0.00 g/L)
+    • siroheme supplement
+        reason:   partial biosynthesis (50%); test 0, 0.5×, 1×, 2× to verify requirement
+        variants: Test 0×, 0.5×, 1×, 2× siroheme (0 / 0.00 / 0.001 / 0.00 g/L)
+    • Ni trace supplement
+        reason:   max_p 1.00 on rare metal — verify with BRENDA
+        variants: Test with and without NiCl2·6H2O
+    • Cu trace supplement
+        reason:   max_p 1.00 on rare metal — verify with BRENDA
+        variants: Test with and without CuSO4·5H2O
+    • Co trace supplement
+        reason:   max_p 1.00 on rare metal — verify with BRENDA
+        variants: Test with and without CoCl2·6H2O
+
+================================================================================
+  PROVENANCE
+================================================================================
+    Template medium:   CHOPPED MEAT MEDIUM (78)
+    Phylogenetic match: MediaDive + BacDive via 16S BLAST (best 99.3%)
+    Metabolic analysis: gapseq 1.4.0 → 6 auxotrophy compound(s) required
+    Environmental:     multi-source thermal inference (1 source(s))
+    Metal profile:     MeBiPred (10 strong metals: Mg, Ca, K, Fe, Na, Mn, Ni, Zn, Cu, Co)
+    Genome biomass:    Gram_pos
+================================================================================
+  → layered 2 auxotrophy + 5 metal + 0 energy-metabolism components onto template baseline

@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "dbname": "blastdb_rdhA",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": "rdhA",
+  "number-of-letters": 2705,
+  "number-of-sequences": 5,
+  "last-updated": "2026-04-27T21:19:00",
+  "number-of-volumes": 1,
+  "bytes-total": 40759,
+  "bytes-to-cache": 2847,
+  "files": [
+    "blastdb_rdhA.pdb",
+    "blastdb_rdhA.phr",
+    "blastdb_rdhA.pin",
+    "blastdb_rdhA.pot",
+    "blastdb_rdhA.psq",
+    "blastdb_rdhA.ptf",
+    "blastdb_rdhA.pto"
+  ]
+}

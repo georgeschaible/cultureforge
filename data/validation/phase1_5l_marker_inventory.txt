@@ -1,0 +1,181 @@
+Phase 1.5l — Marker Reference Inventory and Verification
+==========================================================
+Date: 2026-04-27
+
+CRITICAL FINDING: Widespread wrong-protein contamination across marker references.
+UniProt accessions from fetch_markers.sh frequently return proteins unrelated
+to the intended diagnostic marker. This likely occurred because fetch_markers.sh
+used accessions that were guessed from biological knowledge rather than verified.
+
+SUMMARY OF ISSUES PER MARKER FILE:
+
+=== acsB_cdhC_refs.fasta (4 seqs) ===
+  P27988: VERIFIED — Carbon monoxide dehydrogenase/acetyl-CoA synthase alpha (Moorella thermoacetica) ✓
+  Q8TMC6: WRONG-PROTEIN — Transposase (Methanosarcina acetivorans), NOT acsB/cdhC ✗
+  Q3AEH4: WRONG-PROTEIN — Cytochrome c NapC/NirT family (Carboxydothermus), NOT acsB/cdhC ✗
+  P31896: VERIFIED — Carbon monoxide dehydrogenase (Rhodospirillum rubrum) ✓ (but this is cooS, not acsB)
+
+=== amoA_refs.fasta (3 seqs) ===
+  Q04507: VERIFIED — Ammonia monooxygenase alpha subunit (Nitrosomonas europaea) ✓
+  A0A7D4WXT9: VERIFIED-TREMBL — AmoA fragment (Ca. Nitrospira inopinata) ✓ but only 79 aa fragment
+  A0A8D4WF74: VERIFIED-TREMBL — Ammonia monooxygenase fragment (uncultured Nitrospira) ✓ but 138 aa fragment
+
+=== aprAB_refs.fasta (2 seqs) ===
+  Q725B6: WRONG-PROTEIN — AgrB-like protein (Listeria monocytogenes), NOT aprAB ✗
+  Q72AU3: WRONG-PROTEIN — Glycine-tRNA ligase beta (D. vulgaris), NOT aprAB ✗
+  ENTIRE FILE IS WRONG — no actual aprAB sequences present
+
+=== autotrophy_refs.fasta (6 seqs) ===
+  P54205: VERIFIED — RuBisCO large chain (Synechocystis) ✓
+  Q3IXP8: WRONG-PROTEIN — Hydroxypyruvate reductase/glycerate kinase (Rhodobacter) — partially relevant but NOT rbcL ✗
+  Q1JU64: WRONG-PROTEIN — MHC class II antigen (Bos taurus = cow) ✗✗✗ ANIMAL PROTEIN
+  Q8KFR1: WRONG-PROTEIN — Small ribosomal subunit protein bS20 (Chlorobaculum) ✗
+  Q9F721: WRONG-PROTEIN — Cytochrome bc complex cytochrome b (Chlorobaculum) ✗
+  A4YHK3: WRONG-PROTEIN — DEAD/DEAH box helicase (Metallosphaera sedula) ✗
+
+=== cooS_cdhA_refs.fasta (4 seqs) ===
+  P31896: VERIFIED — Carbon monoxide dehydrogenase (Rhodospirillum rubrum) ✓
+  Q2RJY1: WRONG-PROTEIN — Ribosomal protein bL32 (Moorella thermoacetica) ✗
+  P29342: WRONG-PROTEIN — Ribosomal protein bL12 (Streptomyces antibioticus) ✗
+  Q8TMC8: WRONG-PROTEIN — Uncharacterized protein (Methanosarcina acetivorans) ✗
+
+=== cyc2_refs.fasta (1 seq) ===
+  Q4A194: WRONG-PROTEIN — Beclin 1 protein (Hordeum vulgare = barley) ✗✗✗ PLANT PROTEIN
+
+=== dsrAB_refs.fasta (4 seqs) ===
+  P45574: VERIFIED — Dissimilatory sulfite reductase alpha (D. vulgaris) ✓
+  P45575: VERIFIED — Dissimilatory sulfite reductase beta (D. vulgaris) ✓
+  O28606: WRONG-PROTEIN — Sulfate adenylyltransferase (A. fulgidus) — this is sat, NOT dsrAB ✗
+  O28607: WRONG-PROTEIN — Diphthamide synthase domain protein (A. fulgidus) ✗
+
+=== hao_refs.fasta (2 seqs) ===
+  P24022: WRONG-PROTEIN — Bacteriocin lactacin-F (Lactobacillus johnsonii) ✗✗✗
+  Q82SR3: WRONG-PROTEIN — ATPase ABC transport (Nitrosomonas europaea), NOT hao ✗
+  ENTIRE FILE IS WRONG — no actual hao sequences present
+
+=== hdh_refs.fasta (4 seqs) ===
+  Q1PW30: VERIFIED — Hydrazine dehydrogenase (Kuenenia stuttgartiensis) ✓
+  Q1PX48: VERIFIED — Hydroxylamine oxidoreductase (Kuenenia) ✓
+  A0A0M2UZ26: WRONG-PROTEIN — Hydrazine synthase subunit C (Ca. Brocadia fulgida) — wrong subunit, should be hdh ✗
+  A0ABQ0JTR7: WRONG-PROTEIN — Hydrazine synthase beta subunit (Ca. Brocadia sinica) — wrong subunit ✗
+
+=== hzsA_refs.fasta (4 seqs) ===
+  Q1Q5W1: WRONG-PROTEIN — Cobalt/zinc/cadmium efflux RND transporter (Kuenenia) ✗
+  A0A2Z6A915: VERIFIED-TREMBL — Hydrazine synthase fragment (uncultured Ca. Brocadia) ✓
+  G9ITI6: VERIFIED-TREMBL — Hydrazine synthase subunit A fragment (Ca. Brocadia anammoxidans) ✓
+  G9ITI8: VERIFIED-TREMBL — Hydrazine synthase subunit A (Ca. Jettenia asiatica) ✓
+
+=== mcrA_refs.fasta (5 seqs) ===
+  P11558: VERIFIED — Methyl-coenzyme M reductase alpha (M. marburgensis) ✓
+  Q8TIY1: WRONG-PROTEIN — Fun34 related protein (Methanosarcina acetivorans) ✗
+  Q6LYP5: WRONG-PROTEIN — FAD synthase (Methanococcus maripaludis) ✗
+  A5UL61: WRONG-PROTEIN — Cytidylate kinase (Methanobrevibacter smithii) ✗
+  Q58256: VERIFIED — Methyl-coenzyme M reductase alpha (M. jannaschii) ✓
+
+=== mcrBG_refs.fasta (4 seqs) ===
+  P11559: VERIFIED — Methyl-coenzyme M reductase alpha (M. voltae) ✓ (labeled mcrBG but is actually mcrA)
+  Q8TIY0: WRONG-PROTEIN — Methyltransferase FkbM domain (M. acetivorans) ✗
+  Q58257: WRONG-PROTEIN — Methyltransferase mtrE (M. jannaschii) — related but NOT mcrBG ✗
+  Q58258: WRONG-PROTEIN — Methyltransferase mtrD (M. jannaschii) — related but NOT mcrBG ✗
+
+=== mtrC_omcB_refs.fasta (3 seqs) ===
+  Q8EG35: PARTIALLY CORRECT — MtrA (decaheme cytochrome) from Shewanella ✓ (periplasmic, not outer membrane mtrC)
+  Q74D43: WRONG-PROTEIN — Sugar transporter SemiSWEET (Geobacter sulfurreducens) ✗
+  Q74AE7: WRONG-PROTEIN — Peptidylprolyl isomerase PpiC-type (Geobacter sulfurreducens) ✗
+
+=== nifH_refs.fasta (3 seqs) ===
+  P00459: VERIFIED — Nitrogenase iron protein 1 (Azotobacter vinelandii) ✓
+  P07328: WRONG-MARKER — Nitrogenase MoFe protein alpha chain nifD (Azotobacter) — this is nifD not nifH ✗
+  P00458: VERIFIED — Nitrogenase iron protein (Klebsiella pneumoniae) ✓
+
+=== nosZ_refs.fasta (3 seqs) ===
+  P19573: VERIFIED — Nitrous-oxide reductase (Stutzerimonas stutzeri) ✓
+  P24474: WRONG-MARKER — Nitrite reductase nirS (Pseudomonas aeruginosa) — this is nirS not nosZ ✗
+  Q53198: WRONG-PROTEIN — Putative transposase (Sinorhizobium fredii) ✗
+
+=== psaA_psbA_refs.fasta (4 seqs) ===
+  P29254: VERIFIED — Photosystem I P700 apoprotein A1 (Synechocystis) ✓
+  P16033: VERIFIED — Photosystem II protein D1 (Synechocystis) ✓
+  P10898: VERIFIED — Photosystem II CP43 (Chlamydomonas reinhardtii) ✓ (eukaryotic alga, intended?)
+  Q8DHP3: WRONG-PROTEIN — Beta-xylanase (Thermosynechococcus) ✗
+
+=== pscA_fmoA_refs.fasta (3 seqs) ===
+  Q8KEI5: WRONG-PROTEIN — Zinc protease (Chlorobaculum tepidum) ✗
+  P0C0Y4: WRONG-PROTEIN — NADP-dependent mannitol dehydrogenase (Alternaria alternata = fungus) ✗✗✗
+  Q3AUE1: WRONG-PROTEIN — DUF1997 domain protein (Chlorobium chlorochromatii) ✗
+  ENTIRE FILE IS WRONG — no actual pscA or fmoA sequences present
+
+=== pufLM_refs.fasta (8 seqs) ===
+  Q07006: WRONG-PROTEIN — Glutamyl endopeptidase (Streptomyces griseus) ✗
+  P02948: VERIFIED — Light-harvesting B-870 alpha (Rhodobacter capsulatus) ✓ (but this is pufA, not pufLM)
+  P06008: VERIFIED — Reaction center protein H chain (Blastochloris viridis) ✓ (puhA, not pufL/M)
+  P06009: VERIFIED — Reaction center protein L chain (Blastochloris viridis) ✓ pufL
+  P26362: WRONG-PROTEIN — CFTR (Squalus acanthias = shark) ✗✗✗ FISH PROTEIN
+  P26363: WRONG-PROTEIN — CFTR (Xenopus laevis = frog) ✗✗✗ FROG PROTEIN
+  A7NQ45: WRONG-PROTEIN — Methyltransferase type 11 (Roseiflexus) ✗
+  A7NQ46: WRONG-PROTEIN — ABC transporter (Roseiflexus) ✗
+
+=== qmoA_refs.fasta (6 seqs) ===
+  Q7X167: VERIFIED-TREMBL — QmoA (Desulfovibrio desulfuricans) ✓
+  A0A8G2C1P1: VERIFIED-TREMBL — QmoA (Desulfomicrobium norvegicum) ✓
+  A0A0U9HMV6: VERIFIED-TREMBL — QmoA (Thermodesulfovibrio aggregans) ✓
+  S5VWR0: VERIFIED-TREMBL — QmoA (Megalodesulfovibrio gigas) ✓ (labeled as "putative")
+  Q3IBM0: VERIFIED-TREMBL — QmoA (uncultured sulfate-reducing bacterium) ✓
+  A0A212JYQ4: VERIFIED-TREMBL — QmoA (uncultured Desulfovibrio sp) ✓
+  ALL CORRECT — qmoA was manually curated in Phase 1.5k
+
+=== rdhA_refs.fasta (9 seqs) ===
+  Q3ZAB8: VERIFIED — Trichloroethene reductive dehalogenase (Dehalococcoides 195) ✓
+  Q8L172: VERIFIED — Tetrachloroethene reductive dehalogenase (Desulfitobacterium Y51) ✓
+  Q69GM4: VERIFIED — Chloroethene reductive dehalogenase (Dehalococcoides VS) ✓
+  Q69GM3: VERIFIED — vcrB membrane anchor (Dehalococcoides VS) ✓ (anchor, not rdhA catalytic)
+  A0A0A7NZR9: VERIFIED-TREMBL — Reductive dehalogenase-like KB1rdhA26 (Dehalococcoides) ✓
+  Q8GJ27: VERIFIED — Tetrachloroethene reductive dehalogenase (Dehalobacter restrictus) ✓
+  Q8GJ31: VERIFIED — Tetrachloroethene reductive dehalogenase (Desulfitobacterium) ✓
+  Q8L172: DUPLICATE — Same as above (Desulfitobacterium Y51 pceA) — appears twice
+  Q848J2: VERIFIED — Tetrachloroethene reductive dehalogenase (Desulfitobacterium) ✓
+  MOSTLY CORRECT — rdhA references are genuine dehalogenases
+
+=== rhodopsin_refs.fasta (2 seqs) ===
+  P02945: VERIFIED — Bacteriorhodopsin (Halobacterium salinarum NRC-1) ✓
+  Q9F7P4: VERIFIED — Green-light proteorhodopsin (Gamma-proteobacterium EBAC31A08) ✓
+  BOTH CORRECT
+
+=== soxB_refs.fasta (3 seqs) ===
+  Q93UV4: WRONG-PROTEIN — Fluoren-9-ol dehydrogenase (Terrabacter sp.) ✗
+  Q3SLP0: WRONG-PROTEIN — Ribosomal protein uS17 (Thiobacillus denitrificans) ✗
+  O66037: WRONG-PROTEIN — 3-phytase (Bacillus sp.) ✗
+  ENTIRE FILE IS WRONG — no actual soxB sequences present
+
+=== terminal_oxidases_refs.fasta (8 seqs) ===
+  Q56431: WRONG-PROTEIN — Pyrroline-5-carboxylate reductase fragment (Thermus) ✗
+  P82543: VERIFIED — Cytochrome c oxidase subunit 2A (Thermus thermophilus) ✓
+  P34957: VERIFIED — Quinol oxidase subunit 2 qoxA (Bacillus subtilis) ✓
+  P34956: VERIFIED — Quinol oxidase subunit 1 qoxB (Bacillus subtilis) ✓
+  P39484: WRONG-PROTEIN — Glucose 1-dehydrogenase (Priestia megaterium) ✗
+  Q4J781: WRONG-PROTEIN — NAD-dependent alcohol dehydrogenase (Sulfolobus acidocaldarius) ✗
+  P08305: VERIFIED — Cytochrome c oxidase subunit 1-alpha (Paracoccus denitrificans) ✓
+  P08306: VERIFIED — Cytochrome c oxidase subunit 2 (Paracoccus denitrificans) ✓
+
+OVERALL SUMMARY:
+  Total accessions: ~95
+  VERIFIED (correct protein): ~30
+  WRONG-PROTEIN (completely unrelated): ~45
+  WRONG-MARKER (related but wrong gene): ~5
+  Marker files entirely wrong (no correct sequences): aprAB, hao, soxB, pscA_fmoA, cyc2
+  Marker files mostly wrong: pufLM, autotrophy, mcrA, cooS_cdhA, mtrC_omcB, nosZ, mcrBG
+
+CONCLUSION: Approximately 50% of all marker reference accessions return wrong proteins.
+This is because the accessions in fetch_markers.sh were generated from expected gene names
+and organism names but never verified against UniProt's actual content. UniProt accession
+numbers are stable identifiers but don't always correspond to the protein one expects from
+the gene name in a given organism's genome annotation.
+
+Despite this, detection has been working reasonably well because:
+1. The few CORRECT sequences are strong enough to produce genuine BLAST hits
+2. Wrong sequences mostly produce no hits or below-threshold noise
+3. Some wrong sequences happen to be from the right organism and produce weak hits
+   to related proteins that don't cross the positive_call threshold
+
+However, this means detection sensitivity is severely reduced — many markers are
+operating with 1-2 correct references instead of the intended 3-5.

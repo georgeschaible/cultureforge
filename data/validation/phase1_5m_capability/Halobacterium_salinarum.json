@@ -1,0 +1,176 @@
+{
+  "genome_id": 20,
+  "quality": {
+    "verdict": "NO_QC",
+    "completeness": null,
+    "contamination": null
+  },
+  "primary_metabolisms": [
+    "Aerobic respiration"
+  ],
+  "recommended_action": "flag_uncertain",
+  "capabilities": [
+    {
+      "name": "Aerobic respiration",
+      "detected": true,
+      "confidence": 0.6,
+      "pathway_completeness": 0.6,
+      "diagnostic_markers": [],
+      "negative_markers_present": []
+    },
+    {
+      "name": "Denitrification (NO3- to N2)",
+      "detected": false,
+      "confidence": 0.4,
+      "pathway_completeness": 0.636,
+      "diagnostic_markers": [],
+      "negative_markers_present": []
+    },
+    {
+      "name": "Substrate-level phosphorylation fermentation (mixed products)",
+      "detected": false,
+      "confidence": 0.4,
+      "pathway_completeness": 0.624,
+      "diagnostic_markers": [],
+      "negative_markers_present": []
+    },
+    {
+      "name": "Acetogenesis via Wood-Ljungdahl pathway. Negative markers: mcrA (methanogen), dsrAB/aprAB (SRB using WL for autotrophic CO2 fixation), mtrC_omcB (iron reducer using WL for autotrophy)",
+      "detected": false,
+      "confidence": 0.384,
+      "pathway_completeness": 0.263,
+      "diagnostic_markers": [],
+      "negative_markers_present": []
+    },
+    {
+      "name": "Reductive dehalogenation of organohalide compounds as terminal electron acceptors",
+      "detected": false,
+      "confidence": 0.356,
+      "pathway_completeness": 0.222,
+      "diagnostic_markers": [],
+      "negative_markers_present": []
+    },
+    {
+      "name": "Syntrophy (composite signature)",
+      "detected": false,
+      "confidence": 0.35,
+      "pathway_completeness": 0.35,
+      "diagnostic_markers": [],
+      "negative_markers_present": []
+    },
+    {
+      "name": "Acidophilic Fe(II) oxidation",
+      "detected": false,
+      "confidence": 0.308,
+      "pathway_completeness": 0.154,
+      "diagnostic_markers": [],
+      "negative_markers_present": []
+    },
+    {
+      "name": "Sulfur/sulfide/thiosulfate oxidation",
+      "detected": false,
+      "confidence": 0.287,
+      "pathway_completeness": 0.125,
+      "diagnostic_markers": [],
+      "negative_markers_present": []
+    },
+    {
+      "name": "Bacteriorhodopsin/proteorhodopsin light-driven proton pump",
+      "detected": false,
+      "confidence": 0.225,
+      "pathway_completeness": 0.0,
+      "diagnostic_markers": [
+        "rhodopsin"
+      ],
+      "negative_markers_present": []
+    },
+    {
+      "name": "Aerobic respiration via electron transport chain",
+      "detected": false,
+      "confidence": 0.206,
+      "pathway_completeness": 0.294,
+      "diagnostic_markers": [],
+      "negative_markers_present": []
+    },
+    {
+      "name": "Aerobic ammonia oxidation (nitrification step 1)",
+      "detected": false,
+      "confidence": 0.2,
+      "pathway_completeness": 0.0,
+      "diagnostic_markers": [],
+      "negative_markers_present": []
+    },
+    {
+      "name": "Anoxygenic phototrophy (green sulfur bacteria, Type I reaction center)",
+      "detected": false,
+      "confidence": 0.2,
+      "pathway_completeness": 0.0,
+      "diagnostic_markers": [],
+      "negative_markers_present": []
+    },
+    {
+      "name": "Oxygenic phototrophy (cyanobacteria, algae, plants)",
+      "detected": false,
+      "confidence": 0.2,
+      "pathway_completeness": 0.0,
+      "diagnostic_markers": [],
+      "negative_markers_present": []
+    },
+    {
+      "name": "Dissimilatory sulfate reduction",
+      "detected": false,
+      "confidence": 0.2,
+      "pathway_completeness": 0.0,
+      "diagnostic_markers": [],
+      "negative_markers_present": []
+    },
+    {
+      "name": "Dissimilatory Fe(III) reduction via extracellular electron transfer",
+      "detected": false,
+      "confidence": 0.2,
+      "pathway_completeness": 0.0,
+      "diagnostic_markers": [],
+      "negative_markers_present": []
+    },
+    {
+      "name": "Biological nitrogen fixation (N2 to NH3)",
+      "detected": false,
+      "confidence": 0.2,
+      "pathway_completeness": 0.0,
+      "diagnostic_markers": [],
+      "negative_markers_present": []
+    },
+    {
+      "name": "Anaerobic ammonium oxidation (anammox), ammonium + nitrite to dinitrogen via hydrazine",
+      "detected": false,
+      "confidence": 0.2,
+      "pathway_completeness": 0.0,
+      "diagnostic_markers": [],
+      "negative_markers_present": []
+    },
+    {
+      "name": "Methanogenesis (hydrogenotrophic, aceticlastic, or methylotrophic)",
+      "detected": false,
+      "confidence": 0.113,
+      "pathway_completeness": 0.067,
+      "diagnostic_markers": [],
+      "negative_markers_present": []
+    },
+    {
+      "name": "Anoxygenic phototrophy (purple bacteria, Type II reaction center)",
+      "detected": false,
+      "confidence": 0.0,
+      "pathway_completeness": 0.0,
+      "diagnostic_markers": [],
+      "negative_markers_present": []
+    },
+    {
+      "name": "Extreme salt-in halophily (composite signature)",
+      "detected": false,
+      "confidence": 0.0,
+      "pathway_completeness": -0.05,
+      "diagnostic_markers": [],
+      "negative_markers_present": []
+    }
+  ]
+}

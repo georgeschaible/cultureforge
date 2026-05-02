@@ -1,0 +1,33 @@
+Phase 1.5k Final Smoke Test — All Organisms Including Allochromatium
+======================================================================
+Date: 2026-04-27
+
+Regression check after adding Allochromatium vinosum DSM 180 as validation
+organism. Tests essential_marker_AND requirement (dsrAB + qmoA) for sulfate
+reduction detection.
+
+Organism                                           SR conf  SR det
+------------------------------------------------------------------
+Acidithiobacillus ferrooxidans                       0.317   False
+Allochromatium vinosum                               0.400   False  ← NEW (reverse-dsr, qmoA absent)
+Campylobacter jejuni                                 0.225   False
+Clostridium acetobutylicum                           0.321   False
+Escherichia coli                                     0.296   False
+Geobacter sulfurreducens                             0.400   False
+Nitratidesulfovibrio vulgaris                        0.818   TRUE   ← only sulfate reducer
+Sulfolobus acidocaldarius                            0.225   False
+Sulfurimonas denitrificans                           0.317   False
+Thermus aquaticus                                    0.316   False
+
+RESULTS:
+  - D. vulgaris: correctly detected as sulfate reducer (both dsrAB + qmoA present)
+  - Allochromatium: correctly EXCLUDED (dsrAB present but qmoA absent → capped at 0.40)
+  - All other organisms: unchanged from V5 — NO REGRESSIONS
+
+Allochromatium full profile:
+  Primary: Anoxygenic phototrophy (0.768), Sulfur oxidation (0.838), N2 fixation (0.614)
+  Recipe context: PHOTOTROPHIC atmosphere, CO2 + malate carbon, H2S/thiosulfate donor, light required
+
+VERDICT: Phase 1.5k VALIDATED. The qmoA discriminator correctly distinguishes
+forward sulfate reduction (D. vulgaris) from reverse-dsr sulfide oxidation
+(Allochromatium vinosum). Ready for Phase 2c.

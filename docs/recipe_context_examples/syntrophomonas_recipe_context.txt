@@ -1,0 +1,63 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: Syntrophomonas wolfei (NC_008346.1)
+Genome ID: 21
+Domain: Gram_neg
+Generated: 2026-04-26 21:11:13
+CultureForge version: 2026-04-26
+══════════════════════════════════════════════════════════════════════
+
+RECIPE CONTEXT (Section 9)
+──────────────────────────────────────────────────────────────────────
+
+ATMOSPHERE
+  Primary:        anaerobic
+  Gas needs:      N2, CO2
+
+CARBON SOURCES
+  fatty acid                type=fatty_acid      conf 0.75
+    gapseq: fatty acid elongation -- saturated (100%)
+
+ELECTRON DONORS
+  fatty acids               conf 0.70  (syntrophic)
+
+ELECTRON ACCEPTORS
+  partner organism (H2 sink)     conf 0.70  (syntrophic)
+
+NITROGEN SOURCES
+  NH4+                                          conf 0.80
+    standard inorganic nitrogen source
+  individual amino acid supplements (4)         conf 0.70
+    auxotrophic for: L-alanine, L-phenylalanine, L-proline, L-serine
+
+TRACE METALS
+  Fe    trace        standard trace element addition (no MeBiPred data)
+  Zn    trace        standard trace element addition (no MeBiPred data)
+  Mn    trace        standard trace element addition (no MeBiPred data)
+  Co    trace        standard trace element addition (no MeBiPred data)
+  Ni    trace        standard trace element addition (no MeBiPred data)
+  Cu    trace        standard trace element addition (no MeBiPred data)
+
+COFACTORS
+  biotin (B7)               needs supplementation     (0% pathway)
+  folate (B9)               needs supplementation     (66% pathway)
+  thiamin (B1)              needs supplementation     (50% pathway)
+  pyridoxal-5P (B6)         needs supplementation     (28% pathway)
+  cobalamin (B12)           needs supplementation     (25% pathway)
+  heme                      needs supplementation     (33% pathway)
+  siroheme                  needs supplementation     (50% pathway)
+  molybdopterin             needs supplementation     (33% pathway)
+
+GROWTH CONDITIONS
+  Salinity:       non_halophile
+
+SPECIAL REQUIREMENTS
+  - syntrophic_partner: Requires a syntrophic partner organism (typically a hydrogenotrophic methan
+  - strict_anaerobe: Strict anaerobic conditions required. Use Hungate technique or anaerobic ch
+
+INCOMPLETENESS FLAGS
+  ! Growth temperature unknown (no GenomeSPOT/TEMPURA data)
+  ! pH optimum unknown
+
+OVERALL CONFIDENCE: 0.58
+──────────────────────────────────────────────────────────────────────

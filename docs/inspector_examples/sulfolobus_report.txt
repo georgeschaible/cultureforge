@@ -1,0 +1,114 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: Sulfolobus acidocaldarius (NC_007181.1)
+Genome ID: 14
+Domain: Archaea
+Generated: 2026-04-26 20:10:59
+CultureForge version: 2026-04-26
+══════════════════════════════════════════════════════════════════════
+
+GENOME QUALITY (Section 2)
+──────────────────────────────────────────────────────────────────────
+CheckM not available (genome stats only)
+Genome size:                2,225,959 bp (2.23 Mb)
+GC content:                 36.7%
+N50:                        2,225,959
+Acidic residue fraction:    0.1161
+QC verdict:                 NO_QC
+QC rationale:               CheckM not available — genome stats only. Marker absence is not interpretable.
+──────────────────────────────────────────────────────────────────────
+
+GROWTH CONDITIONS (Section 3) - GenomeSPOT predictions
+──────────────────────────────────────────────────────────────────────
+Predicted oxygen tolerance:     not tolerant (conf 0.94)
+  Note: GenomeSPOT oxygen predictions are unreliable for archaea; cross-check against capability results.
+Predicted pH optimum:           4.0 ±1.9 (conf 0.74)
+Predicted salinity optimum:     1.16% NaCl ±1.8 (conf 0.50)
+Predicted temperature optimum:  74.9°C ±7.4 (conf 0.81)
+──────────────────────────────────────────────────────────────────────
+
+CAPABILITY PROFILE (Section 4)
+──────────────────────────────────────────────────────────────────────
+
+PRIMARY CULTIVATION MODES
+
+  Mode: aerobic_chemotrophic                     conf 0.50
+    ├─ Aerobic respiration                                0.500
+    │   terminal oxidase BLAST hit (sp|Q4J781|ADH_SULAC, 100% id, bs=699)
+
+  DETECTED CAPABILITIES (confidence >= 0.50)
+    Aerobic respiration                                0.500  secondary
+
+  REJECTED CAPABILITIES
+    Fermentation                               0.400  Autotrophy detected; glycolytic genes are anabolic, not catabolic
+    Green sulfur phototrophy                   0.225  Pathway score too low (0.00)
+    Dissimilatory sulfate reduction            0.225  Pathway score too low (0.00)
+    Aerobic respiration (ETC pathway)          0.206  Pathway score too low (0.29)
+    Sulfur oxidation                           0.200  Pathway score too low (0.00)
+    Denitrification (NO3- to N2)               0.200  Pathway score too low (0.00)
+    Iron(II) oxidation (acidophilic)           0.200  Pathway score too low (0.00)
+    Iron(III) reduction                        0.200  Pathway score too low (0.00)
+    Bacteriorhodopsin                          0.200  Pathway score too low (0.00)
+    Nitrogen fixation                          0.200  Pathway score too low (0.00)
+
+──────────────────────────────────────────────────────────────────────
+
+gapseq PATHWAYS (Section 5) - 30 predicted of 403 total
+──────────────────────────────────────────────────────────────────────
+  Metabolically relevant:
+    acetate conversion to acetyl-CoA                            100%  ✓
+    formate oxidation to CO2                                    100%  ✓
+    ethanol degradation II                                      100%  ✓
+  Other predicted pathways (22 more):
+    L-aspartate degradation I                                   100%  ✓
+    L-aspartate biosynthesis                                    100%  ✓
+    L-glutamine biosynthesis I                                  100%  ✓
+    L-glutamate degradation I                                   100%  ✓
+    L-glutamate biosynthesis II                                 100%  ✓
+──────────────────────────────────────────────────────────────────────
+
+DIAGNOSTIC MARKER HITS (Section 6)
+──────────────────────────────────────────────────────────────────────
+  Marker               Method   Best Hit                  Identity Bitscore Status
+  ─────────────────────────────────────────────────────────────────
+  acsB_cdhC            blastp   no hit                                      (negative)
+  amoA                 blastp   no hit                                      (negative)
+  aprAB                blastp   no hit                                      (negative)
+  autotrophy           blastp   tr|A4YHK3|A4YHK3_METS5       54.7%     1097 POSITIVE
+  cooS_cdhA            blastp   no hit                                      (negative)
+  dsrAB                blastp   sp|O28606|SAT_ARCFU          39.5%      289 POSITIVE
+  hao                  blastp   tr|Q82SR3|Q82SR3_NITEU       32.2%      144 (weak)
+  hdh                  blastp   no hit                                      (negative)
+  hzsA                 blastp   no hit                                      (negative)
+  mcrA                 blastp   tr|Q8TIY1|Q8TIY1_METAC       42.3%      117 POSITIVE
+  mcrBG                blastp   no hit                                      (negative)
+  mtrC_omcB            blastp   no hit                                      (negative)
+  nifH                 blastp   no hit                                      (negative)
+  nosZ                 blastp   no hit                                      (negative)
+  psaA_psbA            blastp   no hit                                      (negative)
+  pscA_fmoA            blastp   sp|P0C0Y4|NMTDH_ALTAL        31.5%      109 POSITIVE
+  pufLM                blastp   sp|P26363|CFTR_XENLA         31.6%      126 (weak)
+  rdhA                 blastp   no hit                                      (negative)
+  rhodopsin            blastp   no hit                                      (negative)
+  soxB                 blastp   no hit                                      (negative)
+  terminal_oxidases    blastp   sp|Q4J781|ADH_SULAC         100.0%      699 POSITIVE
+──────────────────────────────────────────────────────────────────────
+
+HYDROGENASES (Section 7)
+──────────────────────────────────────────────────────────────────────
+  Type       Group    Gene                      Identity Bitscore
+  ───────────────────────────────────────────────────────
+  [NiFe]     4        NC_007181.1_2328          28.9%       157
+  [FeFe]     A        NC_007181.1_1316          32.1%       116
+──────────────────────────────────────────────────────────────────────
+
+RECOMMENDED ACTION (Section 8)
+──────────────────────────────────────────────────────────────────────
+Action:    SYNTHESIZE_WITH_CAUTION (capabilities detected, no CheckM verification)
+Rationale: Cultivation mode(s): aerobic_chemotrophic
+
+Notes:
+  - Predicted oxygen: not tolerant
+  - Predicted pH: 4.0
+  - Predicted growth temperature: 75°C
+──────────────────────────────────────────────────────────────────────

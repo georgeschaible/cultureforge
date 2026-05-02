@@ -1,0 +1,128 @@
+
+[1/5] Extracting 16S rRNA from data/genomes/Acidithiobacillus_ferrooxidans.fasta ...
+      1532 bp 16S extracted.
+
+[2/5] BLASTing against /home/george/cultureforge/data/blastdb/16s_ref ...
+      10 hits, best 100.0% (Acidithiobacillus ferrooxidans)
+
+[3/5] Looking up genome in DB (accession=NC_011761.1) ...
+      genome_id=11
+
+[4/5] Synthesizing de novo recipe ...
+      Energy metabolism: sulfur_oxidizer [0.95]
+      Components: 18, auxotrophies: 7
+
+[5/5] (Use --compare-template to see side-by-side comparison)
+
+================================================================================
+  DE NOVO RECIPE — composed from genomic evidence
+  Query: NC_011761.1
+================================================================================
+
+  Overall Confidence: MEDIUM (0.79)
+  → weighted: 70% critical_min (0.75) + 30% secondary_mean (0.88); 5 critical, 14 secondary components
+
+  ENERGY METABOLISM: Sulfur Oxidizer
+    Electron donor:    H2S / S⁰ / thiosulfate
+    Electron acceptor: O2 or NO3⁻
+    Autotrophic:       Yes
+    Genomic evidence:  user-specified
+    Confidence:        [0.95] VERY HIGH
+    → user-specified: sulfur-oxidation
+
+  ELECTRON DONOR:
+    Na2S2O3·5H2O                             500.0 mg/L      [0.95]
+      → electron_donor for sulfur_oxidizer; calibrated: median=0.50 g/L [P10=0.08, P90=9.93] (n=13, global_median)
+
+  CARBON SOURCE:
+    NaHCO3                                   990.0 mg/L      [0.85]
+      → autotroph — Calvin cycle (CBB) 100% complete; calibrated: median=0.99 g/L (n=11, metabolism_proxy:sulfur_oxidizer)
+
+  NITROGEN SOURCE:
+    NH4Cl                                    490.0 mg/L      [0.75]
+      → N2 fixation genes detected (100%); NH4Cl still preferred for cultivation; calibrated median=0.49 g/L (n=1141)
+
+  COMPLEX NUTRIENT SOURCE:
+    Yeast extract                            1.0 g/L         [0.80]
+      → 7 auxotrophies detected (>5 threshold); yeast extract covers vitamins + amino acids; calibrated: median=1.00 g/L (n=1802)
+      ⚠ 7 auxotrophies; yeast extract covers most; test without if pure culture needed
+
+  PHOSPHATE / BUFFER:
+    K2HPO4                                   500.0 mg/L      [0.80]
+      → high-affinity pst phosphate transporter detected → P-limited environment; calibrated median=0.50 g/L (n=952)
+
+  BUFFER:
+    KH2PO4 / K2HPO4                          340.0 mg/L      [0.75]
+      → pH 2.0 → non-phosphate buffer needed; calibrated median=0.34 g/L (n=1388)
+
+  VITAMINS / COFACTORS:
+    molybdopterin                            1.0 mg/L        [0.65] ⚠
+      → gapseq auxotrophy: biosynthesis pathway 66% complete (gap probability 34%)
+      ⚠ partial biosynthesis (66%); test with/without to confirm requirement
+    siroheme                                 1.0 mg/L        [0.72] ⚠
+      → gapseq auxotrophy: biosynthesis pathway 50% complete (gap probability 50%)
+      ⚠ partial biosynthesis (50%); test with/without to confirm requirement
+
+  TRACE METALS:
+    MgSO4·7H2O                               500.0 mg/L      [0.91]
+      → MeBiPred: 759 Mg-binding proteins (max_p=0.89, fraction=24.9%)
+    CaCl2·2H2O                               50.0 mg/L       [0.95]
+      → MeBiPred: 566 Ca-binding proteins (max_p=1.00, fraction=18.6%)
+    FeSO4·7H2O                               5.0 mg/L        [0.95]
+      → MeBiPred: 487 Fe-binding proteins (max_p=1.00, fraction=16.0%)
+    NaCl                                     1.0 g/L         [0.95]
+      → MeBiPred: 438 Na-binding proteins (max_p=0.99, fraction=14.4%)
+    NiCl2·6H2O                               50 μg/L         [0.95]
+      → MeBiPred: 378 Ni-binding proteins (max_p=1.00, fraction=12.4%)
+      ⚠ fraction 0.12 > typical ceiling 0.10 — flag for review
+    MnCl2·4H2O                               500 μg/L        [0.95]
+      → MeBiPred: 342 Mn-binding proteins (max_p=1.00, fraction=11.2%)
+    ZnSO4·7H2O                               500 μg/L        [0.95]
+      → MeBiPred: 240 Zn-binding proteins (max_p=0.98, fraction=7.9%)
+    CuSO4·5H2O                               50 μg/L         [0.95]
+      → MeBiPred: 222 Cu-binding proteins (max_p=1.00, fraction=7.3%)
+      ⚠ max_p 1.00 on rare metal — verify with BRENDA
+    CoCl2·6H2O                               50 μg/L         [0.95]
+      → MeBiPred: 124 Co-binding proteins (max_p=1.00, fraction=4.1%)
+      ⚠ max_p 1.00 on rare metal — verify with BRENDA
+
+  ATMOSPHERE / REDOX:
+    Aerobic (air) — no special headspace needed                 [0.85]
+      → no anaerobic or H₂-dependent metabolism detected
+
+  AUXOTROPHY SUMMARY: 7 auxotrophies detected
+    → >5 auxotrophies: yeast extract added to cover vitamins + amino acids
+
+================================================================================
+  COMPATIBILITY WARNINGS
+================================================================================
+    ○ [LOW] CaSO4 (gypsum)
+        CaCl2·2H2O  +  MgSO4·7H2O  (condition: high concentrations (>20 mM each))
+        → Usually not problematic at typical medium concentrations. If both Ca and SO4 are at high levels, reduce one or prepare separately.
+
+================================================================================
+  PHYSICAL FORMAT
+================================================================================
+  Primary: Solid agar plates (1.5%) for isolation; liquid broth for cultivation
+    → Standard aerobic/facultative organism — no special format needed.
+  Solidifying agent: Gellan gum (Gelrite) 0.5-0.8%
+  ⚠ LOW pH — use gellan gum, NOT agar
+
+================================================================================
+  EXPERIMENTAL VARIATION MATRIX
+================================================================================
+  • Yeast extract (7 auxotrophies; yeast extract covers most; test without if pure culture needed)
+      → Test variants experimentally
+  • molybdopterin supplement (partial biosynthesis (66%); test with/without to confirm requirement)
+      → Test variants experimentally
+  • siroheme supplement (partial biosynthesis (50%); test with/without to confirm requirement)
+      → Test variants experimentally
+  • Ni trace metal (NiCl2·6H2O) (fraction 0.12 > typical ceiling 0.10 — flag for review)
+      → Test with and without NiCl2·6H2O
+  • Cu trace metal (CuSO4·5H2O) (max_p 1.00 on rare metal — verify with BRENDA)
+      → Test with and without CuSO4·5H2O
+  • Co trace metal (CoCl2·6H2O) (max_p 1.00 on rare metal — verify with BRENDA)
+      → Test with and without CoCl2·6H2O
+
+
+[dry run — not persisted]

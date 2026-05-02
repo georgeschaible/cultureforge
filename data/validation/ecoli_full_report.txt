@@ -1,0 +1,151 @@
+================================================================================
+  SYNTHESIZED RECIPE — derived from template 'COLUMBIA BLOOD MEDIUM'
+  Query: NC_000913.3  (5 relatives, best identity 99.7%)
+================================================================================
+
+  Overall Confidence: HIGH (0.85)
+  → min of 14 (thermal_multi = 0.85) +0.05 agreement bonus MINUS 0.05 for precipitation risk (2 warnings)
+
+  Thermal sources: GenomeSPOT=30°C, BacDive=30°C
+  → 2/2 sources agree on mesophile (~30°C): GenomeSPOT=30°C, BacDive=30°C
+
+  COMPONENTS:
+    [Complex nutrient sources]
+      Peptone                                  5.0 g/L          [0.95] (template)
+      Meat extract                             3.0 g/L          [0.95] (template)
+      Brain heart infusion                     37.0 g/L         [0.95] (template)
+      Casein peptone                           17.0 g/L         [0.95] (template)
+      Soy peptone                              3.0 g/L          [0.95] (template)
+
+    [Base salts]
+      NaCl                                     5.0 g/L          [0.95] (template)
+
+    [Carbon sources]
+      D(+)-Glucose                             2.5 g/L          [0.95] (template)
+
+    [Phosphate]
+      K2HPO4                                   2.5 g/L          [0.95] (template)
+
+    [Trace metals]
+      NiCl2·6H2O                               50 μg/L          [0.95] (mebipred)
+          → MeBiPred: 547 Ni-binding proteins (max_p=1.00); template 'COLUMBIA BLOOD MEDIUM' lacks a direct Ni salt
+          → fraction 0.13 > typical ceiling 0.10 — flag for review
+      MnCl2·4H2O                               500 μg/L         [0.95] (mebipred)
+          → MeBiPred: 497 Mn-binding proteins (max_p=1.00); template 'COLUMBIA BLOOD MEDIUM' lacks a direct Mn salt
+      ZnSO4·7H2O                               500 μg/L         [0.95] (mebipred)
+          → MeBiPred: 307 Zn-binding proteins (max_p=0.99); template 'COLUMBIA BLOOD MEDIUM' lacks a direct Zn salt
+      CuSO4·5H2O                               50 μg/L          [0.95] (mebipred)
+          → MeBiPred: 260 Cu-binding proteins (max_p=1.00); template 'COLUMBIA BLOOD MEDIUM' lacks a direct Cu salt
+          → max_p 1.00 on rare metal — verify with BRENDA
+      CoCl2·6H2O                               50 μg/L          [0.95] (mebipred)
+          → MeBiPred: 144 Co-binding proteins (max_p=1.00); template 'COLUMBIA BLOOD MEDIUM' lacks a direct Co salt
+          → max_p 1.00 on rare metal — verify with BRENDA
+
+    [Gelling agent]
+      Columbia agar base                       1000.0 ml        [0.70] ⚠ (template)
+
+    [Other]
+      Defibrinated sheep blood                 50.0 g/L         [0.95] (template)
+
+================================================================================
+  CARBON SOURCE ANALYSIS
+================================================================================
+  Organism can utilize 33 predicted carbon sources:
+    ✓ alanine              (100% pathway — L-alanine degradation II (to D-lactate))
+    ✓ glucose              (100% pathway — glycolysis III (from glucose))
+    ✓ arabinose            (100% pathway — L-arabinose degradation I)
+    ✓ aspartate            (100% pathway — L-aspartate degradation I)
+    ✓ lactose              (100% pathway — lactose degradation III)
+    ✓ arabitol             (100% pathway — D-arabinitol degradation I)
+    ✓ ethanol              (100% pathway — ethanol degradation I)
+    ✓ fucose               (100% pathway — L-fucose degradation I)
+    ✓ glutamate            (100% pathway — L-glutamate degradation I)
+    ✓ glutamine            (100% pathway — L-glutamine degradation I)
+
+================================================================================
+  GAS PHASE RECOMMENDATION
+================================================================================
+  Headspace: Aerobic (air) — no special headspace needed
+    → no anaerobic or H₂-dependent metabolism detected
+  BLAST-confirmed hydrogenases (7 hits):
+    • [NiFe]  Group 4  NC_000913.3_2672      100.0%id  bs=1185
+    • [NiFe]  Group 4  NC_000913.3_2453       70.4%id  bs=858
+    • [NiFe]  Group 2  NC_000913.3_947        74.4%id  bs=546
+    • [FeFe]  Group A  NC_000913.3_2518       62.3%id  bs=284
+    • [NiFe]  Group 2  NC_000913.3_2941       41.5%id  bs=277
+    • [NiFe]  Group 4  NC_000913.3_2255       25.8%id  bs=159
+  gapseq H₂ pathways (5):
+    • uptake         100%  hydrogen oxidation I (aerobic)
+    • uptake         100%  hydrogen to fumarate electron transfer
+    • production     100%  hydrogen production III
+    • production     100%  hydrogen production V
+    • production     100%  hydrogen production VIII
+
+================================================================================
+  PHYSICAL FORMAT
+================================================================================
+  Recommended: Solid agar plates (1.5%) for isolation; liquid broth for cultivation  [0.85]
+    → Standard aerobic/facultative organism — no special format needed.
+  Solidifying agent: Agar (Bacto or Noble) 1.2-2.0%
+    → Standard — works for most organisms at moderate T and pH.
+
+================================================================================
+  COMPATIBILITY WARNINGS (2 precipitation risks detected)
+================================================================================
+    ⚠ [MEDIUM] Ca3(PO4)2 (apatite / calcium phosphate)
+        Casein peptone  +  K2HPO4  (condition: pH > 6.5)
+        → Autoclave calcium and phosphate solutions separately; combine post-cooling.
+
+    ○ [LOW] CaSO4 (gypsum)
+        Casein peptone  +  ZnSO4·7H2O  (condition: high concentrations (>20 mM each))
+        → Usually not problematic at typical medium concentrations. If both Ca and SO4 are at high levels, reduce one or prepare separately.
+
+  PREPARATION INSTRUCTIONS (auto-generated from compatibility check)
+
+  SOLUTION A — Phosphate/buffer (autoclave separately):
+    - K2HPO4
+    → Dissolve in partial volume H₂O, autoclave 121°C 15 min
+
+  SOLUTION B — Metals/iron (autoclave separately):
+    - CoCl2·6H2O
+    - Columbia agar base
+    - CuSO4·5H2O
+    - D(+)-Glucose
+    - MnCl2·4H2O
+    - NiCl2·6H2O
+    - ZnSO4·7H2O
+    → Dissolve in partial volume H₂O, autoclave 121°C 15 min
+
+  COMBINE: Cool all solutions to ~50°C under sterile conditions.
+           Add solutions in order: base salts → phosphate →
+           metals (with chelator) → reducing agents/sulfide (last).
+           Adjust pH to target with sterile NaOH/HCl.
+
+  ⚠ UNCERTAINTY FLAGS (1 components <0.75):
+    • Columbia agar base (0.70) — from template 'COLUMBIA BLOOD MEDIUM' — min of 2 (phylo_16s = 0.94) +0.05 agreement bonus
+
+  EXPERIMENTAL VARIATION MATRIX:
+    • Columbia agar base
+        reason:   70% confidence
+        variants: Test variants experimentally
+    • Ni trace supplement
+        reason:   fraction 0.13 > typical ceiling 0.10 — flag for review
+        variants: Test with and without NiCl2·6H2O
+    • Cu trace supplement
+        reason:   max_p 1.00 on rare metal — verify with BRENDA
+        variants: Test with and without CuSO4·5H2O
+    • Co trace supplement
+        reason:   max_p 1.00 on rare metal — verify with BRENDA
+        variants: Test with and without CoCl2·6H2O
+
+================================================================================
+  PROVENANCE
+================================================================================
+    Template medium:   COLUMBIA BLOOD MEDIUM (693)
+    Phylogenetic match: MediaDive + BacDive via 16S BLAST (best 99.7%)
+    Metabolic analysis: gapseq 1.4.0 → 0 auxotrophy compound(s) required
+    Environmental:     multi-source thermal inference (2 source(s))
+    Metal profile:     MeBiPred (10 strong metals: Mg, Ca, K, Fe, Na, Ni, Mn, Zn, Cu, Co)
+    Genome biomass:    Gram_neg
+================================================================================
+  → layered 0 auxotrophy + 5 metal + 0 energy-metabolism components onto template baseline

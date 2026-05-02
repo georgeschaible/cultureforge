@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "dbname": "blastdb_psaA_psbA",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": "psaA_psbA",
+  "number-of-letters": 2586,
+  "number-of-sequences": 5,
+  "last-updated": "2026-04-27T21:19:00",
+  "number-of-volumes": 1,
+  "bytes-total": 40637,
+  "bytes-to-cache": 2736,
+  "files": [
+    "blastdb_psaA_psbA.pdb",
+    "blastdb_psaA_psbA.phr",
+    "blastdb_psaA_psbA.pin",
+    "blastdb_psaA_psbA.pot",
+    "blastdb_psaA_psbA.psq",
+    "blastdb_psaA_psbA.ptf",
+    "blastdb_psaA_psbA.pto"
+  ]
+}

@@ -1,0 +1,158 @@
+================================================================================
+  DE NOVO RECIPE — composed from genomic evidence
+  Query: NC_007181.1
+================================================================================
+
+  Overall Confidence: LOW (0.55)
+  → weighted: 70% critical_min (0.54) + 30% secondary_mean (0.90); 9 critical, 16 secondary components; −0.10 compatibility penalty (2 warnings)
+
+  ENERGY METABOLISM: Sulfur Oxidizer
+    Electron donor:    H2S / S⁰ / thiosulfate
+    Electron acceptor: O2 or NO3⁻
+    Autotrophic:       Yes
+    Genomic evidence:  user-specified
+    Confidence:        [0.95] VERY HIGH
+    → user-specified: sulfur-oxidation
+
+  ELECTRON DONOR:
+    Na2S2O3·5H2O                             500.0 mg/L      [0.95]
+      → electron_donor for sulfur_oxidizer; calibrated: median=0.50 g/L [P10=0.08, P90=9.93] (n=13, global_median)
+
+  CARBON SOURCE:
+    Sodium DL-lactate                        2.2 g/L         [0.95]
+      → genome encodes lactate utilization (100% pathway completeness); calibrated: median=2.20 g/L (n=81, global_median); preferred for sulfur_oxidizer
+      ⚠ Autotrophy score 0.45 is ambiguous — recommend testing both organic carbon and NaHCO₃ (CO₂)
+    NaHCO3                                   990.0 mg/L      [0.54] ⚠
+      → OPTION B (autotrophic CO₂): reductive TCA cycle detected; autotrophy score 0.45 is ambiguous — 176 sugar-specific transporters — active sugar catabolism; energy metabolism (sulfur_oxidizer) is autotrophic (+0.45); test with NaHCO₃ as sole carbon to confirm
+      ⚠ Autotrophy score 0.45 is ambiguous (0.2–0.5). Test OPTION A (organic) and OPTION B (NaHCO₃ only) in parallel.
+
+  NITROGEN SOURCE:
+    NH4Cl                                    490.0 mg/L      [0.75]
+      → NH4Cl default (universal prokaryotic N source); calibrated median=0.49 g/L (n=1141)
+
+  COMPLEX NUTRIENT SOURCE:
+    Peptone                                  4.9 g/L         [0.82]
+      → 14 amino acid auxotrophies (L-alanine, L-arginine, L-cysteine, L-histidine, L-isoleucine + 9 more); peptone covers all 20 AAs; calibrated: median=4.9 g/L (n=842); OPTION B: for pure culture maintenance — complex nitrogen supports faster growth but also contaminants
+    Yeast extract                            1.0 g/L         [0.82]
+      → 26 total auxotrophies; yeast extract covers vitamins + amino acids; calibrated: median=1.0 g/L (n=1802)
+      ⚠ OPTION A (defined/selective): use NH4Cl + individual amino acid supplements for 14 auxotrophies — recommended for enrichment and first isolation. OPTION B (complex/practical): use peptone 5 g/L + yeast extract 1 g/L — recommended for pure culture maintenance. WARNING: complex nitrogen supports contaminant growth.
+
+  PHOSPHATE / BUFFER:
+    K2HPO4                                   500.0 mg/L      [0.80]
+      → high-affinity pst phosphate transporter detected → P-limited environment; calibrated median=0.50 g/L (n=952)
+
+  BUFFER:
+    KH2PO4 / K2HPO4                          340.0 mg/L      [0.75]
+      → pH 2.5 → non-phosphate buffer needed; calibrated median=0.34 g/L (n=1388)
+
+  VITAMINS / COFACTORS:
+    NAD                                      5.0 mg/L        [0.80]
+      → gapseq auxotrophy: biosynthesis pathway 33% complete (gap probability 67%)
+    heme                                     5.0 mg/L        [0.95]
+      → gapseq auxotrophy: biosynthesis pathway 0% complete (gap probability 100%)
+    molybdopterin                            1.0 mg/L        [0.95]
+      → gapseq auxotrophy: biosynthesis pathway 0% complete (gap probability 100%)
+    siroheme                                 1.0 mg/L        [0.95]
+      → gapseq auxotrophy: biosynthesis pathway 0% complete (gap probability 100%)
+
+  TRACE METALS:
+    FeSO4·7H2O                               5.0 mg/L        [0.95]
+      → MeBiPred: 337 Fe-binding proteins (max_p=1.00, fraction=14.3%)
+    MnCl2·4H2O                               500 μg/L        [0.95]
+      → MeBiPred: 236 Mn-binding proteins (max_p=0.98, fraction=10.0%)
+    NiCl2·6H2O                               50 μg/L         [0.95]
+      → MeBiPred: 234 Ni-binding proteins (max_p=1.00, fraction=9.9%)
+      ⚠ max_p 1.00 on rare metal — verify with BRENDA
+    ZnSO4·7H2O                               500 μg/L        [0.95]
+      → MeBiPred: 151 Zn-binding proteins (max_p=0.99, fraction=6.4%)
+    CuSO4·5H2O                               50 μg/L         [0.95]
+      → MeBiPred: 104 Cu-binding proteins (max_p=1.00, fraction=4.4%)
+      ⚠ max_p 1.00 on rare metal — verify with BRENDA
+    CoCl2·6H2O                               50 μg/L         [0.95]
+      → MeBiPred: 60 Co-binding proteins (max_p=1.00, fraction=2.5%)
+      ⚠ max_p 1.00 on rare metal — verify with BRENDA
+
+  BASE SALTS / OSMOLARITY:
+    MgSO4·7H2O                               1.49 g/L        [0.90]
+    CaCl2·2H2O                               122.0 mg/L      [0.88]
+    NaCl                                     5.0 g/L         [0.70] ⚠
+      → GenomeSPOT salinity 1.16%; capped at 5 g/L (below marine threshold)
+
+  ATMOSPHERE / REDOX:
+    L-Cysteine-HCl                           500.0 mg/L      [0.90]
+      → reducing agent for sulfur_oxidizer: General-purpose reducing agent for anaerobic media
+    N₂:CO₂ (80:20) — do NOT add H₂ (inhibits H₂-producing fermentation)                 [0.80]
+      → fermentative H₂ producer — adding H₂ would make fermentation thermodynamically unfavorable; oxidase check: → no terminal oxidase detected; deferring to GenomeSPOT
+    Resazurin                                500 μg/L        [0.95]
+
+  AUXOTROPHY SUMMARY: 26 auxotrophies detected
+    → >5 auxotrophies: yeast extract added to cover vitamins + amino acids
+
+================================================================================
+  COMPATIBILITY WARNINGS
+================================================================================
+    ✗ [HIGH] FeS / FeS2 (iron sulfide / pyrite)
+        FeSO4·7H2O  +  L-Cysteine-HCl  (condition: any pH)
+        → Prepare iron and reducing-agent/sulfide solutions SEPARATELY; combine under anaerobic conditions post-autoclaving. Consider titanium(III) citrate as alternative reductant if FeS precipitation is problematic.
+
+    ○ [LOW] CaSO4 (gypsum)
+        CaCl2·2H2O  +  MgSO4·7H2O  (condition: high concentrations (>20 mM each))
+        → Usually not problematic at typical medium concentrations. If both Ca and SO4 are at high levels, reduce one or prepare separately.
+
+  PREPARATION INSTRUCTIONS (auto-generated from compatibility check)
+
+  SOLUTION A — Phosphate/buffer (autoclave separately):
+    - K2HPO4
+    - KH2PO4 / K2HPO4
+    → Dissolve in partial volume H₂O, autoclave 121°C 15 min
+
+  SOLUTION B — Metals/iron (autoclave separately):
+    - CoCl2·6H2O
+    - CuSO4·5H2O
+    - FeSO4·7H2O
+    - MnCl2·4H2O
+    - NaHCO3
+    - NiCl2·6H2O
+    - N₂:CO₂ (80:20) — do NOT add H₂ (inhibits H₂-producing fermentation)
+    - ZnSO4·7H2O
+    → Dissolve in partial volume H₂O, autoclave 121°C 15 min
+
+  SOLUTION C — Reducing agents/sulfide (prepare under N₂, add LAST):
+    - L-Cysteine-HCl
+    - Na2S2O3·5H2O
+    → Prepare under N₂ atmosphere; autoclave separately or
+      prepare from sterile anaerobic stock; add to cooled
+      combined medium under anaerobic conditions
+
+  COMBINE: Cool all solutions to ~50°C under sterile conditions.
+           Add solutions in order: base salts → phosphate →
+           metals (with chelator) → reducing agents/sulfide (last).
+           Adjust pH to target with sterile NaOH/HCl.
+
+================================================================================
+  PHYSICAL FORMAT
+================================================================================
+  Primary: Liquid in sealed tubes (Hungate/Balch technique)
+    → Strict anaerobe — requires O₂-free conditions. Use Hungate tubes or Balch tubes with butyl rubber stoppers and aluminum crimps. Prepare under N₂ or N₂:CO₂ atmosphere.
+  Solidifying agent: Gellan gum (Gelrite/Phytagel) 0.5-1.0%
+  Alternative: Roll tubes (anaerobic + solid surface) OR anaerobic chamber + agar plates if colony isolation needed
+  ⚠ STRICT ANAEROBE — all manipulation must use Hungate technique or anaerobic glove box
+  ⚠ HIGH TEMPERATURE — use gellan gum, NOT agar
+
+================================================================================
+  EXPERIMENTAL VARIATION MATRIX
+================================================================================
+  • Sodium DL-lactate (Autotrophy score 0.45 is ambiguous — recommend testing both organic carbon and NaHCO₃ (CO₂))
+      → Test alternative carbon sources alongside Sodium DL-lactate
+  • NaHCO3 (CO2 source — OPTION B) (Autotrophy score 0.45 is ambiguous (0.2–0.5). Test OPTION A (organic) and OPTION B (NaHCO₃ only) in parallel.)
+      → Test alternative carbon sources alongside NaHCO3
+  • Yeast extract (OPTION A (defined/selective): use NH4Cl + individual amino acid supplements for 14 auxotrophies — recommended for enrichment and first isolation. OPTION B (complex/practical): use peptone 5 g/L + yeast extract 1 g/L — recommended for pure culture maintenance. WARNING: complex nitrogen supports contaminant growth.)
+      → Test variants experimentally
+  • NaCl (70% confidence)
+      → Test variants experimentally
+  • Ni trace metal (NiCl2·6H2O) (max_p 1.00 on rare metal — verify with BRENDA)
+      → Test with and without NiCl2·6H2O
+  • Cu trace metal (CuSO4·5H2O) (max_p 1.00 on rare metal — verify with BRENDA)
+      → Test with and without CuSO4·5H2O
+  • Co trace metal (CoCl2·6H2O) (max_p 1.00 on rare metal — verify with BRENDA)
+      → Test with and without CoCl2·6H2O

@@ -1,0 +1,56 @@
+{
+  "NiFe_G1_DvH_HynB": {
+    "acc": "Q726C5",
+    "type": "[NiFe]",
+    "group": "1",
+    "desc": "D. vulgaris Hildenborough HynB (uptake hydrogenase large subunit)"
+  },
+  "NiFe_G1_Re_HoxG": {
+    "acc": "P13155",
+    "type": "[NiFe]",
+    "group": "1",
+    "desc": "Ralstonia eutropha membrane-bound hydrogenase large subunit"
+  },
+  "NiFe_G2_Re_HoxC": {
+    "acc": "P31892",
+    "type": "[NiFe]",
+    "group": "2",
+    "desc": "Ralstonia eutropha regulatory hydrogenase HoxC"
+  },
+  "NiFe_G3_Syn_HoxH": {
+    "acc": "P72806",
+    "type": "[NiFe]",
+    "group": "3",
+    "desc": "Synechocystis sp. bidirectional hydrogenase HoxH"
+  },
+  "NiFe_G3_Mth_MvhA": {
+    "acc": "O27710",
+    "type": "[NiFe]",
+    "group": "3",
+    "desc": "Methanothermobacter F420-reducing hydrogenase large subunit"
+  },
+  "NiFe_G4_Ec_HycE": {
+    "acc": "P16431",
+    "type": "[NiFe]",
+    "group": "4",
+    "desc": "E. coli hydrogenase-3 large subunit HycE (formate hydrogenlyase)"
+  },
+  "NiFe_G4_Msa_EchE": {
+    "acc": "Q8TLN4",
+    "type": "[NiFe]",
+    "group": "4",
+    "desc": "Methanosarcina mazei Ech hydrogenase subunit EchE"
+  },
+  "FeFe_GA_Cp_CpI": {
+    "acc": "P29166",
+    "type": "[FeFe]",
+    "group": "A",
+    "desc": "Clostridium pasteurianum [FeFe]-hydrogenase CpI (prototypical)"
+  },
+  "FeFe_GA_Dd_HydA": {
+    "acc": "Q9X6F7",
+    "type": "[FeFe]",
+    "group": "A",
+    "desc": "Desulfovibrio desulfuricans [FeFe]-hydrogenase large subunit"
+  }
+}

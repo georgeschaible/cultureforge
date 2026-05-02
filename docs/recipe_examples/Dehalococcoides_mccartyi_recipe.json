@@ -1,0 +1,172 @@
+{
+  "genome_id": 25,
+  "species": "Dehalococcoides mccartyi",
+  "primary_cultivation_mode": "anaerobic_respiratory (organohalide respiration)",
+  "alternative_cultivation_modes": [],
+  "ingredients": [
+    {
+      "name": "Na2S\u00b79H2O",
+      "chemical_formula": "Na2S\u00b79H2O",
+      "concentration": 0.5,
+      "concentration_unit": "mM",
+      "category": "reducing_agent",
+      "rationale": "Establishes strict anaerobiosis.",
+      "confidence": 0.95,
+      "derived_from": [
+        "anaerobic mode"
+      ]
+    },
+    {
+      "name": "Resazurin",
+      "chemical_formula": "C12H6NNaO4",
+      "concentration": 1.0,
+      "concentration_unit": "mg/L",
+      "category": "supplement",
+      "rationale": "Oxygen indicator.",
+      "confidence": 0.95,
+      "derived_from": [
+        "anaerobic culture"
+      ]
+    },
+    {
+      "name": "PCE (tetrachloroethene)",
+      "chemical_formula": "C2Cl4",
+      "concentration": 100.0,
+      "concentration_unit": "\u03bcM",
+      "category": "electron_acceptor",
+      "rationale": "PCE as electron acceptor \u2014 ASSUMED substrate. Specific organohalide cannot be determined from genome alone (LIMITATIONS.md A.1/D.1). User should select based on isolation source chemistry.",
+      "confidence": 0.5,
+      "derived_from": [
+        "rdhA detected",
+        "LIMITATIONS A.1/D.1"
+      ]
+    },
+    {
+      "name": "H2 (from headspace)",
+      "chemical_formula": "H2",
+      "concentration": 20.0,
+      "concentration_unit": "% v/v",
+      "category": "electron_donor",
+      "rationale": "H2 electron donor (typical for organohalide respirers).",
+      "confidence": 0.85,
+      "derived_from": [
+        "organohalide respiration"
+      ]
+    },
+    {
+      "name": "Cyanocobalamin (B12) supplement",
+      "chemical_formula": "C63H88CoN14O14P",
+      "concentration": 50.0,
+      "concentration_unit": "\u03bcg/L",
+      "category": "vitamin",
+      "rationale": "B12 supplementation critical for rdhA \u2014 corrinoid biosynthesis often incomplete in obligate organohalide respirers.",
+      "confidence": 0.9,
+      "derived_from": [
+        "organohalide respiration"
+      ]
+    },
+    {
+      "name": "Phosphate buffer (KH2PO4 + K2HPO4)",
+      "chemical_formula": "KH2PO4 / K2HPO4",
+      "concentration": 30.0,
+      "concentration_unit": "mM",
+      "category": "buffer",
+      "rationale": "30 mM phosphate buffer adjusted to pH 7.0",
+      "confidence": 0.85,
+      "derived_from": [
+        "pH from RecipeContext.conditions"
+      ]
+    },
+    {
+      "name": "NaCl",
+      "chemical_formula": "NaCl",
+      "concentration": 5.0,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Standard salinity baseline (5 g/L) for non-halophile",
+      "confidence": 0.85,
+      "derived_from": [
+        "RecipeContext.conditions.salinity_category"
+      ]
+    },
+    {
+      "name": "MgSO4\u00b77H2O",
+      "chemical_formula": "MgSO4\u00b77H2O",
+      "concentration": 0.2,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Magnesium and sulfur source",
+      "confidence": 0.9,
+      "derived_from": [
+        "common basal"
+      ]
+    },
+    {
+      "name": "CaCl2\u00b72H2O",
+      "chemical_formula": "CaCl2\u00b72H2O",
+      "concentration": 0.04,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Calcium baseline",
+      "confidence": 0.9,
+      "derived_from": [
+        "common basal"
+      ]
+    },
+    {
+      "name": "SL-10 trace metal solution",
+      "chemical_formula": "(see SL-10 reference)",
+      "concentration": 1.0,
+      "concentration_unit": "mL/L",
+      "category": "trace_metal",
+      "rationale": "SL-10 (Tschech & Pfennig 1984): Fe, Zn, Mn, B, Co, Cu, Ni, Mo at standard concentrations. 1 mL/L final.",
+      "confidence": 0.85,
+      "derived_from": [
+        "common basal",
+        "MeBiPred metal predictions"
+      ]
+    }
+  ],
+  "gas_phase": {
+    "composition": {
+      "H2": 0.2,
+      "N2": 0.6,
+      "CO2": 0.2
+    },
+    "pressure_atm": 1.0,
+    "rationale": "H2/N2/CO2 20:60:20 \u2014 H2 is the electron donor for reductive dehalogenation."
+  },
+  "conditions": {
+    "temperature_c": 30.0,
+    "ph": 7.0,
+    "light_required": false,
+    "light_intensity_umol_per_m2_per_s": null,
+    "shaking_rpm": null,
+    "rationale": "Temperature 30.0\u00b0C, pH 7.0 (default \u2014 no GenomeSPOT/TEMPURA data)"
+  },
+  "thermodynamic_checks": [
+    {
+      "capability_name": "anaerobic_respiratory",
+      "primary_reaction": "H2 + R-Cl \u2192 R-H + HCl (reductive dehalogenation)",
+      "delta_g_kj_per_mol": -130.0,
+      "feasible": true,
+      "feasibility_class": "feasible",
+      "notes": ""
+    }
+  ],
+  "composition_rationale": [
+    "Anaerobic respiration: organic donor + non-O2 terminal acceptor."
+  ],
+  "uncertainty_flags": [
+    "Specific halogenated substrate cannot be determined from genome alone (rdhA detects the family but not substrate specificity). User must select the actual halogenated electron acceptor based on isolation source chemistry."
+  ],
+  "limitations_referenced": [
+    "A.1",
+    "D.1"
+  ],
+  "overall_confidence": 0.5,
+  "confidence_rationale": "base from RecipeContext = 0.55; -0.05 from uncertainty flags \u2192 final 0.50",
+  "similar_published_media": [],
+  "escalated": false,
+  "escalation_reason": ""
+}

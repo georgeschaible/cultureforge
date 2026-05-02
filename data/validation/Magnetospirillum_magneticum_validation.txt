@@ -1,0 +1,201 @@
+================================================================================
+CULTUREFORGE VALIDATION: Magnetospirillum_magneticum
+================================================================================
+
+================================================================================
+  SYNTHESIZED RECIPE — derived from template 'R2A MEDIUM'
+  Query: NC_007626.1  (10 relatives, best identity 96.4%)
+================================================================================
+
+  Overall Confidence: MEDIUM (0.60)
+  → min of 16 (gapseq = 0.65) MINUS 0.05 for precipitation risk (2 warnings)
+
+  Thermal sources: user_supplied=30°C
+  → user-supplied 30.0°C
+
+  COMPONENTS:
+    [Complex nutrient sources]
+      Yeast extract                            500.0 mg/L       [0.69] ⚠ (template)
+      Proteose peptone                         500.0 mg/L       [0.69] ⚠ (template)
+      Casamino acids                           500.0 mg/L       [0.69] ⚠ (template)
+
+    [Base salts]
+      MgSO4 x 7 H2O                            50.0 mg/L        [0.69] ⚠ (template)
+
+    [Carbon sources]
+      Glucose                                  500.0 mg/L       [0.69] ⚠ (template)
+      Starch                                   500.0 mg/L       [0.69] ⚠ (template)
+      Na-pyruvate                              300.0 mg/L       [0.69] ⚠ (template)
+
+    [Phosphate]
+      K2HPO4                                   300.0 mg/L       [0.69] ⚠ (template)
+
+    [Trace metals]
+      NiCl2·6H2O                               50 μg/L          [0.95] (mebipred)
+          → MeBiPred: 673 Ni-binding proteins (max_p=1.00); template 'R2A MEDIUM' lacks a direct Ni salt
+          → fraction 0.15 > typical ceiling 0.10 — flag for review
+      MnCl2·4H2O                               500 μg/L         [0.95] (mebipred)
+          → MeBiPred: 643 Mn-binding proteins (max_p=1.00); template 'R2A MEDIUM' lacks a direct Mn salt
+      ZnSO4·7H2O                               500 μg/L         [0.95] (mebipred)
+          → MeBiPred: 321 Zn-binding proteins (max_p=1.00); template 'R2A MEDIUM' lacks a direct Zn salt
+      CuSO4·5H2O                               50 μg/L          [0.95] (mebipred)
+          → MeBiPred: 309 Cu-binding proteins (max_p=1.00); template 'R2A MEDIUM' lacks a direct Cu salt
+          → max_p 1.00 on rare metal — verify with BRENDA
+      CoCl2·6H2O                               50 μg/L          [0.95] (mebipred)
+          → MeBiPred: 190 Co-binding proteins (max_p=1.00); template 'R2A MEDIUM' lacks a direct Co salt
+          → max_p 1.00 on rare metal — verify with BRENDA
+
+    [Auxotrophy supplements]
+      molybdopterin                            1.0 mg/L         [0.65] ⚠ (auxotrophy)
+          → gapseq reports auxotrophy (best biosynthesis pathway 66%); template 'R2A MEDIUM' lacks a direct source for molybdopterin
+          → partial biosynthesis (66%); test 0, 0.5×, 1×, 2× to verify requirement
+      siroheme                                 1.0 mg/L         [0.72] ⚠ (auxotrophy)
+          → gapseq reports auxotrophy (best biosynthesis pathway 50%); template 'R2A MEDIUM' lacks a direct source for siroheme
+          → partial biosynthesis (50%); test 0, 0.5×, 1×, 2× to verify requirement
+
+    [Gelling agent]
+      Agar                                     15.0 g/L         [0.69] ⚠ (template)
+
+================================================================================
+  CARBON SOURCE ANALYSIS
+================================================================================
+  Organism can utilize 17 predicted carbon sources:
+    ✓ alanine              (100% pathway — L-alanine degradation I)
+    ✓ aspartate            (100% pathway — L-aspartate degradation I)
+    ✓ glutamate            (100% pathway — L-glutamate degradation I)
+    ✓ glutamine            (100% pathway — L-glutamine degradation I)
+    ✓ cysteine             (100% pathway — L-cysteine degradation II)
+    ✓ citrate              (100% pathway — TCA cycle IV (2-oxoglutarate decarboxylase))
+    ✓ pyruvate             (100% pathway — pyruvate fermentation to propanoate I)
+    ✓ lactate              (100% pathway — L-lactaldehyde degradation (aerobic))
+    ✓ formate              (100% pathway — formate oxidation to CO2)
+    ✓ benzoate             (100% pathway — benzoate degradation II (aerobic and anaerobic))
+
+  ⚠ CARBON SOURCE MISMATCH: Starch
+    → organism has NO predicted pathway for starch degradation/utilization — this carbon source may not support growth
+    → Consider replacing with a compatible carbon source
+
+================================================================================
+  GAS PHASE RECOMMENDATION
+================================================================================
+  Headspace: Aerobic (air) — no special headspace needed
+    → no anaerobic or H₂-dependent metabolism detected
+  BLAST-confirmed hydrogenases (5 hits):
+    • [FeFe]  Group A  NC_007626.1_2376       65.0%id  bs=301
+    • [NiFe]  Group 2  NC_007626.1_1675       45.0%id  bs=288
+    • [NiFe]  Group 4  NC_007626.1_212        29.3%id  bs=191
+    • [NiFe]  Group 1  NC_007626.1_3558       54.8%id  bs=145
+    • [NiFe]  Group 4  NC_007626.1_2820       26.4%id  bs=128
+  gapseq H₂ pathways (4):
+    • uptake         100%  hydrogen oxidation I (aerobic)
+    • uptake         100%  hydrogen to fumarate electron transfer
+    • uptake         100%  hydrogen oxidation II (aerobic, NAD)
+    • production     100%  hydrogen production II
+
+================================================================================
+  PHYSICAL FORMAT
+================================================================================
+  Recommended: Solid agar plates (1.5%) for isolation; liquid broth for cultivation  [0.85]
+    → Standard aerobic/facultative organism — no special format needed.
+  Solidifying agent: Agar (Bacto or Noble) 1.2-2.0%
+    → Standard — works for most organisms at moderate T and pH.
+
+================================================================================
+  COMPATIBILITY WARNINGS (2 precipitation risks detected)
+================================================================================
+    ⚠ [MEDIUM] Ca3(PO4)2 (apatite / calcium phosphate)
+        Casamino acids  +  K2HPO4  (condition: pH > 6.5)
+        → Autoclave calcium and phosphate solutions separately; combine post-cooling.
+
+    ○ [LOW] CaSO4 (gypsum)
+        Casamino acids  +  MgSO4 x 7 H2O  (condition: high concentrations (>20 mM each))
+        → Usually not problematic at typical medium concentrations. If both Ca and SO4 are at high levels, reduce one or prepare separately.
+
+  PREPARATION INSTRUCTIONS (auto-generated from compatibility check)
+
+  SOLUTION A — Phosphate/buffer (autoclave separately):
+    - K2HPO4
+    → Dissolve in partial volume H₂O, autoclave 121°C 15 min
+
+  SOLUTION B — Metals/iron (autoclave separately):
+    - CoCl2·6H2O
+    - CuSO4·5H2O
+    - Glucose
+    - MnCl2·4H2O
+    - NiCl2·6H2O
+    - ZnSO4·7H2O
+    → Dissolve in partial volume H₂O, autoclave 121°C 15 min
+
+  COMBINE: Cool all solutions to ~50°C under sterile conditions.
+           Add solutions in order: base salts → phosphate →
+           metals (with chelator) → reducing agents/sulfide (last).
+           Adjust pH to target with sterile NaOH/HCl.
+
+  ⚠ UNCERTAINTY FLAGS (11 components <0.75):
+    • Agar (0.69) — from template 'R2A MEDIUM' — min of 2 (phylo_16s = 0.69)
+    • Yeast extract (0.69) — from template 'R2A MEDIUM' — min of 2 (phylo_16s = 0.69)
+    • Proteose peptone (0.69) — from template 'R2A MEDIUM' — min of 2 (phylo_16s = 0.69)
+    • Casamino acids (0.69) — from template 'R2A MEDIUM' — min of 2 (phylo_16s = 0.69)
+    • Glucose (0.69) — from template 'R2A MEDIUM' — min of 2 (phylo_16s = 0.69)
+    • Starch (0.69) — from template 'R2A MEDIUM' — min of 2 (phylo_16s = 0.69)
+    • Na-pyruvate (0.69) — from template 'R2A MEDIUM' — min of 2 (phylo_16s = 0.69)
+    • K2HPO4 (0.69) — from template 'R2A MEDIUM' — min of 2 (phylo_16s = 0.69)
+    • MgSO4 x 7 H2O (0.69) — from template 'R2A MEDIUM' — min of 2 (phylo_16s = 0.69)
+    • molybdopterin (0.65) — gapseq reports auxotrophy (best biosynthesis pathway 66%); template 'R2A MEDIUM' lacks a direct source for molybdopterin
+    • siroheme (0.72) — gapseq reports auxotrophy (best biosynthesis pathway 50%); template 'R2A MEDIUM' lacks a direct source for siroheme
+
+  EXPERIMENTAL VARIATION MATRIX:
+    • Agar
+        reason:   69% confidence
+        variants: Test variants experimentally
+    • Yeast extract
+        reason:   69% confidence
+        variants: Test variants experimentally
+    • Proteose peptone
+        reason:   69% confidence
+        variants: Test variants experimentally
+    • Casamino acids
+        reason:   69% confidence
+        variants: Test variants experimentally
+    • Glucose
+        reason:   69% confidence
+        variants: Test alternative carbon sources alongside Glucose
+    • Starch
+        reason:   69% confidence
+        variants: Test alternative carbon sources alongside Starch
+    • Na-pyruvate
+        reason:   69% confidence
+        variants: Test alternative carbon sources alongside Na-pyruvate
+    • K2HPO4
+        reason:   69% confidence
+        variants: Test variants experimentally
+    • MgSO4 x 7 H2O
+        reason:   69% confidence
+        variants: Test variants experimentally
+    • molybdopterin supplement
+        reason:   partial biosynthesis (66%); test 0, 0.5×, 1×, 2× to verify requirement
+        variants: Test 0×, 0.5×, 1×, 2× molybdopterin (0 / 0.00 / 0.001 / 0.00 g/L)
+    • siroheme supplement
+        reason:   partial biosynthesis (50%); test 0, 0.5×, 1×, 2× to verify requirement
+        variants: Test 0×, 0.5×, 1×, 2× siroheme (0 / 0.00 / 0.001 / 0.00 g/L)
+    • Ni trace supplement
+        reason:   fraction 0.15 > typical ceiling 0.10 — flag for review
+        variants: Test with and without NiCl2·6H2O
+    • Cu trace supplement
+        reason:   max_p 1.00 on rare metal — verify with BRENDA
+        variants: Test with and without CuSO4·5H2O
+    • Co trace supplement
+        reason:   max_p 1.00 on rare metal — verify with BRENDA
+        variants: Test with and without CoCl2·6H2O
+
+================================================================================
+  PROVENANCE
+================================================================================
+    Template medium:   R2A MEDIUM (830)
+    Phylogenetic match: MediaDive + BacDive via 16S BLAST (best 96.4%)
+    Metabolic analysis: gapseq 1.4.0 → 7 auxotrophy compound(s) required
+    Environmental:     multi-source thermal inference (1 source(s))
+    Metal profile:     MeBiPred (10 strong metals: Mg, Ca, K, Na, Fe, Ni, Mn, Zn, Cu, Co)
+    Genome biomass:    Gram_neg
+================================================================================
+  → layered 2 auxotrophy + 5 metal + 0 energy-metabolism components onto template baseline

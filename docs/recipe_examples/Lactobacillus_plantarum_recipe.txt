@@ -1,0 +1,87 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: Lactobacillus plantarum (NC_004567.2)
+Genome ID: 10
+Domain: Gram_pos
+Generated: 2026-04-28 16:58:21
+CultureForge version: 2026-04-28
+══════════════════════════════════════════════════════════════════════
+
+RECIPE (Section 10)
+──────────────────────────────────────────────────────────────────────
+
+PRIMARY CULTIVATION MODE: fermentative
+ALTERNATIVE MODES (also detected): none
+
+GAS PHASE
+  N2:    100%
+  Pressure: 1.0 atm
+    N2 anaerobic headspace; no CO2 needed.
+
+INCUBATION CONDITIONS
+  Temperature: 18.8°C
+  pH:          5.8
+  Light:       not required
+  Shaking:     static
+    Temperature 18.769873358294397°C, pH 5.769303630039795 from
+    genomespot
+
+INGREDIENTS
+  Buffer:
+    Phosphate buffer (KH2PO4 + K2HPO4)               30 mM
+      30 mM phosphate buffer adjusted to pH 5.8
+      (confidence 0.85)
+  Salt:
+    NaCl                                              5 g/L
+      Standard salinity baseline (5 g/L) for non-halophile
+      (confidence 0.85)
+    MgSO4·7H2O                                      0.2 g/L
+      Magnesium and sulfur source
+      (confidence 0.90)
+    CaCl2·2H2O                                     0.04 g/L
+      Calcium baseline
+      (confidence 0.90)
+  Carbon Source:
+    Glucose                                           2 g/L
+      Carbon source from RecipeContext: gapseq: glycogen
+      biosynthesis I (from ADP-D-Glucose) (100%)
+      (confidence 0.85)
+    Fructose                                          2 g/L
+      Carbon source from RecipeContext: gapseq: fructose
+      degradation (100%)
+      (confidence 0.85)
+  Nitrogen Source:
+    Yeast extract                                     2 g/L
+      Yeast extract supplies amino acids, B-vitamins, and
+      growth factors that fermenters typically can't
+      biosynthesize.
+      (confidence 0.85)
+  Reducing Agent:
+    L-Cysteine·HCl                                  0.5 g/L
+      Cysteine as reducing agent (gentler than Na2S for
+      fermenters; supplies sulfur amino acid).
+      (confidence 0.85)
+  Trace Metal:
+    SL-10 trace metal solution                        1 mL/L
+      SL-10 (Tschech & Pfennig 1984): Fe, Zn, Mn, B, Co, Cu,
+      Ni, Mo at standard concentrations. 1 mL/L final.
+      (confidence 0.85)
+  Vitamin:
+    Wolin's vitamin solution                          1 mL/L
+      Wolin's vitamins (Wolin et al. 1963): biotin, folic
+      acid, pyridoxine, thiamine, riboflavin, nicotinic
+      acid, pantothenate, B12, p-aminobenzoic acid, lipoic
+      acid. 1 mL/L final.
+      (confidence 0.85)
+
+THERMODYNAMIC CHECK
+  Reaction: glucose → 2 lactate (or other fermentation products)
+  ΔG (standard, default activities): -196.0 kJ/mol
+  Feasibility: feasible (feasible)
+
+UNCERTAINTY FLAGS
+  None significant for this recipe.
+
+OVERALL CONFIDENCE: 0.70 (medium)
+    RATIONALE: base from RecipeContext = 0.70 → final 0.70
+──────────────────────────────────────────────────────────────────────

@@ -1,0 +1,93 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "CultureForge"
+abstract: >-
+  CultureForge predicts cultivation media for novel and uncultured bacteria
+  and archaea from genome sequence, integrating gapseq pathway annotation,
+  GenomeSPOT environmental envelope prediction, MeBiPred metal binding
+  prediction, and a custom capability detection framework with diagnostic
+  enzyme markers and pathway integrity scoring. Output: cultivation media
+  recipe (atmosphere, ingredients with concentrations, conditions,
+  thermodynamic feasibility) plus a comparison against published DSMZ /
+  BacDive reference media for related organisms.
+authors:
+  - family-names: "Schaible"
+    given-names: "George"
+    affiliation: "University of California, Santa Barbara"
+    orcid: "https://orcid.org/0000-0002-1031-4682"
+version: "0.1.0-pre-publication"
+date-released: "2026-05-02"
+url: "https://github.com/georgeschaible/cultureforge"
+repository-code: "https://github.com/georgeschaible/cultureforge"
+license: MIT
+keywords:
+  - bioinformatics
+  - microbial cultivation
+  - genome annotation
+  - cultivation media prediction
+  - microbial physiology
+  - uncultured microorganisms
+  - metabolic pathway analysis
+  - environmental microbiology
+preferred-citation:
+  type: software
+  title: "CultureForge: predicting cultivation media for novel uncultured organisms from genome sequence"
+  authors:
+    - family-names: "Schaible"
+      given-names: "George"
+      affiliation: "University of California, Santa Barbara"
+  year: 2026
+  url: "https://github.com/georgeschaible/cultureforge"
+  notes: >-
+    Pre-publication. A peer-reviewed manuscript describing CultureForge
+    methodology is in preparation. Please contact the author at
+    george.schaible@gmail.com for current citation guidance until publication.
+references:
+  - type: software
+    title: "GenomeSPOT"
+    authors:
+      - family-names: "Barnum"
+        given-names: "Tyler"
+    year: 2024
+    url: "https://github.com/cultivarium/GenomeSPOT"
+    notes: "Vendored under vendor/GenomeSPOT/. MIT License, Copyright 2024 Cultivarium."
+  - type: software
+    title: "gapseq"
+    authors:
+      - family-names: "Zimmermann"
+        given-names: "Johannes"
+    year: 2021
+    url: "https://github.com/jotech/gapseq"
+    notes: "Used at runtime for metabolic pathway prediction. See Zimmermann et al. 2021, Genome Biology."
+  - type: software
+    title: "MeBiPred"
+    authors:
+      - family-names: "Aptekmann"
+        given-names: "Ariel A."
+    year: 2022
+    url: "https://services.bromberglab.org/mebipred/home"
+    notes: "Used for metal binding prediction. See Aptekmann et al. 2022, Bioinformatics."
+  - type: data
+    title: "MediaDive"
+    authors:
+      - family-names: "Koblitz"
+        given-names: "Julia"
+    year: 2023
+    url: "https://mediadive.dsmz.de/"
+    notes: "Cached medium recipes. CC BY 4.0. See Koblitz et al. 2023, Nucleic Acids Research."
+  - type: data
+    title: "BacDive"
+    authors:
+      - family-names: "Reimer"
+        given-names: "Lorenz Christian"
+    year: 2022
+    url: "https://bacdive.dsmz.de/"
+    notes: "Cached strain phenotype data. Free for academic use."
+  - type: data
+    title: "TEMPURA"
+    authors:
+      - family-names: "Sato"
+        given-names: "Yu"
+    year: 2020
+    url: "https://togodb.org/db/tempura"
+    notes: "Cached growth temperature data. CC BY-NC 3.0. See Sato et al. 2020."

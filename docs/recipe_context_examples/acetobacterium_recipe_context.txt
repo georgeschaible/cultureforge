@@ -1,0 +1,65 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: Acetobacterium woodii (NC_016894.1)
+Genome ID: 22
+Domain: Gram_pos
+Generated: 2026-04-26 21:11:14
+CultureForge version: 2026-04-26
+══════════════════════════════════════════════════════════════════════
+
+RECIPE CONTEXT (Section 9)
+──────────────────────────────────────────────────────────────────────
+
+ATMOSPHERE
+  Primary:        anaerobic
+  Gas needs:      N2, CO2
+
+CARBON SOURCES
+  CO2                       type=CO2             conf 0.85
+    autotrophic cultivation mode detected
+  glucose                   type=sugar           conf 0.85
+    gapseq: glycogen biosynthesis I (from ADP-D-Glucose) (100%)
+  fructose                  type=sugar           conf 0.85
+    gapseq: fructose degradation (100%)
+  lactose                   type=sugar           conf 0.85
+    gapseq: UDP-&alpha;-D-galactose biosynthesis (100%)
+
+ELECTRON DONORS
+  H2                        conf 0.85  (methanogenic)
+  organic carbon            conf 0.75  (heterotrophic)
+
+ELECTRON ACCEPTORS
+  CO2                            conf 0.80  (acetogenic)
+
+NITROGEN SOURCES
+  NH4+                                          conf 0.80
+    standard inorganic nitrogen source
+  N2 (if NH4+ unavailable)                      conf 0.60
+    nifH detected: organism can fix atmospheric N2
+  individual amino acid supplements (5)         conf 0.70
+    auxotrophic for: L-aspartate, L-lysine, L-phenylalanine, L-serine, L-tyrosine
+
+TRACE METALS
+  Mo    essential    nitrogenase: Mo-Fe cofactor
+
+COFACTORS
+  biotin (B7)               needs supplementation     (0% pathway)
+  thiamin (B1)              needs supplementation     (66% pathway)
+  pantothenate (B5)         needs supplementation     (50% pathway)
+  cobalamin (B12)           needs supplementation     (33% pathway)
+  heme                      needs supplementation     (25% pathway)
+  siroheme                  needs supplementation     (50% pathway)
+  molybdopterin             needs supplementation     (50% pathway)
+
+GROWTH CONDITIONS
+  Salinity:       non_halophile
+
+SPECIAL REQUIREMENTS
+  - strict_anaerobe: Strict anaerobic conditions required. Use Hungate technique or anaerobic ch
+
+INCOMPLETENESS FLAGS
+  ! Growth temperature unknown (no GenomeSPOT/TEMPURA data)
+  ! pH optimum unknown
+
+OVERALL CONFIDENCE: 0.61
+──────────────────────────────────────────────────────────────────────

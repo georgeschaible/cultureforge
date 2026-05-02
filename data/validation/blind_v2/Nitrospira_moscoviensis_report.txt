@@ -1,0 +1,41 @@
+=================================================================
+CultureForge Capability Report
+Organism: Blind v2: Nitrospira_moscoviensis
+Genome: GCF_001273775.1
+Generated: 2026-04-24 18:25
+
+GENOME QUALITY
+-----------------------------------------------------------------
+CheckM: not available (genome stats only)
+Genome size: 4,589,485 bp
+GC content: 62.0%
+N50: 4,589,485
+Acidic residue fraction (D+E): 0.1126
+Quality verdict: NO_QC
+
+PRIMARY CAPABILITIES (detected, confidence >= 0.50)
+-----------------------------------------------------------------
+1. Substrate-level phosphorylation fermentation (mixed products)
+   Confidence: 0.80
+   - Pathway: 8/9 steps detected (weighted score 0.85)
+
+2. Sulfur/sulfide/thiosulfate oxidation
+   Confidence: 0.59
+   - Pathway: 3/5 steps detected (weighted score 0.56)
+
+CONSIDERED AND REJECTED
+-----------------------------------------------------------------
+- Syntrophy (composite signature)                    0.450 (below threshold, pathway score 0.45)
+- Aerobic respiration                                0.350 (below threshold, pathway score 0.35)
+- Extreme salt-in halophily (composite signature)    0.350 (below threshold, pathway score 0.35)
+- Aerobic ammonia oxidation (nitrification step 1)   0.325 (below threshold, pathway score 0.00)
+- Dissimilatory sulfate reduction                    0.317 (below threshold, pathway score 0.13)
+- Aerobic respiration via electron transport chain   0.316 (below threshold, pathway score 0.45)
+- Biological nitrogen fixation (N2 to NH3)           0.296 (below threshold, pathway score 0.14)
+- Anoxygenic phototrophy (green sulfur bacteria, Typ 0.225 (below threshold, pathway score 0.00)
+
+RECOMMENDED ACTION
+-----------------------------------------------------------------
+Action: flag_uncertain
+
+=================================================================

@@ -1,0 +1,81 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: Acetobacterium woodii (NC_016894.1)
+Genome ID: 22
+Domain: Gram_pos
+Generated: 2026-04-28 16:58:34
+CultureForge version: 2026-04-28
+══════════════════════════════════════════════════════════════════════
+
+RECIPE (Section 10)
+──────────────────────────────────────────────────────────────────────
+
+PRIMARY CULTIVATION MODE: acetogenic
+ALTERNATIVE MODES (also detected): fermentative
+
+GAS PHASE
+  H2:    80%
+  CO2:   20%
+  Pressure: 1.5 atm
+    H2/CO2 80:20 — H2 electron donor, CO2 carbon source +
+    electron acceptor.
+
+INCUBATION CONDITIONS
+  Temperature: 30.0°C
+  pH:          7.0
+  Light:       not required
+  Shaking:     static
+    Temperature 30.0°C, pH 7.0 (default — no GenomeSPOT/TEMPURA
+    data)
+
+INGREDIENTS
+  Buffer:
+    NaHCO3                                          2.5 g/L
+      Bicarbonate buffer in equilibrium with CO2 headspace.
+      (confidence 0.85)
+  Salt:
+    NaCl                                              5 g/L
+      Standard salinity baseline (5 g/L) for non-halophile
+      (confidence 0.85)
+    MgSO4·7H2O                                      0.2 g/L
+      Magnesium and sulfur source
+      (confidence 0.90)
+    CaCl2·2H2O                                     0.04 g/L
+      Calcium baseline
+      (confidence 0.90)
+  Carbon Source:
+    CO2 (autotrophic carbon)                         20 % v/v
+      CO2 reduced to acetate via WL pathway; autotrophic.
+      (confidence 0.90)
+    Co2                                               2 g/L
+      Carbon source from RecipeContext: autotrophic
+      cultivation mode detected
+      (confidence 0.85)
+    Glucose                                           2 g/L
+      Carbon source from RecipeContext: gapseq: glycogen
+      biosynthesis I (from ADP-D-Glucose) (100%)
+      (confidence 0.85)
+  Reducing Agent:
+    Na2S·9H2O                                       0.5 mM
+      Establishes anaerobiosis.
+  Trace Metal:
+    SL-10 trace metal solution                        1 mL/L
+      SL-10 (Tschech & Pfennig 1984): Fe, Zn, Mn, B, Co, Cu,
+      Ni, Mo at standard concentrations. 1 mL/L final.
+      (confidence 0.85)
+  Vitamin:
+    Cyanocobalamin (B12)                             50 μg/L
+      B12 elevated for acsB/cooS — corrinoid is the methyl
+      carrier in WL pathway.
+
+THERMODYNAMIC CHECK
+  Reaction: 4 H2 + 2 CO2 → acetate + 2 H2O + H+ (Wood-Ljungdahl)
+  ΔG (standard, default activities): -94.9 kJ/mol
+  Feasibility: feasible (feasible)
+
+UNCERTAINTY FLAGS
+  None significant for this recipe.
+
+OVERALL CONFIDENCE: 0.61 (medium)
+    RATIONALE: base from RecipeContext = 0.61 → final 0.61
+──────────────────────────────────────────────────────────────────────

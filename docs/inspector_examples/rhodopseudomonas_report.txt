@@ -1,0 +1,135 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: Rhodopseudomonas palustris (NC_005296.1)
+Genome ID: 19
+Domain: Gram_neg
+Generated: 2026-04-26 20:10:59
+CultureForge version: 2026-04-26
+══════════════════════════════════════════════════════════════════════
+
+GENOME QUALITY (Section 2)
+──────────────────────────────────────────────────────────────────────
+CheckM not available (genome stats only)
+Genome size:                5,459,213 bp (5.46 Mb)
+GC content:                 65.0%
+N50:                        5,459,213
+Acidic residue fraction:    0.1087
+QC verdict:                 NO_QC
+QC rationale:               CheckM not available — genome stats only. Marker absence is not interpretable.
+──────────────────────────────────────────────────────────────────────
+
+GROWTH CONDITIONS (Section 3) - GenomeSPOT predictions
+──────────────────────────────────────────────────────────────────────
+GenomeSPOT not run for this genome.
+──────────────────────────────────────────────────────────────────────
+
+CAPABILITY PROFILE (Section 4)
+──────────────────────────────────────────────────────────────────────
+
+PRIMARY CULTIVATION MODES
+
+  Mode: aerobic_chemotrophic                     conf 0.90
+    ├─ Aerobic respiration                                0.900
+    │   cbb3 oxidase complex complete (high-affinity, microaerophilic)
+    │   cytochrome c oxidase: 30 hits + TCA 100% (strong combined aerobic signal)
+    │   TCA cycle 100% complete
+    │   catalase detected (52 hits)
+
+  Mode: phototrophic                             conf 0.77
+    ├─ Purple phototrophy                                 0.768
+    │   Pathway: 3/6 steps detected (weighted score 0.78)
+    │   reaction center L subunit: diagnostic marker pufLM detected (59.8% id, bs=348)
+    │   reaction center M subunit: diagnostic marker pufLM detected (59.8% id, bs=348)
+    │   Cofactors: 1/1 biosyntheses detected
+    │   Diagnostic markers: pufLM
+
+  Mode: anaerobic_respiratory                    conf 0.55
+    ├─ Denitrification (NO3- to N2)                       0.548
+    │   Pathway: 1/4 steps detected (weighted score 0.46)
+    │   nitrous oxide reductase: diagnostic marker nosZ detected (55.9% id, bs=745)
+    │   Diagnostic markers: nosZ
+
+  Mode: lithotrophic_aerobic                     conf 0.51
+    ├─ Sulfur oxidation                                   0.506
+    │   Pathway: 2/5 steps detected (weighted score 0.44)
+
+  DETECTED CAPABILITIES (confidence >= 0.50)
+    Aerobic respiration                                0.900  primary
+    Purple phototrophy                                 0.768  primary
+    Nitrogen fixation                                  0.614  primary
+    Denitrification (NO3- to N2)                       0.548  secondary
+    Sulfur oxidation                                   0.506  secondary
+
+  REJECTED CAPABILITIES
+    Fermentation                               0.400  Autotrophy detected; glycolytic genes are anabolic, not catabolic
+    Acetogenesis (Wood-Ljungdahl)              0.384  Pathway score too low (0.26)
+    Organohalide respiration                   0.356  Pathway score too low (0.22)
+    Syntrophy                                  0.350  Below threshold (pathway 0.35)
+    Methanogenesis                             0.347  Below threshold (pathway 0.40)
+    Aerobic ammonia oxidation                  0.325  Pathway score too low (0.00)
+    Aerobic respiration (ETC pathway)          0.316  Below threshold (pathway 0.45)
+    Iron(II) oxidation (acidophilic)           0.308  Pathway score too low (0.15)
+    Dissimilatory sulfate reduction            0.296  Pathway score too low (0.14)
+    Green sulfur phototrophy                   0.225  Pathway score too low (0.00)
+
+──────────────────────────────────────────────────────────────────────
+
+gapseq PATHWAYS (Section 5) - 415 predicted of 3156 total
+──────────────────────────────────────────────────────────────────────
+  Metabolically relevant:
+    ammonia assimilation cycle III                              100%  ✓
+    Calvin-Benson-Bassham cycle                                 100%  ✓
+  Other predicted pathways (23 more):
+    L-alanine degradation III                                   100%  ✓
+    L-alanine biosynthesis II                                   100%  ✓
+    L-alanine biosynthesis I                                    100%  ✓
+    L-phenylalanine degradation II (anaerobic)                  100%  ✓
+    L-arginine degradation I (arginase pathway)                 100%  ✓
+──────────────────────────────────────────────────────────────────────
+
+DIAGNOSTIC MARKER HITS (Section 6)
+──────────────────────────────────────────────────────────────────────
+  Marker               Method   Best Hit                  Identity Bitscore Status
+  ─────────────────────────────────────────────────────────────────
+  acsB_cdhC            blastp   no hit                                      (negative)
+  amoA                 blastp   no hit                                      (negative)
+  aprAB                blastp   sp|Q72AU3|SYGB_NITV2         34.4%      278 (weak)
+  autotrophy           blastp   sp|P54205|RBL_SYNY3          57.6%      563 POSITIVE
+  cooS_cdhA            blastp   no hit                                      (negative)
+  dsrAB                blastp   no hit                                      (negative)
+  hao                  blastp   tr|Q82SR3|Q82SR3_NITEU       41.6%      192 POSITIVE
+  hdh                  blastp   no hit                                      (negative)
+  hzsA                 blastp   tr|Q1Q5W1|Q1Q5W1_KUEST       26.2%      114 (weak)
+  mcrA                 blastp   no hit                                      (negative)
+  mcrBG                blastp   no hit                                      (negative)
+  mtrC_omcB            blastp   tr|Q8EG35|Q8EG35_SHEON       38.7%      183 (weak)
+  nifH                 blastp   sp|P07328|NIFD_AZOVI         74.0%      752 POSITIVE
+  nosZ                 blastp   sp|P19573|NOSZ_STUST         55.9%      745 POSITIVE
+  psaA_psbA            blastp   no hit                                      (negative)
+  pscA_fmoA            blastp   sp|P0C0Y4|NMTDH_ALTAL        38.0%      134 POSITIVE
+  pufLM                blastp   sp|P06009|RCEL_BLAVI         59.8%      348 POSITIVE
+  rdhA                 blastp   no hit                                      (negative)
+  rhodopsin            blastp   no hit                                      (negative)
+  soxB                 blastp   no hit                                      (negative)
+  terminal_oxidases    blastp   sp|P08305|COX1A_PARDE        61.1%      637 POSITIVE
+──────────────────────────────────────────────────────────────────────
+
+HYDROGENASES (Section 7)
+──────────────────────────────────────────────────────────────────────
+  Type       Group    Gene                      Identity Bitscore
+  ───────────────────────────────────────────────────────
+  [NiFe]     2        NC_005296.1_979           78.9%       598
+  [FeFe]     A        NC_005296.1_135           37.1%       395
+  [FeFe]     A        NC_005296.1_2788          63.6%       288
+  [FeFe]     A        NC_005296.1_2862          62.1%       278
+  [NiFe]     4        NC_005296.1_4367          28.0%       171
+  [NiFe]     1        NC_005296.1_1195          51.2%       138
+  [NiFe]     4        NC_005296.1_3021          26.9%       129
+  [FeFe]     A        NC_005296.1_750           26.1%       108
+──────────────────────────────────────────────────────────────────────
+
+RECOMMENDED ACTION (Section 8)
+──────────────────────────────────────────────────────────────────────
+Action:    SYNTHESIZE (CheckM not run but capabilities clearly detected)
+Rationale: Cultivation mode(s): aerobic_chemotrophic, phototrophic, anaerobic_respiratory, lithotrophic_aerobic
+──────────────────────────────────────────────────────────────────────

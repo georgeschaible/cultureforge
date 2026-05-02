@@ -1,0 +1,43 @@
+=================================================================
+CultureForge Capability Report
+Organism: Blind v2: Candidatus_Scalindua_profunda
+Genome: GCA_000315995.1
+Generated: 2026-04-26 09:43
+
+GENOME QUALITY
+-----------------------------------------------------------------
+CheckM: not available (genome stats only)
+Genome size: 4,669,398 bp
+GC content: 52.4%
+N50: 89,572
+Acidic residue fraction (D+E): 0.1074
+Quality verdict: NO_QC
+
+PRIMARY CAPABILITIES (detected, confidence >= 0.50)
+-----------------------------------------------------------------
+1. Substrate-level phosphorylation fermentation (mixed products)
+   Confidence: 0.90
+   - Pathway: 9/9 steps detected (weighted score 1.00)
+
+2. Aerobic respiration
+   Confidence: 0.90
+   - bo3 oxidase complex complete (low-affinity, aerobic)
+   - cytochrome c oxidase: 15 hits + TCA 100% (strong combined aerobic signal)
+   - TCA cycle 100% complete
+
+CONSIDERED AND REJECTED
+-----------------------------------------------------------------
+- Methanogenesis (hydrogenotrophic, aceticlastic, or 0.351 (below threshold, pathway score 0.37)
+- Aerobic ammonia oxidation (nitrification step 1)   0.325 (below threshold, pathway score 0.00)
+- Dissimilatory sulfate reduction                    0.317 (below threshold, pathway score 0.13)
+- Aerobic respiration via electron transport chain   0.316 (below threshold, pathway score 0.45)
+- Acidophilic Fe(II) oxidation                       0.308 (below threshold, pathway score 0.15)
+- Biological nitrogen fixation (N2 to NH3)           0.296 (below threshold, pathway score 0.14)
+- Anoxygenic phototrophy (green sulfur bacteria, Typ 0.225 (below threshold, pathway score 0.00)
+- Sulfur/sulfide/thiosulfate oxidation               0.225 (below threshold, pathway score 0.00)
+
+RECOMMENDED ACTION
+-----------------------------------------------------------------
+Action: flag_uncertain
+
+=================================================================

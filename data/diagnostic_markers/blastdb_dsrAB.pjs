@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "dbname": "blastdb_dsrAB",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": "dsrAB",
+  "number-of-letters": 2876,
+  "number-of-sequences": 8,
+  "last-updated": "2026-04-27T21:19:00",
+  "number-of-volumes": 1,
+  "bytes-total": 41897,
+  "bytes-to-cache": 3045,
+  "files": [
+    "blastdb_dsrAB.pdb",
+    "blastdb_dsrAB.phr",
+    "blastdb_dsrAB.pin",
+    "blastdb_dsrAB.pot",
+    "blastdb_dsrAB.psq",
+    "blastdb_dsrAB.ptf",
+    "blastdb_dsrAB.pto"
+  ]
+}

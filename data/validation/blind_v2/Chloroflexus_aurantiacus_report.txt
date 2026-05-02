@@ -1,0 +1,52 @@
+=================================================================
+CultureForge Capability Report
+Organism: Blind v2: Chloroflexus_aurantiacus
+Genome: GCF_000018865.1
+Generated: 2026-04-24 22:45
+
+GENOME QUALITY
+-----------------------------------------------------------------
+CheckM: not available (genome stats only)
+Genome size: 5,258,541 bp
+GC content: 56.7%
+N50: 5,258,541
+Acidic residue fraction (D+E): 0.1037
+Quality verdict: NO_QC
+
+PRIMARY CAPABILITIES (detected, confidence >= 0.50)
+-----------------------------------------------------------------
+1. Substrate-level phosphorylation fermentation (mixed products)
+   Confidence: 0.90
+   - Pathway: 9/9 steps detected (weighted score 1.00)
+
+2. Aerobic respiration
+   Confidence: 0.85
+   - terminal oxidase BLAST hit (sp|P34956|QOX1_BACSU, 42% id, bs=400)
+   - cytochrome c oxidase: 15 hits + TCA 100% (strong combined aerobic signal)
+   - TCA cycle 100% complete
+
+3. Acetogenesis via Wood-Ljungdahl pathway. Negative markers: mcrA (methanogen), dsrAB/aprAB (SRB using WL for autotrophic CO2 fixation), mtrC_omcB (iron reducer using WL for autotrophy)
+   Confidence: 0.64
+   - Pathway: 4/6 steps detected (weighted score 0.63)
+   - Cofactors: 1/1 biosyntheses detected
+
+4. Sulfur/sulfide/thiosulfate oxidation
+   Confidence: 0.51
+   - Pathway: 2/5 steps detected (weighted score 0.44)
+
+CONSIDERED AND REJECTED
+-----------------------------------------------------------------
+- Denitrification (NO3- to N2)                       0.327 (below threshold, pathway score 0.18)
+- Aerobic ammonia oxidation (nitrification step 1)   0.325 (below threshold, pathway score 0.00)
+- Aerobic respiration via electron transport chain   0.316 (below threshold, pathway score 0.45)
+- Biological nitrogen fixation (N2 to NH3)           0.315 (below threshold, pathway score 0.13)
+- Acidophilic Fe(II) oxidation                       0.308 (below threshold, pathway score 0.15)
+- Dissimilatory sulfate reduction                    0.296 (below threshold, pathway score 0.14)
+- Anoxygenic phototrophy (green sulfur bacteria, Typ 0.225 (below threshold, pathway score 0.00)
+- Oxygenic phototrophy (cyanobacteria, algae, plants 0.200 (below threshold, pathway score 0.00)
+
+RECOMMENDED ACTION
+-----------------------------------------------------------------
+Action: flag_uncertain
+
+=================================================================

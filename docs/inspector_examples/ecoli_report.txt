@@ -1,0 +1,132 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: Escherichia coli (NC_000913.3)
+Genome ID: 6
+Domain: Gram_neg
+Generated: 2026-04-26 20:10:58
+CultureForge version: 2026-04-26
+══════════════════════════════════════════════════════════════════════
+
+GENOME QUALITY (Section 2)
+──────────────────────────────────────────────────────────────────────
+CheckM not available (genome stats only)
+Genome size:                4,641,652 bp (4.64 Mb)
+GC content:                 50.8%
+N50:                        4,641,652
+Acidic residue fraction:    0.1089
+QC verdict:                 NO_QC
+QC rationale:               CheckM not available — genome stats only. Marker absence is not interpretable.
+──────────────────────────────────────────────────────────────────────
+
+GROWTH CONDITIONS (Section 3) - GenomeSPOT predictions
+──────────────────────────────────────────────────────────────────────
+Predicted oxygen tolerance:     tolerant (conf 0.69)
+Predicted pH optimum:           7.4 ±0.9 (conf 0.90)
+Predicted salinity optimum:     2.28% NaCl ±2.0 (conf 0.55)
+Predicted temperature optimum:  30.3°C ±5.6 (conf 0.87)
+──────────────────────────────────────────────────────────────────────
+
+CAPABILITY PROFILE (Section 4)
+──────────────────────────────────────────────────────────────────────
+
+PRIMARY CULTIVATION MODES
+
+  Mode: aerobic_chemotrophic                     conf 0.90
+    ├─ Aerobic respiration                                0.900
+    │   bo3 oxidase complex complete (low-affinity, aerobic)
+    │   cytochrome c oxidase: 12 hits + TCA 100% (strong combined aerobic signal)
+    │   TCA cycle 100% complete
+    │   catalase detected (24 hits)
+
+  Mode: fermentative                             conf 0.65
+    ├─ Fermentation                                       0.650
+    │   Pathway: 9/9 steps detected (weighted score 1.00)
+    │   Strong acceptor metabolism present: Aerobic respiration(0.90)
+    │   Fermentation kept as secondary capability (facultative pattern)
+
+  DETECTED CAPABILITIES (confidence >= 0.50)
+    Aerobic respiration                                0.900  primary
+    Fermentation                                       0.650  primary
+
+  REJECTED CAPABILITIES
+    Organohalide respiration                   0.356  Pathway score too low (0.22)
+    Anammox                                    0.327  Pathway score too low (0.18)
+    Aerobic ammonia oxidation                  0.325  Pathway score too low (0.00)
+    Dissimilatory sulfate reduction            0.317  Pathway score too low (0.13)
+    Aerobic respiration (ETC pathway)          0.316  Below threshold (pathway 0.45)
+    Iron(II) oxidation (acidophilic)           0.308  Pathway score too low (0.15)
+    Nitrogen fixation                          0.296  Pathway score too low (0.14)
+    Green sulfur phototrophy                   0.225  Pathway score too low (0.00)
+    Sulfur oxidation                           0.225  Pathway score too low (0.00)
+    Denitrification (NO3- to N2)               0.200  Pathway score too low (0.00)
+
+  UNCERTAINTY FLAGS
+    - [Substrate-level phosphory] acceptor_disqualifier_applied
+
+──────────────────────────────────────────────────────────────────────
+
+gapseq PATHWAYS (Section 5) - 550 predicted of 1922 total
+──────────────────────────────────────────────────────────────────────
+  Metabolically relevant:
+    acetoacetate degradation (to acetyl CoA)                    100%  ✓
+    L-alanine degradation II (to D-lactate)                     100%  ✓
+    ammonia assimilation cycle III                              100%  ✓
+    glycolysis III (from glucose)                               100%  ✓
+  Other predicted pathways (21 more):
+    folate transformations III (E. coli)                        100%  ✓
+    phenylethylamine degradation I                              100%  ✓
+    L-alanine degradation I                                     100%  ✓
+    L-alanine biosynthesis II                                   100%  ✓
+    L-alanine biosynthesis I                                    100%  ✓
+──────────────────────────────────────────────────────────────────────
+
+DIAGNOSTIC MARKER HITS (Section 6)
+──────────────────────────────────────────────────────────────────────
+  Marker               Method   Best Hit                  Identity Bitscore Status
+  ─────────────────────────────────────────────────────────────────
+  acsB_cdhC            blastp   no hit                                      (negative)
+  amoA                 blastp   no hit                                      (negative)
+  aprAB                blastp   sp|Q72AU3|SYGB_NITV2         38.3%      419 POSITIVE
+  autotrophy           blastp   no hit                                      (negative)
+  cooS_cdhA            blastp   no hit                                      (negative)
+  dsrAB                blastp   no hit                                      (negative)
+  hao                  blastp   tr|Q82SR3|Q82SR3_NITEU       41.7%      186 POSITIVE
+  hdh                  blastp   no hit                                      (negative)
+  hzsA                 blastp   no hit                                      (negative)
+  mcrA                 blastp   tr|Q8TIY1|Q8TIY1_METAC       61.7%      214 POSITIVE
+  mcrBG                blastp   no hit                                      (negative)
+  mtrC_omcB            blastp   no hit                                      (negative)
+  nifH                 blastp   no hit                                      (negative)
+  nosZ                 blastp   no hit                                      (negative)
+  psaA_psbA            blastp   no hit                                      (negative)
+  pscA_fmoA            blastp   sp|P0C0Y4|NMTDH_ALTAL        33.2%      134 POSITIVE
+  pufLM                blastp   sp|P26362|CFTR_SQUAC         26.6%      117 POSITIVE
+  rdhA                 blastp   no hit                                      (negative)
+  rhodopsin            blastp   no hit                                      (negative)
+  soxB                 blastp   sp|Q3SLP0|RS17_THIDA         59.0%      101 POSITIVE
+  terminal_oxidases    blastp   sp|P34956|QOX1_BACSU         51.6%      668 POSITIVE
+──────────────────────────────────────────────────────────────────────
+
+HYDROGENASES (Section 7)
+──────────────────────────────────────────────────────────────────────
+  Type       Group    Gene                      Identity Bitscore
+  ───────────────────────────────────────────────────────
+  [NiFe]     4        NC_000913.3_2672          100.0%      1185
+  [NiFe]     4        NC_000913.3_2453          70.4%       858
+  [NiFe]     2        NC_000913.3_947           74.4%       546
+  [FeFe]     A        NC_000913.3_2518          62.3%       284
+  [NiFe]     2        NC_000913.3_2941          41.5%       277
+  [NiFe]     4        NC_000913.3_2255          25.8%       159
+  [NiFe]     1        NC_000913.3_1860          57.7%       154
+──────────────────────────────────────────────────────────────────────
+
+RECOMMENDED ACTION (Section 8)
+──────────────────────────────────────────────────────────────────────
+Action:    SYNTHESIZE (CheckM not run but capabilities clearly detected)
+Rationale: Cultivation mode(s): aerobic_chemotrophic, fermentative
+
+Notes:
+  - Predicted oxygen: tolerant
+  - Predicted pH: 7.4
+  - Predicted growth temperature: 30°C
+──────────────────────────────────────────────────────────────────────

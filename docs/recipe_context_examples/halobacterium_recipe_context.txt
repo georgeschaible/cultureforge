@@ -1,0 +1,63 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: Halobacterium salinarum (NC_002607.1)
+Genome ID: 20
+Domain: Archaea
+Generated: 2026-04-26 21:11:13
+CultureForge version: 2026-04-26
+══════════════════════════════════════════════════════════════════════
+
+RECIPE CONTEXT (Section 9)
+──────────────────────────────────────────────────────────────────────
+
+ATMOSPHERE
+  Primary:        aerobic
+
+CARBON SOURCES
+  glucose                   type=sugar           conf 0.85
+    gapseq: UDP-&alpha;-D-glucose biosynthesis (100%)
+  fructose                  type=sugar           conf 0.81
+    gapseq: glycolysis II (from fructose 6-phosphate) (81%)
+  lactose                   type=sugar           conf 0.85
+    gapseq: UDP-&alpha;-D-galactose biosynthesis (100%)
+
+ELECTRON DONORS
+  organic carbon            conf 0.75  (heterotrophic)
+
+ELECTRON ACCEPTORS
+  O2                             conf 0.90  (aerobic)
+
+NITROGEN SOURCES
+  NH4+                                          conf 0.80
+    standard inorganic nitrogen source
+  individual amino acid supplements (8)         conf 0.70
+    auxotrophic for: L-arginine, L-cysteine, L-isoleucine, L-leucine, L-lysine, L-phenylalanine, L-proline, L-valine
+
+TRACE METALS
+  Fe    trace        standard trace element addition (no MeBiPred data)
+  Zn    trace        standard trace element addition (no MeBiPred data)
+  Mn    trace        standard trace element addition (no MeBiPred data)
+  Co    trace        standard trace element addition (no MeBiPred data)
+  Ni    trace        standard trace element addition (no MeBiPred data)
+  Cu    trace        standard trace element addition (no MeBiPred data)
+
+COFACTORS
+  biotin (B7)               needs supplementation     (25% pathway)
+  folate (B9)               needs supplementation     (33% pathway)
+  thiamin (B1)              needs supplementation     (50% pathway)
+  riboflavin (B2)           needs supplementation     (44% pathway)
+  cobalamin (B12)           needs supplementation     (0% pathway)
+  siroheme                  needs supplementation     (50% pathway)
+
+GROWTH CONDITIONS
+  Salinity:       extreme_halophile
+
+SPECIAL REQUIREMENTS
+  - high_salt: Extreme halophile requiring high NaCl concentration (typically 15-25% w/v)
+
+INCOMPLETENESS FLAGS
+  ! Growth temperature unknown (no GenomeSPOT/TEMPURA data)
+  ! pH optimum unknown
+
+OVERALL CONFIDENCE: 0.56
+──────────────────────────────────────────────────────────────────────

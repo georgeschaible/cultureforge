@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "dbname": "blastdb_tetH",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": "tetH",
+  "number-of-letters": 1500,
+  "number-of-sequences": 3,
+  "last-updated": "2026-04-30T22:59:00",
+  "number-of-volumes": 1,
+  "bytes-total": 39052,
+  "bytes-to-cache": 1624,
+  "files": [
+    "blastdb_tetH.pdb",
+    "blastdb_tetH.phr",
+    "blastdb_tetH.pin",
+    "blastdb_tetH.pot",
+    "blastdb_tetH.psq",
+    "blastdb_tetH.ptf",
+    "blastdb_tetH.pto"
+  ]
+}

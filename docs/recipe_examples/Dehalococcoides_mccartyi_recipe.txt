@@ -1,0 +1,94 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: Dehalococcoides mccartyi (GCF_000011905.1)
+Genome ID: 25
+Domain: Gram_neg
+Generated: 2026-04-28 16:58:40
+CultureForge version: 2026-04-28
+══════════════════════════════════════════════════════════════════════
+
+RECIPE (Section 10)
+──────────────────────────────────────────────────────────────────────
+
+PRIMARY CULTIVATION MODE: anaerobic_respiratory (organohalide respiration)
+ALTERNATIVE MODES (also detected): none
+
+GAS PHASE
+  H2:    20%
+  N2:    60%
+  CO2:   20%
+  Pressure: 1.0 atm
+    H2/N2/CO2 20:60:20 — H2 is the electron donor for reductive
+    dehalogenation.
+
+INCUBATION CONDITIONS
+  Temperature: 30.0°C
+  pH:          7.0
+  Light:       not required
+  Shaking:     static
+    Temperature 30.0°C, pH 7.0 (default — no GenomeSPOT/TEMPURA
+    data)
+
+INGREDIENTS
+  Buffer:
+    Phosphate buffer (KH2PO4 + K2HPO4)               30 mM
+      30 mM phosphate buffer adjusted to pH 7.0
+      (confidence 0.85)
+  Salt:
+    NaCl                                              5 g/L
+      Standard salinity baseline (5 g/L) for non-halophile
+      (confidence 0.85)
+    MgSO4·7H2O                                      0.2 g/L
+      Magnesium and sulfur source
+      (confidence 0.90)
+    CaCl2·2H2O                                     0.04 g/L
+      Calcium baseline
+      (confidence 0.90)
+  Electron Donor:
+    H2 (from headspace)                              20 % v/v
+      H2 electron donor (typical for organohalide
+      respirers).
+      (confidence 0.85)
+  Electron Acceptor:
+    PCE (tetrachloroethene)                         100 μM
+      PCE as electron acceptor — ASSUMED substrate. Specific
+      organohalide cannot be determined from genome alone
+      (LIMITATIONS.md A.1/D.1). User should select based on
+      isolation source chemistry.
+      (confidence 0.50)
+  Reducing Agent:
+    Na2S·9H2O                                       0.5 mM
+      Establishes strict anaerobiosis.
+  Supplement:
+    Resazurin                                         1 mg/L
+      Oxygen indicator.
+  Trace Metal:
+    SL-10 trace metal solution                        1 mL/L
+      SL-10 (Tschech & Pfennig 1984): Fe, Zn, Mn, B, Co, Cu,
+      Ni, Mo at standard concentrations. 1 mL/L final.
+      (confidence 0.85)
+  Vitamin:
+    Cyanocobalamin (B12) supplement                  50 μg/L
+      B12 supplementation critical for rdhA — corrinoid
+      biosynthesis often incomplete in obligate organohalide
+      respirers.
+      (confidence 0.90)
+
+THERMODYNAMIC CHECK
+  Reaction: H2 + R-Cl → R-H + HCl (reductive dehalogenation)
+  ΔG (standard, default activities): -130.0 kJ/mol
+  Feasibility: feasible (feasible)
+
+UNCERTAINTY FLAGS
+    - Specific halogenated substrate cannot be determined from
+      genome alone (rdhA detects the family but not substrate
+      specificity). User must select the actual halogenated electron
+      acceptor based on isolation source chemistry.
+
+LIMITATIONS REFERENCED: A.1, D.1
+  See LIMITATIONS.md for details on each category.
+
+OVERALL CONFIDENCE: 0.50 (low)
+    RATIONALE: base from RecipeContext = 0.55; -0.05 from
+      uncertainty flags → final 0.50
+──────────────────────────────────────────────────────────────────────

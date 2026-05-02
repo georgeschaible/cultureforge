@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "dbname": "blastdb_sor",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": "sor",
+  "number-of-letters": 1244,
+  "number-of-sequences": 4,
+  "last-updated": "2026-04-30T22:59:00",
+  "number-of-volumes": 1,
+  "bytes-total": 39003,
+  "bytes-to-cache": 1369,
+  "files": [
+    "blastdb_sor.pdb",
+    "blastdb_sor.phr",
+    "blastdb_sor.pin",
+    "blastdb_sor.pot",
+    "blastdb_sor.psq",
+    "blastdb_sor.ptf",
+    "blastdb_sor.pto"
+  ]
+}

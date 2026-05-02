@@ -1,0 +1,143 @@
+{
+  "genome_id": 16,
+  "species": "Magnetospirillum magneticum",
+  "primary_cultivation_mode": "aerobic_chemotrophic",
+  "alternative_cultivation_modes": [
+    "anaerobic_respiratory"
+  ],
+  "ingredients": [
+    {
+      "name": "Glucose",
+      "chemical_formula": null,
+      "concentration": 2.0,
+      "concentration_unit": "g/L",
+      "category": "carbon_source",
+      "rationale": "Carbon source from RecipeContext: gapseq: glycogen biosynthesis I (from ADP-D-Glucose) (100%)",
+      "confidence": 0.85,
+      "derived_from": [
+        "heterotrophic"
+      ]
+    },
+    {
+      "name": "Fructose",
+      "chemical_formula": null,
+      "concentration": 2.0,
+      "concentration_unit": "g/L",
+      "category": "carbon_source",
+      "rationale": "Carbon source from RecipeContext: gapseq: glycolysis II (from fructose 6-phosphate) (81%)",
+      "confidence": 0.81,
+      "derived_from": [
+        "heterotrophic"
+      ]
+    },
+    {
+      "name": "Phosphate buffer (KH2PO4 + K2HPO4)",
+      "chemical_formula": "KH2PO4 / K2HPO4",
+      "concentration": 30.0,
+      "concentration_unit": "mM",
+      "category": "buffer",
+      "rationale": "30 mM phosphate buffer adjusted to pH 6.5",
+      "confidence": 0.85,
+      "derived_from": [
+        "pH from RecipeContext.conditions"
+      ]
+    },
+    {
+      "name": "NaCl",
+      "chemical_formula": "NaCl",
+      "concentration": 5.0,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Standard salinity baseline (5 g/L) for non-halophile",
+      "confidence": 0.85,
+      "derived_from": [
+        "RecipeContext.conditions.salinity_category"
+      ]
+    },
+    {
+      "name": "MgSO4\u00b77H2O",
+      "chemical_formula": "MgSO4\u00b77H2O",
+      "concentration": 0.2,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Magnesium and sulfur source",
+      "confidence": 0.9,
+      "derived_from": [
+        "common basal"
+      ]
+    },
+    {
+      "name": "CaCl2\u00b72H2O",
+      "chemical_formula": "CaCl2\u00b72H2O",
+      "concentration": 0.04,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Calcium baseline",
+      "confidence": 0.9,
+      "derived_from": [
+        "common basal"
+      ]
+    },
+    {
+      "name": "SL-10 trace metal solution",
+      "chemical_formula": "(see SL-10 reference)",
+      "concentration": 1.0,
+      "concentration_unit": "mL/L",
+      "category": "trace_metal",
+      "rationale": "SL-10 (Tschech & Pfennig 1984): Fe, Zn, Mn, B, Co, Cu, Ni, Mo at standard concentrations. 1 mL/L final.",
+      "confidence": 0.85,
+      "derived_from": [
+        "common basal",
+        "MeBiPred metal predictions"
+      ]
+    },
+    {
+      "name": "Wolin's vitamin solution",
+      "chemical_formula": "(see Wolin 1963 reference)",
+      "concentration": 1.0,
+      "concentration_unit": "mL/L",
+      "category": "vitamin",
+      "rationale": "Wolin's vitamins (Wolin et al. 1963): biotin, folic acid, pyridoxine, thiamine, riboflavin, nicotinic acid, pantothenate, B12, p-aminobenzoic acid, lipoic acid. 1 mL/L final.",
+      "confidence": 0.85,
+      "derived_from": [
+        "common basal",
+        "RecipeContext.cofactors"
+      ]
+    }
+  ],
+  "gas_phase": {
+    "composition": {
+      "air": 1.0
+    },
+    "pressure_atm": 1.0,
+    "rationale": "Atmospheric air (21% O2, 0.04% CO2). Standard aerobic culture."
+  },
+  "conditions": {
+    "temperature_c": 25.299267300844846,
+    "ph": 6.488711987429558,
+    "light_required": false,
+    "light_intensity_umol_per_m2_per_s": null,
+    "shaking_rpm": 200,
+    "rationale": "Temperature 25.299267300844846\u00b0C, pH 6.488711987429558 from genomespot; shaking 200 rpm for O2 transfer"
+  },
+  "thermodynamic_checks": [
+    {
+      "capability_name": "aerobic_chemotrophic",
+      "primary_reaction": "Organic + O2 \u2192 CO2 + H2O (representative: glucose oxidation)",
+      "delta_g_kj_per_mol": -2880.0,
+      "feasible": true,
+      "feasibility_class": "feasible",
+      "notes": ""
+    }
+  ],
+  "composition_rationale": [
+    "Aerobic chemotrophy: organic carbon oxidation coupled to O2 reduction via terminal oxidases (Cox/Qox/cbb3). Recipe provides organic carbon and atmospheric O2."
+  ],
+  "uncertainty_flags": [],
+  "limitations_referenced": [],
+  "overall_confidence": 0.79,
+  "confidence_rationale": "base from RecipeContext = 0.79 \u2192 final 0.79",
+  "similar_published_media": [],
+  "escalated": false,
+  "escalation_reason": ""
+}

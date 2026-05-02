@@ -1,0 +1,146 @@
+{
+  "genome_id": 11,
+  "species": "Acidithiobacillus ferrooxidans",
+  "primary_cultivation_mode": "lithotrophic_aerobic (Fe(II) oxidation, acidophilic)",
+  "alternative_cultivation_modes": [
+    "aerobic_chemotrophic"
+  ],
+  "ingredients": [
+    {
+      "name": "CO2 / NaHCO3 (autotrophic carbon)",
+      "chemical_formula": "CO2 / NaHCO3",
+      "concentration": 2.0,
+      "concentration_unit": "g/L NaHCO3",
+      "category": "carbon_source",
+      "rationale": "CO2 from headspace + bicarbonate buffer. Autotrophic lithotrophs fix CO2 via CBB cycle (rbcL detected) or rTCA.",
+      "confidence": 0.85,
+      "derived_from": [
+        "RecipeContext.carbon_sources=CO2",
+        "rbcL/aclA detected"
+      ]
+    },
+    {
+      "name": "FeSO4\u00b77H2O",
+      "chemical_formula": "FeSO4\u00b77H2O",
+      "concentration": 20.0,
+      "concentration_unit": "g/L",
+      "category": "electron_donor",
+      "rationale": "Ferrous iron as electron donor (~70 mM). Acidic pH (~2) keeps Fe(II) soluble.",
+      "confidence": 0.9,
+      "derived_from": [
+        "RecipeContext.electron_donors=Fe(II)",
+        "cyc2 detected"
+      ]
+    },
+    {
+      "name": "NaCl",
+      "chemical_formula": "NaCl",
+      "concentration": 5.0,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Standard salinity baseline (5 g/L) for non-halophile",
+      "confidence": 0.85,
+      "derived_from": [
+        "RecipeContext.conditions.salinity_category"
+      ]
+    },
+    {
+      "name": "MgSO4\u00b77H2O",
+      "chemical_formula": "MgSO4\u00b77H2O",
+      "concentration": 0.2,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Magnesium and sulfur source",
+      "confidence": 0.9,
+      "derived_from": [
+        "common basal"
+      ]
+    },
+    {
+      "name": "CaCl2\u00b72H2O",
+      "chemical_formula": "CaCl2\u00b72H2O",
+      "concentration": 0.04,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Calcium baseline",
+      "confidence": 0.9,
+      "derived_from": [
+        "common basal"
+      ]
+    },
+    {
+      "name": "SL-10 trace metal solution",
+      "chemical_formula": "(see SL-10 reference)",
+      "concentration": 1.0,
+      "concentration_unit": "mL/L",
+      "category": "trace_metal",
+      "rationale": "SL-10 (Tschech & Pfennig 1984): Fe, Zn, Mn, B, Co, Cu, Ni, Mo at standard concentrations. 1 mL/L final.",
+      "confidence": 0.85,
+      "derived_from": [
+        "common basal",
+        "MeBiPred metal predictions"
+      ]
+    },
+    {
+      "name": "Wolin's vitamin solution",
+      "chemical_formula": "(see Wolin 1963 reference)",
+      "concentration": 1.0,
+      "concentration_unit": "mL/L",
+      "category": "vitamin",
+      "rationale": "Wolin's vitamins (Wolin et al. 1963): biotin, folic acid, pyridoxine, thiamine, riboflavin, nicotinic acid, pantothenate, B12, p-aminobenzoic acid, lipoic acid. 1 mL/L final.",
+      "confidence": 0.85,
+      "derived_from": [
+        "common basal",
+        "RecipeContext.cofactors"
+      ]
+    },
+    {
+      "name": "H2SO4 (pH adjustment)",
+      "chemical_formula": "H2SO4",
+      "concentration": 0.0,
+      "concentration_unit": "(adjust to pH 2.0)",
+      "category": "buffer",
+      "rationale": "Adjust pH to 2.0 with H2SO4 \u2014 acidophile.",
+      "confidence": 0.9,
+      "derived_from": [
+        "acidophile pH"
+      ]
+    }
+  ],
+  "gas_phase": {
+    "composition": {
+      "air": 0.98,
+      "CO2": 0.02
+    },
+    "pressure_atm": 1.0,
+    "rationale": "Aerobic atmosphere with elevated CO2 for autotrophic carbon fixation."
+  },
+  "conditions": {
+    "temperature_c": 34.85997456811431,
+    "ph": 2.0,
+    "light_required": false,
+    "light_intensity_umol_per_m2_per_s": null,
+    "shaking_rpm": 150,
+    "rationale": "Temperature 34.85997456811431\u00b0C, pH 4.25941867411751 from genomespot; shaking 150 rpm for O2 + CO2 transfer \u2014 pH 2.0 (acidophilic; Fe(II) soluble)"
+  },
+  "thermodynamic_checks": [
+    {
+      "capability_name": "lithotrophic_aerobic",
+      "primary_reaction": "4 Fe(II) + O2 + 4 H+ \u2192 4 Fe(III) + 2 H2O",
+      "delta_g_kj_per_mol": -32.0,
+      "feasible": true,
+      "feasibility_class": "feasible",
+      "notes": ""
+    }
+  ],
+  "composition_rationale": [
+    "Lithotrophic aerobic: inorganic electron donor + O2 acceptor. Autotrophic CO2 fixation supplies carbon."
+  ],
+  "uncertainty_flags": [],
+  "limitations_referenced": [],
+  "overall_confidence": 0.79,
+  "confidence_rationale": "base from RecipeContext = 0.79 \u2192 final 0.79",
+  "similar_published_media": [],
+  "escalated": false,
+  "escalation_reason": ""
+}

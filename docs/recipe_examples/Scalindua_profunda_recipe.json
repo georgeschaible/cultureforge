@@ -1,0 +1,171 @@
+{
+  "genome_id": 30,
+  "species": "Candidatus Scalindua profunda",
+  "primary_cultivation_mode": "fermentative",
+  "alternative_cultivation_modes": [
+    "aerobic_chemotrophic"
+  ],
+  "ingredients": [
+    {
+      "name": "L-Cysteine\u00b7HCl",
+      "chemical_formula": "C3H8ClNO2S",
+      "concentration": 0.5,
+      "concentration_unit": "g/L",
+      "category": "reducing_agent",
+      "rationale": "Cysteine as reducing agent (gentler than Na2S for fermenters; supplies sulfur amino acid).",
+      "confidence": 0.85,
+      "derived_from": [
+        "anaerobic + fermentative"
+      ]
+    },
+    {
+      "name": "Glucose",
+      "chemical_formula": null,
+      "concentration": 2.0,
+      "concentration_unit": "g/L",
+      "category": "carbon_source",
+      "rationale": "Carbon source from RecipeContext: gapseq: UDP-&alpha;-D-glucose biosynthesis (100%)",
+      "confidence": 0.85,
+      "derived_from": [
+        "heterotrophic"
+      ]
+    },
+    {
+      "name": "Lactose",
+      "chemical_formula": null,
+      "concentration": 2.0,
+      "concentration_unit": "g/L",
+      "category": "carbon_source",
+      "rationale": "Carbon source from RecipeContext: gapseq: D-galactose detoxification (100%)",
+      "confidence": 0.85,
+      "derived_from": [
+        "heterotrophic"
+      ]
+    },
+    {
+      "name": "Yeast extract",
+      "chemical_formula": null,
+      "concentration": 2.0,
+      "concentration_unit": "g/L",
+      "category": "nitrogen_source",
+      "rationale": "Yeast extract supplies amino acids, B-vitamins, and growth factors that fermenters typically can't biosynthesize.",
+      "confidence": 0.85,
+      "derived_from": [
+        "fermentative mode"
+      ]
+    },
+    {
+      "name": "Phosphate buffer (KH2PO4 + K2HPO4)",
+      "chemical_formula": "KH2PO4 / K2HPO4",
+      "concentration": 30.0,
+      "concentration_unit": "mM",
+      "category": "buffer",
+      "rationale": "30 mM phosphate buffer adjusted to pH 7.0",
+      "confidence": 0.85,
+      "derived_from": [
+        "pH from RecipeContext.conditions"
+      ]
+    },
+    {
+      "name": "NaCl",
+      "chemical_formula": "NaCl",
+      "concentration": 5.0,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Standard salinity baseline (5 g/L) for non-halophile",
+      "confidence": 0.85,
+      "derived_from": [
+        "RecipeContext.conditions.salinity_category"
+      ]
+    },
+    {
+      "name": "MgSO4\u00b77H2O",
+      "chemical_formula": "MgSO4\u00b77H2O",
+      "concentration": 0.2,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Magnesium and sulfur source",
+      "confidence": 0.9,
+      "derived_from": [
+        "common basal"
+      ]
+    },
+    {
+      "name": "CaCl2\u00b72H2O",
+      "chemical_formula": "CaCl2\u00b72H2O",
+      "concentration": 0.04,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Calcium baseline",
+      "confidence": 0.9,
+      "derived_from": [
+        "common basal"
+      ]
+    },
+    {
+      "name": "SL-10 trace metal solution",
+      "chemical_formula": "(see SL-10 reference)",
+      "concentration": 1.0,
+      "concentration_unit": "mL/L",
+      "category": "trace_metal",
+      "rationale": "SL-10 (Tschech & Pfennig 1984): Fe, Zn, Mn, B, Co, Cu, Ni, Mo at standard concentrations. 1 mL/L final.",
+      "confidence": 0.85,
+      "derived_from": [
+        "common basal",
+        "MeBiPred metal predictions"
+      ]
+    },
+    {
+      "name": "Wolin's vitamin solution",
+      "chemical_formula": "(see Wolin 1963 reference)",
+      "concentration": 1.0,
+      "concentration_unit": "mL/L",
+      "category": "vitamin",
+      "rationale": "Wolin's vitamins (Wolin et al. 1963): biotin, folic acid, pyridoxine, thiamine, riboflavin, nicotinic acid, pantothenate, B12, p-aminobenzoic acid, lipoic acid. 1 mL/L final.",
+      "confidence": 0.85,
+      "derived_from": [
+        "common basal",
+        "RecipeContext.cofactors"
+      ]
+    }
+  ],
+  "gas_phase": {
+    "composition": {
+      "N2": 1.0
+    },
+    "pressure_atm": 1.0,
+    "rationale": "N2 anaerobic headspace; no CO2 needed."
+  },
+  "conditions": {
+    "temperature_c": 30.0,
+    "ph": 7.0,
+    "light_required": false,
+    "light_intensity_umol_per_m2_per_s": null,
+    "shaking_rpm": null,
+    "rationale": "Temperature 30.0\u00b0C, pH 7.0 (default \u2014 no GenomeSPOT/TEMPURA data)"
+  },
+  "thermodynamic_checks": [
+    {
+      "capability_name": "fermentative",
+      "primary_reaction": "glucose \u2192 2 lactate (or other fermentation products)",
+      "delta_g_kj_per_mol": -196.0,
+      "feasible": true,
+      "feasibility_class": "feasible",
+      "notes": ""
+    }
+  ],
+  "composition_rationale": [
+    "Fermentation: substrate-level phosphorylation. Recipe provides fermentable carbon source under anaerobic conditions; no terminal electron acceptor needed."
+  ],
+  "uncertainty_flags": [
+    "Scalindua-clade detection failure is a MAG completeness limitation: predicted proteome lacks hzsA / hdh, so anammox could not be detected. The composed recipe is for the highest-confidence DETECTED mode but does NOT reflect the organism's true biology. Treat as ESCALATE_STRUCTURAL."
+  ],
+  "limitations_referenced": [
+    "E.1"
+  ],
+  "overall_confidence": 0.11,
+  "confidence_rationale": "",
+  "similar_published_media": [],
+  "escalated": true,
+  "escalation_reason": "Scalindua MAG lacks hzsA/hdh in predicted proteome. The composed recipe routes to the next-best detected mode but is not biologically correct. Manual annotation or improved MAG required."
+}

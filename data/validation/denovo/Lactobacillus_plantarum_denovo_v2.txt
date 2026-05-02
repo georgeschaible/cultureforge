@@ -1,0 +1,168 @@
+
+[1/5] Extracting 16S rRNA from data/genomes/Lactobacillus_plantarum.fasta ...
+      1563 bp 16S extracted.
+
+[2/5] BLASTing against /home/george/cultureforge/data/blastdb/16s_ref ...
+      10 hits, best 99.9% (Lactiplantibacillus plantarum)
+
+[3/5] Looking up genome in DB (accession=NC_004567.2) ...
+      genome_id=10
+
+[4/5] Synthesizing de novo recipe ...
+      Energy metabolism: aerobic_heterotroph [0.40]
+      Components: 19, auxotrophies: 16
+
+[5/5] (Use --compare-template to see side-by-side comparison)
+
+================================================================================
+  DE NOVO RECIPE — composed from genomic evidence
+  Query: NC_004567.2
+================================================================================
+
+  Overall Confidence: LOW (0.40)
+  → weighted: 70% critical_min (0.40) + 30% secondary_mean (0.88); 4 critical, 16 secondary components; −0.15 compatibility penalty (3 warnings)
+
+  ENERGY METABOLISM: Aerobic Heterotroph
+    Electron donor:    organic carbon
+    Electron acceptor: O2
+    Autotrophic:       No
+    Genomic evidence:  cytochrome oxidase 50%; 26 carbon substrates predicted
+    Confidence:        [0.40] LOW
+    → gapseq pathway completeness 50% — partial evidence
+
+  CARBON SOURCE:
+    NaHCO3                                   2.44 g/L        [0.70] ⚠
+      → autotroph — Calvin cycle (CBB) 69% complete; calibrated: median=2.44 g/L (n=652, global_median)
+
+  NITROGEN SOURCE:
+    NH4Cl                                    490.0 mg/L      [0.75]
+      → NH4Cl default (universal prokaryotic N source); calibrated median=0.49 g/L (n=1141)
+
+  COMPLEX NUTRIENT SOURCE:
+    Yeast extract                            1.0 g/L         [0.80]
+      → 16 auxotrophies detected (>5 threshold); yeast extract covers vitamins + amino acids; calibrated: median=1.00 g/L (n=1802)
+      ⚠ 16 auxotrophies; yeast extract covers most; test without if pure culture needed
+
+  SULFUR SOURCE:
+    L-Cysteine                               50.0 mg/L       [0.80]
+      → cysteine auxotrophy detected — needs organic sulfur supplement
+
+  PHOSPHATE / BUFFER:
+    K2HPO4                                   500.0 mg/L      [0.80]
+      → standard phosphate concentration (no P-limitation signal); calibrated median=0.50 g/L (n=952)
+
+  BUFFER:
+    MES (2-(N-morpholino)ethanesulfonic acid) 1.95 g/L        [0.75]
+      → pH 5.8 → non-phosphate buffer needed; calibrated median=1.95 g/L (n=40)
+
+  VITAMINS / COFACTORS:
+    heme                                     5.0 mg/L        [0.72] ⚠
+      → gapseq auxotrophy: biosynthesis pathway 50% complete (gap probability 50%)
+      ⚠ partial biosynthesis (50%); test with/without to confirm requirement
+    molybdopterin                            1.0 mg/L        [0.72] ⚠
+      → gapseq auxotrophy: biosynthesis pathway 50% complete (gap probability 50%)
+      ⚠ partial biosynthesis (50%); test with/without to confirm requirement
+    siroheme                                 1.0 mg/L        [0.95]
+      → gapseq auxotrophy: biosynthesis pathway 0% complete (gap probability 100%)
+
+  TRACE METALS:
+    MgSO4·7H2O                               500.0 mg/L      [0.95]
+      → MeBiPred: 823 Mg-binding proteins (max_p=0.99, fraction=26.6%)
+    CaCl2·2H2O                               50.0 mg/L       [0.95]
+      → MeBiPred: 633 Ca-binding proteins (max_p=1.00, fraction=20.5%)
+    NaCl                                     1.0 g/L         [0.95]
+      → MeBiPred: 381 Na-binding proteins (max_p=0.95, fraction=12.3%)
+    FeSO4·7H2O                               5.0 mg/L        [0.95]
+      → MeBiPred: 357 Fe-binding proteins (max_p=1.00, fraction=11.6%)
+    MnCl2·4H2O                               500 μg/L        [0.95]
+      → MeBiPred: 298 Mn-binding proteins (max_p=1.00, fraction=9.6%)
+    NiCl2·6H2O                               50 μg/L         [0.95]
+      → MeBiPred: 260 Ni-binding proteins (max_p=1.00, fraction=8.4%)
+      ⚠ max_p 1.00 on rare metal — verify with BRENDA
+    CuSO4·5H2O                               50 μg/L         [0.95]
+      → MeBiPred: 156 Cu-binding proteins (max_p=1.00, fraction=5.1%)
+      ⚠ max_p 1.00 on rare metal — verify with BRENDA
+    ZnSO4·7H2O                               500 μg/L        [0.95]
+      → MeBiPred: 142 Zn-binding proteins (max_p=0.99, fraction=4.6%)
+    CoCl2·6H2O                               50 μg/L         [0.95]
+      → MeBiPred: 100 Co-binding proteins (max_p=1.00, fraction=3.2%)
+      ⚠ max_p 1.00 on rare metal — verify with BRENDA
+
+  ATMOSPHERE / REDOX:
+    Aerobic (air) — no special headspace needed                 [0.85]
+      → no anaerobic or H₂-dependent metabolism detected
+
+  AUXOTROPHY SUMMARY: 16 auxotrophies detected
+    → >5 auxotrophies: yeast extract added to cover vitamins + amino acids
+
+================================================================================
+  COMPATIBILITY WARNINGS
+================================================================================
+    ✗ [HIGH] FePO4 / Fe3(PO4)2 (vivianite / iron phosphate)
+        FeSO4·7H2O  +  K2HPO4  (condition: pH > 5.5)
+        → Prepare iron and phosphate solutions SEPARATELY; autoclave separately; combine post-cooling. OR add chelator (NTA 0.1-1 mg/L or Na-EDTA 0.5-5 mg/L) to iron solution before combining. OR use ferric citrate (pre-chelated iron).
+
+    ✗ [HIGH] FeS / FeS2 (iron sulfide / pyrite)
+        FeSO4·7H2O  +  L-Cysteine  (condition: any pH)
+        → Prepare iron and reducing-agent/sulfide solutions SEPARATELY; combine under anaerobic conditions post-autoclaving. Consider titanium(III) citrate as alternative reductant if FeS precipitation is problematic.
+
+    ○ [LOW] CaSO4 (gypsum)
+        CaCl2·2H2O  +  MgSO4·7H2O  (condition: high concentrations (>20 mM each))
+        → Usually not problematic at typical medium concentrations. If both Ca and SO4 are at high levels, reduce one or prepare separately.
+
+  PREPARATION INSTRUCTIONS (auto-generated from compatibility check)
+
+  SOLUTION A — Phosphate/buffer (autoclave separately):
+    - K2HPO4
+    → Dissolve in partial volume H₂O, autoclave 121°C 15 min
+
+  SOLUTION B — Metals/iron (autoclave separately):
+    - CoCl2·6H2O
+    - CuSO4·5H2O
+    - FeSO4·7H2O
+    - MES (2-(N-morpholino)ethanesulfonic acid)
+    - MnCl2·4H2O
+    - NaHCO3
+    - NiCl2·6H2O
+    - ZnSO4·7H2O
+    - Na-EDTA or NTA (chelator, 0.5-5 mg/L)
+    → Dissolve in partial volume H₂O, autoclave 121°C 15 min
+
+  SOLUTION C — Reducing agents/sulfide (prepare under N₂, add LAST):
+    - L-Cysteine
+    → Prepare under N₂ atmosphere; autoclave separately or
+      prepare from sterile anaerobic stock; add to cooled
+      combined medium under anaerobic conditions
+
+  COMBINE: Cool all solutions to ~50°C under sterile conditions.
+           Add solutions in order: base salts → phosphate →
+           metals (with chelator) → reducing agents/sulfide (last).
+           Adjust pH to target with sterile NaOH/HCl.
+
+================================================================================
+  PHYSICAL FORMAT
+================================================================================
+  Primary: Solid agar plates (1.5%) for isolation; liquid broth for cultivation
+    → Standard aerobic/facultative organism — no special format needed.
+  Solidifying agent: Agar (Bacto or Noble) 1.2-2.0%
+
+================================================================================
+  EXPERIMENTAL VARIATION MATRIX
+================================================================================
+  • NaHCO3 (CO2 source / buffer) (70% confidence)
+      → Test alternative carbon sources alongside NaHCO3
+  • Yeast extract (16 auxotrophies; yeast extract covers most; test without if pure culture needed)
+      → Test variants experimentally
+  • heme supplement (partial biosynthesis (50%); test with/without to confirm requirement)
+      → Test variants experimentally
+  • molybdopterin supplement (partial biosynthesis (50%); test with/without to confirm requirement)
+      → Test variants experimentally
+  • Ni trace metal (NiCl2·6H2O) (max_p 1.00 on rare metal — verify with BRENDA)
+      → Test with and without NiCl2·6H2O
+  • Cu trace metal (CuSO4·5H2O) (max_p 1.00 on rare metal — verify with BRENDA)
+      → Test with and without CuSO4·5H2O
+  • Co trace metal (CoCl2·6H2O) (max_p 1.00 on rare metal — verify with BRENDA)
+      → Test with and without CoCl2·6H2O
+
+
+[dry run — not persisted]

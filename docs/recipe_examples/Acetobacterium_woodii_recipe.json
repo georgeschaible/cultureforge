@@ -1,0 +1,167 @@
+{
+  "genome_id": 22,
+  "species": "Acetobacterium woodii",
+  "primary_cultivation_mode": "acetogenic",
+  "alternative_cultivation_modes": [
+    "fermentative"
+  ],
+  "ingredients": [
+    {
+      "name": "Na2S\u00b79H2O",
+      "chemical_formula": "Na2S\u00b79H2O",
+      "concentration": 0.5,
+      "concentration_unit": "mM",
+      "category": "reducing_agent",
+      "rationale": "Establishes anaerobiosis.",
+      "confidence": 0.95,
+      "derived_from": [
+        "acetogenic mode (anaerobic)"
+      ]
+    },
+    {
+      "name": "NaHCO3",
+      "chemical_formula": "NaHCO3",
+      "concentration": 2.5,
+      "concentration_unit": "g/L",
+      "category": "buffer",
+      "rationale": "Bicarbonate buffer in equilibrium with CO2 headspace.",
+      "confidence": 0.85,
+      "derived_from": [
+        "acetogenic mode"
+      ]
+    },
+    {
+      "name": "Cyanocobalamin (B12)",
+      "chemical_formula": "C63H88CoN14O14P",
+      "concentration": 50.0,
+      "concentration_unit": "\u03bcg/L",
+      "category": "vitamin",
+      "rationale": "B12 elevated for acsB/cooS \u2014 corrinoid is the methyl carrier in WL pathway.",
+      "confidence": 0.95,
+      "derived_from": [
+        "acetogenic mode (acsB+cooS)"
+      ]
+    },
+    {
+      "name": "CO2 (autotrophic carbon)",
+      "chemical_formula": "CO2",
+      "concentration": 20.0,
+      "concentration_unit": "% v/v",
+      "category": "carbon_source",
+      "rationale": "CO2 reduced to acetate via WL pathway; autotrophic.",
+      "confidence": 0.9,
+      "derived_from": [
+        "acetogenic + RecipeContext.carbon_sources=CO2"
+      ]
+    },
+    {
+      "name": "Co2",
+      "chemical_formula": null,
+      "concentration": 2.0,
+      "concentration_unit": "g/L",
+      "category": "carbon_source",
+      "rationale": "Carbon source from RecipeContext: autotrophic cultivation mode detected",
+      "confidence": 0.85,
+      "derived_from": [
+        "acetogenic"
+      ]
+    },
+    {
+      "name": "Glucose",
+      "chemical_formula": null,
+      "concentration": 2.0,
+      "concentration_unit": "g/L",
+      "category": "carbon_source",
+      "rationale": "Carbon source from RecipeContext: gapseq: glycogen biosynthesis I (from ADP-D-Glucose) (100%)",
+      "confidence": 0.85,
+      "derived_from": [
+        "heterotrophic"
+      ]
+    },
+    {
+      "name": "NaCl",
+      "chemical_formula": "NaCl",
+      "concentration": 5.0,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Standard salinity baseline (5 g/L) for non-halophile",
+      "confidence": 0.85,
+      "derived_from": [
+        "RecipeContext.conditions.salinity_category"
+      ]
+    },
+    {
+      "name": "MgSO4\u00b77H2O",
+      "chemical_formula": "MgSO4\u00b77H2O",
+      "concentration": 0.2,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Magnesium and sulfur source",
+      "confidence": 0.9,
+      "derived_from": [
+        "common basal"
+      ]
+    },
+    {
+      "name": "CaCl2\u00b72H2O",
+      "chemical_formula": "CaCl2\u00b72H2O",
+      "concentration": 0.04,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Calcium baseline",
+      "confidence": 0.9,
+      "derived_from": [
+        "common basal"
+      ]
+    },
+    {
+      "name": "SL-10 trace metal solution",
+      "chemical_formula": "(see SL-10 reference)",
+      "concentration": 1.0,
+      "concentration_unit": "mL/L",
+      "category": "trace_metal",
+      "rationale": "SL-10 (Tschech & Pfennig 1984): Fe, Zn, Mn, B, Co, Cu, Ni, Mo at standard concentrations. 1 mL/L final.",
+      "confidence": 0.85,
+      "derived_from": [
+        "common basal",
+        "MeBiPred metal predictions"
+      ]
+    }
+  ],
+  "gas_phase": {
+    "composition": {
+      "H2": 0.8,
+      "CO2": 0.2
+    },
+    "pressure_atm": 1.5,
+    "rationale": "H2/CO2 80:20 \u2014 H2 electron donor, CO2 carbon source + electron acceptor."
+  },
+  "conditions": {
+    "temperature_c": 30.0,
+    "ph": 7.0,
+    "light_required": false,
+    "light_intensity_umol_per_m2_per_s": null,
+    "shaking_rpm": null,
+    "rationale": "Temperature 30.0\u00b0C, pH 7.0 (default \u2014 no GenomeSPOT/TEMPURA data)"
+  },
+  "thermodynamic_checks": [
+    {
+      "capability_name": "acetogenic",
+      "primary_reaction": "4 H2 + 2 CO2 \u2192 acetate + 2 H2O + H+ (Wood-Ljungdahl)",
+      "delta_g_kj_per_mol": -94.9,
+      "feasible": true,
+      "feasibility_class": "feasible",
+      "notes": ""
+    }
+  ],
+  "composition_rationale": [
+    "Acetogenesis via Wood-Ljungdahl: CO2 + H2 \u2192 acetate. Strict anaerobic culture; B12 essential cofactor."
+  ],
+  "uncertainty_flags": [],
+  "limitations_referenced": [],
+  "overall_confidence": 0.61,
+  "confidence_rationale": "base from RecipeContext = 0.61 \u2192 final 0.61",
+  "similar_published_media": [],
+  "escalated": false,
+  "escalation_reason": ""
+}

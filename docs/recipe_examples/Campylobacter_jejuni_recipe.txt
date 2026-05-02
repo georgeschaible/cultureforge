@@ -1,0 +1,77 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: Campylobacter jejuni (NC_002163.1)
+Genome ID: 15
+Domain: Gram_neg
+Generated: 2026-04-28 16:58:25
+CultureForge version: 2026-04-28
+══════════════════════════════════════════════════════════════════════
+
+RECIPE (Section 10)
+──────────────────────────────────────────────────────────────────────
+
+PRIMARY CULTIVATION MODE: aerobic_chemotrophic
+ALTERNATIVE MODES (also detected): fermentative
+
+GAS PHASE
+  air:   100%
+  Pressure: 1.0 atm
+    Atmospheric air (21% O2, 0.04% CO2). Standard aerobic
+    culture.
+
+INCUBATION CONDITIONS
+  Temperature: 24.5°C
+  pH:          6.6
+  Light:       not required
+  Shaking:     200 rpm
+    Temperature 24.54161922069305°C, pH 6.583855285736501 from
+    genomespot; shaking 200 rpm for O2 transfer
+
+INGREDIENTS
+  Buffer:
+    Phosphate buffer (KH2PO4 + K2HPO4)               30 mM
+      30 mM phosphate buffer adjusted to pH 6.6
+      (confidence 0.85)
+  Salt:
+    NaCl                                              5 g/L
+      Standard salinity baseline (5 g/L) for non-halophile
+      (confidence 0.85)
+    MgSO4·7H2O                                      0.2 g/L
+      Magnesium and sulfur source
+      (confidence 0.90)
+    CaCl2·2H2O                                     0.04 g/L
+      Calcium baseline
+      (confidence 0.90)
+  Carbon Source:
+    Glucose                                           2 g/L
+      Carbon source from RecipeContext: gapseq:
+      UDP-&alpha;-D-glucose biosynthesis (100%)
+      (confidence 0.85)
+    Fructose                                          2 g/L
+      Carbon source from RecipeContext: gapseq: glycolysis
+      II (from fructose 6-phosphate) (72%)
+      (confidence 0.72)
+  Trace Metal:
+    SL-10 trace metal solution                        1 mL/L
+      SL-10 (Tschech & Pfennig 1984): Fe, Zn, Mn, B, Co, Cu,
+      Ni, Mo at standard concentrations. 1 mL/L final.
+      (confidence 0.85)
+  Vitamin:
+    Wolin's vitamin solution                          1 mL/L
+      Wolin's vitamins (Wolin et al. 1963): biotin, folic
+      acid, pyridoxine, thiamine, riboflavin, nicotinic
+      acid, pantothenate, B12, p-aminobenzoic acid, lipoic
+      acid. 1 mL/L final.
+      (confidence 0.85)
+
+THERMODYNAMIC CHECK
+  Reaction: Organic + O2 → CO2 + H2O (representative: glucose oxidation)
+  ΔG (standard, default activities): -2880.0 kJ/mol
+  Feasibility: feasible (feasible)
+
+UNCERTAINTY FLAGS
+  None significant for this recipe.
+
+OVERALL CONFIDENCE: 0.82 (high)
+    RATIONALE: base from RecipeContext = 0.82 → final 0.82
+──────────────────────────────────────────────────────────────────────

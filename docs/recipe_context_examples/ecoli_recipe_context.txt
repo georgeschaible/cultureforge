@@ -1,0 +1,50 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: Escherichia coli (NC_000913.3)
+Genome ID: 6
+Domain: Gram_neg
+Generated: 2026-04-26 21:11:12
+CultureForge version: 2026-04-26
+══════════════════════════════════════════════════════════════════════
+
+RECIPE CONTEXT (Section 9)
+──────────────────────────────────────────────────────────────────────
+
+ATMOSPHERE
+  Primary:        aerobic
+  Alternatives:   anaerobic
+
+CARBON SOURCES
+  glucose                   type=sugar           conf 0.85
+    gapseq: glycolysis III (from glucose) (100%)
+  fructose                  type=sugar           conf 0.85
+    gapseq: fructose degradation (100%)
+  lactose                   type=sugar           conf 0.85
+    gapseq: lactose degradation III (100%)
+
+ELECTRON DONORS
+  organic carbon            conf 0.75  (heterotrophic)
+
+ELECTRON ACCEPTORS
+  O2                             conf 0.90  (aerobic)
+
+NITROGEN SOURCES
+  NH4+                                          conf 0.80
+    standard inorganic nitrogen source
+
+TRACE METALS
+  Mg    essential    MeBiPred: 1190 binding proteins (27.6% of proteome)
+  Ca    essential    MeBiPred: 856 binding proteins (19.8% of proteome)
+  K     essential    MeBiPred: 673 binding proteins (15.6% of proteome)
+  Fe    essential    MeBiPred: 666 binding proteins (15.4% of proteome)
+  Na    essential    MeBiPred: 643 binding proteins (14.9% of proteome)
+  Ni    essential    MeBiPred: 547 binding proteins (12.7% of proteome)
+  Mn    essential    MeBiPred: 497 binding proteins (11.5% of proteome)
+  Zn    supporting   MeBiPred: 307 binding proteins (7.1% of proteome)
+
+GROWTH CONDITIONS
+  Temperature:    30°C optimum (range 25-36°C)  (source: genomespot)
+  pH:             7.4 optimum (range 6.5-8.3)
+
+OVERALL CONFIDENCE: 0.82
+──────────────────────────────────────────────────────────────────────

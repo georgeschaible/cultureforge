@@ -1,0 +1,143 @@
+{
+  "genome_id": 20,
+  "species": "Halobacterium salinarum",
+  "primary_cultivation_mode": "halophilic_with_rhodopsin",
+  "alternative_cultivation_modes": [
+    "aerobic_chemotrophic"
+  ],
+  "ingredients": [
+    {
+      "name": "NaCl",
+      "chemical_formula": "NaCl",
+      "concentration": 250.0,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "25% NaCl (~4.3 M) \u2014 extreme halophile; cytoplasmic K+ concentration matched to external Na+.",
+      "confidence": 0.95,
+      "derived_from": [
+        "RecipeContext.conditions.salinity_category=extreme_halophile"
+      ]
+    },
+    {
+      "name": "MgSO4\u00b77H2O",
+      "chemical_formula": "MgSO4\u00b77H2O",
+      "concentration": 20.0,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Elevated MgSO4 (~80 mM) typical of haloarchaeal media.",
+      "confidence": 0.9,
+      "derived_from": [
+        "halophile mode"
+      ]
+    },
+    {
+      "name": "KCl",
+      "chemical_formula": "KCl",
+      "concentration": 2.0,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Potassium baseline (~25 mM) for halophile osmotic balance.",
+      "confidence": 0.85,
+      "derived_from": [
+        "halophile mode"
+      ]
+    },
+    {
+      "name": "Peptone",
+      "chemical_formula": null,
+      "concentration": 10.0,
+      "concentration_unit": "g/L",
+      "category": "carbon_source",
+      "rationale": "Amino-acid carbon source for halobacterial growth.",
+      "confidence": 0.85,
+      "derived_from": [
+        "heterotrophic halophile"
+      ]
+    },
+    {
+      "name": "Yeast extract",
+      "chemical_formula": null,
+      "concentration": 5.0,
+      "concentration_unit": "g/L",
+      "category": "nitrogen_source",
+      "rationale": "Vitamins + amino acids.",
+      "confidence": 0.85,
+      "derived_from": [
+        "heterotrophic halophile"
+      ]
+    },
+    {
+      "name": "Phosphate buffer (KH2PO4 + K2HPO4)",
+      "chemical_formula": "KH2PO4 / K2HPO4",
+      "concentration": 30.0,
+      "concentration_unit": "mM",
+      "category": "buffer",
+      "rationale": "30 mM phosphate buffer adjusted to pH 7.0",
+      "confidence": 0.85,
+      "derived_from": [
+        "pH from RecipeContext.conditions"
+      ]
+    },
+    {
+      "name": "SL-10 trace metal solution",
+      "chemical_formula": "(see SL-10 reference)",
+      "concentration": 1.0,
+      "concentration_unit": "mL/L",
+      "category": "trace_metal",
+      "rationale": "SL-10 (Tschech & Pfennig 1984): Fe, Zn, Mn, B, Co, Cu, Ni, Mo at standard concentrations. 1 mL/L final.",
+      "confidence": 0.85,
+      "derived_from": [
+        "common basal",
+        "MeBiPred metal predictions"
+      ]
+    },
+    {
+      "name": "Wolin's vitamin solution",
+      "chemical_formula": "(see Wolin 1963 reference)",
+      "concentration": 1.0,
+      "concentration_unit": "mL/L",
+      "category": "vitamin",
+      "rationale": "Wolin's vitamins (Wolin et al. 1963): biotin, folic acid, pyridoxine, thiamine, riboflavin, nicotinic acid, pantothenate, B12, p-aminobenzoic acid, lipoic acid. 1 mL/L final.",
+      "confidence": 0.85,
+      "derived_from": [
+        "common basal",
+        "RecipeContext.cofactors"
+      ]
+    }
+  ],
+  "gas_phase": {
+    "composition": {
+      "air": 1.0
+    },
+    "pressure_atm": 1.0,
+    "rationale": "Aerobic; halobacteria are obligate aerobes despite having rhodopsin."
+  },
+  "conditions": {
+    "temperature_c": 30.0,
+    "ph": 7.0,
+    "light_required": true,
+    "light_intensity_umol_per_m2_per_s": 50.0,
+    "shaking_rpm": 150,
+    "rationale": "Temperature 30.0\u00b0C, pH 7.0 (default \u2014 no GenomeSPOT/TEMPURA data); shaking 150 rpm; ambient light for rhodopsin"
+  },
+  "thermodynamic_checks": [
+    {
+      "capability_name": "halophilic_with_rhodopsin",
+      "primary_reaction": "Light + H+ \u2192 H+ pumped (rhodopsin proton pumping; supplementary energy)",
+      "delta_g_kj_per_mol": -10.0,
+      "feasible": false,
+      "feasibility_class": "feasible",
+      "notes": ""
+    }
+  ],
+  "composition_rationale": [
+    "Extreme halophile with bacteriorhodopsin. Aerobic heterotroph using amino acids; rhodopsin provides supplementary light-driven energy. High NaCl (~25%) is essential."
+  ],
+  "uncertainty_flags": [],
+  "limitations_referenced": [],
+  "overall_confidence": 0.52,
+  "confidence_rationale": "base from RecipeContext = 0.52 \u2192 final 0.52",
+  "similar_published_media": [],
+  "escalated": false,
+  "escalation_reason": ""
+}

@@ -1,0 +1,60 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: Sulfurimonas denitrificans (NC_009663.1)
+Genome ID: 17
+Domain: Gram_neg
+Generated: 2026-04-26 21:11:14
+CultureForge version: 2026-04-26
+══════════════════════════════════════════════════════════════════════
+
+RECIPE CONTEXT (Section 9)
+──────────────────────────────────────────────────────────────────────
+
+ATMOSPHERE
+  Primary:        microaerobic
+  Alternatives:   aerobic, anaerobic
+
+CARBON SOURCES
+  CO2                       type=CO2             conf 0.85
+    autotrophic cultivation mode detected
+
+ELECTRON DONORS
+  H2S / thiosulfate         conf 0.80  (sulfur_oxidation)
+  organic carbon            conf 0.75  (heterotrophic)
+
+ELECTRON ACCEPTORS
+  O2                             conf 0.90  (aerobic)
+  NO3-                           conf 0.75  (denitrification)
+
+NITROGEN SOURCES
+  NH4+                                          conf 0.80
+    standard inorganic nitrogen source
+
+TRACE METALS
+  Mg    essential    MeBiPred: 630 binding proteins (24.7% of proteome)
+  Ca    essential    MeBiPred: 575 binding proteins (22.5% of proteome)
+  K     essential    MeBiPred: 372 binding proteins (14.6% of proteome)
+  Fe    essential    MeBiPred: 371 binding proteins (14.5% of proteome)
+  Na    essential    MeBiPred: 286 binding proteins (11.2% of proteome)
+  Mn    essential    MeBiPred: 277 binding proteins (10.9% of proteome)
+  Ni    essential    MeBiPred: 275 binding proteins (10.8% of proteome)
+  Zn    supporting   MeBiPred: 180 binding proteins (7.1% of proteome)
+
+COFACTORS
+  thiamin (B1)              needs supplementation     (0% pathway)
+  riboflavin (B2)           needs supplementation     (33% pathway)
+  pantothenate (B5)         needs supplementation     (50% pathway)
+  pyridoxal-5P (B6)         needs supplementation     (57% pathway)
+  cobalamin (B12)           needs supplementation     (25% pathway)
+  siroheme                  needs supplementation     (50% pathway)
+  molybdopterin             needs supplementation     (50% pathway)
+
+GROWTH CONDITIONS
+  Temperature:    38°C optimum (range 31-45°C)  (source: genomespot)
+  pH:             6.5 optimum (range 5.6-7.5)
+
+SPECIAL REQUIREMENTS
+  - microaerophile: Microaerophilic conditions recommended. Use reduced O2 (2-5%) with N2/CO2 b
+
+OVERALL CONFIDENCE: 0.64
+──────────────────────────────────────────────────────────────────────

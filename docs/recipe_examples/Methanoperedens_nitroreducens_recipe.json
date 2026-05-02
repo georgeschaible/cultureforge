@@ -1,0 +1,174 @@
+{
+  "genome_id": 28,
+  "species": "Candidatus Methanoperedens nitroreducens",
+  "primary_cultivation_mode": "methanogenic",
+  "alternative_cultivation_modes": [
+    "fermentative"
+  ],
+  "ingredients": [
+    {
+      "name": "Na2S\u00b79H2O",
+      "chemical_formula": "Na2S\u00b79H2O",
+      "concentration": 0.5,
+      "concentration_unit": "mM",
+      "category": "reducing_agent",
+      "rationale": "Removes residual O2 and establishes strict anaerobiosis (methanogens are obligate anaerobes; mcrA is O2-sensitive).",
+      "confidence": 0.95,
+      "derived_from": [
+        "primary_atmosphere=anaerobic",
+        "methanogenic mode"
+      ]
+    },
+    {
+      "name": "Resazurin",
+      "chemical_formula": "C12H6NNaO4",
+      "concentration": 1.0,
+      "concentration_unit": "mg/L",
+      "category": "supplement",
+      "rationale": "Oxygen indicator \u2014 pink in oxidized state, colorless when reduced.",
+      "confidence": 0.95,
+      "derived_from": [
+        "anaerobic culture"
+      ]
+    },
+    {
+      "name": "NaHCO3",
+      "chemical_formula": "NaHCO3",
+      "concentration": 2.5,
+      "concentration_unit": "g/L",
+      "category": "buffer",
+      "rationale": "Bicarbonate buffer in equilibrium with CO2 headspace \u2014 couples buffering capacity to the carbon source.",
+      "confidence": 0.85,
+      "derived_from": [
+        "methanogenic mode + CO2 headspace"
+      ]
+    },
+    {
+      "name": "CO2 (from headspace + bicarbonate)",
+      "chemical_formula": "CO2",
+      "concentration": 20.0,
+      "concentration_unit": "% v/v",
+      "category": "carbon_source",
+      "rationale": "Autotrophic C source; supplied via H2/CO2 headspace + dissolved bicarbonate.",
+      "confidence": 0.9,
+      "derived_from": [
+        "RecipeContext.carbon_sources",
+        "methanogenic mode"
+      ]
+    },
+    {
+      "name": "NaCl",
+      "chemical_formula": "NaCl",
+      "concentration": 5.0,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Standard salinity baseline (5 g/L) for non-halophile",
+      "confidence": 0.85,
+      "derived_from": [
+        "RecipeContext.conditions.salinity_category"
+      ]
+    },
+    {
+      "name": "MgSO4\u00b77H2O",
+      "chemical_formula": "MgSO4\u00b77H2O",
+      "concentration": 0.2,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Magnesium and sulfur source",
+      "confidence": 0.9,
+      "derived_from": [
+        "common basal"
+      ]
+    },
+    {
+      "name": "CaCl2\u00b72H2O",
+      "chemical_formula": "CaCl2\u00b72H2O",
+      "concentration": 0.04,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Calcium baseline",
+      "confidence": 0.9,
+      "derived_from": [
+        "common basal"
+      ]
+    },
+    {
+      "name": "SL-10 trace metal solution",
+      "chemical_formula": "(see SL-10 reference)",
+      "concentration": 1.0,
+      "concentration_unit": "mL/L",
+      "category": "trace_metal",
+      "rationale": "SL-10 (Tschech & Pfennig 1984): Fe, Zn, Mn, B, Co, Cu, Ni, Mo at standard concentrations. 1 mL/L final.",
+      "confidence": 0.85,
+      "derived_from": [
+        "common basal",
+        "MeBiPred metal predictions"
+      ]
+    },
+    {
+      "name": "Wolin's vitamin solution",
+      "chemical_formula": "(see Wolin 1963 reference)",
+      "concentration": 1.0,
+      "concentration_unit": "mL/L",
+      "category": "vitamin",
+      "rationale": "Wolin's vitamins (Wolin et al. 1963): biotin, folic acid, pyridoxine, thiamine, riboflavin, nicotinic acid, pantothenate, B12, p-aminobenzoic acid, lipoic acid. 1 mL/L final.",
+      "confidence": 0.85,
+      "derived_from": [
+        "common basal",
+        "RecipeContext.cofactors"
+      ]
+    },
+    {
+      "name": "NiCl2\u00b76H2O (Ni supplement, elevated)",
+      "chemical_formula": "NiCl2\u00b76H2O",
+      "concentration": 10.0,
+      "concentration_unit": "\u03bcM",
+      "category": "supplement",
+      "rationale": "Elevated Ni (~10 \u03bcM total) for F430 cofactor in mcrA. Standard SL-10 includes lower Ni; this top-up matters.",
+      "confidence": 0.9,
+      "derived_from": [
+        "methanogenic mode"
+      ]
+    }
+  ],
+  "gas_phase": {
+    "composition": {
+      "H2": 0.8,
+      "CO2": 0.2
+    },
+    "pressure_atm": 2.0,
+    "rationale": "H2/CO2 80:20 at 2 atm overpressure \u2014 H2 is the electron donor; CO2 is both terminal electron acceptor and carbon source. Pressurized headspace increases dissolved H2."
+  },
+  "conditions": {
+    "temperature_c": 30.0,
+    "ph": 7.0,
+    "light_required": false,
+    "light_intensity_umol_per_m2_per_s": null,
+    "shaking_rpm": null,
+    "rationale": "Temperature 30.0\u00b0C, pH 7.0 (default \u2014 no GenomeSPOT/TEMPURA data)"
+  },
+  "thermodynamic_checks": [
+    {
+      "capability_name": "methanogenic",
+      "primary_reaction": "4 H2 + CO2 \u2192 CH4 + 2 H2O",
+      "delta_g_kj_per_mol": -135.6,
+      "feasible": true,
+      "feasibility_class": "feasible",
+      "notes": ""
+    }
+  ],
+  "composition_rationale": [
+    "Hydrogenotrophic methanogenesis: H2 oxidation coupled to CO2 reduction via mcrA (methyl-coenzyme M reductase). Atmosphere is the dominant energy source; medium provides reducing conditions and cofactors."
+  ],
+  "uncertainty_flags": [
+    "ANME directional ambiguity: genome has methanogenesis enzymes (mcrA + WL pathway) but the metabolism may run in reverse (anaerobic methane oxidation). If suspected ANME, replace H2/CO2 with CH4 + electron acceptor (NO3-, SO4-2, or Fe(III)) and verify direction experimentally."
+  ],
+  "limitations_referenced": [
+    "C.1"
+  ],
+  "overall_confidence": 0.52,
+  "confidence_rationale": "base from RecipeContext = 0.57; -0.05 from uncertainty flags \u2192 final 0.52",
+  "similar_published_media": [],
+  "escalated": false,
+  "escalation_reason": ""
+}

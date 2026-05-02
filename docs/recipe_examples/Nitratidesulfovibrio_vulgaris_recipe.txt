@@ -1,0 +1,86 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: Nitratidesulfovibrio vulgaris (NC_002937.3)
+Genome ID: 7
+Domain: Gram_neg
+Generated: 2026-04-28 16:58:18
+CultureForge version: 2026-04-28
+══════════════════════════════════════════════════════════════════════
+
+RECIPE (Section 10)
+──────────────────────────────────────────────────────────────────────
+
+PRIMARY CULTIVATION MODE: anaerobic_respiratory (sulfate reduction)
+ALTERNATIVE MODES (also detected): fermentative
+
+GAS PHASE
+  N2:    80%
+  CO2:   20%
+  Pressure: 1.0 atm
+    N2/CO2 80:20 anaerobic headspace; CO2 buffers via
+    bicarbonate.
+
+INCUBATION CONDITIONS
+  Temperature: 28.8°C
+  pH:          7.3
+  Light:       not required
+  Shaking:     static
+    Temperature 28.793718334517152°C, pH 7.318458379846308 from
+    genomespot
+
+INGREDIENTS
+  Buffer:
+    Phosphate buffer (KH2PO4 + K2HPO4)               30 mM
+      30 mM phosphate buffer adjusted to pH 7.3
+      (confidence 0.85)
+  Salt:
+    NaCl                                              5 g/L
+      Standard salinity baseline (5 g/L) for non-halophile
+      (confidence 0.85)
+    MgSO4·7H2O                                      0.2 g/L
+      Magnesium and sulfur source
+      (confidence 0.90)
+    CaCl2·2H2O                                     0.04 g/L
+      Calcium baseline
+      (confidence 0.90)
+  Electron Donor:
+    Sodium DL-lactate                               3.5 g/L
+      Standard SRB electron donor (~30 mM).
+      (confidence 0.85)
+  Electron Acceptor:
+    Na2SO4                                            2 g/L
+      Sulfate as terminal electron acceptor (~14 mM).
+      (confidence 0.90)
+  Reducing Agent:
+    Na2S·9H2O                                       0.5 mM
+      Establishes strict anaerobiosis.
+  Supplement:
+    Resazurin                                         1 mg/L
+      Oxygen indicator.
+  Trace Metal:
+    SL-10 trace metal solution                        1 mL/L
+      SL-10 (Tschech & Pfennig 1984): Fe, Zn, Mn, B, Co, Cu,
+      Ni, Mo at standard concentrations. 1 mL/L final.
+      (confidence 0.85)
+  Vitamin:
+    Wolin's vitamin solution                          1 mL/L
+      Wolin's vitamins (Wolin et al. 1963): biotin, folic
+      acid, pyridoxine, thiamine, riboflavin, nicotinic
+      acid, pantothenate, B12, p-aminobenzoic acid, lipoic
+      acid. 1 mL/L final.
+      (confidence 0.85)
+
+THERMODYNAMIC CHECK
+  Reaction: lactate + SO4-2 → acetate + HCO3- + HS-
+  ΔG (standard, default activities): -160.1 kJ/mol
+  Feasibility: feasible (feasible)
+
+UNCERTAINTY FLAGS
+  None significant for this recipe.
+
+LIMITATIONS REFERENCED: C.2
+  See LIMITATIONS.md for details on each category.
+
+OVERALL CONFIDENCE: 0.77 (high)
+    RATIONALE: base from RecipeContext = 0.77 → final 0.77
+──────────────────────────────────────────────────────────────────────

@@ -1,0 +1,59 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: Geobacter sulfurreducens subsp. ethanolicus (NC_002939.5)
+Genome ID: 13
+Domain: Gram_neg
+Generated: 2026-04-26 21:11:14
+CultureForge version: 2026-04-26
+══════════════════════════════════════════════════════════════════════
+
+RECIPE CONTEXT (Section 9)
+──────────────────────────────────────────────────────────────────────
+
+ATMOSPHERE
+  Primary:        anaerobic
+  Gas needs:      N2, CO2
+
+CARBON SOURCES
+  acetate                   type=organic_acid    conf 0.75
+    iron reducer: acetate is typical electron donor
+
+ELECTRON DONORS
+  organic carbon            conf 0.75  (heterotrophic)
+
+ELECTRON ACCEPTORS
+  Fe(III)                        conf 0.75  (iron_reduction)
+
+NITROGEN SOURCES
+  NH4+                                          conf 0.80
+    standard inorganic nitrogen source
+  N2 (if NH4+ unavailable)                      conf 0.60
+    nifH detected: organism can fix atmospheric N2
+  individual amino acid supplements (3)         conf 0.70
+    auxotrophic for: L-leucine, L-serine, L-threonine
+
+TRACE METALS
+  Mg    essential    MeBiPred: 1065 binding proteins (31.2% of proteome)
+  Ca    essential    MeBiPred: 834 binding proteins (24.4% of proteome)
+  K     essential    MeBiPred: 644 binding proteins (18.8% of proteome)
+  Fe    essential    MeBiPred: 611 binding proteins (17.9% of proteome)
+  Na    essential    MeBiPred: 570 binding proteins (16.7% of proteome)
+  Ni    essential    MeBiPred: 537 binding proteins (15.7% of proteome)
+  Mn    essential    MeBiPred: 421 binding proteins (12.3% of proteome)
+  Zn    supporting   MeBiPred: 303 binding proteins (8.9% of proteome)
+
+COFACTORS
+  thiamin (B1)              needs supplementation     (66% pathway)
+  pyridoxal-5P (B6)         needs supplementation     (57% pathway)
+  siroheme                  needs supplementation     (50% pathway)
+  molybdopterin             needs supplementation     (66% pathway)
+
+GROWTH CONDITIONS
+  Temperature:    32°C optimum (range 26-37°C)  (source: genomespot)
+  pH:             6.5 optimum (range 5.5-7.5)
+
+SPECIAL REQUIREMENTS
+  - strict_anaerobe: Strict anaerobic conditions required. Use Hungate technique or anaerobic ch
+
+OVERALL CONFIDENCE: 0.64
+──────────────────────────────────────────────────────────────────────

@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "dbname": "blastdb_mcrA",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": "mcrA",
+  "number-of-letters": 2796,
+  "number-of-sequences": 5,
+  "last-updated": "2026-04-27T21:19:00",
+  "number-of-volumes": 1,
+  "bytes-total": 41011,
+  "bytes-to-cache": 2938,
+  "files": [
+    "blastdb_mcrA.pdb",
+    "blastdb_mcrA.phr",
+    "blastdb_mcrA.pin",
+    "blastdb_mcrA.pot",
+    "blastdb_mcrA.psq",
+    "blastdb_mcrA.ptf",
+    "blastdb_mcrA.pto"
+  ]
+}

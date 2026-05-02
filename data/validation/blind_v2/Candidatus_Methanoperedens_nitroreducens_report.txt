@@ -1,0 +1,61 @@
+=================================================================
+CultureForge Capability Report
+Organism: Blind v2: Candidatus_Methanoperedens_nitroreducens
+Genome: GCA_900196725.1
+Generated: 2026-04-26 13:26
+
+GENOME QUALITY
+-----------------------------------------------------------------
+CheckM: not available (genome stats only)
+Genome size: 3,524,740 bp
+GC content: 44.1%
+N50: 27,331
+Acidic residue fraction (D+E): 0.1217
+Quality verdict: NO_QC
+
+PRIMARY CAPABILITIES (detected, confidence >= 0.50)
+-----------------------------------------------------------------
+1. Methanogenesis (hydrogenotrophic, aceticlastic, or methylotrophic)
+   Confidence: 0.93
+   - Pathway: 5/5 steps detected (weighted score 1.00)
+   - methyl-CoM reduction to methane (mcrA): diagnostic marker mcrA detected (60.8% id, bs=666)
+   - Cofactors: 3/3 biosyntheses detected
+   Diagnostic markers: mcrA
+
+2. Substrate-level phosphorylation fermentation (mixed products)
+   Confidence: 0.73
+   - Pathway: 7/9 steps detected (weighted score 0.75)
+
+3. Syntrophy (composite signature)
+   Confidence: 0.70
+   - beta-oxidation pathway detected
+   - electron-bifurcating hydrogenase detected
+   - NO terminal electron acceptor metabolism detected — consistent with obligate syntrophy
+   ! confidence capped at 0.70 — syntrophy is inferential
+
+4. Biological nitrogen fixation (N2 to NH3)
+   Confidence: 0.53
+   - Pathway: 1/5 steps detected (weighted score 0.44)
+   - nitrogenase Fe protein: diagnostic marker nifH detected (67.2% id, bs=389)
+   Diagnostic markers: nifH
+
+CONSIDERED AND REJECTED
+-----------------------------------------------------------------
+- Aerobic ammonia oxidation (nitrification step 1)   0.325 (below threshold, pathway score 0.00)
+- Dissimilatory sulfate reduction                    0.316 (below threshold, pathway score 0.13)
+- Acidophilic Fe(II) oxidation                       0.308 (below threshold, pathway score 0.15)
+- Aerobic respiration                                0.300 (below threshold, pathway score 0.30)
+- Anoxygenic phototrophy (green sulfur bacteria, Typ 0.225 (below threshold, pathway score 0.00)
+- Aerobic respiration via electron transport chain   0.206 (below threshold, pathway score 0.29)
+- Oxygenic phototrophy (cyanobacteria, algae, plants 0.200 (below threshold, pathway score 0.00)
+- Sulfur/sulfide/thiosulfate oxidation               0.200 (below threshold, pathway score 0.00)
+
+UNCERTAINTY FLAGS
+-----------------------------------------------------------------
+- [Syntrophy (composite signature] confidence capped at 0.70 — syntrophy is inferential
+
+RECOMMENDED ACTION
+-----------------------------------------------------------------
+Action: flag_uncertain
+
+=================================================================

@@ -1,0 +1,168 @@
+{
+  "genome_id": 21,
+  "species": "Syntrophomonas wolfei",
+  "primary_cultivation_mode": "syntrophic",
+  "alternative_cultivation_modes": [],
+  "ingredients": [
+    {
+      "name": "Sodium butyrate",
+      "chemical_formula": "C4H7NaO2",
+      "concentration": 2.2,
+      "concentration_unit": "g/L",
+      "category": "electron_donor",
+      "rationale": "Butyrate (~20 mM) as syntroph donor; oxidized via \u03b2-oxidation.",
+      "confidence": 0.85,
+      "derived_from": [
+        "syntrophic mode (Syntrophomonas-type)"
+      ]
+    },
+    {
+      "name": "Na2S\u00b79H2O",
+      "chemical_formula": "Na2S\u00b79H2O",
+      "concentration": 0.5,
+      "concentration_unit": "mM",
+      "category": "reducing_agent",
+      "rationale": "Establishes anaerobiosis.",
+      "confidence": 0.95,
+      "derived_from": [
+        "anaerobic"
+      ]
+    },
+    {
+      "name": "Yeast extract",
+      "chemical_formula": null,
+      "concentration": 1.0,
+      "concentration_unit": "g/L",
+      "category": "nitrogen_source",
+      "rationale": "Yeast extract supplies vitamins / growth factors.",
+      "confidence": 0.8,
+      "derived_from": [
+        "syntrophic mode"
+      ]
+    },
+    {
+      "name": "REQUIRED CO-CULTURE: hydrogenotrophic methanogen partner",
+      "chemical_formula": null,
+      "concentration": 0.0,
+      "concentration_unit": "(co-inoculate)",
+      "category": "supplement",
+      "rationale": "Pure-culture growth is thermodynamically impossible. Co-inoculate with Methanospirillum hungatei, Methanobacterium formicicum, or similar. The partner consumes H2 produced by syntroph fatty-acid oxidation, making the reaction exergonic.",
+      "confidence": 0.95,
+      "derived_from": [
+        "syntrophic mode (fundamental requirement)"
+      ]
+    },
+    {
+      "name": "Phosphate buffer (KH2PO4 + K2HPO4)",
+      "chemical_formula": "KH2PO4 / K2HPO4",
+      "concentration": 30.0,
+      "concentration_unit": "mM",
+      "category": "buffer",
+      "rationale": "30 mM phosphate buffer adjusted to pH 7.0",
+      "confidence": 0.85,
+      "derived_from": [
+        "pH from RecipeContext.conditions"
+      ]
+    },
+    {
+      "name": "NaCl",
+      "chemical_formula": "NaCl",
+      "concentration": 5.0,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Standard salinity baseline (5 g/L) for non-halophile",
+      "confidence": 0.85,
+      "derived_from": [
+        "RecipeContext.conditions.salinity_category"
+      ]
+    },
+    {
+      "name": "MgSO4\u00b77H2O",
+      "chemical_formula": "MgSO4\u00b77H2O",
+      "concentration": 0.2,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Magnesium and sulfur source",
+      "confidence": 0.9,
+      "derived_from": [
+        "common basal"
+      ]
+    },
+    {
+      "name": "CaCl2\u00b72H2O",
+      "chemical_formula": "CaCl2\u00b72H2O",
+      "concentration": 0.04,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Calcium baseline",
+      "confidence": 0.9,
+      "derived_from": [
+        "common basal"
+      ]
+    },
+    {
+      "name": "SL-10 trace metal solution",
+      "chemical_formula": "(see SL-10 reference)",
+      "concentration": 1.0,
+      "concentration_unit": "mL/L",
+      "category": "trace_metal",
+      "rationale": "SL-10 (Tschech & Pfennig 1984): Fe, Zn, Mn, B, Co, Cu, Ni, Mo at standard concentrations. 1 mL/L final.",
+      "confidence": 0.85,
+      "derived_from": [
+        "common basal",
+        "MeBiPred metal predictions"
+      ]
+    },
+    {
+      "name": "Wolin's vitamin solution",
+      "chemical_formula": "(see Wolin 1963 reference)",
+      "concentration": 1.0,
+      "concentration_unit": "mL/L",
+      "category": "vitamin",
+      "rationale": "Wolin's vitamins (Wolin et al. 1963): biotin, folic acid, pyridoxine, thiamine, riboflavin, nicotinic acid, pantothenate, B12, p-aminobenzoic acid, lipoic acid. 1 mL/L final.",
+      "confidence": 0.85,
+      "derived_from": [
+        "common basal",
+        "RecipeContext.cofactors"
+      ]
+    }
+  ],
+  "gas_phase": {
+    "composition": {
+      "N2": 0.8,
+      "CO2": 0.2
+    },
+    "pressure_atm": 1.0,
+    "rationale": "N2/CO2 anaerobic headspace; partner methanogen produces CH4."
+  },
+  "conditions": {
+    "temperature_c": 30.0,
+    "ph": 7.0,
+    "light_required": false,
+    "light_intensity_umol_per_m2_per_s": null,
+    "shaking_rpm": null,
+    "rationale": "Temperature 30.0\u00b0C, pH 7.0 (default \u2014 no GenomeSPOT/TEMPURA data)"
+  },
+  "thermodynamic_checks": [
+    {
+      "capability_name": "syntrophic",
+      "primary_reaction": "butyrate + 2 H2O \u2192 2 acetate + 2 H2 + H+ (requires H2-consuming partner)",
+      "delta_g_kj_per_mol": 48.3,
+      "feasible": true,
+      "feasibility_class": "marginal",
+      "notes": "Reaction is endergonic alone (\u0394G > 0). Becomes feasible only when [H2] is kept low by a syntrophic partner \u2014 recipe explicitly requires partner co-inoculation."
+    }
+  ],
+  "composition_rationale": [
+    "Syntrophy: organic donor oxidation is endergonic alone; only viable with a H2- or formate-consuming partner that keeps interspecies-H2 low. Recipe must include the partner (typically a hydrogenotrophic methanogen) \u2014 IT IS NOT POSSIBLE TO GROW PURE SYNTROPHS WITHOUT THEM."
+  ],
+  "uncertainty_flags": [
+    "Partner organism MUST be added \u2014 pure-culture growth is endergonic"
+  ],
+  "limitations_referenced": [],
+  "overall_confidence": 0.53,
+  "confidence_rationale": "base from RecipeContext = 0.58; -0.05 from uncertainty flags \u2192 final 0.53",
+  "similar_published_media": [],
+  "escalated": false,
+  "escalation_reason": ""
+}

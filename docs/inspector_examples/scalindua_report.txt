@@ -1,0 +1,133 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: Blind v2: Candidatus_Scalindua_profunda (GCA_000315995.1)
+Genome ID: 28
+Domain: Gram_neg
+Generated: 2026-04-26 20:01:33
+CultureForge version: 2026-04-26
+══════════════════════════════════════════════════════════════════════
+
+GENOME QUALITY (Section 2)
+──────────────────────────────────────────────────────────────────────
+CheckM not available (genome stats only)
+Genome size:                4,669,398 bp (4.67 Mb)
+GC content:                 52.4%
+N50:                        89,572
+Acidic residue fraction:    0.1074
+QC verdict:                 NO_QC
+QC rationale:               CheckM not available — genome stats only. Marker absence is not interpretable.
+──────────────────────────────────────────────────────────────────────
+
+GROWTH CONDITIONS (Section 3) - GenomeSPOT predictions
+──────────────────────────────────────────────────────────────────────
+GenomeSPOT not run for this genome.
+──────────────────────────────────────────────────────────────────────
+
+CAPABILITY PROFILE (Section 4)
+──────────────────────────────────────────────────────────────────────
+
+PRIMARY CULTIVATION MODES
+
+  Mode: aerobic_chemotrophic                     conf 0.90
+    ├─ Aerobic respiration                                     0.900
+    │   bo3 oxidase complex complete (low-affinity, aerobic)
+    │   cytochrome c oxidase: 15 hits + TCA 100% (strong combined aerobic signal)
+    │   TCA cycle 100% complete
+    │   catalase detected (48 hits)
+
+  Mode: fermentative                             conf 0.65
+    ├─ Substrate-level phosphorylation fermentation (mixed pro 0.650
+    │   Pathway: 9/9 steps detected (weighted score 1.00)
+    │   Strong acceptor metabolism present: Aerobic respiration(0.90)
+    │   Fermentation kept as secondary capability (facultative pattern)
+
+  DETECTED CAPABILITIES (confidence >= 0.50)
+    Aerobic respiration                                  0.900  primary
+    Substrate-level phosphorylation fermentation (mixe   0.650  primary
+
+  REJECTED CAPABILITIES
+    Reductive dehalogenation of organohalide   0.356  Below threshold (pathway score 0.22)
+    Methanogenesis (hydrogenotrophic, acetic   0.351  cofactor F420 biosynthesis biosynthesis not detected — may n
+    Anaerobic ammonium oxidation (anammox),    0.327  Below threshold (pathway score 0.18)
+    Aerobic ammonia oxidation (nitrification   0.325  Below threshold (pathway score 0.00)
+    Dissimilatory sulfate reduction            0.317  Below threshold (pathway score 0.13)
+    Aerobic respiration via electron transpo   0.316  cofactor ubiquinone/menaquinone biosynthesis biosynthesis no
+    Acidophilic Fe(II) oxidation               0.308  Below threshold (pathway score 0.15)
+    Biological nitrogen fixation (N2 to NH3)   0.296  Below threshold (pathway score 0.14)
+    Anoxygenic phototrophy (green sulfur bac   0.225  Below threshold (pathway score 0.00)
+    Sulfur/sulfide/thiosulfate oxidation       0.225  Below threshold (pathway score 0.00)
+
+  UNCERTAINTY FLAGS
+    - [Substrate-level phosphory] acceptor_disqualifier_applied
+
+──────────────────────────────────────────────────────────────────────
+
+gapseq PATHWAYS (Section 5) - Top 20 of 3156 total
+──────────────────────────────────────────────────────────────────────
+  folate transformations III (E. coli)                        100%  ✓
+  4-hydroxyphenylacetate degradation                          100%  ✓
+  L-alanine degradation II (to D-lactate)                     100%  ✓
+  L-alanine degradation I                                     100%  ✓
+  L-alanine degradation III                                   100%  ✓
+  L-alanine biosynthesis II                                   100%  ✓
+  L-alanine biosynthesis I                                    100%  ✓
+  ammonia assimilation cycle III                              100%  ✓
+  glycolysis III (from glucose)                               100%  ✓
+  L-arabinose degradation I                                   100%  ✓
+  L-ornithine biosynthesis II                                 100%  ✓
+  spermine biosynthesis                                       100%  ✓
+  L-asparagine biosynthesis I                                 100%  ✓
+  L-asparagine degradation I                                  100%  ✓
+  L-asparagine biosynthesis II                                100%  ✓
+  L-aspartate degradation I                                   100%  ✓
+  L-aspartate biosynthesis                                    100%  ✓
+  L-arginine degradation II (AST pathway)                     100%  ✓
+  spermidine biosynthesis I                                   100%  ✓
+  L-carnitine degradation I                                   100%  ✓
+──────────────────────────────────────────────────────────────────────
+
+DIAGNOSTIC MARKER HITS (Section 6)
+──────────────────────────────────────────────────────────────────────
+  Marker               Method   Best Hit                  Identity Bitscore Status
+  ─────────────────────────────────────────────────────────────────
+  acsB_cdhC            blastp   no hit                                      (negative)
+  amoA                 blastp   no hit                                      (negative)
+  aprAB                blastp   sp|Q72AU3|SYGB_NITV2         37.0%      400 POSITIVE
+  autotrophy           blastp   no hit                                      (negative)
+  cooS_cdhA            blastp   no hit                                      (negative)
+  dsrAB                blastp   no hit                                      (negative)
+  hao                  blastp   tr|Q82SR3|Q82SR3_NITEU       45.1%      196 (weak)
+  hdh                  blastp   no hit                                      (negative)
+  hzsA                 blastp   no hit                                      (negative)
+  mcrA                 blastp   tr|Q8TIY1|Q8TIY1_METAC       66.9%      227 POSITIVE
+  mcrBG                blastp   no hit                                      (negative)
+  mtrC_omcB            blastp   no hit                                      (negative)
+  nifH                 blastp   no hit                                      (negative)
+  nosZ                 blastp   no hit                                      (negative)
+  psaA_psbA            blastp   no hit                                      (negative)
+  pscA_fmoA            blastp   sp|P0C0Y4|NMTDH_ALTAL        33.2%      135 POSITIVE
+  pufLM                blastp   sp|P26362|CFTR_SQUAC         25.8%      120 POSITIVE
+  rdhA                 blastp   no hit                                      (negative)
+  rhodopsin            blastp   no hit                                      (negative)
+  soxB                 blastp   sp|Q3SLP0|RS17_THIDA         59.0%      101 POSITIVE
+  terminal_oxidases    blastp   sp|P34956|QOX1_BACSU         50.7%      662 POSITIVE
+──────────────────────────────────────────────────────────────────────
+
+HYDROGENASES (Section 7)
+──────────────────────────────────────────────────────────────────────
+  Type       Group    Gene                      Identity Bitscore
+  ───────────────────────────────────────────────────────
+  [NiFe]     4        AMSN01000013.1_19         97.0%      1155
+  [NiFe]     2        AMSN01000015.1_66         77.7%       582
+  [NiFe]     2        AMSN01000012.1_69         74.4%       546
+  [FeFe]     A        AMSN01000023.1_47         61.4%       287
+  [NiFe]     2        AMSN01000044.1_19         41.2%       273
+  [NiFe]     4        AMSN01000035.1_40         26.5%       161
+  [NiFe]     1        AMSN01000049.1_22         56.9%       153
+──────────────────────────────────────────────────────────────────────
+
+RECOMMENDED ACTION (Section 8)
+──────────────────────────────────────────────────────────────────────
+Action:    FLAG_UNCERTAIN
+Rationale: Cultivation mode(s): aerobic_chemotrophic, fermentative
+──────────────────────────────────────────────────────────────────────

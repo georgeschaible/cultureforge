@@ -1,0 +1,599 @@
+organism	marker	n_hits_total	n_hits_positive	top_bitscore	top_pident	top_evalue	positive_call	expectation	verdict	pre_1_5m_call	delta
+Escherichia_coli_K12	mcrA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Escherichia_coli_K12	mcrBG	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Escherichia_coli_K12	hzsA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Escherichia_coli_K12	hdh	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Escherichia_coli_K12	dsrAB	7	0	38.1	26.7	5.28e-06	N	NEGATIVE	OK_TN	N	same
+Escherichia_coli_K12	qmoA	1	0	36.6	50.0	4.88e-06	N	NEGATIVE	OK_TN	N	same
+Escherichia_coli_K12	aprAB	9	0	70.5	22.8	2.81e-16	N	NEGATIVE	OK_TN	N	same
+Escherichia_coli_K12	soxB	6	0	78.2	28.8	7.38e-19	N	NEGATIVE	OK_TN	N	same
+Escherichia_coli_K12	cyc2	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Escherichia_coli_K12	amoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Escherichia_coli_K12	hao	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Escherichia_coli_K12	nifH	4	0	37.0	47.8	1.46e-06	N	NEGATIVE	OK_TN	N	same
+Escherichia_coli_K12	nosZ	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Escherichia_coli_K12	acsB_cdhC	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Escherichia_coli_K12	cooS_cdhA	3	0	47.0	21.6	4.43e-09	N	NEGATIVE	OK_TN	N	same
+Escherichia_coli_K12	mtrC_omcB	2	0	37.4	25.9	2.25e-06	N	NEGATIVE	OK_TN	N	same
+Escherichia_coli_K12	pufLM	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Escherichia_coli_K12	psaA_psbA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Escherichia_coli_K12	pscA_fmoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Escherichia_coli_K12	rhodopsin	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Escherichia_coli_K12	rdhA	5	0	48.1	26.5	1.24e-09	N	NEGATIVE	OK_TN	N	same
+Escherichia_coli_K12	autotrophy	2	0	94.0	31.8	3.55e-25	N	NEGATIVE	OK_TN	N	same
+Escherichia_coli_K12	terminal_oxidases	6	3	668.0	51.6		Y	POSITIVE	OK_TP	Y	same
+Nitratidesulfovibrio_vulgaris	mcrA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Nitratidesulfovibrio_vulgaris	mcrBG	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Nitratidesulfovibrio_vulgaris	hzsA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Nitratidesulfovibrio_vulgaris	hdh	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Nitratidesulfovibrio_vulgaris	dsrAB	18	6	639.0	71.4		Y	POSITIVE	OK_TP	Y	same
+Nitratidesulfovibrio_vulgaris	qmoA	26	5	622.0	72.6		Y	POSITIVE	OK_TP	Y	same
+Nitratidesulfovibrio_vulgaris	aprAB	14	6	1251.0	89.0		Y	POSITIVE	OK_TP	Y	same
+Nitratidesulfovibrio_vulgaris	soxB	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Nitratidesulfovibrio_vulgaris	cyc2	1	0	34.3	27.4	7.43e-07	N	NEGATIVE	OK_TN	N	same
+Nitratidesulfovibrio_vulgaris	amoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Nitratidesulfovibrio_vulgaris	hao	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Nitratidesulfovibrio_vulgaris	nifH	29	0	51.6	61.1	1.22e-11	N	OPTIONAL	OK_OPT_NOHIT	N	same
+Nitratidesulfovibrio_vulgaris	nosZ	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Nitratidesulfovibrio_vulgaris	acsB_cdhC	1	1	442.0	39.6	2.99e-151	Y	OPTIONAL	OK_OPT_HIT	Y	same
+Nitratidesulfovibrio_vulgaris	cooS_cdhA	9	4	687.0	52.0		Y	OPTIONAL	OK_OPT_HIT	Y	same
+Nitratidesulfovibrio_vulgaris	mtrC_omcB	4	0	41.2	35.5	2.16e-08	N	NEGATIVE	OK_TN	N	same
+Nitratidesulfovibrio_vulgaris	pufLM	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Nitratidesulfovibrio_vulgaris	psaA_psbA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Nitratidesulfovibrio_vulgaris	pscA_fmoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Nitratidesulfovibrio_vulgaris	rhodopsin	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Nitratidesulfovibrio_vulgaris	rdhA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Nitratidesulfovibrio_vulgaris	autotrophy	3	0	96.3	30.6	3.12e-24	N	NEGATIVE	OK_TN	N	same
+Nitratidesulfovibrio_vulgaris	terminal_oxidases	7	2	411.0	41.1	1.06e-141	Y	OPTIONAL	OK_OPT_HIT	Y	same
+Methanococcus_jannaschii	mcrA	10	10	969.0	83.7		Y	POSITIVE	OK_TP	Y	same
+Methanococcus_jannaschii	mcrBG	12	12	590.0	68.0		Y	POSITIVE	OK_TP	Y	same
+Methanococcus_jannaschii	hzsA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Methanococcus_jannaschii	hdh	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Methanococcus_jannaschii	dsrAB	14	0	70.9	23.6	1.56e-16	N	NEGATIVE	OK_TN	N	same
+Methanococcus_jannaschii	qmoA	13	5	247.0	38.6	2.76e-81	Y	NEGATIVE	FALSE_POS	Y	same
+Methanococcus_jannaschii	aprAB	8	0	72.0	25.2	6.81e-17	N	NEGATIVE	OK_TN	N	same
+Methanococcus_jannaschii	soxB	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Methanococcus_jannaschii	cyc2	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Methanococcus_jannaschii	amoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Methanococcus_jannaschii	hao	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Methanococcus_jannaschii	nifH	35	5	284.0	51.1	4.17e-100	Y	POSITIVE	OK_TP	Y	same
+Methanococcus_jannaschii	nosZ	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Methanococcus_jannaschii	acsB_cdhC	11	6	540.0	41.0		Y	POSITIVE	OK_TP	Y	same
+Methanococcus_jannaschii	cooS_cdhA	10	4	651.0	55.3		Y	POSITIVE	OK_TP	Y	same
+Methanococcus_jannaschii	mtrC_omcB	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Methanococcus_jannaschii	pufLM	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Methanococcus_jannaschii	psaA_psbA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Methanococcus_jannaschii	pscA_fmoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Methanococcus_jannaschii	rhodopsin	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Methanococcus_jannaschii	rdhA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Methanococcus_jannaschii	autotrophy	6	4	303.0	39.3	1.69e-102	Y	OPTIONAL	OK_OPT_HIT	Y	same
+Methanococcus_jannaschii	terminal_oxidases	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Thermus_aquaticus	mcrA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Thermus_aquaticus	mcrBG	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Thermus_aquaticus	hzsA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Thermus_aquaticus	hdh	1	0	34.3	32.9	4.06e-06	N	NEGATIVE	OK_TN	N	same
+Thermus_aquaticus	dsrAB	1	0	33.9	42.3	9.20e-06	N	NEGATIVE	OK_TN	N	same
+Thermus_aquaticus	qmoA	15	0	46.2	50.0	3.05e-10	N	NEGATIVE	OK_TN	N	same
+Thermus_aquaticus	aprAB	3	0	67.8	23.4	1.60e-15	N	NEGATIVE	OK_TN	N	same
+Thermus_aquaticus	soxB	6	3	394.0	36.6	6.07e-135	Y	NEGATIVE	FALSE_POS	Y	same
+Thermus_aquaticus	cyc2	2	0	40.4	31.5	5.24e-08	N	NEGATIVE	OK_TN	N	same
+Thermus_aquaticus	amoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Thermus_aquaticus	hao	1	0	34.3	32.9	6.14e-06	N	NEGATIVE	OK_TN	N	same
+Thermus_aquaticus	nifH	10	0	46.6	52.8	5.38e-10	N	NEGATIVE	OK_TN	N	same
+Thermus_aquaticus	nosZ	10	0	53.5	27.4	1.97e-12	N	NEGATIVE	OK_TN	N	same
+Thermus_aquaticus	acsB_cdhC	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Thermus_aquaticus	cooS_cdhA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Thermus_aquaticus	mtrC_omcB	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Thermus_aquaticus	pufLM	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Thermus_aquaticus	psaA_psbA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Thermus_aquaticus	pscA_fmoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Thermus_aquaticus	rhodopsin	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Thermus_aquaticus	rdhA	4	0	38.9	32.8	1.06e-06	N	NEGATIVE	OK_TN	N	same
+Thermus_aquaticus	autotrophy	5	1	174.0	30.3	1.38e-52	Y	NEGATIVE	FALSE_POS	N	N→Y
+Thermus_aquaticus	terminal_oxidases	14	0	447.0	43.1	5.97e-151	N	POSITIVE	MISS_FN	N	same
+Lactobacillus_plantarum	mcrA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Lactobacillus_plantarum	mcrBG	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Lactobacillus_plantarum	hzsA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Lactobacillus_plantarum	hdh	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Lactobacillus_plantarum	dsrAB	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Lactobacillus_plantarum	qmoA	18	0	45.4	62.9	1.93e-08	N	NEGATIVE	OK_TN	N	same
+Lactobacillus_plantarum	aprAB	2	0	45.4	24.1	1.10e-08	N	NEGATIVE	OK_TN	N	same
+Lactobacillus_plantarum	soxB	5	0	72.4	22.9	2.71e-17	N	NEGATIVE	OK_TN	N	same
+Lactobacillus_plantarum	cyc2	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Lactobacillus_plantarum	amoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Lactobacillus_plantarum	hao	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Lactobacillus_plantarum	nifH	10	0	45.8	23.1	9.01e-10	N	NEGATIVE	OK_TN	N	same
+Lactobacillus_plantarum	nosZ	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Lactobacillus_plantarum	acsB_cdhC	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Lactobacillus_plantarum	cooS_cdhA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Lactobacillus_plantarum	mtrC_omcB	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Lactobacillus_plantarum	pufLM	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Lactobacillus_plantarum	psaA_psbA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Lactobacillus_plantarum	pscA_fmoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Lactobacillus_plantarum	rhodopsin	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Lactobacillus_plantarum	rdhA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Lactobacillus_plantarum	autotrophy	4	0	80.1	28.4	7.03e-20	N	NEGATIVE	OK_TN	N	same
+Lactobacillus_plantarum	terminal_oxidases	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Acidithiobacillus_ferrooxidans	mcrA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Acidithiobacillus_ferrooxidans	mcrBG	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Acidithiobacillus_ferrooxidans	hzsA	2	0	37.7	25.2	2.27e-06	N	NEGATIVE	OK_TN	N	same
+Acidithiobacillus_ferrooxidans	hdh	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Acidithiobacillus_ferrooxidans	dsrAB	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Acidithiobacillus_ferrooxidans	qmoA	10	5	122.0	30.4	2.84e-35	Y	NEGATIVE	FALSE_POS	Y	same
+Acidithiobacillus_ferrooxidans	aprAB	3	0	40.8	24.7	3.31e-07	N	NEGATIVE	OK_TN	N	same
+Acidithiobacillus_ferrooxidans	soxB	0	0	0	0		N	OPTIONAL	OK_OPT_NOHIT	N	same
+Acidithiobacillus_ferrooxidans	cyc2	15	6	810.0	85.7		Y	POSITIVE	OK_TP	Y	same
+Acidithiobacillus_ferrooxidans	amoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Acidithiobacillus_ferrooxidans	hao	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Acidithiobacillus_ferrooxidans	nifH	13	5	545.0	89.3		Y	POSITIVE	OK_TP	Y	same
+Acidithiobacillus_ferrooxidans	nosZ	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Acidithiobacillus_ferrooxidans	acsB_cdhC	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Acidithiobacillus_ferrooxidans	cooS_cdhA	2	0	46.2	24.5	9.15e-09	N	NEGATIVE	OK_TN	N	same
+Acidithiobacillus_ferrooxidans	mtrC_omcB	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Acidithiobacillus_ferrooxidans	pufLM	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Acidithiobacillus_ferrooxidans	psaA_psbA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Acidithiobacillus_ferrooxidans	pscA_fmoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Acidithiobacillus_ferrooxidans	rhodopsin	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Acidithiobacillus_ferrooxidans	rdhA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Acidithiobacillus_ferrooxidans	autotrophy	15	9	753.0	77.5		Y	POSITIVE	OK_TP	Y	same
+Acidithiobacillus_ferrooxidans	terminal_oxidases	13	5	543.0	42.9		Y	POSITIVE	OK_TP	Y	same
+Clostridium_acetobutylicum	mcrA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Clostridium_acetobutylicum	mcrBG	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Clostridium_acetobutylicum	hzsA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Clostridium_acetobutylicum	hdh	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Clostridium_acetobutylicum	dsrAB	9	0	68.9	26.7	1.08e-16	N	NEGATIVE	OK_TN	N	same
+Clostridium_acetobutylicum	qmoA	20	0	42.4	57.1	1.27e-07	N	NEGATIVE	OK_TN	N	same
+Clostridium_acetobutylicum	aprAB	9	2	310.0	33.7	1.44e-101	Y	NEGATIVE	FALSE_POS	N	N→Y
+Clostridium_acetobutylicum	soxB	9	0	98.2	23.0	8.39e-25	N	NEGATIVE	OK_TN	N	same
+Clostridium_acetobutylicum	cyc2	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Clostridium_acetobutylicum	amoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Clostridium_acetobutylicum	hao	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Clostridium_acetobutylicum	nifH	24	5	397.0	67.5	8.82e-145	Y	POSITIVE	OK_TP	Y	same
+Clostridium_acetobutylicum	nosZ	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Clostridium_acetobutylicum	acsB_cdhC	2	1	297.0	31.6	2.99e-95	Y	OPTIONAL	OK_OPT_HIT	Y	same
+Clostridium_acetobutylicum	cooS_cdhA	11	7	651.0	52.2		Y	OPTIONAL	OK_OPT_HIT	Y	same
+Clostridium_acetobutylicum	mtrC_omcB	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Clostridium_acetobutylicum	pufLM	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Clostridium_acetobutylicum	psaA_psbA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Clostridium_acetobutylicum	pscA_fmoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Clostridium_acetobutylicum	rhodopsin	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Clostridium_acetobutylicum	rdhA	2	0	35.4	29.0	1.27e-07	N	NEGATIVE	OK_TN	N	same
+Clostridium_acetobutylicum	autotrophy	3	2	199.0	34.0	1.79e-64	Y	NEGATIVE	FALSE_POS	N	N→Y
+Clostridium_acetobutylicum	terminal_oxidases	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Geobacter_sulfurreducens	mcrA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Geobacter_sulfurreducens	mcrBG	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Geobacter_sulfurreducens	hzsA	3	0	39.7	50.0	7.99e-08	N	NEGATIVE	OK_TN	N	same
+Geobacter_sulfurreducens	hdh	4	0	40.8	26.1	2.15e-07	N	NEGATIVE	OK_TN	N	same
+Geobacter_sulfurreducens	dsrAB	14	0	62.4	24.3	1.90e-14	N	NEGATIVE	OK_TN	N	same
+Geobacter_sulfurreducens	qmoA	5	0	253.0	34.8	3.92e-81	N	NEGATIVE	OK_TN	N	same
+Geobacter_sulfurreducens	aprAB	8	0	82.0	22.2	4.17e-20	N	NEGATIVE	OK_TN	N	same
+Geobacter_sulfurreducens	soxB	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Geobacter_sulfurreducens	cyc2	1	0	42.7	30.3	1.27e-08	N	NEGATIVE	OK_TN	N	same
+Geobacter_sulfurreducens	amoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Geobacter_sulfurreducens	hao	4	0	40.8	26.1	3.24e-07	N	NEGATIVE	OK_TN	N	same
+Geobacter_sulfurreducens	nifH	21	5	484.0	81.9	7.04e-179	Y	POSITIVE	OK_TP	Y	same
+Geobacter_sulfurreducens	nosZ	1	0	37.4	37.7	2.73e-06	N	NEGATIVE	OK_TN	N	same
+Geobacter_sulfurreducens	acsB_cdhC	1	1	466.0	40.7	1.67e-160	Y	OPTIONAL	OK_OPT_HIT	Y	same
+Geobacter_sulfurreducens	cooS_cdhA	6	4	650.0	51.0		Y	OPTIONAL	OK_OPT_HIT	Y	same
+Geobacter_sulfurreducens	mtrC_omcB	7	2	1249.0	83.8		Y	POSITIVE	OK_TP	Y	same
+Geobacter_sulfurreducens	pufLM	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Geobacter_sulfurreducens	psaA_psbA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Geobacter_sulfurreducens	pscA_fmoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Geobacter_sulfurreducens	rhodopsin	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Geobacter_sulfurreducens	rdhA	4	0	32.0	35.1	5.11e-06	N	NEGATIVE	OK_TN	N	same
+Geobacter_sulfurreducens	autotrophy	2	0	96.3	29.9	7.10e-26	N	NEGATIVE	OK_TN	N	same
+Geobacter_sulfurreducens	terminal_oxidases	7	2	413.0	41.1	1.07e-142	Y	NEGATIVE	FALSE_POS	Y	same
+Sulfolobus_acidocaldarius	mcrA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfolobus_acidocaldarius	mcrBG	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfolobus_acidocaldarius	hzsA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfolobus_acidocaldarius	hdh	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfolobus_acidocaldarius	dsrAB	3	0	37.7	23.2	3.50e-06	N	NEGATIVE	OK_TN	N	same
+Sulfolobus_acidocaldarius	qmoA	21	2	122.0	31.9	9.91e-35	Y	NEGATIVE	FALSE_POS	Y	same
+Sulfolobus_acidocaldarius	aprAB	3	0	90.1	24.9	1.44e-22	N	NEGATIVE	OK_TN	N	same
+Sulfolobus_acidocaldarius	soxB	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfolobus_acidocaldarius	cyc2	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfolobus_acidocaldarius	amoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfolobus_acidocaldarius	hao	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfolobus_acidocaldarius	nifH	4	0	48.9	24.5	1.46e-10	N	NEGATIVE	OK_TN	N	same
+Sulfolobus_acidocaldarius	nosZ	5	0	36.6	30.4	7.07e-07	N	NEGATIVE	OK_TN	N	same
+Sulfolobus_acidocaldarius	acsB_cdhC	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfolobus_acidocaldarius	cooS_cdhA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfolobus_acidocaldarius	mtrC_omcB	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfolobus_acidocaldarius	pufLM	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfolobus_acidocaldarius	psaA_psbA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfolobus_acidocaldarius	pscA_fmoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfolobus_acidocaldarius	rhodopsin	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfolobus_acidocaldarius	rdhA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfolobus_acidocaldarius	autotrophy	8	5	582.0	75.5		Y	POSITIVE	OK_TP	N	N→Y
+Sulfolobus_acidocaldarius	terminal_oxidases	16	2	805.0	81.9		Y	POSITIVE	OK_TP	N	N→Y
+Campylobacter_jejuni	mcrA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Campylobacter_jejuni	mcrBG	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Campylobacter_jejuni	hzsA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Campylobacter_jejuni	hdh	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Campylobacter_jejuni	dsrAB	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Campylobacter_jejuni	qmoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Campylobacter_jejuni	aprAB	3	0	41.6	25.4	2.96e-07	N	NEGATIVE	OK_TN	N	same
+Campylobacter_jejuni	soxB	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Campylobacter_jejuni	cyc2	1	0	35.4	22.5	3.18e-06	N	NEGATIVE	OK_TN	N	same
+Campylobacter_jejuni	amoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Campylobacter_jejuni	hao	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Campylobacter_jejuni	nifH	14	0	43.9	52.8	4.45e-09	N	NEGATIVE	OK_TN	N	same
+Campylobacter_jejuni	nosZ	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Campylobacter_jejuni	acsB_cdhC	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Campylobacter_jejuni	cooS_cdhA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Campylobacter_jejuni	mtrC_omcB	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Campylobacter_jejuni	pufLM	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Campylobacter_jejuni	psaA_psbA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Campylobacter_jejuni	pscA_fmoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Campylobacter_jejuni	rhodopsin	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Campylobacter_jejuni	rdhA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Campylobacter_jejuni	autotrophy	3	0	97.8	31.3	1.92e-26	N	NEGATIVE	OK_TN	N	same
+Campylobacter_jejuni	terminal_oxidases	4	2	430.0	45.4	4.74e-150	Y	POSITIVE	OK_TP	N	N→Y
+Magnetospirillum_magneticum	mcrA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Magnetospirillum_magneticum	mcrBG	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Magnetospirillum_magneticum	hzsA	2	0	37.4	25.3	3.42e-06	N	NEGATIVE	OK_TN	N	same
+Magnetospirillum_magneticum	hdh	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Magnetospirillum_magneticum	dsrAB	15	6	351.0	41.1	5.22e-122	Y	NEGATIVE	FALSE_POS	Y	same
+Magnetospirillum_magneticum	qmoA	5	0	38.9	50.0	1.71e-06	N	NEGATIVE	OK_TN	N	same
+Magnetospirillum_magneticum	aprAB	13	0	174.0	28.4	1.18e-50	N	NEGATIVE	OK_TN	N	same
+Magnetospirillum_magneticum	soxB	3	0	125.0	26.8	7.05e-35	N	NEGATIVE	OK_TN	N	same
+Magnetospirillum_magneticum	cyc2	8	0	85.9	32.7	1.26e-24	N	NEGATIVE	OK_TN	N	same
+Magnetospirillum_magneticum	amoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Magnetospirillum_magneticum	hao	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Magnetospirillum_magneticum	nifH	30	5	541.0	90.2		Y	POSITIVE	OK_TP	Y	same
+Magnetospirillum_magneticum	nosZ	6	5	297.0	32.1	2.92e-94	Y	OPTIONAL	OK_OPT_HIT	Y	same
+Magnetospirillum_magneticum	acsB_cdhC	1	0	35.4	24.3	6.91e-06	N	NEGATIVE	OK_TN	N	same
+Magnetospirillum_magneticum	cooS_cdhA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Magnetospirillum_magneticum	mtrC_omcB	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Magnetospirillum_magneticum	pufLM	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Magnetospirillum_magneticum	psaA_psbA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Magnetospirillum_magneticum	pscA_fmoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Magnetospirillum_magneticum	rhodopsin	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Magnetospirillum_magneticum	rdhA	7	0	65.1	30.3	4.16e-15	N	NEGATIVE	OK_TN	N	same
+Magnetospirillum_magneticum	autotrophy	6	3	731.0	75.7		Y	OPTIONAL	OK_OPT_HIT	Y	same
+Magnetospirillum_magneticum	terminal_oxidases	18	5	667.0	69.6		Y	POSITIVE	OK_TP	Y	same
+Sulfurimonas_denitrificans	mcrA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfurimonas_denitrificans	mcrBG	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfurimonas_denitrificans	hzsA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfurimonas_denitrificans	hdh	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfurimonas_denitrificans	dsrAB	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfurimonas_denitrificans	qmoA	3	0	39.7	43.9	4.82e-07	N	NEGATIVE	OK_TN	N	same
+Sulfurimonas_denitrificans	aprAB	5	0	52.0	23.1	1.42e-10	N	NEGATIVE	OK_TN	N	same
+Sulfurimonas_denitrificans	soxB	9	3	452.0	40.2	1.72e-157	Y	POSITIVE	OK_TP	Y	same
+Sulfurimonas_denitrificans	cyc2	4	0	39.7	31.1	4.76e-08	N	NEGATIVE	OK_TN	N	same
+Sulfurimonas_denitrificans	amoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfurimonas_denitrificans	hao	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfurimonas_denitrificans	nifH	9	0	48.1	55.6	2.11e-10	N	NEGATIVE	OK_TN	N	same
+Sulfurimonas_denitrificans	nosZ	5	3	303.0	33.2	1.29e-95	Y	POSITIVE	OK_TP	Y	same
+Sulfurimonas_denitrificans	acsB_cdhC	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfurimonas_denitrificans	cooS_cdhA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfurimonas_denitrificans	mtrC_omcB	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfurimonas_denitrificans	pufLM	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfurimonas_denitrificans	psaA_psbA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfurimonas_denitrificans	pscA_fmoA	1	0	34.7	28.8	5.23e-06	N	NEGATIVE	OK_TN	N	same
+Sulfurimonas_denitrificans	rhodopsin	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfurimonas_denitrificans	rdhA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Sulfurimonas_denitrificans	autotrophy	4	1	1030.0	82.1		Y	POSITIVE	OK_TP	N	N→Y
+Sulfurimonas_denitrificans	terminal_oxidases	10	2	400.0	42.8	1.36e-138	Y	POSITIVE	OK_TP	N	N→Y
+Nitrosomonas_europaea	mcrA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Nitrosomonas_europaea	mcrBG	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Nitrosomonas_europaea	hzsA	3	0	38.1	30.9	1.95e-06	N	NEGATIVE	OK_TN	N	same
+Nitrosomonas_europaea	hdh	6	0	194.0	29.3	3.09e-59	N	NEGATIVE	OK_TN	N	same
+Nitrosomonas_europaea	dsrAB	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Nitrosomonas_europaea	qmoA	5	0	47.0	49.0	3.94e-09	N	NEGATIVE	OK_TN	N	same
+Nitrosomonas_europaea	aprAB	4	0	70.1	23.5	3.48e-16	N	NEGATIVE	OK_TN	N	same
+Nitrosomonas_europaea	soxB	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Nitrosomonas_europaea	cyc2	6	1	106.0	31.9	2.48e-32	Y	NEGATIVE	FALSE_POS	N	N→Y
+Nitrosomonas_europaea	amoA	8	4	491.0	85.3		Y	POSITIVE	OK_TP	Y	same
+Nitrosomonas_europaea	hao	9	6	850.0	71.7		Y	POSITIVE	OK_TP	Y	same
+Nitrosomonas_europaea	nifH	10	0	43.9	47.2	4.72e-09	N	NEGATIVE	OK_TN	N	same
+Nitrosomonas_europaea	nosZ	11	0	44.7	33.3	1.20e-09	N	NEGATIVE	OK_TN	N	same
+Nitrosomonas_europaea	acsB_cdhC	1	0	36.6	24.3	5.35e-06	N	NEGATIVE	OK_TN	N	same
+Nitrosomonas_europaea	cooS_cdhA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Nitrosomonas_europaea	mtrC_omcB	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Nitrosomonas_europaea	pufLM	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Nitrosomonas_europaea	psaA_psbA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Nitrosomonas_europaea	pscA_fmoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Nitrosomonas_europaea	rhodopsin	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Nitrosomonas_europaea	rdhA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Nitrosomonas_europaea	autotrophy	6	3	731.0	75.2		Y	POSITIVE	OK_TP	Y	same
+Nitrosomonas_europaea	terminal_oxidases	14	3	505.0	51.9	1.05e-178	Y	POSITIVE	OK_TP	Y	same
+Rhodopseudomonas_palustris	mcrA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Rhodopseudomonas_palustris	mcrBG	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Rhodopseudomonas_palustris	hzsA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Rhodopseudomonas_palustris	hdh	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Rhodopseudomonas_palustris	dsrAB	3	0	43.5	26.0	5.69e-08	N	NEGATIVE	OK_TN	N	same
+Rhodopseudomonas_palustris	qmoA	8	0	44.3	40.6	2.24e-08	N	NEGATIVE	OK_TN	N	same
+Rhodopseudomonas_palustris	aprAB	4	0	65.5	23.3	9.89e-15	N	NEGATIVE	OK_TN	N	same
+Rhodopseudomonas_palustris	soxB	6	3	712.0	60.5		Y	OPTIONAL	OK_OPT_HIT	Y	same
+Rhodopseudomonas_palustris	cyc2	3	0	64.3	29.0	1.37e-16	N	NEGATIVE	OK_TN	N	same
+Rhodopseudomonas_palustris	amoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Rhodopseudomonas_palustris	hao	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Rhodopseudomonas_palustris	nifH	51	40	545.0	89.1		Y	POSITIVE	OK_TP	Y	same
+Rhodopseudomonas_palustris	nosZ	5	5	811.0	60.0		Y	OPTIONAL	OK_OPT_HIT	Y	same
+Rhodopseudomonas_palustris	acsB_cdhC	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Rhodopseudomonas_palustris	cooS_cdhA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Rhodopseudomonas_palustris	mtrC_omcB	1	0	32.0	41.2	2.33e-06	N	NEGATIVE	OK_TN	N	same
+Rhodopseudomonas_palustris	pufLM	10	10	461.0	73.4	9.02e-169	Y	POSITIVE	OK_TP	Y	same
+Rhodopseudomonas_palustris	psaA_psbA	6	0	50.1	27.4	1.42e-10	N	NEGATIVE	OK_TN	N	same
+Rhodopseudomonas_palustris	pscA_fmoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Rhodopseudomonas_palustris	rhodopsin	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Rhodopseudomonas_palustris	rdhA	6	0	54.3	26.0	1.50e-11	N	NEGATIVE	OK_TN	N	same
+Rhodopseudomonas_palustris	autotrophy	15	6	738.0	75.9		Y	POSITIVE	OK_TP	Y	same
+Rhodopseudomonas_palustris	terminal_oxidases	13	5	694.0	73.0		Y	POSITIVE	OK_TP	Y	same
+Halobacterium_salinarum	mcrA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Halobacterium_salinarum	mcrBG	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Halobacterium_salinarum	hzsA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Halobacterium_salinarum	hdh	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Halobacterium_salinarum	dsrAB	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Halobacterium_salinarum	qmoA	23	0	45.4	52.4	7.71e-09	N	NEGATIVE	OK_TN	N	same
+Halobacterium_salinarum	aprAB	4	0	55.1	23.8	1.55e-11	N	NEGATIVE	OK_TN	N	same
+Halobacterium_salinarum	soxB	4	0	102.0	27.7	1.64e-26	N	NEGATIVE	OK_TN	N	same
+Halobacterium_salinarum	cyc2	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Halobacterium_salinarum	amoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Halobacterium_salinarum	hao	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Halobacterium_salinarum	nifH	10	0	47.8	25.8	4.35e-10	N	NEGATIVE	OK_TN	N	same
+Halobacterium_salinarum	nosZ	4	0	40.0	27.4	1.11e-07	N	NEGATIVE	OK_TN	N	same
+Halobacterium_salinarum	acsB_cdhC	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Halobacterium_salinarum	cooS_cdhA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Halobacterium_salinarum	mtrC_omcB	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Halobacterium_salinarum	pufLM	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Halobacterium_salinarum	psaA_psbA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Halobacterium_salinarum	pscA_fmoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Halobacterium_salinarum	rhodopsin	10	2	212.0	52.2	7.31e-73	Y	POSITIVE	OK_TP	Y	same
+Halobacterium_salinarum	rdhA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Halobacterium_salinarum	autotrophy	2	1	192.0	34.7	6.38e-62	Y	NEGATIVE	FALSE_POS	N	N→Y
+Halobacterium_salinarum	terminal_oxidases	13	2	372.0	41.3	8.20e-125	Y	POSITIVE	OK_TP	Y	same
+Syntrophomonas_wolfei	mcrA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Syntrophomonas_wolfei	mcrBG	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Syntrophomonas_wolfei	hzsA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Syntrophomonas_wolfei	hdh	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Syntrophomonas_wolfei	dsrAB	1	0	34.7	29.1	3.62e-06	N	NEGATIVE	OK_TN	N	same
+Syntrophomonas_wolfei	qmoA	15	5	203.0	34.5	3.07e-64	Y	NEGATIVE	FALSE_POS	Y	same
+Syntrophomonas_wolfei	aprAB	6	0	49.7	22.1	6.13e-10	N	NEGATIVE	OK_TN	N	same
+Syntrophomonas_wolfei	soxB	3	0	85.9	27.1	3.22e-21	N	NEGATIVE	OK_TN	N	same
+Syntrophomonas_wolfei	cyc2	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Syntrophomonas_wolfei	amoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Syntrophomonas_wolfei	hao	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Syntrophomonas_wolfei	nifH	26	5	226.0	46.8	1.83e-77	Y	OPTIONAL	OK_OPT_HIT	Y	same
+Syntrophomonas_wolfei	nosZ	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Syntrophomonas_wolfei	acsB_cdhC	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Syntrophomonas_wolfei	cooS_cdhA	2	0	57.8	23.7	2.21e-12	N	NEGATIVE	OK_TN	N	same
+Syntrophomonas_wolfei	mtrC_omcB	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Syntrophomonas_wolfei	pufLM	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Syntrophomonas_wolfei	psaA_psbA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Syntrophomonas_wolfei	pscA_fmoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Syntrophomonas_wolfei	rhodopsin	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Syntrophomonas_wolfei	rdhA	5	0	34.7	29.6	2.02e-07	N	NEGATIVE	OK_TN	N	same
+Syntrophomonas_wolfei	autotrophy	2	0	62.8	27.2	1.42e-14	N	NEGATIVE	OK_TN	N	same
+Syntrophomonas_wolfei	terminal_oxidases	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Acetobacterium_woodii	mcrA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Acetobacterium_woodii	mcrBG	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Acetobacterium_woodii	hzsA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Acetobacterium_woodii	hdh	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Acetobacterium_woodii	dsrAB	16	0	85.1	26.1	2.50e-22	N	NEGATIVE	OK_TN	N	same
+Acetobacterium_woodii	qmoA	49	0	46.2	36.8	9.05e-09	N	NEGATIVE	OK_TN	N	same
+Acetobacterium_woodii	aprAB	9	0	39.7	31.8	1.92e-07	N	NEGATIVE	OK_TN	N	same
+Acetobacterium_woodii	soxB	3	0	89.7	25.5	1.54e-22	N	NEGATIVE	OK_TN	N	same
+Acetobacterium_woodii	cyc2	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Acetobacterium_woodii	amoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Acetobacterium_woodii	hao	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Acetobacterium_woodii	nifH	29	15	389.0	67.3	1.79e-141	Y	OPTIONAL	OK_OPT_HIT	Y	same
+Acetobacterium_woodii	nosZ	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Acetobacterium_woodii	acsB_cdhC	10	3	675.0	48.1		Y	POSITIVE	OK_TP	Y	same
+Acetobacterium_woodii	cooS_cdhA	11	8	644.0	52.1		Y	POSITIVE	OK_TP	Y	same
+Acetobacterium_woodii	mtrC_omcB	1	0	40.4	27.5	4.43e-07	N	NEGATIVE	OK_TN	N	same
+Acetobacterium_woodii	pufLM	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Acetobacterium_woodii	psaA_psbA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Acetobacterium_woodii	pscA_fmoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Acetobacterium_woodii	rhodopsin	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Acetobacterium_woodii	rdhA	28	0	55.1	33.6	1.91e-12	N	NEGATIVE	OK_TN	N	same
+Acetobacterium_woodii	autotrophy	2	0	85.5	25.9	2.67e-22	N	OPTIONAL	OK_OPT_NOHIT	N	same
+Acetobacterium_woodii	terminal_oxidases	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Allochromatium_vinosum	mcrA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Allochromatium_vinosum	mcrBG	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Allochromatium_vinosum	hzsA	1	0	35.0	26.4	1.54e-06	N	NEGATIVE	OK_TN	N	same
+Allochromatium_vinosum	hdh	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Allochromatium_vinosum	dsrAB	14	6	379.0	44.3	6.38e-133	Y	POSITIVE	OK_TP	Y	same
+Allochromatium_vinosum	qmoA	3	0	46.2	44.9	8.41e-09	N	NEGATIVE	OK_TN	N	same
+Allochromatium_vinosum	aprAB	13	6	605.0	49.5		Y	POSITIVE	OK_TP	Y	same
+Allochromatium_vinosum	soxB	6	3	790.0	64.5		Y	POSITIVE	OK_TP	Y	same
+Allochromatium_vinosum	cyc2	3	1	106.0	33.9	2.46e-32	Y	NEGATIVE	FALSE_POS	N	N→Y
+Allochromatium_vinosum	amoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Allochromatium_vinosum	hao	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Allochromatium_vinosum	nifH	36	15	533.0	88.6		Y	POSITIVE	OK_TP	Y	same
+Allochromatium_vinosum	nosZ	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Allochromatium_vinosum	acsB_cdhC	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Allochromatium_vinosum	cooS_cdhA	3	0	59.3	25.7	7.05e-13	N	NEGATIVE	OK_TN	N	same
+Allochromatium_vinosum	mtrC_omcB	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Allochromatium_vinosum	pufLM	10	10	462.0	72.9	2.92e-169	Y	POSITIVE	OK_TP	Y	same
+Allochromatium_vinosum	psaA_psbA	6	0	54.7	25.6	5.27e-12	N	NEGATIVE	OK_TN	N	same
+Allochromatium_vinosum	pscA_fmoA	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Allochromatium_vinosum	rhodopsin	0	0	0	0		N	NEGATIVE	OK_TN	N	same
+Allochromatium_vinosum	rdhA	9	0	57.0	23.7	1.73e-12	N	NEGATIVE	OK_TN	N	same
+Allochromatium_vinosum	autotrophy	12	6	744.0	75.8		Y	POSITIVE	OK_TP	Y	same
+Allochromatium_vinosum	terminal_oxidases	4	2	541.0	57.4		Y	OPTIONAL	OK_OPT_HIT	N	N→Y
+Methanoperedens_nitroreducens	mcrA	5	5	837.0	70.1		Y	POSITIVE	OK_TP		
+Methanoperedens_nitroreducens	mcrBG	6	6	524.0	58.9		Y	POSITIVE	OK_TP		
+Methanoperedens_nitroreducens	hzsA	0	0	0	0		N	NEGATIVE	OK_TN		
+Methanoperedens_nitroreducens	hdh	6	0	102.0	25.9	1.74e-28	N	NEGATIVE	OK_TN		
+Methanoperedens_nitroreducens	dsrAB	16	0	79.0	25.7	2.66e-20	N	NEGATIVE	OK_TN		
+Methanoperedens_nitroreducens	qmoA	62	5	291.0	38.7	2.69e-95	Y	NEGATIVE	FALSE_POS		
+Methanoperedens_nitroreducens	aprAB	16	0	95.5	25.1	2.50e-24	N	NEGATIVE	OK_TN		
+Methanoperedens_nitroreducens	soxB	0	0	0	0		N	NEGATIVE	OK_TN		
+Methanoperedens_nitroreducens	cyc2	1	0	44.3	42.4	7.09e-09	N	NEGATIVE	OK_TN		
+Methanoperedens_nitroreducens	amoA	0	0	0	0		N	NEGATIVE	OK_TN		
+Methanoperedens_nitroreducens	hao	6	0	102.0	25.9	2.62e-28	N	NEGATIVE	OK_TN		
+Methanoperedens_nitroreducens	nifH	22	10	389.0	67.2	2.37e-141	Y	POSITIVE	OK_TP		
+Methanoperedens_nitroreducens	nosZ	8	0	64.3	34.3	1.77e-16	N	NEGATIVE	OK_TN		
+Methanoperedens_nitroreducens	acsB_cdhC	11	8	625.0	65.2		Y	POSITIVE	OK_TP		
+Methanoperedens_nitroreducens	cooS_cdhA	19	16	553.0	45.9		Y	POSITIVE	OK_TP		
+Methanoperedens_nitroreducens	mtrC_omcB	5	0	41.2	27.5	3.58e-07	N	NEGATIVE	OK_TN		
+Methanoperedens_nitroreducens	pufLM	0	0	0	0		N	NEGATIVE	OK_TN		
+Methanoperedens_nitroreducens	psaA_psbA	0	0	0	0		N	NEGATIVE	OK_TN		
+Methanoperedens_nitroreducens	pscA_fmoA	0	0	0	0		N	NEGATIVE	OK_TN		
+Methanoperedens_nitroreducens	rhodopsin	0	0	0	0		N	NEGATIVE	OK_TN		
+Methanoperedens_nitroreducens	rdhA	10	0	65.1	26.4	8.83e-16	N	NEGATIVE	OK_TN		
+Methanoperedens_nitroreducens	autotrophy	7	3	291.0	39.2	5.59e-98	Y	NEGATIVE	FALSE_POS		
+Methanoperedens_nitroreducens	terminal_oxidases	5	0	58.2	27.5	1.75e-12	N	NEGATIVE	OK_TN		
+Prometheoarchaeum_syntrophicum	mcrA	0	0	0	0		N	NEGATIVE	OK_TN		
+Prometheoarchaeum_syntrophicum	mcrBG	0	0	0	0		N	NEGATIVE	OK_TN		
+Prometheoarchaeum_syntrophicum	hzsA	0	0	0	0		N	NEGATIVE	OK_TN		
+Prometheoarchaeum_syntrophicum	hdh	0	0	0	0		N	NEGATIVE	OK_TN		
+Prometheoarchaeum_syntrophicum	dsrAB	2	0	38.1	55.2	1.57e-06	N	NEGATIVE	OK_TN		
+Prometheoarchaeum_syntrophicum	qmoA	78	7	270.0	38.4	2.50e-87	Y	NEGATIVE	FALSE_POS		
+Prometheoarchaeum_syntrophicum	aprAB	11	0	60.5	27.1	2.87e-13	N	NEGATIVE	OK_TN		
+Prometheoarchaeum_syntrophicum	soxB	3	0	51.2	32.5	4.73e-11	N	NEGATIVE	OK_TN		
+Prometheoarchaeum_syntrophicum	cyc2	0	0	0	0		N	NEGATIVE	OK_TN		
+Prometheoarchaeum_syntrophicum	amoA	0	0	0	0		N	NEGATIVE	OK_TN		
+Prometheoarchaeum_syntrophicum	hao	0	0	0	0		N	NEGATIVE	OK_TN		
+Prometheoarchaeum_syntrophicum	nifH	2	0	36.6	29.5	1.69e-06	N	NEGATIVE	OK_TN		
+Prometheoarchaeum_syntrophicum	nosZ	0	0	0	0		N	NEGATIVE	OK_TN		
+Prometheoarchaeum_syntrophicum	acsB_cdhC	1	0	32.7	32.8	2.84e-06	N	NEGATIVE	OK_TN		
+Prometheoarchaeum_syntrophicum	cooS_cdhA	0	0	0	0		N	NEGATIVE	OK_TN		
+Prometheoarchaeum_syntrophicum	mtrC_omcB	0	0	0	0		N	NEGATIVE	OK_TN		
+Prometheoarchaeum_syntrophicum	pufLM	0	0	0	0		N	NEGATIVE	OK_TN		
+Prometheoarchaeum_syntrophicum	psaA_psbA	0	0	0	0		N	NEGATIVE	OK_TN		
+Prometheoarchaeum_syntrophicum	pscA_fmoA	0	0	0	0		N	NEGATIVE	OK_TN		
+Prometheoarchaeum_syntrophicum	rhodopsin	0	0	0	0		N	NEGATIVE	OK_TN		
+Prometheoarchaeum_syntrophicum	rdhA	21	5	177.0	32.7	1.41e-54	Y	NEGATIVE	FALSE_POS		
+Prometheoarchaeum_syntrophicum	autotrophy	7	1	615.0	49.1		Y	NEGATIVE	FALSE_POS		
+Prometheoarchaeum_syntrophicum	terminal_oxidases	0	0	0	0		N	NEGATIVE	OK_TN		
+Scalindua_profunda	mcrA	0	0	0	0		N	NEGATIVE	OK_TN		
+Scalindua_profunda	mcrBG	0	0	0	0		N	NEGATIVE	OK_TN		
+Scalindua_profunda	hzsA	0	0	0	0		N	POSITIVE	MISS_FN		
+Scalindua_profunda	hdh	0	0	0	0		N	POSITIVE	MISS_FN		
+Scalindua_profunda	dsrAB	10	0	49.3	22.6	3.93e-10	N	NEGATIVE	OK_TN		
+Scalindua_profunda	qmoA	2	0	36.2	36.1	6.18e-06	N	NEGATIVE	OK_TN		
+Scalindua_profunda	aprAB	8	0	68.6	22.6	1.08e-15	N	NEGATIVE	OK_TN		
+Scalindua_profunda	soxB	12	0	141.0	27.3	5.89e-40	N	NEGATIVE	OK_TN		
+Scalindua_profunda	cyc2	0	0	0	0		N	NEGATIVE	OK_TN		
+Scalindua_profunda	amoA	0	0	0	0		N	NEGATIVE	OK_TN		
+Scalindua_profunda	hao	0	0	0	0		N	OPTIONAL	OK_OPT_NOHIT		
+Scalindua_profunda	nifH	6	0	38.1	35.1	1.06e-06	N	NEGATIVE	OK_TN		
+Scalindua_profunda	nosZ	0	0	0	0		N	NEGATIVE	OK_TN		
+Scalindua_profunda	acsB_cdhC	0	0	0	0		N	NEGATIVE	OK_TN		
+Scalindua_profunda	cooS_cdhA	3	0	49.3	22.0	1.07e-09	N	NEGATIVE	OK_TN		
+Scalindua_profunda	mtrC_omcB	3	0	35.0	26.6	3.58e-06	N	NEGATIVE	OK_TN		
+Scalindua_profunda	pufLM	0	0	0	0		N	NEGATIVE	OK_TN		
+Scalindua_profunda	psaA_psbA	2	0	37.4	37.0	4.40e-06	N	NEGATIVE	OK_TN		
+Scalindua_profunda	pscA_fmoA	2	0	38.5	38.8	9.33e-08	N	NEGATIVE	OK_TN		
+Scalindua_profunda	rhodopsin	0	0	0	0		N	NEGATIVE	OK_TN		
+Scalindua_profunda	rdhA	7	0	48.5	27.2	8.45e-10	N	NEGATIVE	OK_TN		
+Scalindua_profunda	autotrophy	3	0	149.0	26.9	5.10e-43	N	OPTIONAL	OK_OPT_NOHIT		
+Scalindua_profunda	terminal_oxidases	6	3	662.0	50.7		Y	NEGATIVE	FALSE_POS		
+Chloroflexus_aurantiacus	mcrA	0	0	0	0		N	NEGATIVE	OK_TN		
+Chloroflexus_aurantiacus	mcrBG	0	0	0	0		N	NEGATIVE	OK_TN		
+Chloroflexus_aurantiacus	hzsA	0	0	0	0		N	NEGATIVE	OK_TN		
+Chloroflexus_aurantiacus	hdh	0	0	0	0		N	NEGATIVE	OK_TN		
+Chloroflexus_aurantiacus	dsrAB	0	0	0	0		N	NEGATIVE	OK_TN		
+Chloroflexus_aurantiacus	qmoA	18	0	39.7	56.8	5.57e-07	N	NEGATIVE	OK_TN		
+Chloroflexus_aurantiacus	aprAB	4	0	38.5	47.5	1.86e-06	N	NEGATIVE	OK_TN		
+Chloroflexus_aurantiacus	soxB	3	0	82.0	32.0	3.91e-20	N	NEGATIVE	OK_TN		
+Chloroflexus_aurantiacus	cyc2	1	0	33.5	30.2	8.04e-06	N	NEGATIVE	OK_TN		
+Chloroflexus_aurantiacus	amoA	0	0	0	0		N	NEGATIVE	OK_TN		
+Chloroflexus_aurantiacus	hao	0	0	0	0		N	NEGATIVE	OK_TN		
+Chloroflexus_aurantiacus	nifH	33	7	162.0	38.5	1.17e-52	Y	OPTIONAL	OK_OPT_HIT		
+Chloroflexus_aurantiacus	nosZ	12	0	52.0	34.9	5.74e-12	N	NEGATIVE	OK_TN		
+Chloroflexus_aurantiacus	acsB_cdhC	0	0	0	0		N	NEGATIVE	OK_TN		
+Chloroflexus_aurantiacus	cooS_cdhA	0	0	0	0		N	NEGATIVE	OK_TN		
+Chloroflexus_aurantiacus	mtrC_omcB	0	0	0	0		N	NEGATIVE	OK_TN		
+Chloroflexus_aurantiacus	pufLM	10	10	246.0	47.8	1.66e-84	Y	POSITIVE	OK_TP		
+Chloroflexus_aurantiacus	psaA_psbA	6	0	58.9	29.5	1.78e-13	N	NEGATIVE	OK_TN		
+Chloroflexus_aurantiacus	pscA_fmoA	0	0	0	0		N	NEGATIVE	OK_TN		
+Chloroflexus_aurantiacus	rhodopsin	0	0	0	0		N	NEGATIVE	OK_TN		
+Chloroflexus_aurantiacus	rdhA	1	0	38.1	29.6	1.59e-06	N	NEGATIVE	OK_TN		
+Chloroflexus_aurantiacus	autotrophy	6	1	259.0	39.8	4.06e-88	Y	POSITIVE	OK_TP		
+Chloroflexus_aurantiacus	terminal_oxidases	12	2	400.0	41.9	3.24e-136	Y	POSITIVE	OK_TP		
+Dehalococcoides_mccartyi	mcrA	0	0	0	0		N	NEGATIVE	OK_TN		
+Dehalococcoides_mccartyi	mcrBG	0	0	0	0		N	NEGATIVE	OK_TN		
+Dehalococcoides_mccartyi	hzsA	0	0	0	0		N	NEGATIVE	OK_TN		
+Dehalococcoides_mccartyi	hdh	0	0	0	0		N	NEGATIVE	OK_TN		
+Dehalococcoides_mccartyi	dsrAB	1	0	37.4	39.5	3.20e-07	N	NEGATIVE	OK_TN		
+Dehalococcoides_mccartyi	qmoA	15	0	44.3	48.8	1.55e-08	N	NEGATIVE	OK_TN		
+Dehalococcoides_mccartyi	aprAB	2	0	41.2	21.7	2.26e-07	N	NEGATIVE	OK_TN		
+Dehalococcoides_mccartyi	soxB	0	0	0	0		N	NEGATIVE	OK_TN		
+Dehalococcoides_mccartyi	cyc2	0	0	0	0		N	NEGATIVE	OK_TN		
+Dehalococcoides_mccartyi	amoA	0	0	0	0		N	NEGATIVE	OK_TN		
+Dehalococcoides_mccartyi	hao	0	0	0	0		N	NEGATIVE	OK_TN		
+Dehalococcoides_mccartyi	nifH	5	5	404.0	70.2	2.39e-147	Y	NEGATIVE	FALSE_POS		
+Dehalococcoides_mccartyi	nosZ	0	0	0	0		N	NEGATIVE	OK_TN		
+Dehalococcoides_mccartyi	acsB_cdhC	8	2	609.0	44.0		Y	NEGATIVE	FALSE_POS		
+Dehalococcoides_mccartyi	cooS_cdhA	0	0	0	0		N	NEGATIVE	OK_TN		
+Dehalococcoides_mccartyi	mtrC_omcB	0	0	0	0		N	NEGATIVE	OK_TN		
+Dehalococcoides_mccartyi	pufLM	0	0	0	0		N	NEGATIVE	OK_TN		
+Dehalococcoides_mccartyi	psaA_psbA	0	0	0	0		N	NEGATIVE	OK_TN		
+Dehalococcoides_mccartyi	pscA_fmoA	0	0	0	0		N	NEGATIVE	OK_TN		
+Dehalococcoides_mccartyi	rhodopsin	0	0	0	0		N	NEGATIVE	OK_TN		
+Dehalococcoides_mccartyi	rdhA	98	3	151.0	33.5	1.06e-43	Y	POSITIVE	OK_TP		
+Dehalococcoides_mccartyi	autotrophy	2	0	82.4	26.1	2.92e-21	N	NEGATIVE	OK_TN		
+Dehalococcoides_mccartyi	terminal_oxidases	0	0	0	0		N	NEGATIVE	OK_TN		
+Nitrospira_moscoviensis	mcrA	0	0	0	0		N	NEGATIVE	OK_TN		
+Nitrospira_moscoviensis	mcrBG	0	0	0	0		N	NEGATIVE	OK_TN		
+Nitrospira_moscoviensis	hzsA	2	0	38.1	33.3	2.12e-06	N	NEGATIVE	OK_TN		
+Nitrospira_moscoviensis	hdh	2	0	103.0	27.4	1.66e-27	N	NEGATIVE	OK_TN		
+Nitrospira_moscoviensis	dsrAB	3	0	45.1	26.5	2.65e-08	N	NEGATIVE	OK_TN		
+Nitrospira_moscoviensis	qmoA	11	0	47.4	41.7	2.30e-09	N	NEGATIVE	OK_TN		
+Nitrospira_moscoviensis	aprAB	5	0	63.9	22.1	2.65e-14	N	NEGATIVE	OK_TN		
+Nitrospira_moscoviensis	soxB	0	0	0	0		N	NEGATIVE	OK_TN		
+Nitrospira_moscoviensis	cyc2	0	0	0	0		N	NEGATIVE	OK_TN		
+Nitrospira_moscoviensis	amoA	0	0	0	0		N	POSITIVE	MISS_FN		
+Nitrospira_moscoviensis	hao	3	0	103.0	27.4	2.51e-27	N	POSITIVE	MISS_FN		
+Nitrospira_moscoviensis	nifH	14	0	46.6	23.3	7.80e-10	N	NEGATIVE	OK_TN		
+Nitrospira_moscoviensis	nosZ	0	0	0	0		N	NEGATIVE	OK_TN		
+Nitrospira_moscoviensis	acsB_cdhC	1	0	37.0	25.7	8.45e-06	N	NEGATIVE	OK_TN		
+Nitrospira_moscoviensis	cooS_cdhA	0	0	0	0		N	NEGATIVE	OK_TN		
+Nitrospira_moscoviensis	mtrC_omcB	1	0	30.8	35.6	9.42e-06	N	NEGATIVE	OK_TN		
+Nitrospira_moscoviensis	pufLM	0	0	0	0		N	NEGATIVE	OK_TN		
+Nitrospira_moscoviensis	psaA_psbA	2	0	33.5	40.4	9.65e-06	N	NEGATIVE	OK_TN		
+Nitrospira_moscoviensis	pscA_fmoA	0	0	0	0		N	NEGATIVE	OK_TN		
+Nitrospira_moscoviensis	rhodopsin	0	0	0	0		N	NEGATIVE	OK_TN		
+Nitrospira_moscoviensis	rdhA	10	0	52.0	29.8	5.46e-11	N	NEGATIVE	OK_TN		
+Nitrospira_moscoviensis	autotrophy	8	1	362.0	37.3	3.07e-121	Y	POSITIVE	OK_TP		
+Nitrospira_moscoviensis	terminal_oxidases	0	0	0	0		N	POSITIVE	MISS_FN		
+Picrophilus_torridus	mcrA	0	0	0	0		N	NEGATIVE	OK_TN		
+Picrophilus_torridus	mcrBG	0	0	0	0		N	NEGATIVE	OK_TN		
+Picrophilus_torridus	hzsA	0	0	0	0		N	NEGATIVE	OK_TN		
+Picrophilus_torridus	hdh	0	0	0	0		N	NEGATIVE	OK_TN		
+Picrophilus_torridus	dsrAB	1	0	37.7	35.8	5.75e-07	N	NEGATIVE	OK_TN		
+Picrophilus_torridus	qmoA	10	0	40.8	44.7	1.54e-07	N	NEGATIVE	OK_TN		
+Picrophilus_torridus	aprAB	3	0	77.8	23.0	1.38e-18	N	NEGATIVE	OK_TN		
+Picrophilus_torridus	soxB	11	0	130.0	24.9	8.90e-36	N	NEGATIVE	OK_TN		
+Picrophilus_torridus	cyc2	0	0	0	0		N	NEGATIVE	OK_TN		
+Picrophilus_torridus	amoA	0	0	0	0		N	NEGATIVE	OK_TN		
+Picrophilus_torridus	hao	0	0	0	0		N	NEGATIVE	OK_TN		
+Picrophilus_torridus	nifH	18	0	46.6	55.6	6.71e-10	N	NEGATIVE	OK_TN		
+Picrophilus_torridus	nosZ	6	0	58.2	36.0	3.40e-14	N	NEGATIVE	OK_TN		
+Picrophilus_torridus	acsB_cdhC	0	0	0	0		N	NEGATIVE	OK_TN		
+Picrophilus_torridus	cooS_cdhA	3	0	45.4	22.7	1.02e-08	N	NEGATIVE	OK_TN		
+Picrophilus_torridus	mtrC_omcB	0	0	0	0		N	NEGATIVE	OK_TN		
+Picrophilus_torridus	pufLM	0	0	0	0		N	NEGATIVE	OK_TN		
+Picrophilus_torridus	psaA_psbA	0	0	0	0		N	NEGATIVE	OK_TN		
+Picrophilus_torridus	pscA_fmoA	0	0	0	0		N	NEGATIVE	OK_TN		
+Picrophilus_torridus	rhodopsin	0	0	0	0		N	NEGATIVE	OK_TN		
+Picrophilus_torridus	rdhA	5	0	54.3	28.9	1.14e-11	N	NEGATIVE	OK_TN		
+Picrophilus_torridus	autotrophy	7	0	133.0	24.8	1.25e-37	N	NEGATIVE	OK_TN		
+Picrophilus_torridus	terminal_oxidases	26	8	854.0	62.7		Y	POSITIVE	OK_TP		
+Thermotoga_maritima	mcrA	0	0	0	0		N	NEGATIVE	OK_TN		
+Thermotoga_maritima	mcrBG	0	0	0	0		N	NEGATIVE	OK_TN		
+Thermotoga_maritima	hzsA	0	0	0	0		N	NEGATIVE	OK_TN		
+Thermotoga_maritima	hdh	0	0	0	0		N	NEGATIVE	OK_TN		
+Thermotoga_maritima	dsrAB	3	0	39.3	43.2	8.19e-08	N	NEGATIVE	OK_TN		
+Thermotoga_maritima	qmoA	1	0	37.4	44.7	2.78e-06	N	NEGATIVE	OK_TN		
+Thermotoga_maritima	aprAB	7	0	39.7	32.4	8.81e-09	N	NEGATIVE	OK_TN		
+Thermotoga_maritima	soxB	3	0	107.0	28.7	2.02e-28	N	NEGATIVE	OK_TN		
+Thermotoga_maritima	cyc2	0	0	0	0		N	NEGATIVE	OK_TN		
+Thermotoga_maritima	amoA	0	0	0	0		N	NEGATIVE	OK_TN		
+Thermotoga_maritima	hao	0	0	0	0		N	NEGATIVE	OK_TN		
+Thermotoga_maritima	nifH	7	0	42.7	32.5	1.41e-08	N	NEGATIVE	OK_TN		
+Thermotoga_maritima	nosZ	0	0	0	0		N	NEGATIVE	OK_TN		
+Thermotoga_maritima	acsB_cdhC	1	0	41.6	22.3	2.05e-07	N	NEGATIVE	OK_TN		
+Thermotoga_maritima	cooS_cdhA	3	0	51.2	22.2	1.67e-10	N	NEGATIVE	OK_TN		
+Thermotoga_maritima	mtrC_omcB	0	0	0	0		N	NEGATIVE	OK_TN		
+Thermotoga_maritima	pufLM	0	0	0	0		N	NEGATIVE	OK_TN		
+Thermotoga_maritima	psaA_psbA	0	0	0	0		N	NEGATIVE	OK_TN		
+Thermotoga_maritima	pscA_fmoA	0	0	0	0		N	NEGATIVE	OK_TN		
+Thermotoga_maritima	rhodopsin	0	0	0	0		N	NEGATIVE	OK_TN		
+Thermotoga_maritima	rdhA	0	0	0	0		N	NEGATIVE	OK_TN		
+Thermotoga_maritima	autotrophy	3	0	68.6	24.3	1.62e-16	N	NEGATIVE	OK_TN		
+Thermotoga_maritima	terminal_oxidases	0	0	0	0		N	NEGATIVE	OK_TN		

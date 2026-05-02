@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "dbname": "blastdb_hdh",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": "hdh",
+  "number-of-letters": 1760,
+  "number-of-sequences": 3,
+  "last-updated": "2026-04-27T21:36:00",
+  "number-of-volumes": 1,
+  "bytes-total": 39305,
+  "bytes-to-cache": 1876,
+  "files": [
+    "blastdb_hdh.pdb",
+    "blastdb_hdh.phr",
+    "blastdb_hdh.pin",
+    "blastdb_hdh.pot",
+    "blastdb_hdh.psq",
+    "blastdb_hdh.ptf",
+    "blastdb_hdh.pto"
+  ]
+}

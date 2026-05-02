@@ -1,0 +1,221 @@
+{
+  "genome_id": 7,
+  "quality": {
+    "verdict": "NO_QC",
+    "completeness": null,
+    "contamination": null
+  },
+  "primary_metabolisms": [
+    "Dissimilatory sulfate reduction",
+    "Substrate-level phosphorylation fermentation (mixed products)"
+  ],
+  "recommended_action": "flag_uncertain",
+  "capabilities": [
+    {
+      "name": "Dissimilatory sulfate reduction",
+      "detected": true,
+      "confidence": 0.818,
+      "pathway_completeness": 0.812,
+      "diagnostic_markers": [
+        "aprAB",
+        "dsrAB",
+        "qmoA"
+      ],
+      "negative_markers_present": [],
+      "uncertainty_flags": []
+    },
+    {
+      "name": "Substrate-level phosphorylation fermentation (mixed products)",
+      "detected": true,
+      "confidence": 0.65,
+      "pathway_completeness": 0.822,
+      "diagnostic_markers": [],
+      "negative_markers_present": [],
+      "uncertainty_flags": [
+        "acceptor_disqualifier_applied"
+      ]
+    },
+    {
+      "name": "Denitrification (NO3- to N2)",
+      "detected": false,
+      "confidence": 0.4,
+      "pathway_completeness": 0.455,
+      "diagnostic_markers": [],
+      "negative_markers_present": [],
+      "uncertainty_flags": []
+    },
+    {
+      "name": "Aerobic respiration via electron transport chain",
+      "detected": false,
+      "confidence": 0.316,
+      "pathway_completeness": 0.451,
+      "diagnostic_markers": [],
+      "negative_markers_present": [],
+      "uncertainty_flags": [
+        "cofactor ubiquinone/menaquinone biosynthesis not detected \u2014 may need supplementation or uses alternative pathway"
+      ]
+    },
+    {
+      "name": "Aerobic ammonia oxidation (nitrification step 1)",
+      "detected": false,
+      "confidence": 0.3,
+      "pathway_completeness": 0.0,
+      "diagnostic_markers": [],
+      "negative_markers_present": [],
+      "uncertainty_flags": []
+    },
+    {
+      "name": "Aerobic respiration",
+      "detected": false,
+      "confidence": 0.3,
+      "pathway_completeness": 0.3,
+      "diagnostic_markers": [],
+      "negative_markers_present": [],
+      "uncertainty_flags": []
+    },
+    {
+      "name": "Biological nitrogen fixation (N2 to NH3)",
+      "detected": false,
+      "confidence": 0.296,
+      "pathway_completeness": 0.137,
+      "diagnostic_markers": [],
+      "negative_markers_present": [],
+      "uncertainty_flags": []
+    },
+    {
+      "name": "Anoxygenic phototrophy (green sulfur bacteria, Type I reaction center)",
+      "detected": false,
+      "confidence": 0.2,
+      "pathway_completeness": 0.0,
+      "diagnostic_markers": [],
+      "negative_markers_present": [],
+      "uncertainty_flags": []
+    },
+    {
+      "name": "Sulfur/sulfide/thiosulfate oxidation",
+      "detected": false,
+      "confidence": 0.2,
+      "pathway_completeness": 0.0,
+      "diagnostic_markers": [],
+      "negative_markers_present": [],
+      "uncertainty_flags": []
+    },
+    {
+      "name": "Acidophilic Fe(II) oxidation",
+      "detected": false,
+      "confidence": 0.2,
+      "pathway_completeness": 0.0,
+      "diagnostic_markers": [],
+      "negative_markers_present": [],
+      "uncertainty_flags": []
+    },
+    {
+      "name": "Dissimilatory Fe(III) reduction via extracellular electron transfer",
+      "detected": false,
+      "confidence": 0.2,
+      "pathway_completeness": 0.0,
+      "diagnostic_markers": [],
+      "negative_markers_present": [],
+      "uncertainty_flags": []
+    },
+    {
+      "name": "Bacteriorhodopsin/proteorhodopsin light-driven proton pump",
+      "detected": false,
+      "confidence": 0.2,
+      "pathway_completeness": 0.0,
+      "diagnostic_markers": [],
+      "negative_markers_present": [],
+      "uncertainty_flags": []
+    },
+    {
+      "name": "Anaerobic ammonium oxidation (anammox), ammonium + nitrite to dinitrogen via hydrazine",
+      "detected": false,
+      "confidence": 0.2,
+      "pathway_completeness": 0.0,
+      "diagnostic_markers": [],
+      "negative_markers_present": [],
+      "uncertainty_flags": []
+    },
+    {
+      "name": "Reductive dehalogenation of organohalide compounds as terminal electron acceptors",
+      "detected": false,
+      "confidence": 0.2,
+      "pathway_completeness": 0.0,
+      "diagnostic_markers": [],
+      "negative_markers_present": [],
+      "uncertainty_flags": []
+    },
+    {
+      "name": "Syntrophy (composite signature)",
+      "detected": false,
+      "confidence": 0.1,
+      "pathway_completeness": 0.1,
+      "diagnostic_markers": [],
+      "negative_markers_present": [],
+      "uncertainty_flags": [
+        "confidence capped at 0.70 \u2014 syntrophy is inferential"
+      ]
+    },
+    {
+      "name": "Methanogenesis (hydrogenotrophic, aceticlastic, or methylotrophic)",
+      "detected": false,
+      "confidence": 0.0,
+      "pathway_completeness": 0.0,
+      "diagnostic_markers": [],
+      "negative_markers_present": [],
+      "uncertainty_flags": [
+        "cofactor F420 biosynthesis not detected \u2014 may need supplementation or uses alternative pathway",
+        "cofactor CoM biosynthesis not detected \u2014 may need supplementation or uses alternative pathway",
+        "cofactor CoB biosynthesis not detected \u2014 may need supplementation or uses alternative pathway"
+      ]
+    },
+    {
+      "name": "Acetogenesis via Wood-Ljungdahl pathway. Negative markers: mcrA (methanogen), dsrAB/aprAB (SRB using WL for autotrophic CO2 fixation), mtrC_omcB (iron reducer using WL for autotrophy)",
+      "detected": false,
+      "confidence": 0.0,
+      "pathway_completeness": 0.493,
+      "diagnostic_markers": [
+        "acsB_cdhC",
+        "cooS_cdhA"
+      ],
+      "negative_markers_present": [
+        "dsrAB",
+        "aprAB"
+      ],
+      "uncertainty_flags": []
+    },
+    {
+      "name": "Anoxygenic phototrophy (purple bacteria, Type II reaction center)",
+      "detected": false,
+      "confidence": 0.0,
+      "pathway_completeness": 0.0,
+      "diagnostic_markers": [],
+      "negative_markers_present": [],
+      "uncertainty_flags": [
+        "cofactor bacteriochlorophyll a biosynthesis not detected \u2014 may need supplementation or uses alternative pathway"
+      ]
+    },
+    {
+      "name": "Oxygenic phototrophy (cyanobacteria, algae, plants)",
+      "detected": false,
+      "confidence": 0.0,
+      "pathway_completeness": 0.0,
+      "diagnostic_markers": [],
+      "negative_markers_present": [],
+      "uncertainty_flags": [
+        "cofactor chlorophyll a biosynthesis not detected \u2014 may need supplementation or uses alternative pathway"
+      ]
+    },
+    {
+      "name": "Extreme salt-in halophily (composite signature)",
+      "detected": false,
+      "confidence": 0.0,
+      "pathway_completeness": -0.05,
+      "diagnostic_markers": [],
+      "negative_markers_present": [],
+      "uncertainty_flags": [
+        "confidence capped at 0.75 \u2014 salt-in is a composite signature"
+      ]
+    }
+  ]
+}

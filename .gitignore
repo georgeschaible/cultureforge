@@ -1,0 +1,169 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# --- Virtual environments ---
+venv/
+ENV/
+env/
+.venv/
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
+# --- Testing and coverage ---
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# --- Editor / OS files ---
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# --- Claude Code session state ---
+.claude/
+
+# --- CultureForge: large generated databases and caches ---
+data/cultureforge.db
+data/cultureforge.db-journal
+/cultureforge.db
+/cultureforge.sqlite
+
+# Cached external-API records (rebuildable via download_*.py)
+data/bacdive/strains/
+data/mediadive/all_media.json
+data/mediadive/index.json
+data/mediadive/media/
+data/mediadive/medium_strains/
+data/mediadive/medium_*.json
+data/mediadive/medium_recipes/
+
+# Copyrighted PDFs (do not redistribute)
+data/thermo/*.pdf
+
+# TEMPURA data (CC BY-NC 3.0 — non-commercial license incompatible
+# with MIT redistribution; users download from togodb.org/db/tempura)
+data/tempura/tempura.csv
+data/tempura/new_16s_accessions.json
+
+# Derived 16S indices (rebuildable from BacDive + TEMPURA via fetch_16s_*.py)
+data/16s_accessions.json
+data/16s_acc_to_bid.json
+data/16s_unique.fasta
+
+# CAZyme generated inputs (regenerable from gapseq/proteome data)
+data/cazyme/*/uniInput.faa
+data/cazyme/*/output/
+
+# Generated validation profile dumps
+data/validation/phase1_capability_profiles.txt
+data/validation/phase1_5_capability_profiles.txt
+data/validation/phase1_*_capability_profiles.txt
+data/validation/phase2c_recipes/
+
+# Vendored GenomeSPOT — exclude bulky non-runtime content
+# (notebooks ~13 MB, test data ~5.5 MB, build artifacts, holdout fixtures)
+vendor/GenomeSPOT/.git/
+vendor/GenomeSPOT/notebooks/
+vendor/GenomeSPOT/tests/test_data/
+vendor/GenomeSPOT/data/holdouts/
+vendor/GenomeSPOT/build/
+vendor/GenomeSPOT/.vscode/
+
+# Coverage audit / dbCAN db / hydrogenase prebuilt DBs
+data/coverage_audit/*.json
+data/dbcan_db/
+data/hydrogenase/hydrogenase_ref.fasta
+
+# Downloaded genome assemblies (rebuildable via NCBI download)
+data/genomes/
+data/sentinel/*/proteome.faa
+data/sentinel/*/genome.fna
+data/sentinel/*/*.faa
+data/sentinel/*/*.fna
+
+# gapseq output (regenerable; large; per-genome)
+data/gapseq/*/
+*.RDS
+
+# GenomeSPOT output
+data/genomespot/
+
+# CheckM2 / MeBiPred output
+data/checkm2/
+data/mebipred/
+
+# 16S reference database (built from BacDive/TEMPURA via fetch_16s_*.py)
+data/16s_reference.fasta
+data/16s_unique.fasta
+data/blastdb/
+
+# BLAST databases for diagnostic markers (rebuilt from data/diagnostic_markers/*_refs.fasta)
+data/diagnostic_markers/blastdb_*.phr
+data/diagnostic_markers/blastdb_*.pin
+data/diagnostic_markers/blastdb_*.psq
+data/diagnostic_markers/blastdb_*.pdb
+data/diagnostic_markers/blastdb_*.pot
+data/diagnostic_markers/blastdb_*.ptf
+data/diagnostic_markers/blastdb_*.pto
+
+# BLAST databases for sentinel proteomes
+data/sentinel/*/genome_db.*
+
+# Hydrogenase reference DB (rebuildable)
+data/hydrogenase/hydrogenase_ref.*
+
+# Logs
+*.log
+data/*.log
+data/validation/*.log
+data/gapseq/*.log
+
+# --- User credentials (NEVER commit) ---
+.env
+.env.local
+.env.*.local
+config.local.json
+credentials.json
+**/credentials.json
+**/api_keys.json
+**/api_key.txt
+
+# --- OneDrive / development mirror scripts ---
+mirror_outputs.sh
+
+# --- Vendored egg-info (rebuilt at install time) ---
+vendor/GenomeSPOT/genome_spot.egg-info/
+
+# --- Misc generated documents ---
+data/release/*.tmp
+*.bak

@@ -1,0 +1,77 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: Halobacterium salinarum (NC_002607.1)
+Genome ID: 20
+Domain: Archaea
+Generated: 2026-04-28 16:58:31
+CultureForge version: 2026-04-28
+══════════════════════════════════════════════════════════════════════
+
+RECIPE (Section 10)
+──────────────────────────────────────────────────────────────────────
+
+PRIMARY CULTIVATION MODE: halophilic_with_rhodopsin
+ALTERNATIVE MODES (also detected): aerobic_chemotrophic
+
+GAS PHASE
+  air:   100%
+  Pressure: 1.0 atm
+    Aerobic; halobacteria are obligate aerobes despite having
+    rhodopsin.
+
+INCUBATION CONDITIONS
+  Temperature: 30.0°C
+  pH:          7.0
+  Light:       required  (50 µmol/m²/s)
+  Shaking:     150 rpm
+    Temperature 30.0°C, pH 7.0 (default — no GenomeSPOT/TEMPURA
+    data); shaking 150 rpm; ambient light for rhodopsin
+
+INGREDIENTS
+  Buffer:
+    Phosphate buffer (KH2PO4 + K2HPO4)               30 mM
+      30 mM phosphate buffer adjusted to pH 7.0
+      (confidence 0.85)
+  Salt:
+    NaCl                                            250 g/L
+      25% NaCl (~4.3 M) — extreme halophile; cytoplasmic K+
+      concentration matched to external Na+.
+    MgSO4·7H2O                                       20 g/L
+      Elevated MgSO4 (~80 mM) typical of haloarchaeal media.
+      (confidence 0.90)
+    KCl                                               2 g/L
+      Potassium baseline (~25 mM) for halophile osmotic
+      balance.
+      (confidence 0.85)
+  Carbon Source:
+    Peptone                                          10 g/L
+      Amino-acid carbon source for halobacterial growth.
+      (confidence 0.85)
+  Nitrogen Source:
+    Yeast extract                                     5 g/L
+      Vitamins + amino acids.
+      (confidence 0.85)
+  Trace Metal:
+    SL-10 trace metal solution                        1 mL/L
+      SL-10 (Tschech & Pfennig 1984): Fe, Zn, Mn, B, Co, Cu,
+      Ni, Mo at standard concentrations. 1 mL/L final.
+      (confidence 0.85)
+  Vitamin:
+    Wolin's vitamin solution                          1 mL/L
+      Wolin's vitamins (Wolin et al. 1963): biotin, folic
+      acid, pyridoxine, thiamine, riboflavin, nicotinic
+      acid, pantothenate, B12, p-aminobenzoic acid, lipoic
+      acid. 1 mL/L final.
+      (confidence 0.85)
+
+THERMODYNAMIC CHECK
+  Reaction: Light + H+ → H+ pumped (rhodopsin proton pumping; supplementary energy)
+  ΔG (standard, default activities): -10.0 kJ/mol
+  Feasibility: feasible (INFEASIBLE)
+
+UNCERTAINTY FLAGS
+  None significant for this recipe.
+
+OVERALL CONFIDENCE: 0.52 (low)
+    RATIONALE: base from RecipeContext = 0.52 → final 0.52
+──────────────────────────────────────────────────────────────────────

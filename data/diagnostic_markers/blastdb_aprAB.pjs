@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "dbname": "blastdb_aprAB",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": "aprAB",
+  "number-of-letters": 2424,
+  "number-of-sequences": 6,
+  "last-updated": "2026-04-27T21:19:00",
+  "number-of-volumes": 1,
+  "bytes-total": 40768,
+  "bytes-to-cache": 2575,
+  "files": [
+    "blastdb_aprAB.pdb",
+    "blastdb_aprAB.phr",
+    "blastdb_aprAB.pin",
+    "blastdb_aprAB.pot",
+    "blastdb_aprAB.psq",
+    "blastdb_aprAB.ptf",
+    "blastdb_aprAB.pto"
+  ]
+}

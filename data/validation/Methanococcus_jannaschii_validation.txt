@@ -1,0 +1,351 @@
+================================================================================
+CULTUREFORGE VALIDATION: Methanococcus_jannaschii
+================================================================================
+
+================================================================================
+  SYNTHESIZED RECIPE — derived from template 'STETTERIA MEDIUM'
+  Query: NC_000909.1  (10 relatives, best identity 87.8%)
+================================================================================
+
+  Overall Confidence: LOW (0.45)
+  → min of 31 (template = 0.60) MINUS 0.15 for precipitation risk (8 warnings)
+
+  Thermal sources: user_supplied=85°C
+  → user-supplied 85.0°C
+
+  COMPONENTS:
+    [Complex nutrient sources]
+      Peptone                                  2.0 g/L          [0.60] ⚠ (template)
+      Yeast extract                            1.0 g/L          [0.60] ⚠ (template)
+
+    [Base salts]
+      MgSO4 x 7 H2O                            3.0 g/L          [0.60] ⚠ (template)
+      NaCl                                     1.0 g/L          [0.60] ⚠ (template)
+      CaCl2 x 2 H2O                            100.0 mg/L       [0.60] ⚠ (template)
+      NaCl                                     55.4 g/L         [0.60] ⚠ (template)
+      MgSO4 x 7 H2O                            14.0 g/L         [0.60] ⚠ (template)
+      MgCl2 x 6 H2O                            11.0 g/L         [0.60] ⚠ (template)
+      CaCl2 x 2 H2O                            1.5 g/L          [0.60] ⚠ (template)
+      KCl                                      1.3 g/L          [0.60] ⚠ (template)
+
+    [Carbon sources]
+      Na3-citrate                              20.0 mg/L        [0.60] ⚠ (template)
+
+    [Phosphate]
+      KH2PO4                                   500.0 mg/L       [0.60] ⚠ (template)
+
+    [Sulfur]
+      AlK(SO4)2 x 12 H2O                       20.0 mg/L        [0.60] ⚠ (template)
+
+    [Trace metals]
+      NiCl2 x 6 H2O                            2.9 mg/L         [0.60] ⚠ (template)
+      MnSO4 x H2O                              500.0 mg/L       [0.60] ⚠ (template)
+      Na2WO4 x 2 H2O                           400 μg/L         [0.60] ⚠ (template)
+      Na2SeO3 x 5 H2O                          300 μg/L         [0.60] ⚠ (template)
+      CoSO4 x 7 H2O                            180.0 mg/L       [0.60] ⚠ (template)
+      ZnSO4 x 7 H2O                            180.0 mg/L       [0.60] ⚠ (template)
+      FeSO4 x 7 H2O                            100.0 mg/L       [0.60] ⚠ (template)
+      NiCl2 x 6 H2O                            30.0 mg/L        [0.60] ⚠ (template)
+      CuSO4 x 5 H2O                            10.0 mg/L        [0.60] ⚠ (template)
+      H3BO3                                    10.0 mg/L        [0.60] ⚠ (template)
+      Na2MoO4 x 2 H2O                          10.0 mg/L        [0.60] ⚠ (template)
+      H3BO3                                    60.0 mg/L        [0.60] ⚠ (template)
+
+    [Auxotrophy supplements]
+      NAD                                      5.0 mg/L         [0.72] ⚠ (auxotrophy)
+          → gapseq reports auxotrophy (best biosynthesis pathway 50%); template 'STETTERIA MEDIUM' lacks a direct source for NAD
+          → partial biosynthesis (50%); test 0, 0.5×, 1×, 2× to verify requirement
+      heme                                     5.0 mg/L         [0.95] (auxotrophy)
+          → gapseq reports auxotrophy (best biosynthesis pathway 0%); template 'STETTERIA MEDIUM' lacks a direct source for heme
+      molybdopterin                            1.0 mg/L         [0.95] (auxotrophy)
+          → gapseq reports auxotrophy (best biosynthesis pathway 0%); template 'STETTERIA MEDIUM' lacks a direct source for molybdopterin
+      siroheme                                 1.0 mg/L         [0.72] ⚠ (auxotrophy)
+          → gapseq reports auxotrophy (best biosynthesis pathway 50%); template 'STETTERIA MEDIUM' lacks a direct source for siroheme
+          → partial biosynthesis (50%); test 0, 0.5×, 1×, 2× to verify requirement
+
+    [Electron donor]
+      Gas phase: H2:CO2 (80:20)                                 [0.95] (energy:methanogenesis)
+          → user-specified energy metabolism 'methanogenesis'; adding electron_donor per CLAUDE.md reference table
+
+    [Buffers]
+      NaHCO3                                   160.0 mg/L       [0.60] ⚠ (template)
+
+    [Other]
+      Sulfur                                   10.0 g/L         [0.60] ⚠ (template)
+      Sodium resazurin                         491 μg/L         [0.60] ⚠ (template)
+      Na2S x 9 H2O                             500.0 mg/L       [0.60] ⚠ (template)
+      Nitrilotriacetic acid                    1.5 g/L          [0.60] ⚠ (template)
+      NaBr                                     200.0 mg/L       [0.60] ⚠ (template)
+      KI                                       100 μg/L         [0.60] ⚠ (template)
+      SrCl2 x 6 H2O                            30.0 mg/L        [0.60] ⚠ (template)
+
+================================================================================
+  CARBON SOURCE ANALYSIS
+================================================================================
+  Organism can utilize 3 predicted carbon sources:
+    ✓ aspartate            (100% pathway — L-aspartate degradation I)
+    ✓ glutamine            (100% pathway — L-glutamine degradation II)
+    ✓ CO2                  (83% pathway — methanogenesis from acetate)
+
+  ⚠ CARBON SOURCE MISMATCH: Na3-citrate
+    → organism has NO predicted pathway for citrate degradation/utilization — this carbon source may not support growth
+    → Consider replacing with a compatible carbon source
+
+================================================================================
+  GAS PHASE RECOMMENDATION
+================================================================================
+  Headspace: H₂:CO₂ (80:20) at 1-2 bar overpressure
+    → hydrogenotrophic methanogen — requires H₂ as electron donor
+  BLAST-confirmed hydrogenases (4 hits):
+    • [NiFe]  Group 3  NC_000909.1_270        49.6%id  bs=266
+    • [NiFe]  Group 4  NC_000909.1_1100       33.7%id  bs=193
+    • [NiFe]  Group 4  NC_000909.1_545        31.5%id  bs=174
+    • [FeFe]  Group A  NC_000909.1_1720       39.1%id  bs=135
+  gapseq H₂ pathways (1):
+    • methanogen      83%  methanogenesis from acetate
+  ⚠ STRICT ANAEROBE — all manipulation must be under anoxic conditions (glove box or Hungate technique)
+
+================================================================================
+  PHYSICAL FORMAT
+================================================================================
+  Recommended: Liquid in sealed tubes (Hungate/Balch technique)  [0.90]
+    → Strict anaerobe — requires O₂-free conditions. Use Hungate tubes or Balch tubes with butyl rubber stoppers and aluminum crimps. Prepare under N₂ or N₂:CO₂ atmosphere.
+  Alternative: Roll tubes (anaerobic + solid surface) OR anaerobic chamber + agar plates if colony isolation needed
+  Solidifying agent: Gellan gum (Gelrite/Phytagel) 0.5-1.0%
+    → Growth temperature >65°C — agar hydrolyzes at high temperature. Gellan gum requires 1-3 mM divalent cation (MgCl₂ or CaCl₂) for solidification.
+  ⚠ STRICT ANAEROBE — all manipulation must use Hungate technique or anaerobic glove box
+  ⚠ HIGH TEMPERATURE — use gellan gum, NOT agar
+
+================================================================================
+  THERMODYNAMIC VIABILITY CHECK (Amend & Shock 2001)
+================================================================================
+    Reaction:  CO2(aq) + 4 H2(aq) -> CH4(aq) + 2 H2O(l)
+    Temperature: 85°C
+    ΔG°r (standard state): -184.04 kJ/mol
+    Activities:  CH4(aq)=1.0e-05, CO2(aq)=1.0e-02, H2(aq)=1.0e-04
+    ΔGr (actual):  -94.90 kJ/mol
+    Verdict:   ✓ VIABLE (< -20 kJ/mol)
+
+================================================================================
+  COMPATIBILITY WARNINGS (8 precipitation risks detected)
+================================================================================
+    ✗ [HIGH] FePO4 / Fe3(PO4)2 (vivianite / iron phosphate)
+        FeSO4 x 7 H2O  +  KH2PO4  (condition: pH > 5.5)
+        → Prepare iron and phosphate solutions SEPARATELY; autoclave separately; combine post-cooling. OR add chelator (NTA 0.1-1 mg/L or Na-EDTA 0.5-5 mg/L) to iron solution before combining. OR use ferric citrate (pre-chelated iron).
+
+    ✗ [HIGH] FeS / FeS2 (iron sulfide / pyrite)
+        FeSO4 x 7 H2O  +  Na2S x 9 H2O  (condition: any pH)
+        → Prepare iron and reducing-agent/sulfide solutions SEPARATELY; combine under anaerobic conditions post-autoclaving. Consider titanium(III) citrate as alternative reductant if FeS precipitation is problematic.
+
+    ✗ [HIGH] CuS (covellite)
+        CuSO4 x 5 H2O  +  Na2S x 9 H2O  (condition: any pH)
+        → Prepare trace metals and sulfide/reducing agent SEPARATELY; combine post-autoclaving under anaerobic conditions.
+
+    ✗ [HIGH] ZnS (sphalerite)
+        ZnSO4 x 7 H2O  +  Na2S x 9 H2O  (condition: any pH)
+        → Prepare trace metals and sulfide/reducing agent SEPARATELY; combine post-autoclaving under anaerobic conditions.
+
+    ✗ [HIGH] NiS (millerite)
+        NiCl2 x 6 H2O  +  Na2S x 9 H2O  (condition: neutral-alkaline pH)
+        → Prepare trace metals and sulfide/reducing agent SEPARATELY; combine post-autoclaving under anaerobic conditions.
+
+    ✗ [HIGH] CoS (cobalt sulfide)
+        NaHCO3  +  Na2S x 9 H2O  (condition: neutral-alkaline pH)
+        → Prepare trace metals and sulfide/reducing agent SEPARATELY; combine post-autoclaving under anaerobic conditions.
+
+    ⚠ [MEDIUM] Ca3(PO4)2 (apatite / calcium phosphate)
+        CaCl2 x 2 H2O  +  KH2PO4  (condition: pH > 6.5)
+        → Autoclave calcium and phosphate solutions separately; combine post-cooling.
+
+    ○ [LOW] CaSO4 (gypsum)
+        CaCl2 x 2 H2O  +  MgSO4 x 7 H2O  (condition: high concentrations (>20 mM each))
+        → Usually not problematic at typical medium concentrations. If both Ca and SO4 are at high levels, reduce one or prepare separately.
+
+  PREPARATION INSTRUCTIONS (auto-generated from compatibility check)
+
+  SOLUTION A — Phosphate/buffer (autoclave separately):
+    - KH2PO4
+    → Dissolve in partial volume H₂O, autoclave 121°C 15 min
+
+  SOLUTION B — Metals/iron (autoclave separately):
+    - CoSO4 x 7 H2O
+    - CuSO4 x 5 H2O
+    - FeSO4 x 7 H2O
+    - Gas phase: H2:CO2 (80:20)
+    - MnSO4 x H2O
+    - NaHCO3
+    - NiCl2 x 6 H2O
+    - Nitrilotriacetic acid
+    - ZnSO4 x 7 H2O
+    - Na-EDTA or NTA (chelator, 0.5-5 mg/L)
+    → Dissolve in partial volume H₂O, autoclave 121°C 15 min
+
+  SOLUTION C — Reducing agents/sulfide (prepare under N₂, add LAST):
+    - Na2S x 9 H2O
+    - Na2SeO3 x 5 H2O
+    → Prepare under N₂ atmosphere; autoclave separately or
+      prepare from sterile anaerobic stock; add to cooled
+      combined medium under anaerobic conditions
+
+  COMBINE: Cool all solutions to ~50°C under sterile conditions.
+           Add solutions in order: base salts → phosphate →
+           metals (with chelator) → reducing agents/sulfide (last).
+           Adjust pH to target with sterile NaOH/HCl.
+
+  ⚠ UNCERTAINTY FLAGS (35 components <0.75):
+    • Sulfur (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • NiCl2 x 6 H2O (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • Peptone (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • Yeast extract (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • KH2PO4 (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • Sodium resazurin (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • Na2S x 9 H2O (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • NaHCO3 (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • MgSO4 x 7 H2O (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • Nitrilotriacetic acid (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • NaCl (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • MnSO4 x H2O (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • Na2WO4 x 2 H2O (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • Na2SeO3 x 5 H2O (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • CoSO4 x 7 H2O (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • ZnSO4 x 7 H2O (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • FeSO4 x 7 H2O (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • CaCl2 x 2 H2O (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • NiCl2 x 6 H2O (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • AlK(SO4)2 x 12 H2O (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • CuSO4 x 5 H2O (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • H3BO3 (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • Na2MoO4 x 2 H2O (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • NaCl (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • Na3-citrate (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • MgSO4 x 7 H2O (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • MgCl2 x 6 H2O (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • CaCl2 x 2 H2O (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • KCl (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • NaBr (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • KI (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • H3BO3 (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • SrCl2 x 6 H2O (0.60) — from template 'STETTERIA MEDIUM' — min of 2 (phylo_16s = 0.60)
+    • NAD (0.72) — gapseq reports auxotrophy (best biosynthesis pathway 50%); template 'STETTERIA MEDIUM' lacks a direct source for NAD
+    • siroheme (0.72) — gapseq reports auxotrophy (best biosynthesis pathway 50%); template 'STETTERIA MEDIUM' lacks a direct source for siroheme
+
+  EXPERIMENTAL VARIATION MATRIX:
+    • Sulfur
+        reason:   60% confidence
+        variants: Test variants experimentally
+    • NiCl2 x 6 H2O
+        reason:   60% confidence
+        variants: Test with and without NiCl2 x 6 H2O
+    • Peptone
+        reason:   60% confidence
+        variants: Test variants experimentally
+    • Yeast extract
+        reason:   60% confidence
+        variants: Test variants experimentally
+    • KH2PO4
+        reason:   60% confidence
+        variants: Test variants experimentally
+    • Sodium resazurin
+        reason:   60% confidence
+        variants: Test variants experimentally
+    • Na2S x 9 H2O
+        reason:   60% confidence
+        variants: Test variants experimentally
+    • NaHCO3
+        reason:   60% confidence
+        variants: Test variants experimentally
+    • MgSO4 x 7 H2O
+        reason:   60% confidence
+        variants: Test variants experimentally
+    • Nitrilotriacetic acid
+        reason:   60% confidence
+        variants: Test variants experimentally
+    • NaCl
+        reason:   60% confidence
+        variants: Test variants experimentally
+    • MnSO4 x H2O
+        reason:   60% confidence
+        variants: Test with and without MnSO4 x H2O
+    • Na2WO4 x 2 H2O
+        reason:   60% confidence
+        variants: Test with and without Na2WO4 x 2 H2O
+    • Na2SeO3 x 5 H2O
+        reason:   60% confidence
+        variants: Test with and without Na2SeO3 x 5 H2O
+    • CoSO4 x 7 H2O
+        reason:   60% confidence
+        variants: Test with and without CoSO4 x 7 H2O
+    • ZnSO4 x 7 H2O
+        reason:   60% confidence
+        variants: Test with and without ZnSO4 x 7 H2O
+    • FeSO4 x 7 H2O
+        reason:   60% confidence
+        variants: Test with and without FeSO4 x 7 H2O
+    • CaCl2 x 2 H2O
+        reason:   60% confidence
+        variants: Test variants experimentally
+    • NiCl2 x 6 H2O
+        reason:   60% confidence
+        variants: Test with and without NiCl2 x 6 H2O
+    • AlK(SO4)2 x 12 H2O
+        reason:   60% confidence
+        variants: Test variants experimentally
+    • CuSO4 x 5 H2O
+        reason:   60% confidence
+        variants: Test with and without CuSO4 x 5 H2O
+    • H3BO3
+        reason:   60% confidence
+        variants: Test with and without H3BO3
+    • Na2MoO4 x 2 H2O
+        reason:   60% confidence
+        variants: Test with and without Na2MoO4 x 2 H2O
+    • NaCl
+        reason:   60% confidence
+        variants: Test variants experimentally
+    • Na3-citrate
+        reason:   60% confidence
+        variants: Test alternative carbon sources alongside Na3-citrate
+    • MgSO4 x 7 H2O
+        reason:   60% confidence
+        variants: Test variants experimentally
+    • MgCl2 x 6 H2O
+        reason:   60% confidence
+        variants: Test variants experimentally
+    • CaCl2 x 2 H2O
+        reason:   60% confidence
+        variants: Test variants experimentally
+    • KCl
+        reason:   60% confidence
+        variants: Test variants experimentally
+    • NaBr
+        reason:   60% confidence
+        variants: Test variants experimentally
+    • KI
+        reason:   60% confidence
+        variants: Test variants experimentally
+    • H3BO3
+        reason:   60% confidence
+        variants: Test with and without H3BO3
+    • SrCl2 x 6 H2O
+        reason:   60% confidence
+        variants: Test variants experimentally
+    • NAD supplement
+        reason:   partial biosynthesis (50%); test 0, 0.5×, 1×, 2× to verify requirement
+        variants: Test 0×, 0.5×, 1×, 2× NAD (0 / 0.00 / 0.005 / 0.01 g/L)
+    • siroheme supplement
+        reason:   partial biosynthesis (50%); test 0, 0.5×, 1×, 2× to verify requirement
+        variants: Test 0×, 0.5×, 1×, 2× siroheme (0 / 0.00 / 0.001 / 0.00 g/L)
+
+================================================================================
+  PROVENANCE
+================================================================================
+    Template medium:   STETTERIA MEDIUM (795)
+    Phylogenetic match: MediaDive + BacDive via 16S BLAST (best 87.8%)
+    Metabolic analysis: gapseq 1.4.0 → 21 auxotrophy compound(s) required
+    Environmental:     multi-source thermal inference (1 source(s))
+    Metal profile:     MeBiPred (10 strong metals: Mg, Ca, Fe, K, Ni, Na, Mn, Zn, Cu, Co)
+    Genome biomass:    Archaea
+    Energy overlay:    user-specified 'methanogenesis'
+    Thermo check:      Amend & Shock 2001 (Methanogenesis (hydrogenotrophic); ΔGr = -94.9 kJ/mol → viable)
+================================================================================
+  → layered 4 auxotrophy + 0 metal + 1 energy-metabolism components onto template baseline

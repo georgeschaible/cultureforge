@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "dbname": "blastdb_mmoX",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": "mmoX",
+  "number-of-letters": 2105,
+  "number-of-sequences": 4,
+  "last-updated": "2026-05-01T21:03:00",
+  "number-of-volumes": 1,
+  "bytes-total": 39975,
+  "bytes-to-cache": 2230,
+  "files": [
+    "blastdb_mmoX.pdb",
+    "blastdb_mmoX.phr",
+    "blastdb_mmoX.pin",
+    "blastdb_mmoX.pot",
+    "blastdb_mmoX.psq",
+    "blastdb_mmoX.ptf",
+    "blastdb_mmoX.pto"
+  ]
+}

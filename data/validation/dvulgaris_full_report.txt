@@ -1,0 +1,213 @@
+================================================================================
+  SYNTHESIZED RECIPE — derived from template 'DESULFOVIBRIO (POSTGATE) MEDIUM'
+  Query: NC_002937.3  (10 relatives, best identity 99.8%)
+================================================================================
+
+  Overall Confidence: LOW (0.50)
+  → min of 16 (gapseq = 0.65) MINUS 0.15 for precipitation risk (8 warnings)
+
+  Thermal sources: user_supplied=37°C
+  → user-supplied 37.0°C
+
+  COMPONENTS:
+    [Complex nutrient sources]
+      Yeast extract                            1.0 g/L          [0.95] (template)
+
+    [Base salts]
+      MgSO4 x 7 H2O                            2.0 g/L          [0.95] (template)
+      CaCl2 x 2 H2O                            100.0 mg/L       [0.95] (template)
+
+    [Carbon sources]
+      Na-DL-lactate                            2.0 g/L          [0.95] (template)
+
+    [Nitrogen sources]
+      NH4Cl                                    1.0 g/L          [0.95] (template)
+
+    [Phosphate]
+      K2HPO4                                   500.0 mg/L       [0.95] (template)
+
+    [Sulfur]
+      Na2SO4                                   1.0 g/L          [0.95] (template)
+
+    [Trace metals]
+      FeSO4 x 7 H2O                            500.0 mg/L       [0.95] (template)
+      NiCl2·6H2O                               50 μg/L          [0.95] (mebipred)
+          → MeBiPred: 495 Ni-binding proteins (max_p=1.00); template 'DESULFOVIBRIO (POSTGATE) MEDIUM' lacks a direct Ni salt
+          → fraction 0.16 > typical ceiling 0.10 — flag for review
+      MnCl2·4H2O                               500 μg/L         [0.95] (mebipred)
+          → MeBiPred: 429 Mn-binding proteins (max_p=1.00); template 'DESULFOVIBRIO (POSTGATE) MEDIUM' lacks a direct Mn salt
+      ZnSO4·7H2O                               500 μg/L         [0.95] (mebipred)
+          → MeBiPred: 287 Zn-binding proteins (max_p=0.98); template 'DESULFOVIBRIO (POSTGATE) MEDIUM' lacks a direct Zn salt
+      CuSO4·5H2O                               50 μg/L          [0.95] (mebipred)
+          → MeBiPred: 227 Cu-binding proteins (max_p=1.00); template 'DESULFOVIBRIO (POSTGATE) MEDIUM' lacks a direct Cu salt
+          → max_p 1.00 on rare metal — verify with BRENDA
+      CoCl2·6H2O                               50 μg/L          [0.95] (mebipred)
+          → MeBiPred: 140 Co-binding proteins (max_p=1.00); template 'DESULFOVIBRIO (POSTGATE) MEDIUM' lacks a direct Co salt
+          → max_p 1.00 on rare metal — verify with BRENDA
+
+    [Auxotrophy supplements]
+      heme                                     5.0 mg/L         [0.65] ⚠ (auxotrophy)
+          → gapseq reports auxotrophy (best biosynthesis pathway 66%); template 'DESULFOVIBRIO (POSTGATE) MEDIUM' lacks a direct source for heme
+          → partial biosynthesis (66%); test 0, 0.5×, 1×, 2× to verify requirement
+      molybdopterin                            1.0 mg/L         [0.72] ⚠ (auxotrophy)
+          → gapseq reports auxotrophy (best biosynthesis pathway 50%); template 'DESULFOVIBRIO (POSTGATE) MEDIUM' lacks a direct source for molybdopterin
+          → partial biosynthesis (50%); test 0, 0.5×, 1×, 2× to verify requirement
+
+    [Other]
+      Sodium resazurin                         510 μg/L         [0.95] (template)
+      Na-thioglycolate                         100.0 mg/L       [0.95] (template)
+      Ascorbic acid                            100.0 mg/L       [0.95] (template)
+
+================================================================================
+  CARBON SOURCE ANALYSIS
+================================================================================
+  Organism can utilize 18 predicted carbon sources:
+    ✓ aspartate            (100% pathway — L-aspartate degradation I)
+    ✓ glutamine            (100% pathway — L-glutamine degradation II)
+    ✓ glutamate            (100% pathway — L-glutamate degradation II)
+    ✓ glycerol             (100% pathway — glycerol degradation V)
+    ✓ cysteine             (100% pathway — L-cysteine degradation II)
+    ✓ ethylene glycol      (100% pathway — ethylene glycol degradation)
+    ✓ lactate              (100% pathway — L-lactaldehyde degradation (anaerobic))
+    ✓ alanine              (100% pathway — L-alanine degradation IV)
+    ✓ formate              (100% pathway — formate oxidation to CO2)
+    ✓ benzoate             (100% pathway — benzoate degradation II (aerobic and anaerobic))
+
+================================================================================
+  GAS PHASE RECOMMENDATION
+================================================================================
+  Headspace: N₂:CO₂ (80:20) — OR H₂:CO₂ (80:20) if testing lithoautotrophic growth
+    → sulfate reducer with uptake hydrogenase — can use H₂ or organic donors; N₂:CO₂ is standard for heterotrophic growth with lactate/pyruvate; H₂:CO₂ enables autotrophic growth
+  BLAST-confirmed hydrogenases (9 hits):
+    • [FeFe]  Group A  NC_002937.3_1669       37.0%id  bs=402
+    • [FeFe]  Group A  NC_002937.3_1667       41.2%id  bs=313
+    • [FeFe]  Group A  NC_002937.3_1134       66.4%id  bs=292
+    • [NiFe]  Group 2  NC_002937.3_1806       43.0%id  bs=272
+    • [NiFe]  Group 2  NC_002937.3_2351       41.6%id  bs=263
+    • [NiFe]  Group 1  NC_002937.3_3008      100.0%id  bs=258
+  gapseq H₂ pathways (6):
+    • sulfate_reducer    80%  dissimilatory sulfate reduction I (to hydrogen sufide))
+    • uptake         100%  hydrogen oxidation I (aerobic)
+    • uptake         100%  hydrogen to fumarate electron transfer
+    • production     100%  hydrogen production III
+    • production     100%  hydrogen production VI
+  ⚠ STRICT ANAEROBE — all manipulation must be under anoxic conditions (glove box or Hungate technique)
+
+================================================================================
+  PHYSICAL FORMAT
+================================================================================
+  Recommended: Liquid in sealed tubes (Hungate/Balch technique)  [0.90]
+    → Strict anaerobe — requires O₂-free conditions. Use Hungate tubes or Balch tubes with butyl rubber stoppers and aluminum crimps. Prepare under N₂ or N₂:CO₂ atmosphere.
+  Alternative: Roll tubes (anaerobic + solid surface) OR anaerobic chamber + agar plates if colony isolation needed
+  Solidifying agent: Agar (Bacto or Noble) 1.2-2.0%
+    → Standard — works for most organisms at moderate T and pH.
+  ⚠ STRICT ANAEROBE — all manipulation must use Hungate technique or anaerobic glove box
+
+================================================================================
+  THERMODYNAMIC VIABILITY CHECK (Amend & Shock 2001)
+================================================================================
+    Reaction:  SO4(2-) + 4 H2(aq) + 2 H+ -> H2S(aq) + 4 H2O(l)
+    Temperature: 37°C
+    ΔG°r (standard state): -304.96 kJ/mol
+    Activities:  H+=1.0e-07, H2(aq)=1.0e-04, H2S(aq)=1.0e-04, SO4(2-)=2.8e-02
+    ΔGr (actual):  -141.36 kJ/mol
+    Verdict:   ✓ VIABLE (< -20 kJ/mol)
+
+================================================================================
+  COMPATIBILITY WARNINGS (8 precipitation risks detected)
+================================================================================
+    ✗ [HIGH] FePO4 / Fe3(PO4)2 (vivianite / iron phosphate)
+        FeSO4 x 7 H2O  +  K2HPO4  (condition: pH > 5.5)
+        → Prepare iron and phosphate solutions SEPARATELY; autoclave separately; combine post-cooling. OR add chelator (NTA 0.1-1 mg/L or Na-EDTA 0.5-5 mg/L) to iron solution before combining. OR use ferric citrate (pre-chelated iron).
+
+    ✗ [HIGH] FeS / FeS2 (iron sulfide / pyrite)
+        FeSO4 x 7 H2O  +  Na-thioglycolate  (condition: any pH)
+        → Prepare iron and reducing-agent/sulfide solutions SEPARATELY; combine under anaerobic conditions post-autoclaving. Consider titanium(III) citrate as alternative reductant if FeS precipitation is problematic.
+
+    ✗ [HIGH] CuS (covellite)
+        CuSO4·5H2O  +  Na-thioglycolate  (condition: any pH)
+        → Prepare trace metals and sulfide/reducing agent SEPARATELY; combine post-autoclaving under anaerobic conditions.
+
+    ✗ [HIGH] ZnS (sphalerite)
+        ZnSO4·7H2O  +  Na-thioglycolate  (condition: any pH)
+        → Prepare trace metals and sulfide/reducing agent SEPARATELY; combine post-autoclaving under anaerobic conditions.
+
+    ✗ [HIGH] NiS (millerite)
+        NiCl2·6H2O  +  Na-thioglycolate  (condition: neutral-alkaline pH)
+        → Prepare trace metals and sulfide/reducing agent SEPARATELY; combine post-autoclaving under anaerobic conditions.
+
+    ✗ [HIGH] CoS (cobalt sulfide)
+        Ascorbic acid  +  Na-thioglycolate  (condition: neutral-alkaline pH)
+        → Prepare trace metals and sulfide/reducing agent SEPARATELY; combine post-autoclaving under anaerobic conditions.
+
+    ⚠ [MEDIUM] Ca3(PO4)2 (apatite / calcium phosphate)
+        CaCl2 x 2 H2O  +  K2HPO4  (condition: pH > 6.5)
+        → Autoclave calcium and phosphate solutions separately; combine post-cooling.
+
+    ○ [LOW] CaSO4 (gypsum)
+        CaCl2 x 2 H2O  +  MgSO4 x 7 H2O  (condition: high concentrations (>20 mM each))
+        → Usually not problematic at typical medium concentrations. If both Ca and SO4 are at high levels, reduce one or prepare separately.
+
+  PREPARATION INSTRUCTIONS (auto-generated from compatibility check)
+
+  SOLUTION A — Phosphate/buffer (autoclave separately):
+    - K2HPO4
+    → Dissolve in partial volume H₂O, autoclave 121°C 15 min
+
+  SOLUTION B — Metals/iron (autoclave separately):
+    - CoCl2·6H2O
+    - CuSO4·5H2O
+    - FeSO4 x 7 H2O
+    - MnCl2·4H2O
+    - NiCl2·6H2O
+    - ZnSO4·7H2O
+    - Na-EDTA or NTA (chelator, 0.5-5 mg/L)
+    → Dissolve in partial volume H₂O, autoclave 121°C 15 min
+
+  SOLUTION C — Reducing agents/sulfide (prepare under N₂, add LAST):
+    - Ascorbic acid
+    - Na-thioglycolate
+    - Na2SO4
+    → Prepare under N₂ atmosphere; autoclave separately or
+      prepare from sterile anaerobic stock; add to cooled
+      combined medium under anaerobic conditions
+
+  COMBINE: Cool all solutions to ~50°C under sterile conditions.
+           Add solutions in order: base salts → phosphate →
+           metals (with chelator) → reducing agents/sulfide (last).
+           Adjust pH to target with sterile NaOH/HCl.
+
+  ⚠ UNCERTAINTY FLAGS (2 components <0.75):
+    • heme (0.65) — gapseq reports auxotrophy (best biosynthesis pathway 66%); template 'DESULFOVIBRIO (POSTGATE) MEDIUM' lacks a direct source for heme
+    • molybdopterin (0.72) — gapseq reports auxotrophy (best biosynthesis pathway 50%); template 'DESULFOVIBRIO (POSTGATE) MEDIUM' lacks a direct source for molybdopterin
+
+  EXPERIMENTAL VARIATION MATRIX:
+    • heme supplement
+        reason:   partial biosynthesis (66%); test 0, 0.5×, 1×, 2× to verify requirement
+        variants: Test 0×, 0.5×, 1×, 2× heme (0 / 0.00 / 0.005 / 0.01 g/L)
+    • molybdopterin supplement
+        reason:   partial biosynthesis (50%); test 0, 0.5×, 1×, 2× to verify requirement
+        variants: Test 0×, 0.5×, 1×, 2× molybdopterin (0 / 0.00 / 0.001 / 0.00 g/L)
+    • Ni trace supplement
+        reason:   fraction 0.16 > typical ceiling 0.10 — flag for review
+        variants: Test with and without NiCl2·6H2O
+    • Cu trace supplement
+        reason:   max_p 1.00 on rare metal — verify with BRENDA
+        variants: Test with and without CuSO4·5H2O
+    • Co trace supplement
+        reason:   max_p 1.00 on rare metal — verify with BRENDA
+        variants: Test with and without CoCl2·6H2O
+
+================================================================================
+  PROVENANCE
+================================================================================
+    Template medium:   DESULFOVIBRIO (POSTGATE) MEDIUM (63)
+    Phylogenetic match: MediaDive + BacDive via 16S BLAST (best 99.8%)
+    Metabolic analysis: gapseq 1.4.0 → 10 auxotrophy compound(s) required
+    Environmental:     multi-source thermal inference (1 source(s))
+    Metal profile:     MeBiPred (10 strong metals: Mg, Ca, Fe, K, Na, Ni, Mn, Zn, Cu, Co)
+    Genome biomass:    Gram_neg
+    Energy overlay:    user-specified 'sulfate-reduction'
+    Thermo check:      Amend & Shock 2001 (Sulfate reduction to H2S (H2 donor); ΔGr = -141.4 kJ/mol → viable)
+================================================================================
+  → layered 2 auxotrophy + 5 metal + 0 energy-metabolism components onto template baseline

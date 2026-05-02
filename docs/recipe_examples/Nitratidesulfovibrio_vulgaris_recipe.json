@@ -1,0 +1,171 @@
+{
+  "genome_id": 7,
+  "species": "Nitratidesulfovibrio vulgaris",
+  "primary_cultivation_mode": "anaerobic_respiratory (sulfate reduction)",
+  "alternative_cultivation_modes": [
+    "fermentative"
+  ],
+  "ingredients": [
+    {
+      "name": "Na2S\u00b79H2O",
+      "chemical_formula": "Na2S\u00b79H2O",
+      "concentration": 0.5,
+      "concentration_unit": "mM",
+      "category": "reducing_agent",
+      "rationale": "Establishes strict anaerobiosis.",
+      "confidence": 0.95,
+      "derived_from": [
+        "anaerobic mode"
+      ]
+    },
+    {
+      "name": "Resazurin",
+      "chemical_formula": "C12H6NNaO4",
+      "concentration": 1.0,
+      "concentration_unit": "mg/L",
+      "category": "supplement",
+      "rationale": "Oxygen indicator.",
+      "confidence": 0.95,
+      "derived_from": [
+        "anaerobic culture"
+      ]
+    },
+    {
+      "name": "Na2SO4",
+      "chemical_formula": "Na2SO4",
+      "concentration": 2.0,
+      "concentration_unit": "g/L",
+      "category": "electron_acceptor",
+      "rationale": "Sulfate as terminal electron acceptor (~14 mM).",
+      "confidence": 0.9,
+      "derived_from": [
+        "RecipeContext.electron_acceptors=SO4-2",
+        "dsrAB+qmoA detected"
+      ]
+    },
+    {
+      "name": "Sodium DL-lactate",
+      "chemical_formula": "C3H5NaO3",
+      "concentration": 3.5,
+      "concentration_unit": "g/L",
+      "category": "electron_donor",
+      "rationale": "Standard SRB electron donor (~30 mM).",
+      "confidence": 0.85,
+      "derived_from": [
+        "sulfate reduction; Desulfovibrio-type donor"
+      ]
+    },
+    {
+      "name": "Phosphate buffer (KH2PO4 + K2HPO4)",
+      "chemical_formula": "KH2PO4 / K2HPO4",
+      "concentration": 30.0,
+      "concentration_unit": "mM",
+      "category": "buffer",
+      "rationale": "30 mM phosphate buffer adjusted to pH 7.3",
+      "confidence": 0.85,
+      "derived_from": [
+        "pH from RecipeContext.conditions"
+      ]
+    },
+    {
+      "name": "NaCl",
+      "chemical_formula": "NaCl",
+      "concentration": 5.0,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Standard salinity baseline (5 g/L) for non-halophile",
+      "confidence": 0.85,
+      "derived_from": [
+        "RecipeContext.conditions.salinity_category"
+      ]
+    },
+    {
+      "name": "MgSO4\u00b77H2O",
+      "chemical_formula": "MgSO4\u00b77H2O",
+      "concentration": 0.2,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Magnesium and sulfur source",
+      "confidence": 0.9,
+      "derived_from": [
+        "common basal"
+      ]
+    },
+    {
+      "name": "CaCl2\u00b72H2O",
+      "chemical_formula": "CaCl2\u00b72H2O",
+      "concentration": 0.04,
+      "concentration_unit": "g/L",
+      "category": "salt",
+      "rationale": "Calcium baseline",
+      "confidence": 0.9,
+      "derived_from": [
+        "common basal"
+      ]
+    },
+    {
+      "name": "SL-10 trace metal solution",
+      "chemical_formula": "(see SL-10 reference)",
+      "concentration": 1.0,
+      "concentration_unit": "mL/L",
+      "category": "trace_metal",
+      "rationale": "SL-10 (Tschech & Pfennig 1984): Fe, Zn, Mn, B, Co, Cu, Ni, Mo at standard concentrations. 1 mL/L final.",
+      "confidence": 0.85,
+      "derived_from": [
+        "common basal",
+        "MeBiPred metal predictions"
+      ]
+    },
+    {
+      "name": "Wolin's vitamin solution",
+      "chemical_formula": "(see Wolin 1963 reference)",
+      "concentration": 1.0,
+      "concentration_unit": "mL/L",
+      "category": "vitamin",
+      "rationale": "Wolin's vitamins (Wolin et al. 1963): biotin, folic acid, pyridoxine, thiamine, riboflavin, nicotinic acid, pantothenate, B12, p-aminobenzoic acid, lipoic acid. 1 mL/L final.",
+      "confidence": 0.85,
+      "derived_from": [
+        "common basal",
+        "RecipeContext.cofactors"
+      ]
+    }
+  ],
+  "gas_phase": {
+    "composition": {
+      "N2": 0.8,
+      "CO2": 0.2
+    },
+    "pressure_atm": 1.0,
+    "rationale": "N2/CO2 80:20 anaerobic headspace; CO2 buffers via bicarbonate."
+  },
+  "conditions": {
+    "temperature_c": 28.793718334517152,
+    "ph": 7.318458379846308,
+    "light_required": false,
+    "light_intensity_umol_per_m2_per_s": null,
+    "shaking_rpm": null,
+    "rationale": "Temperature 28.793718334517152\u00b0C, pH 7.318458379846308 from genomespot"
+  },
+  "thermodynamic_checks": [
+    {
+      "capability_name": "anaerobic_respiratory",
+      "primary_reaction": "lactate + SO4-2 \u2192 acetate + HCO3- + HS-",
+      "delta_g_kj_per_mol": -160.1,
+      "feasible": true,
+      "feasibility_class": "feasible",
+      "notes": ""
+    }
+  ],
+  "composition_rationale": [
+    "Anaerobic respiration: organic donor + non-O2 terminal acceptor."
+  ],
+  "uncertainty_flags": [],
+  "limitations_referenced": [
+    "C.2"
+  ],
+  "overall_confidence": 0.77,
+  "confidence_rationale": "base from RecipeContext = 0.77 \u2192 final 0.77",
+  "similar_published_media": [],
+  "escalated": false,
+  "escalation_reason": ""
+}

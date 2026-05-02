@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "dbname": "blastdb_tqoDoxA",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": "tqoDoxA",
+  "number-of-letters": 673,
+  "number-of-sequences": 4,
+  "last-updated": "2026-04-30T22:59:00",
+  "number-of-volumes": 1,
+  "bytes-total": 38659,
+  "bytes-to-cache": 806,
+  "files": [
+    "blastdb_tqoDoxA.pdb",
+    "blastdb_tqoDoxA.phr",
+    "blastdb_tqoDoxA.pin",
+    "blastdb_tqoDoxA.pot",
+    "blastdb_tqoDoxA.psq",
+    "blastdb_tqoDoxA.ptf",
+    "blastdb_tqoDoxA.pto"
+  ]
+}

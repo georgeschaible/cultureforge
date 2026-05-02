@@ -1,0 +1,68 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: Methanococcus jannaschii (NC_000909.1)
+Genome ID: 8
+Domain: Archaea
+Generated: 2026-04-26 21:11:12
+CultureForge version: 2026-04-26
+══════════════════════════════════════════════════════════════════════
+
+RECIPE CONTEXT (Section 9)
+──────────────────────────────────────────────────────────────────────
+
+ATMOSPHERE
+  Primary:        special_gas
+  Gas needs:      H2, CO2
+
+CARBON SOURCES
+  CO2                       type=CO2             conf 0.85
+    autotrophic cultivation mode detected
+
+ELECTRON DONORS
+  H2                        conf 0.85  (methanogenic)
+
+ELECTRON ACCEPTORS
+  CO2                            conf 0.85  (methanogenic)
+
+NITROGEN SOURCES
+  NH4+                                          conf 0.80
+    standard inorganic nitrogen source
+  amino acid supplement (peptone/casamino acids) conf 0.80
+    10 amino acid auxotrophies detected: L-alanine, L-cysteine, L-glutamate, L-histidine, L-phenylalanine...
+
+TRACE METALS
+  Mg    essential    MeBiPred: 457 binding proteins (25.3% of proteome)
+  Ca    essential    MeBiPred: 452 binding proteins (25.0% of proteome)
+  Fe    essential    MeBiPred: 277 binding proteins (15.3% of proteome)
+  K     essential    MeBiPred: 236 binding proteins (13.1% of proteome)
+  Ni    essential    MeBiPred: 182 binding proteins (10.1% of proteome)
+  Na    essential    MeBiPred: 181 binding proteins (10.0% of proteome)
+  Mn    supporting   MeBiPred: 175 binding proteins (9.7% of proteome)
+  Zn    supporting   MeBiPred: 161 binding proteins (8.9% of proteome)
+
+COFACTORS
+  folate (B9)               needs supplementation     (0% pathway)
+  thiamin (B1)              needs supplementation     (0% pathway)
+  riboflavin (B2)           needs supplementation     (0% pathway)
+  pantothenate (B5)         needs supplementation     (25% pathway)
+  pyridoxal-5P (B6)         needs supplementation     (0% pathway)
+  cobalamin (B12)           needs supplementation     (0% pathway)
+  niacin (B3)               needs supplementation     (50% pathway)
+  heme                      needs supplementation     (0% pathway)
+  siroheme                  needs supplementation     (50% pathway)
+  molybdopterin             needs supplementation     (0% pathway)
+  NAD                       needs supplementation     (50% pathway)
+  F420                      needs supplementation     (33% pathway)
+  coenzyme M                needs supplementation     (33% pathway)
+  coenzyme B                needs supplementation     (33% pathway)
+
+GROWTH CONDITIONS
+  Temperature:    83°C optimum (range 76-89°C)  (source: genomespot)
+  pH:             5.8 optimum (range 4.6-7.1)
+
+SPECIAL REQUIREMENTS
+  - hyperthermophilic_incubation: Requires high-temperature incubation (83 C); use sealed vessels rated for h
+  - strict_anaerobe: Strict anaerobic conditions required. Use Hungate technique or anaerobic ch
+
+OVERALL CONFIDENCE: 0.73
+──────────────────────────────────────────────────────────────────────

@@ -1,0 +1,16 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: Candidatus Scalindua profunda (GCA_008000775.1)
+Genome ID: 30
+Domain: Archaea
+Generated: 2026-04-28 16:58:48
+CultureForge version: 2026-04-28
+══════════════════════════════════════════════════════════════════════
+
+RECIPE (Section 10)
+──────────────────────────────────────────────────────────────────────
+
+ESCALATED — no recipe composed
+  Reason: Scalindua MAG lacks hzsA/hdh in predicted proteome. The composed recipe routes to the next-best detected mode but is not biologically correct. Manual annotation or improved MAG required.
+  Overall confidence: 0.11
+──────────────────────────────────────────────────────────────────────

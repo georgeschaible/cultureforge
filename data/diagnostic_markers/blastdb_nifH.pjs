@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "dbname": "blastdb_nifH",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": "nifH",
+  "number-of-letters": 1465,
+  "number-of-sequences": 5,
+  "last-updated": "2026-04-27T21:19:00",
+  "number-of-volumes": 1,
+  "bytes-total": 39441,
+  "bytes-to-cache": 1607,
+  "files": [
+    "blastdb_nifH.pdb",
+    "blastdb_nifH.phr",
+    "blastdb_nifH.pin",
+    "blastdb_nifH.pot",
+    "blastdb_nifH.psq",
+    "blastdb_nifH.ptf",
+    "blastdb_nifH.pto"
+  ]
+}

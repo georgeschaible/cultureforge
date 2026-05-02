@@ -1,0 +1,80 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: Sulfurimonas denitrificans (NC_009663.1)
+Genome ID: 17
+Domain: Gram_neg
+Generated: 2026-04-28 16:58:27
+CultureForge version: 2026-04-28
+══════════════════════════════════════════════════════════════════════
+
+RECIPE (Section 10)
+──────────────────────────────────────────────────────────────────────
+
+PRIMARY CULTIVATION MODE: lithotrophic_aerobic (sulfur oxidation)
+ALTERNATIVE MODES (also detected): anaerobic_respiratory
+
+GAS PHASE
+  air:   98%
+  CO2:   2%
+  Pressure: 1.0 atm
+    Aerobic atmosphere with elevated CO2 for autotrophic carbon
+    fixation.
+
+INCUBATION CONDITIONS
+  Temperature: 37.7°C
+  pH:          6.5
+  Light:       not required
+  Shaking:     150 rpm
+    Temperature 37.68212443049103°C, pH 6.543363392306474 from
+    genomespot; shaking 150 rpm for O2 + CO2 transfer
+
+INGREDIENTS
+  Buffer:
+    Phosphate buffer (KH2PO4 + K2HPO4)               30 mM
+      30 mM phosphate buffer adjusted to pH 6.5
+      (confidence 0.85)
+  Salt:
+    NaCl                                              5 g/L
+      Standard salinity baseline (5 g/L) for non-halophile
+      (confidence 0.85)
+    MgSO4·7H2O                                      0.2 g/L
+      Magnesium and sulfur source
+      (confidence 0.90)
+    CaCl2·2H2O                                     0.04 g/L
+      Calcium baseline
+      (confidence 0.90)
+  Carbon Source:
+    CO2 / NaHCO3 (autotrophic carbon)                 2 g/L NaHCO3
+      CO2 from headspace + bicarbonate buffer. Autotrophic
+      lithotrophs fix CO2 via CBB cycle (rbcL detected) or
+      rTCA.
+      (confidence 0.85)
+  Electron Donor:
+    Na2S2O3·5H2O (thiosulfate)                        5 g/L
+      Thiosulfate as electron donor (~20 mM); SOX-pathway
+      substrate.
+      (confidence 0.85)
+  Trace Metal:
+    SL-10 trace metal solution                        1 mL/L
+      SL-10 (Tschech & Pfennig 1984): Fe, Zn, Mn, B, Co, Cu,
+      Ni, Mo at standard concentrations. 1 mL/L final.
+      (confidence 0.85)
+  Vitamin:
+    Wolin's vitamin solution                          1 mL/L
+      Wolin's vitamins (Wolin et al. 1963): biotin, folic
+      acid, pyridoxine, thiamine, riboflavin, nicotinic
+      acid, pantothenate, B12, p-aminobenzoic acid, lipoic
+      acid. 1 mL/L final.
+      (confidence 0.85)
+
+THERMODYNAMIC CHECK
+  Reaction: HS- + 2 O2 → SO4-2 + H+
+  ΔG (standard, default activities): -787.3 kJ/mol
+  Feasibility: feasible (feasible)
+
+UNCERTAINTY FLAGS
+  None significant for this recipe.
+
+OVERALL CONFIDENCE: 0.74 (medium)
+    RATIONALE: base from RecipeContext = 0.74 → final 0.74
+──────────────────────────────────────────────────────────────────────

@@ -1,0 +1,39 @@
+=================================================================
+CultureForge Capability Report
+Organism: Blind v2: Dehalococcoides_mccartyi
+Genome: GCF_000011905.1
+Generated: 2026-04-25 11:42
+
+GENOME QUALITY
+-----------------------------------------------------------------
+CheckM: not available (genome stats only)
+Genome size: 1,469,720 bp
+GC content: 48.9%
+N50: 1,469,720
+Acidic residue fraction (D+E): 0.1165
+Quality verdict: NO_QC
+
+PRIMARY CAPABILITIES (detected, confidence >= 0.50)
+-----------------------------------------------------------------
+1. Biological nitrogen fixation (N2 to NH3)
+   Confidence: 0.61
+   - Pathway: 2/5 steps detected (weighted score 0.56)
+   - nitrogenase Fe protein: diagnostic marker nifH detected (70.2% id, bs=404)
+   Diagnostic markers: nifH
+
+CONSIDERED AND REJECTED
+-----------------------------------------------------------------
+- Substrate-level phosphorylation fermentation (mixe 0.463 (below threshold, pathway score 0.38)
+- Syntrophy (composite signature)                    0.450 (below threshold, pathway score 0.45)
+- Acetogenesis via Wood-Ljungdahl pathway. Negative  0.392 (below threshold, pathway score 0.52)
+- Methanogenesis (hydrogenotrophic, aceticlastic, or 0.347 (below threshold, pathway score 0.40)
+- Aerobic ammonia oxidation (nitrification step 1)   0.325 (below threshold, pathway score 0.00)
+- Aerobic respiration via electron transport chain   0.316 (below threshold, pathway score 0.45)
+- Aerobic respiration                                0.250 (below threshold, pathway score 0.25)
+- Anoxygenic phototrophy (green sulfur bacteria, Typ 0.200 (below threshold, pathway score 0.00)
+
+RECOMMENDED ACTION
+-----------------------------------------------------------------
+Action: flag_uncertain
+
+=================================================================
