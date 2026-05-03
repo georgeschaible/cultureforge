@@ -4,7 +4,7 @@ A Recipe is the cultivation medium output produced by `compose_recipe.py` from
 a RecipeContext (Phase 2b). It contains every detail a microbiologist would
 need to attempt cultivation: ingredients with concentrations + rationale +
 confidence, gas phase, incubation conditions, thermodynamic feasibility check,
-uncertainty flags traced to LIMITATIONS.md categories, and overall confidence.
+uncertainty flags traced to docs/LIMITATIONS.md categories, and overall confidence.
 
 The schema deliberately preserves rationale and confidence on every ingredient
 so the recipe is auditable end-to-end. A reader can trace any decision back to
@@ -95,7 +95,7 @@ class Recipe:
     Generated from a RecipeContext by the Phase 2c recipe composer.
     The structure deliberately preserves provenance: every ingredient carries
     rationale + confidence + derived_from, and the recipe-level uncertainty
-    flags reference LIMITATIONS.md categories so the user can trace risk.
+    flags reference docs/LIMITATIONS.md categories so the user can trace risk.
     """
     genome_id: int
     species: str
@@ -113,7 +113,7 @@ class Recipe:
 
     # Honest uncertainty
     uncertainty_flags: List[str] = field(default_factory=list)
-    limitations_referenced: List[str] = field(default_factory=list)  # e.g. ["A.1", "C.1"] from LIMITATIONS.md
+    limitations_referenced: List[str] = field(default_factory=list)  # e.g. ["A.1", "C.1"] from docs/LIMITATIONS.md
 
     # Overall confidence
     overall_confidence: float = 0.0

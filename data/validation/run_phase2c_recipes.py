@@ -2,10 +2,11 @@
 
 Output: docs/recipe_examples/<organism>_recipe.txt (inspector format)
         docs/recipe_examples/<organism>_recipe.json (full JSON)
-        + a summary table for RECIPE_EVALUATION.md
+        + a summary table for docs/RECIPE_EVALUATION.md
 """
 
 import json
+import os
 import sqlite3
 import subprocess
 import sys

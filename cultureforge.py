@@ -950,7 +950,7 @@ def _section_recipe(conn, gid, overrides=None):
     if r.limitations_referenced:
         lines.append("")
         lines.append(f"LIMITATIONS REFERENCED: {', '.join(r.limitations_referenced)}")
-        lines.append("  See LIMITATIONS.md for details on each category.")
+        lines.append("  See docs/LIMITATIONS.md for details on each category.")
 
     # Confidence
     lines.append("")

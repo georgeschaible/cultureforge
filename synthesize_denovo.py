@@ -379,7 +379,7 @@ def determine_energy_metabolism(conn, evidence, user_override=None):
     deleted as of Phase 2c. The new pipeline reads a RecipeContext
     (Phase 2b) and produces a Recipe object via compose_recipe.py with
     biology-aware mode routing, sub-mode classification, thermodynamic
-    gating, and LIMITATIONS.md flagging.
+    gating, and docs/LIMITATIONS.md flagging.
 
     Callers should migrate to:
         from compose_recipe import compose_recipe

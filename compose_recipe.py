@@ -8,7 +8,7 @@ Design principles (from prompt):
 - Thermodynamic feasibility as a coarse filter, not fine-tuning.
 - Evidence-trail outputs: every ingredient carries rationale + confidence +
   derived_from.
-- Honest uncertainty flags traced to LIMITATIONS.md categories.
+- Honest uncertainty flags traced to docs/LIMITATIONS.md categories.
 
 Workflow:
     1. Derive RecipeContext from CapabilityProfile.
@@ -17,7 +17,7 @@ Workflow:
     4. Add common basal components (trace metals, vitamins, buffer, salts).
     5. Apply mode-specific adjustments.
     6. Apply thermodynamic gating.
-    7. Apply uncertainty flags from LIMITATIONS.md.
+    7. Apply uncertainty flags from docs/LIMITATIONS.md.
     8. Compute overall recipe confidence.
 """
 
@@ -868,7 +868,7 @@ def _compose_anaerobic_respiratory_recipe(context: RecipeContext,
             category=IngredientCategory.ELECTRON_ACCEPTOR,
             rationale=("PCE as electron acceptor — ASSUMED substrate. "
                        "Specific organohalide cannot be determined from genome "
-                       "alone (LIMITATIONS.md A.1/D.1). User should select "
+                       "alone (docs/LIMITATIONS.md A.1/D.1). User should select "
                        "based on isolation source chemistry."),
             confidence=0.50,
             derived_from=["rdhA detected", "LIMITATIONS A.1/D.1"],
@@ -1445,7 +1445,7 @@ _GENERIC_MODES = {"aerobic_chemotrophic", "anaerobic_respiratory", "fermentative
 
 
 # Modes that REQUIRE a diagnostic-marker hit to win the priority race.
-# This mitigates LIMITATIONS.md F.3 (spurious gapseq pathway calls): the recipe
+# This mitigates docs/LIMITATIONS.md F.3 (spurious gapseq pathway calls): the recipe
 # composer should weight diagnostic-marker-corroborated calls higher than
 # gapseq-pathway-only calls (per the Phase 1.5n closeout guidance). Without
 # this rule, Chloroflexus and Nitrospira route to the acetogenic composer
@@ -1833,7 +1833,7 @@ def _apply_thermodynamic_check(recipe: Recipe, context: RecipeContext,
 # ---------------------------------------------------------------------------
 
 def _apply_limitations_flags(recipe: Recipe, context: RecipeContext) -> None:
-    """Map detected capabilities + recipe state to LIMITATIONS.md categories."""
+    """Map detected capabilities + recipe state to docs/LIMITATIONS.md categories."""
     primary = recipe.primary_cultivation_mode.lower()
     cap_text = " ".join(context.primary_cultivation_modes).lower()
     notes = " ".join(context.cultivation_mode_notes).lower()
