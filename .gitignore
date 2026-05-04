@@ -111,6 +111,18 @@ data/sentinel/*/genome.fna
 data/sentinel/*/*.faa
 data/sentinel/*/*.fna
 
+# Phase 4.1 user-loaded genomes — keep only the documentation outputs
+# (BLIND_TEST_RESULT.md, inspect_full_report.txt). Pipeline artifacts
+# regenerable from the source genome.
+data/user_genomes/*/genome.fna
+data/user_genomes/*/proteome.faa
+data/user_genomes/*/genes.gff
+data/user_genomes/*/gapseq/
+data/user_genomes/*/genomespot/
+data/user_genomes/*/checkm2/
+data/user_genomes/*/mebipred/
+data/user_genomes/*/inspect_full_report.json
+
 # gapseq output (regenerable; large; per-genome)
 data/gapseq/*/
 *.RDS

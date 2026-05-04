@@ -1,0 +1,264 @@
+══════════════════════════════════════════════════════════════════════
+CultureForge Inspection Report
+Genome: BLIND TEST: bin.020 PacBio assembly via Phase 4.1 wrapper (load-step replay after filename-resolution fix; gapseq output reused from prior run) (ST3_PacBio_bin20)
+Genome ID: 1000
+Domain: Gram_neg
+Generated: 2026-05-04 08:12:43
+CultureForge version: git:ed34650
+══════════════════════════════════════════════════════════════════════
+
+GENOME QUALITY (Section 2)
+──────────────────────────────────────────────────────────────────────
+CheckM not run for this genome.
+──────────────────────────────────────────────────────────────────────
+
+GROWTH CONDITIONS (Section 3) - GenomeSPOT predictions
+──────────────────────────────────────────────────────────────────────
+Predicted oxygen tolerance:     tolerant (conf 0.94)
+Predicted pH optimum:           6.8 ±0.9 (conf 0.89)
+Predicted salinity optimum:     2.42% NaCl ±2.1 (conf 0.57)
+Predicted temperature optimum:  23.2°C ±6.4 (conf 0.83)
+──────────────────────────────────────────────────────────────────────
+
+CAPABILITY PROFILE (Section 4)
+──────────────────────────────────────────────────────────────────────
+
+PRIMARY CULTIVATION MODES
+
+  Mode: aerobic_chemotrophic                     conf 0.65
+    ├─ Aerobic respiration                                0.650
+    │   cbb3 oxidase complex complete (high-affinity, microaerophilic)
+    │   cytochrome c oxidase: 12 hits (moderate)
+
+  DETECTED CAPABILITIES (confidence >= 0.50)
+    Aerobic respiration                                0.650  primary
+
+  REJECTED CAPABILITIES
+    Sulfur oxidation (bacterial SOX + archae   0.433  Below threshold (pathway 0.33)
+    Fermentation                               0.400  Autotrophy detected; glycolytic genes are anabolic, not catabolic
+    Aerobic nitrite oxidation (canonical NOB   0.327  Essential marker nxrA absent or below threshold — confidence capped at 0.40
+    Aerobic respiration (ETC pathway)          0.316  Below threshold (pathway 0.45)
+    Iron(II) oxidation (acidophilic)           0.308  Pathway score too low (0.15)
+    Aerobic methanotrophy (CH4 → CO2 via pMM   0.300  Pathway score too low (0.14)
+    Aerobic ammonia oxidation                  0.300  Pathway score too low (0.00)
+    Dissimilatory sulfate reduction            0.296  Essential marker(s) missing: dsrAB, qmoA — confidence capped at 0.40 (Forwa
+    Green sulfur phototrophy                   0.200  Pathway score too low (0.00)
+    Denitrification (NO3- to N2)               0.200  Essential marker nosZ absent or below threshold — confidence capped at 0.40
+
+──────────────────────────────────────────────────────────────────────
+
+gapseq PATHWAYS (Section 5) - 131 predicted of 1922 total
+──────────────────────────────────────────────────────────────────────
+  Metabolically relevant:
+    ammonia assimilation cycle III                              100%  ✓
+    sulfide oxidation I (to sulfur globules)                    100%  ✓
+  Other predicted pathways (23 more):
+    L-alanine biosynthesis II                                   100%  ✓
+    L-arginine biosynthesis II (acetyl cycle)                   100%  ✓
+    L-aspartate degradation I                                   100%  ✓
+    L-aspartate biosynthesis                                    100%  ✓
+    L-lysine biosynthesis I                                     100%  ✓
+──────────────────────────────────────────────────────────────────────
+
+DIAGNOSTIC MARKER HITS (Section 6)
+──────────────────────────────────────────────────────────────────────
+  Marker               Method   Best Hit                  Identity Bitscore Status
+  ─────────────────────────────────────────────────────────────────
+  acsB_cdhC            blastp   no hit                                      (negative)
+  amoA                 blastp   no hit                                      (negative)
+  aprAB                blastp   no hit                                      (negative)
+  autotrophy           blastp   tr|A0A0S4XNU1|A0A0S4XNU      84.6%     1054 POSITIVE
+  cooS_cdhA            blastp   no hit                                      (negative)
+  cyc2                 blastp   no hit                                      (negative)
+  dsrAB                blastp   no hit                                      (negative)
+  hao                  blastp   no hit                                      (negative)
+  hdh                  blastp   no hit                                      (negative)
+  mcrA                 blastp   no hit                                      (negative)
+  mcrBG                blastp   no hit                                      (negative)
+  mmoX                 blastp   no hit                                      (negative)
+  mtrC_omcB            blastp   no hit                                      (negative)
+  nifH                 blastp   no hit                                      (negative)
+  nosZ                 blastp   no hit                                      (negative)
+  nrfA                 blastp   no hit                                      (negative)
+  nxrA                 blastp   tr|Q71RT9|Q71RT9_9BRAD       29.2%      142 (weak)
+  pmoA                 blastp   no hit                                      (negative)
+  pufLM                blastp   no hit                                      (negative)
+  qmoA                 blastp   no hit                                      (negative)
+  rdhA                 blastp   no hit                                      (negative)
+  rhodopsin            blastp   no hit                                      (negative)
+  soxB                 blastp   no hit                                      (negative)
+  terminal_oxidases    blastp   sp|Q05572|FIXN_RHIME         44.0%      402 POSITIVE
+  tetH                 blastp   no hit                                      (negative)
+──────────────────────────────────────────────────────────────────────
+
+HYDROGENASES (Section 7)
+──────────────────────────────────────────────────────────────────────
+No hydrogenases detected (bitscore >= 100).
+──────────────────────────────────────────────────────────────────────
+
+RECOMMENDED ACTION (Section 8)
+──────────────────────────────────────────────────────────────────────
+Action:    SYNTHESIZE (CheckM not run but capabilities clearly detected)
+Rationale: Cultivation mode(s): aerobic_chemotrophic
+
+Notes:
+  - Predicted oxygen: tolerant
+  - Predicted pH: 6.8
+  - Predicted growth temperature: 23°C
+──────────────────────────────────────────────────────────────────────
+
+RECIPE CONTEXT (Section 9)
+──────────────────────────────────────────────────────────────────────
+
+ATMOSPHERE
+  Primary:        aerobic
+
+CARBON SOURCES
+  glucose                   type=sugar           conf 0.85
+    gapseq: UDP-&alpha;-D-glucose biosynthesis (100%)
+  lactose                   type=sugar           conf 0.85
+    gapseq: UDP-&alpha;-D-galactose biosynthesis (100%)
+  lactate                   type=organic_acid    conf 0.85
+    gapseq: pyruvate fermentation to (S)-lactate (100%)
+
+ELECTRON DONORS
+  organic carbon            conf 0.75  (heterotrophic)
+
+ELECTRON ACCEPTORS
+  O2                             conf 0.90  (aerobic)
+
+NITROGEN SOURCES
+  NH4+                                          conf 0.80
+    standard inorganic nitrogen source
+  individual amino acid supplements (3)         conf 0.70
+    auxotrophic for: L-cysteine, L-proline, L-serine
+
+TRACE METALS
+  Fe    trace        standard trace element addition (no MeBiPred data)
+  Zn    trace        standard trace element addition (no MeBiPred data)
+  Mn    trace        standard trace element addition (no MeBiPred data)
+  Co    trace        standard trace element addition (no MeBiPred data)
+  Ni    trace        standard trace element addition (no MeBiPred data)
+  Cu    trace        standard trace element addition (no MeBiPred data)
+
+COFACTORS
+  thiamin (B1)              needs supplementation     (0% pathway)
+  riboflavin (B2)           needs supplementation     (33% pathway)
+  pantothenate (B5)         needs supplementation     (50% pathway)
+  pyridoxal-5P (B6)         needs supplementation     (57% pathway)
+  cobalamin (B12)           needs supplementation     (25% pathway)
+  siroheme                  needs supplementation     (0% pathway)
+  molybdopterin             needs supplementation     (50% pathway)
+
+GROWTH CONDITIONS
+  Temperature:    23°C optimum (range 17-30°C)  (source: temp:genomespot, ph:genomespot, salinity:not_set)
+  pH:             6.8 optimum (range 5.9-7.8)
+
+OVERALL CONFIDENCE: 0.67
+──────────────────────────────────────────────────────────────────────
+
+RECIPE (Section 10)
+──────────────────────────────────────────────────────────────────────
+
+PRIMARY CULTIVATION MODE: aerobic_chemotrophic
+ALTERNATIVE MODES (also detected): none
+
+GAS PHASE
+  air:   100%
+  Pressure: 1.0 atm
+    Atmospheric air (21% O2, 0.04% CO2). Standard aerobic
+    culture.
+
+INCUBATION CONDITIONS
+  Temperature: 23.2°C
+  pH:          6.8
+  Light:       not required
+  Shaking:     200 rpm
+    Temperature 23.1631221252914°C (genomespot), pH
+    6.805326876224968 (genomespot); shaking 200 rpm for O2
+    transfer
+
+INGREDIENTS
+  Buffer:
+    Phosphate buffer (KH2PO4 + K2HPO4)               30 mM
+      30 mM phosphate buffer adjusted to pH 6.8
+      (confidence 0.85)
+  Salt:
+    NaCl                                              5 g/L
+      Standard salinity baseline (5 g/L) for non-halophile
+      (confidence 0.85)
+    MgSO4·7H2O                                      0.2 g/L
+      Magnesium and sulfur source
+      (confidence 0.90)
+    CaCl2·2H2O                                     0.04 g/L
+      Calcium baseline
+      (confidence 0.90)
+  Carbon Source:
+    Glucose                                           2 g/L
+      Carbon source from RecipeContext: gapseq:
+      UDP-&alpha;-D-glucose biosynthesis (100%)
+      (confidence 0.85)
+    Lactose                                           2 g/L
+      Carbon source from RecipeContext: gapseq:
+      UDP-&alpha;-D-galactose biosynthesis (100%)
+      (confidence 0.85)
+  Trace Metal:
+    SL-10 trace metal solution                        1 mL/L
+      SL-10 (Tschech & Pfennig 1984): Fe, Zn, Mn, B, Co, Cu,
+      Ni, Mo at standard concentrations. 1 mL/L final.
+      (confidence 0.85)
+  Vitamin:
+    Wolin's vitamin solution                          1 mL/L
+      Wolin's vitamins (Wolin et al. 1963): biotin, folic
+      acid, pyridoxine, thiamine, riboflavin, nicotinic
+      acid, pantothenate, B12, p-aminobenzoic acid, lipoic
+      acid. 1 mL/L final.
+      (confidence 0.85)
+
+THERMODYNAMIC CHECK
+  Reaction: Organic + O2 → CO2 + H2O (representative: glucose oxidation)
+  ΔG (standard, default activities): -2880.0 kJ/mol
+  Feasibility: feasible (feasible)
+
+UNCERTAINTY FLAGS
+  None significant for this recipe.
+
+OVERALL CONFIDENCE: 0.67 (medium)
+    RATIONALE: base from RecipeContext = 0.67 → final 0.67
+──────────────────────────────────────────────────────────────────────
+
+PUBLISHED MEDIA COMPARISON (Section 11)
+──────────────────────────────────────────────────────────────────────
+
+NO DIRECT MATCH in BacDive for BLIND TEST: bin.020 PacBio assembly via Phase 4.1 wrapper (load-step replay after filename-resolution fix; gapseq output reused from prior run).
+
+FUNCTIONAL NEIGHBORS (top 5 by CultureForge capability similarity):
+  - Thermus aquaticus                          (gid= 9, sim=1.000)
+      → published media: 86, 878, J276
+  - Sulfolobus acidocaldarius                  (gid=14, sim=1.000)
+      → published media: 88, J165
+  - Campylobacter jejuni                       (gid=15, sim=0.816)
+      → published media: 544, 693, J14, J256
+  - Escherichia coli (restored Phase 4.1 after blind-test load gapseq.py mishap) (gid=32, sim=0.811)
+      → published media: 1, 1270, 215, 220, 237, 238
+  - Halobacterium salinarum                    (gid=20, sim=0.707)
+      → published media: 372, 97, J168, J169
+
+INGREDIENT-LEVEL COMPARISON
+  Diffs: 0 critical / 0 important / 94 minor (across 37 reference media)
+
+  MINOR DIFFERENCES (concentrations / trace components, showing top 8 of 94):
+    · concentration_disagree CaCl2·2H2O                      in 18/37 references
+    · concentration_disagree K2HPO4                          in 10/37 references
+    · concentration_disagree Glucose                         in 10/37 references
+    · concentration_disagree MgSO4·7H2O                      in 23/37 references
+    · concentration_disagree NaCl                            in 19/37 references
+    · concentration_disagree lactose                         in 1/37 references
+    · ref_only           sulfur                          in 3/37 references (8%); Sulfur
+    · ref_only           dl-asparagine x h2o             in 1/37 references (3%); DL-Asparagine x H2O
+
+OVERALL AGREEMENT: 67% (medium-high)
+  RATIONALE: 25 shared ingredients, 0 critical / 0 high-frequency-missing / 1 cf-only diffs across 37 reference media.
+
+NOTE: This organism doesn't have a direct BacDive entry. Comparison is against media from functionally similar organisms.
+──────────────────────────────────────────────────────────────────────

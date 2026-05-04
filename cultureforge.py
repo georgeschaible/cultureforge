@@ -1138,6 +1138,29 @@ def main():
     inspect_p.add_argument("--salinity", type=float, default=None,
                            help="Override cultivation salinity in g/L NaCl (range 0-400)")
 
+    # Phase 4.1: process subcommand — end-to-end pipeline for new genomes
+    process_p = sub.add_parser(
+        "process",
+        help="Process a new genome through the full pipeline (prodigal + gapseq + GenomeSPOT + marker BLAST)",
+    )
+    process_p.add_argument("--input", required=True, help="Path to genome FASTA")
+    process_p.add_argument("--accession", help="Accession identifier (default: filename stem)")
+    process_p.add_argument("--notes", default="", help="Notes for the database row")
+    process_p.add_argument("--output-dir",
+                           help="Output directory (default: data/user_genomes/<accession>/)")
+    process_p.add_argument("--biomass-template", default="Gram_neg",
+                           choices=["Gram_neg", "Gram_pos", "Archaea"],
+                           help="Biomass template for gapseq (default: Gram_neg)")
+    process_p.add_argument("--skip-checkm2", action="store_true",
+                           help="Skip CheckM2 (use if not installed)")
+    process_p.add_argument("--skip-mebipred", action="store_true",
+                           help="Skip MeBiPred (use if not installed)")
+    process_p.add_argument("--db", default=DB_DEFAULT, help="Database path")
+    process_p.add_argument("--verbose", action="store_true",
+                           help="Print full subprocess output")
+    process_p.add_argument("--inspect", action="store_true",
+                           help="Run `cultureforge inspect` automatically after processing")
+
     args = parser.parse_args()
 
     # Validate Phase 3.1 overrides at parse time, before any DB queries
@@ -1162,6 +1185,29 @@ def main():
 
     if not args.command:
         parser.print_help()
+        sys.exit(0)
+
+    # Phase 4.1: process subcommand
+    if args.command == "process":
+        from process_genome import process_genome
+        gid = process_genome(
+            input_path=args.input,
+            accession=args.accession,
+            notes=args.notes,
+            output_dir=args.output_dir,
+            biomass_template=args.biomass_template,
+            skip_checkm2=args.skip_checkm2,
+            skip_mebipred=args.skip_mebipred,
+            db_path=args.db,
+            verbose=args.verbose,
+        )
+        if args.inspect:
+            # Re-invoke ourselves to print the inspect report cleanly
+            print()
+            os.execvp(sys.executable, [
+                sys.executable, sys.argv[0], "inspect", str(gid),
+                "--db", args.db,
+            ])
         sys.exit(0)
 
     conn = sqlite3.connect(args.db)

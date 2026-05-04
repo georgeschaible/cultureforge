@@ -165,9 +165,67 @@ See `VALIDATION_TIMELINE.md` for the V1-V11 validation progression. Current stat
 - Published-media validation (Phase 2e, V12): 7/26 ≥70% agreement, 7/26 in 50-69% band, 12/26 <50%. Phase 2e G.1 fix (TEMPURA-first condition priority) lifted 5 organism scores by +20 to +40 points; G.4 BacDive atmosphere supplement correctly newly-flags Campylobacter as aerobic-vs-microaerobic mismatch. Per `RECIPE_VALIDATION_V12.md`.
 - Phase 3 sub-phase capabilities are validated against named type strains via the **sentinel pattern** (gid=900+, excluded from V12). 4 sentinels loaded as of Phase 3.7: Methylococcus capsulatus Bath (Phase 3.5 aerobic methanotrophy), Wolinella succinogenes DSM 1740 (Phase 3.4 DNRA), Nitrobacter winogradskyi Nb-255 (Phase 3.3 NOB Type B clade), Methanosarcina acetivorans C2A (Phase 3.6 ANME-negative control). Per `data/sentinel/PHASE_3_7_VALIDATION_SUMMARY.md`. Capability tagging — validated-against-sentinel vs inferred-from-test-set-only — is in `LIMITATIONS.md` "Validation status" section.
 
+## Phase 4.1 wrapper architecture
+
+The Phase 4.1 `process` subcommand orchestrates the full pipeline for new genomes:
+
+```
+cultureforge.py process --input <genome.fna>
+    │
+    ├─► register_genome.register_genome()   # gid >= 1000, refuses duplicate accession
+    ├─► process_genome.run_prodigal()       # apt prodigal; -p single
+    ├─► process_genome.run_gapseq()         # conda env "gapseq"; find → find-transport → draft
+    ├─► process_genome.run_genomespot()     # vendored; runs via project Python
+    ├─► process_genome.run_marker_blast()   # apt blastp; against data/diagnostic_markers/blastdb_*
+    ├─► process_genome.run_checkm2_if_available()      # optional; conda env "checkm2"
+    └─► process_genome.run_mebipred_if_available()     # optional; pip install mymetal
+            │
+            ├─► loaders/gapseq_generic.py        → genome_pathways, genome_transporters, genome_reaction_markers
+            ├─► loaders/genomespot_generic.py    → genome_growth_predictions
+            ├─► loaders/marker_blast_generic.py  → genome_diagnostic_markers
+            └─► loaders/mebipred_generic.py      → protein_metal_binding, genome_metal_profile
+```
+
+### Conda environment discovery
+
+`process_genome.find_tool(name, conda_env)` searches in this order:
+
+1. `CULTUREFORGE_<TOOL>_BIN` env var (e.g. `CULTUREFORGE_GAPSEQ_BIN=/path/to/env/bin`)
+2. `conda env list --json` → look for an env with the named name → check `<env>/bin/<tool>`
+3. `shutil.which(tool)` on the ambient PATH
+
+This means a user with `conda create -n gapseq -c bioconda gapseq` gets gapseq found automatically without needing to `conda activate gapseq` before running.
+
+### gid convention
+
+- **gids 7-32**: V12 test set — frozen; modifications require V12 byte-identical re-verification
+- **gids 900-903**: sentinels — protected by `deregister_genome` gid-range guard
+- **gids >= 1000**: user-loaded genomes via `cultureforge.py process` — auto-assigned by `register_genome` starting from `USER_GID_MIN = 1000`
+
+### Cleanup-on-failure
+
+`process_genome.process_genome()` wraps the pipeline stages in try/except. Any unhandled exception triggers `register_genome.deregister_genome(gid)` to remove the partial database state across all 14 genome_id-referencing tables. The user retries from a clean slate.
+
+### What stays untouched (Phase 4.1 prohibition)
+
+The existing `load_gapseq.py`, `load_genomespot.py`, `load_mebipred.py`, `run_marker_blast.py` scripts produced the test-set data correctly via their hardcoded `main()` orchestrations. Their per-marker loader functions (`load_pathways`, `load`, `blast_all_markers`, etc.) are already gid-parameterized and are reused by the new generic loaders. The hardcoded `main()` orchestrations are intentionally NOT replaced — they remain the reproducibility anchor for the existing test-set data.
+
+### Adding new optional tools (e.g. dbCAN for CAZy annotation)
+
+1. Add `run_<tool>_if_available()` to `process_genome.py` mirroring `run_checkm2_if_available()`:
+   - Returns `None` and prints `[N/M] <tool> not installed — skipping (...)` if missing
+   - Returns the path to its output if it ran successfully
+2. Add `loaders/<tool>_generic.py` wrapping the existing `load_<tool>.py:load()` function (or write a fresh loader if there isn't one)
+3. Wire into `process_genome.process_genome()` in the appropriate stage slot
+4. Add `--skip-<tool>` flag in `cultureforge.py` argparse
+
 ## Key Files
 
-- `cultureforge.py` — Main entry point (`inspect` subcommand with sections 1-11)
+- `cultureforge.py` — Main entry point (`inspect` + Phase 4.1 `process` subcommands)
+- `register_genome.py` — Phase 4.1 generic registration with duplicate-accession refusal + test-set/sentinel deregister protection
+- `process_genome.py` — Phase 4.1 end-to-end pipeline wrapper
+- `loaders/` — Phase 4.1 thin façades over the existing load_*.py loader functions, parameterized for any gid
+- `load_gapseq.py`, `load_genomespot.py`, `load_mebipred.py`, `run_marker_blast.py` — original hardcoded test-set loaders. PHASE 4.1 PROHIBITION: do not modify (reproducibility anchor for test-set data)
 - `capability_detectors.py` — Parallel pathway-integrity detectors with diagnostic-marker override (Phase 1.5n)
 - `data/pathway_definitions.json` — Declarative metabolism definitions
 - `recipe_context.py` + `derive_recipe_context.py` — Phase 2b RecipeContext layer

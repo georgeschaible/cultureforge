@@ -8,7 +8,19 @@ For each limitation, the relevant metabolism's pathway_definitions.json
 entry is annotated with a `known_limitations` field referencing this
 document.
 
-Last updated: 2026-05-02 (post-Phase-3.7)
+Last updated: 2026-05-03 (post-Phase-4.1)
+
+---
+
+## Phase 4.1 packaging status
+
+**Wrapper exists for end-to-end processing.** `python3 cultureforge.py process --input <genome.fna>` runs prodigal → gapseq → GenomeSPOT → marker BLAST → optional CheckM2/MeBiPred and registers the genome in the database under a clean gid >= 1000. Conda environment discovery is automatic for tools installed in named envs (e.g. `conda create -n gapseq -c bioconda gapseq`). User-loaded genomes are isolated from the test set (gid 7-32) and sentinels (gid 900-903) by gid-range convention; `register_genome` refuses duplicate-accession registration; `deregister_genome` refuses to delete gids < 1000.
+
+**Old hardcoded `load_*.py` scripts are deprecated for new development** but retained as the reproducibility anchor for the existing test-set data. They MUST NOT be used to load new user genomes — the silent-overwrite-on-accession-collision pattern in `load_gapseq.py:insert_genome` caused the pre-Phase-4.1 gid=904 incident (E. coli accession reused for the user's blind-test data, original gid=32 silently dropped). The new `register_genome.py` makes that failure mode loud (raises `ValueError`).
+
+**Phase 4.2 (loader refactoring):** future work. The existing scripts' per-marker loader functions are already gid-parameterized and reused via `loaders/*_generic.py` façades. The hardcoded `main()` orchestrations in the old scripts can be deprecated formally in Phase 4.2 once we're confident the wrapper covers all loading needs (currently the wrapper covers gapseq, GenomeSPOT, marker BLAST, CheckM2, MeBiPred — but not the bulk MediaDive/BacDive/TEMPURA build operations).
+
+**Phase 4.3 (proper packaging):** future work. pip-installable distribution, conda recipe, Docker container — deferred until external testing has validated prediction quality. Until then, the install pattern is "git clone + apt prodigal + conda create -n gapseq + pip install (optional) mymetal."
 
 ---
 

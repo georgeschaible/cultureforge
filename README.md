@@ -8,23 +8,73 @@ Predict cultivation media for novel and uncultured bacteria and archaea from gen
 
 CultureForge takes a genome (or predicted proteome) and produces a cultivation media recipe — atmosphere, ingredients with concentrations, incubation conditions, and thermodynamic feasibility check. Recipes are grounded in pathway integrity scoring and curated diagnostic enzyme markers, then compared against published DSMZ and BacDive media for related organisms.
 
-## Quick start
+## Installation
+
+CultureForge orchestrates several external bioinformatics tools. Realistic installation takes 30–60 minutes.
 
 ```bash
+# 1. System tools (apt or equivalent)
+sudo apt install prodigal ncbi-blast+
+
+# 2. The main external tool — gapseq, in its own conda env
+conda create -n gapseq -c bioconda gapseq
+
+# 3. Optional but recommended
+conda create -n checkm2 -c bioconda checkm2     # genome QC
+pip install mymetal                              # MeBiPred metal binding
+
+# 4. Clone CultureForge
 git clone https://github.com/georgeschaible/cultureforge.git
 cd cultureforge
 
-# Inspect a genome already in the database
-python3 cultureforge.py inspect <genome_id>
-
-# With environmental overrides
-python3 cultureforge.py inspect <genome_id> --temperature 37 --ph 7
-
-# JSON output for downstream tooling
-python3 cultureforge.py inspect <genome_id> --json --output recipe.json
+# 5. Verify the in-repo database loads
+python3 cultureforge.py inspect 8 --section recipe
 ```
 
-See [docs/tester/TESTER_QUICKSTART.md](docs/tester/TESTER_QUICKSTART.md) for full installation including external dependencies (gapseq, GenomeSPOT, MeBiPred, BLAST+) and database setup.
+GenomeSPOT is vendored under `vendor/GenomeSPOT/` and runs via the project Python — no separate install needed for it.
+
+The `process` subcommand finds gapseq automatically by looking for a conda env named `gapseq`. To override, set `CULTUREFORGE_GAPSEQ_BIN=/path/to/gapseq/env/bin`.
+
+## Usage
+
+**Process a new genome end-to-end:**
+
+```bash
+python3 cultureforge.py process \
+    --input my_genome.fna \
+    --accession my_organism
+```
+
+This runs prodigal → gapseq → GenomeSPOT → marker BLAST → optional CheckM2/MeBiPred and registers the genome in the database. Total runtime: 1–2 hours per genome (gapseq is the slow step). The genome is assigned `gid >= 1000` to keep it separate from the test set.
+
+**View the cultivation recipe:**
+
+```bash
+python3 cultureforge.py inspect my_organism
+```
+
+**Inspect a test-set genome already in the database:**
+
+```bash
+python3 cultureforge.py inspect 8                       # by gid
+python3 cultureforge.py inspect NC_000909.1             # by accession
+python3 cultureforge.py inspect 8 --section recipe      # one section only
+python3 cultureforge.py inspect 8 --json --output out.json
+```
+
+**Override environmental conditions** (use when you have domain knowledge):
+
+```bash
+python3 cultureforge.py inspect my_organism --temperature 37 --ph 7 --salinity 0.5
+```
+
+**One-shot process + inspect:**
+
+```bash
+python3 cultureforge.py process --input my_genome.fna --inspect > recipe.txt
+```
+
+See [docs/tester/TESTER_QUICKSTART.md](docs/tester/TESTER_QUICKSTART.md) for installation troubleshooting and per-tool details.
 
 ## What it covers
 
