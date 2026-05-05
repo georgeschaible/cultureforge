@@ -1,0 +1,143 @@
+GCF_000012605.1	Hydrogenovibrio crunogenus XCL-2
+GCF_000245015.1	Beggiatoa alba B18LD
+GCF_000010785.1	Hydrogenobacter thermophilus TK-6
+GCF_000021565.1	Persephonella marina EX-H1
+GCF_000021545.1	Sulfurihydrogenibium azorense Az-Fu1
+GCF_005843985.1	Caminibacter mediatlanticus TB-2
+GCF_000008665.1	Archaeoglobus fulgidus DSM 4304
+GCF_000018465.1	Nitrosopumilus maritimus SCM1
+GCF_000698785.1	Nitrososphaera viennensis EN76
+GCF_001458695.1	Candidatus Nitrospira inopinata
+GCA_000949635.1	Candidatus Brocadia sinica JPN1
+GCF_000315115.1	Candidatus Kuenenia stuttgartiensis enrichment culture clone RU1
+GCF_000308735.2	Klebsiella michiganensis
+GCF_000021045.1	Azotobacter vinelandii DJ
+GCF_000058485.1	Frankia alni ACN14a
+GCF_000007185.1	Methanopyrus kandleri AV19
+GCF_000016525.1	Methanobrevibacter smithii ATCC 35061
+GCF_000022685.1	Methylorubrum extorquens AM1
+GCF_004319545.1	Desulfobacter hydrogenophilus
+GCF_000186885.1	Desulfobulbus propionicus DSM 2032
+GCF_000018405.1	Desulfosudis oleivorans Hxd3
+GCF_000196455.1	Acetoanaerobium sticklandii
+GCF_000597865.1	Peptoclostridium acidaminophilum DSM 3953
+GCF_000283495.2	Megasphaera elsdenii DSM 20460
+GCF_000025985.1	Bacteroides fragilis NCTC 9343
+GCF_000025925.1	Xylanibacter ruminicola 23
+GCF_000284095.1	Selenomonas ruminantium subsp. lactilytica TAM6421
+GCF_000146165.2	Shewanella oneidensis MR-1
+GCF_000013385.1	Anaeromyxobacter dehalogenans 2CP-C
+GCF_000153765.1	Mariprofundus ferrooxydans PV-1
+GCF_000145255.1	Gallionella capsiferriformans ES-2
+GCF_000006985.1	Chlorobaculum tepidum TLS
+GCF_000012525.1	Synechococcus elongatus PCC 7942 = FACHB-805
+GCF_000012905.2	Cereibacter sphaeroides 2.4.1
+GCF_000019165.1	Heliomicrobium modesticaldum Ice1
+GCF_000014865.1	Magnetococcus marinus MC-1
+GCF_000154785.2	Roseobacter litoralis Och 149
+GCF_000012345.1	Candidatus Pelagibacter ubique HTCC1062
+GCF_001456255.1	Vibrio natriegens NBRC 15636 = ATCC 14048 = DSM 759
+GCF_000007305.1	Pyrococcus furiosus DSM 3638
+GCF_000009965.1	Thermococcus kodakarensis KOD1
+GCF_000018305.1	Caldivirga maquilingensis IC-167
+GCF_009729035.1	Stygiolobus azoricus
+GCF_000022205.1	Halorubrum lacusprofundi ATCC 49239
+GCF_000196875.2	Halomonas elongata DSM 2581
+GCF_000020005.1	Natranaerobius thermophilus JW/NM-WN-LF
+GCF_000445445.2	Sporomusa ovata DSM 2662
+GCF_000020825.1	Acidithiobacillus ferrooxidans ATCC 53993
+GCF_000024765.1	Halothiobacillus neapolitanus c2
+GCF_000025485.1	Allochromatium vinosum DSM 180
+GCF_001747405.1	Chlorobaculum limnaeum
+GCF_018853765.1	Acidithiobacillus caldus
+GCF_000012965.1	Sulfurimonas denitrificans DSM 1251
+GCF_000183725.1	Sulfuricurvum kujiense DSM 16994
+GCF_000321415.2	Thioalkalivibrio nitratireducens DSM 14787
+GCF_000373385.1	Thiobacillus thioparus DSM 505
+GCF_009662475.1	Acidithiobacillus thiooxidans ATCC 19377
+GCF_000011365.1	Bradyrhizobium diazoefficiens USDA 110
+GCF_001679785.1	Rhizobium leguminosarum
+GCF_000009705.1	Nostoc sp. PCC 7120 = FACHB-418
+GCF_000011585.1	Methanococcus maripaludis S2
+GCF_001922145.1	Paenibacillus polymyxa
+GCF_001856645.1	Clostridium pasteurianum DSM 525 = ATCC 6013
+GCF_000204075.1	Trichormus variabilis ATCC 29413
+GCF_000017845.1	Crocosphaera subtropica ATCC 51142
+GCF_000013085.1	Rhodospirillum rubrum ATCC 11170
+GCF_000312705.1	Anabaena sp. 90
+GCF_000195775.1	Rhodopseudomonas palustris CGA009
+GCF_000021865.1	Rhodobacter capsulatus SB 1003
+GCF_000018865.1	Chloroflexus aurantiacus J-10-fl
+GCF_000695095.2	Gemmatimonas phototrophica
+GCF_000011485.1	Prochlorococcus marinus str. MIT 9313
+GCF_000010625.1	Microcystis aeruginosa NIES-843
+GCF_000011385.1	Gloeobacter violaceus PCC 7421
+GCF_002356555.2	Halorhodospira halochloris
+GCF_000009725.1	Synechocystis sp. PCC 6803
+GCF_000017805.1	Roseiflexus castenholzii DSM 13941
+GCF_000008325.1	Methylococcus capsulatus str. Bath
+GCF_000968535.1	Methylotuvimicrobium alcaliphilum 20Z
+GCF_000283235.1	Methylocystis parvus OBBP
+GCF_000762265.1	Methanobacterium formicicum
+GCF_000008625.1	Aquifex aeolicus VF5
+GCF_000247605.1	Acetobacterium woodii DSM 1030
+GCF_000017945.1	Ignicoccus hospitalis KIN4/I
+GCF_001266715.1	Metallosphaera sedula
+GCF_000012865.1	Carboxydothermus hydrogenoformans Z-2901
+GCF_001267405.1	Neomoorella thermoacetica
+GCF_000284315.1	Leptospirillum ferrooxidans C2-3
+GCF_000152265.2	Ferroplasma acidarmanus Fer1
+GCF_000007985.2	Geobacter sulfurreducens PCA
+GCF_000203855.3	Lactiplantibacillus plantarum WCFS1
+GCF_000006865.1	Lactococcus lactis subsp. lactis Il1403
+GCF_000008765.1	Clostridium acetobutylicum ATCC 824
+GCF_000009985.1	Paramagnetospirillum magneticum AMB-1
+GCF_000513295.1	Magnetospirillum gryphiswaldense MSR-1 v2
+GCF_000014725.1	Syntrophomonas wolfei subsp. wolfei str. Goettingen G311
+GCF_000014965.1	Syntrophobacter fumaroxidans MPOB
+GCF_000013405.1	Syntrophus aciditrophicus SB
+GCF_000970065.1	Methanosarcina barkeri 227
+GCF_027554905.1	Methanothermobacter thermautotrophicus
+GCF_000015765.1	Methanocorpusculum labreanum Z
+GCF_977609705.1	Methanofollis liminatans
+GCF_000013445.1	Methanospirillum hungatei JF-1
+GCA_000987375.1	Candidatus Brocadia fulgida
+GCF_000296795.1	Candidatus Jettenia caeni
+GCF_000786775.1	Candidatus Scalindua brodae
+GCA_009903405.1	Candidatus Methanophaga sp. AG-394-G06
+GCA_009649835.1	Candidatus Methanocomedens sp.
+GCA_020793565.1	Candidatus Methanovorans sp.
+GCF_002934365.1	Methylobacter tundripaludum
+GCF_949769195.1	Methylocaldum szegediense
+GCF_000019665.1	Methylacidiphilum infernorum V4
+GCF_000802205.1	Candidatus Nitrosocosmicus oleophilus
+GCF_000014765.1	Nitrosomonas eutropha C91
+GCF_032051675.1	Candidatus Nitrospira neomarina
+GCF_000341545.2	Nitrospina gracilis 3/211
+GCF_000013885.1	Nitrobacter hamburgensis X14
+GCF_000013785.1	Stutzerimonas stutzeri A1501
+GCF_004063735.1	Paracoccus denitrificans
+GCF_001530125.1	Thiobacillus denitrificans
+GCF_965136615.1	Shewanella loihica
+GCF_000012925.1	Geobacter metallireducens GS-15
+GCF_000181495.1	Bacillus sp. SG-1
+GCF_000019125.1	Pseudomonas putida GB-1
+GCF_030705305.1	Leptothrix discophora
+GCF_000153465.1	Aurantimonas manganoxydans SI85-9A1
+GCF_000265295.1	Sulfurospirillum barnesii SES-3
+GCF_000093085.1	[Bacillus] selenitireducens MLS10
+GCF_000196015.1	Cupriavidus metallidurans CH34
+GCF_000967425.1	Pseudorhizobium banfieldiae
+GCA_001896555.1	Candidatus Phosphitivorax anaerolimi
+GCF_000350545.1	Desulfotignum phosphitoxidans DSM 13687
+GCF_000020365.1	Desulforapulum autotrophicum HRM2
+GCF_001917195.1	Desulfovibrio piger
+GCF_003444165.1	Thermodesulfobacterium commune
+GCF_004369205.1	Pelotomaculum schinkii
+GCF_012728935.1	Syntrophorhabdus aromaticivorans
+GCF_000516475.1	Candidatus Magnetoglobus multicellularis str. Araruama
+GCF_000968135.1	Magnetospira sp. QH-2
+GCA_004028485.1	Candidatus Electrothrix communis
+GCA_026122935.1	Candidatus Electronema palustre
+GCF_000143685.1	Clostridium ljungdahlii DSM 13528
+GCF_000763575.1	Thermoanaerobacter kivui
