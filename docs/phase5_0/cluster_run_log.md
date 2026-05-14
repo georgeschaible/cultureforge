@@ -92,3 +92,38 @@ challenges resolved during setup:
 6. Prodigal pre-translation was used (gapseq's pyrodigal not installed). The wrapper
    uses pre-translated .faa as input, bypassing gapseq's auto-translation step.
 
+
+## Follow-up batch (May 13, 2026)
+
+A follow-up batch of 9 organisms was processed after initial transfer revealed
+my reconstructed minimal TSV had omitted them. These are well-known reference
+strains across iron_metals, methane_metabolism, fermentation, magnetotaxis,
+syntrophy, phototrophy, sulfur_metabolism, and carbon_fixation categories.
+
+**Genomes processed**:
+
+| Accession | Organism | Category |
+|---|---|---|
+| GCF_000007985.2 | Geobacter sulfurreducens PCA | iron_metals |
+| GCF_000008325.1 | Methylococcus capsulatus Bath | methane_metabolism |
+| GCF_000008765.1 | Clostridium acetobutylicum ATCC 824 | fermentation |
+| GCF_000009985.1 | Paramagnetospirillum magneticum AMB-1 | magnetotaxis |
+| GCF_000014725.1 | Syntrophomonas wolfei subsp wolfei Goettingen G311 | syntrophy |
+| GCF_000018865.1 | Chloroflexus aurantiacus J-10-fl | phototrophy |
+| GCF_000025485.1 | Allochromatium vinosum DSM 180 | sulfur_metabolism |
+| GCF_000203855.3 | Lactiplantibacillus plantarum WCFS1 | fermentation |
+| GCF_000247605.1 | Acetobacterium woodii DSM 1030 | carbon_fixation |
+
+**SLURM job**: 229818 (array 1-9)
+**Wall time**: ~10 minutes total (parallel execution on cluster nodes)
+**Results**: 9 of 9 successful, all with 1933-line Pathways.tbl (Bacteria mode)
+**Total cluster outputs now**: 144 (135 initial + 9 follow-up)
+
+## Final Phase 5.0 processing status (post-followup)
+
+- **Successfully processed**: 140 Phase 5.0 organisms
+- **Audit corrections**: 4 (gids 9, 17, 26, 30 — gid=17 overlaps with Phase 5.0 list)
+- **Permanently unavailable**: 2 (NCBI-suppressed: GCF_000012605.1, GCF_000315115.1)
+- **Held-out**: 1 (bin.020 ST-3 Thiovulum sp. ES — never in Phase 5.0 reference set)
+- **Phase 5.0 coverage**: 140/143 = 97.9%
+
