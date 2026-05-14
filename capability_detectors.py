@@ -897,10 +897,11 @@ def _apply_fermentation_disqualifiers(
        at 0.40 (below detection threshold). The organism uses glycolytic enzymes
        anabolically, not catabolically.
 
-    2. Acceptor-metabolism disqualifier: if a strong terminal-acceptor metabolism
-       (>= 0.70) is also detected, cap fermentation at 0.65 so it ranks below
-       the acceptor metabolism. Reflects facultative anaerobe biology where
-       respiration is preferred over fermentation when an acceptor is available.
+    2. Acceptor-metabolism disqualifier: if a terminal-acceptor metabolism
+       (>= 0.55) is also detected, cap fermentation BELOW the strongest acceptor's
+       confidence (so it ranks as secondary, not primary). Reflects facultative
+       anaerobe biology where respiration is preferred over fermentation when
+       an acceptor is available.
     """
     # Autotrophy check
     auto_detected, auto_evidence = _check_autotrophy(genome_id, conn, marker_hits)
@@ -1000,7 +1001,11 @@ def _apply_fermentation_disqualifiers(
                 strong_acceptors.append((cap.name, cap.confidence))
 
         if strong_acceptors:
-            capped = min(base_cap.confidence, 0.65)
+            # Cap fermentation BELOW the strongest acceptor's confidence so it ranks
+            # as secondary, not primary. The previous fixed cap at 0.65 didn't push
+            # fermentation below acceptors in the 0.55-0.65 range.
+            max_acceptor_conf = max(c for _, c in strong_acceptors)
+            capped = min(base_cap.confidence, max_acceptor_conf - 0.05, 0.65)
             return Capability(
                 name=base_cap.name,
                 detected=True,
