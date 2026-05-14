@@ -127,3 +127,30 @@ syntrophy, phototrophy, sulfur_metabolism, and carbon_fixation categories.
 - **Held-out**: 1 (bin.020 ST-3 Thiovulum sp. ES — never in Phase 5.0 reference set)
 - **Phase 5.0 coverage**: 140/143 = 97.9%
 
+
+## Transporter batch (May 13, 2026)
+
+After initial transfer, discovered that the SLURM scripts only ran `gapseq find -p all`
+and did not produce the `<accession>-Transporter.tbl` files that downstream
+CultureForge logic requires (capability_detectors.py, predict_media.py both query
+`genome_transporters` table; transporter evidence contributes to pathway confidence
+scoring per the recipe composer).
+
+A transport-only SLURM array (job 230026) was submitted for all 144 accessions to
+produce the missing Transporter.tbl files using `gapseq find-transport -b 200 -K 8`.
+
+**Key discovery**: `gapseq find-transport` does NOT accept the `-D` flag (custom
+database directory) that `gapseq find` accepts. It reads from `~/gapseq/dat/seq/`
+by default. The initial run failed in seconds due to this flag mismatch.
+
+**Wall time**: ~5 minutes (find-transport is fast — small transporter reference DB)
+**Results**: 144/144 successful
+**Transporter substrates detected per genome**: 1065 to 6588+ (range)
+
+After this batch, each cluster output directory contains the complete file set
+that `loaders/gapseq_generic.py` expects:
+
+- `<accession>-all-Pathways.tbl`
+- `<accession>-all-Reactions.tbl`
+- `<accession>-Transporter.tbl`
+
