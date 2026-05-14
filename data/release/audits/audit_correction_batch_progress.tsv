@@ -1,0 +1,5 @@
+accession	status	gid	file_path	started_utc	finished_utc	error	notes
+GCF_001280255.1	success	1001	data/genomes/audit_corrections/GCF_001280255.1.fna	2026-05-13T19:14:00Z	2026-05-13T19:17:00Z		AUDIT CORRECTION: re-process for gid=9 (cluster gapseq + local downstream). biomass=Gram_neg
+GCF_000012965.1	success	1002	data/genomes/audit_corrections/GCF_000012965.1.fna	2026-05-13T19:20:00Z	2026-05-13T19:23:00Z		AUDIT CORRECTION: re-process for gid=17 (cluster gapseq + local downstream). biomass=Gram_neg
+GCF_000008265.1	success	1003	data/genomes/audit_corrections/GCF_000008265.1.fna	2026-05-13T19:26:00Z	2026-05-13T19:28:00Z		AUDIT CORRECTION: re-process for gid=26 (cluster gapseq + local downstream). biomass=Archaea
+GCF_002443295.1	success	1004	data/genomes/audit_corrections/GCF_002443295.1.fna	2026-05-13T19:30:00Z	2026-05-13T19:33:00Z		AUDIT CORRECTION: re-process for gid=30 (Scalindua japonica substituted). biomass=Gram_neg
