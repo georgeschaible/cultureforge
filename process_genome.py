@@ -393,6 +393,8 @@ def process_genome(
     biomass_template: str = "Gram_neg",
     skip_checkm2: bool = False,
     skip_mebipred: bool = False,
+    gapseq_output_dir: Optional[str] = None,
+    skip_gapseq: bool = False,
     db_path: str = _DEFAULT_DB,
     verbose: bool = False,
 ) -> int:
@@ -447,22 +449,45 @@ def process_genome(
         )
         update_genome_metadata(db_path=db_path, gid=gid, n_unique_genes=n_proteins)
 
-        # Stage 2: gapseq (slow)
-        gapseq_dir = run_gapseq(
-            staged_genome, output_dir_p,
-            biomass_template=gapseq_domain, verbose=verbose,
-        )
-        # gapseq names outputs from the staged FASTA stem (e.g. "genome-*.tbl"),
-        # not the user's --accession. Pass accession=None to let
-        # _resolve_gapseq_files glob the directory and pick up whatever stem
-        # gapseq used.
-        gapseq_summary = load_gapseq_outputs(
-            gid=gid,
-            gapseq_dir=str(gapseq_dir),
-            db_path=db_path,
-            accession=None,
-        )
-        print(f"      gapseq loaded — {gapseq_summary}", flush=True)
+        # Stage 2: gapseq (slow) — or load pre-computed outputs from cluster run
+        if skip_gapseq:
+            if not gapseq_output_dir:
+                raise ValueError(
+                    "--skip-gapseq requires --gapseq-output-dir pointing to "
+                    "pre-computed gapseq outputs."
+                )
+            gapseq_dir = Path(gapseq_output_dir).resolve()
+            if not gapseq_dir.is_dir():
+                raise FileNotFoundError(
+                    f"--gapseq-output-dir does not exist or is not a directory: "
+                    f"{gapseq_dir}"
+                )
+            print(f"[2/6] Skipping local gapseq run — loading pre-computed "
+                  f"outputs from {gapseq_dir} (accession prefix: {accession})",
+                  flush=True)
+            gapseq_summary = load_gapseq_outputs(
+                gid=gid,
+                gapseq_dir=str(gapseq_dir),
+                db_path=db_path,
+                accession=accession,
+            )
+            print(f"      gapseq loaded — {gapseq_summary}", flush=True)
+        else:
+            gapseq_dir = run_gapseq(
+                staged_genome, output_dir_p,
+                biomass_template=gapseq_domain, verbose=verbose,
+            )
+            # gapseq names outputs from the staged FASTA stem (e.g. "genome-*.tbl"),
+            # not the user's --accession. Pass accession=None to let
+            # _resolve_gapseq_files glob the directory and pick up whatever stem
+            # gapseq used.
+            gapseq_summary = load_gapseq_outputs(
+                gid=gid,
+                gapseq_dir=str(gapseq_dir),
+                db_path=db_path,
+                accession=None,
+            )
+            print(f"      gapseq loaded — {gapseq_summary}", flush=True)
 
         # Stage 3: GenomeSPOT
         gs_predictions = run_genomespot(
@@ -535,6 +560,17 @@ if __name__ == "__main__":
         choices=["Gram_neg", "Gram_pos", "Archaea"],
         help="Biomass template for gapseq (default: Gram_neg)",
     )
+    parser.add_argument(
+        "--gapseq-output-dir",
+        help="Path to pre-computed gapseq output directory containing "
+             "<accession>-all-Pathways.tbl, -all-Reactions.tbl, -Transporter.tbl. "
+             "Used with --skip-gapseq for the cluster-then-load hybrid workflow.",
+    )
+    parser.add_argument(
+        "--skip-gapseq", action="store_true",
+        help="Skip the local gapseq run and load pre-computed outputs instead. "
+             "Requires --gapseq-output-dir.",
+    )
     parser.add_argument("--skip-checkm2", action="store_true")
     parser.add_argument("--skip-mebipred", action="store_true")
     parser.add_argument("--db", default=_DEFAULT_DB)
@@ -549,6 +585,8 @@ if __name__ == "__main__":
         biomass_template=args.biomass_template,
         skip_checkm2=args.skip_checkm2,
         skip_mebipred=args.skip_mebipred,
+        gapseq_output_dir=args.gapseq_output_dir,
+        skip_gapseq=args.skip_gapseq,
         db_path=args.db,
         verbose=args.verbose,
     )
