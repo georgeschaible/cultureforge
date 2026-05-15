@@ -1161,6 +1161,35 @@ def main():
     process_p.add_argument("--inspect", action="store_true",
                            help="Run `cultureforge inspect` automatically after processing")
 
+    # Phase 5.0: process-batch subcommand — TSV-driven batch with resume
+    batch_p = sub.add_parser(
+        "process-batch",
+        help="Process a TSV list of genomes through the full pipeline (with resume)",
+    )
+    batch_p.add_argument("--list", required=True,
+                         help="Input TSV: columns accession, file_path, notes (header optional)")
+    batch_p.add_argument("--progress", default="data/release/phase5_0_batch_progress.tsv",
+                         help="Progress TSV path for resume (default: data/release/phase5_0_batch_progress.tsv)")
+    batch_p.add_argument("--db", default=DB_DEFAULT)
+    batch_p.add_argument("--biomass-template", default="Gram_neg",
+                         choices=["Gram_neg", "Gram_pos", "Archaea"],
+                         help="Default biomass template for gapseq; per-row override via 'biomass=Archaea' in notes")
+    batch_p.add_argument("--skip-checkm2", action="store_true")
+    batch_p.add_argument("--skip-mebipred", action="store_true")
+    batch_p.add_argument("--parallel", type=int, default=1,
+                         help="Concurrent pipelines (default 1; gapseq is heavy)")
+    batch_p.add_argument(
+        "--gapseq-output-dir-pattern",
+        help="Template path to pre-computed gapseq outputs with {accession} "
+             "placeholder. Used with --skip-gapseq for cluster-then-load workflow.",
+    )
+    batch_p.add_argument(
+        "--skip-gapseq", action="store_true",
+        help="Skip local gapseq run and load pre-computed cluster outputs. "
+             "Requires --gapseq-output-dir-pattern.",
+    )
+    batch_p.add_argument("--verbose", action="store_true")
+
     args = parser.parse_args()
 
     # Validate Phase 3.1 overrides at parse time, before any DB queries
@@ -1186,6 +1215,23 @@ def main():
     if not args.command:
         parser.print_help()
         sys.exit(0)
+
+    # Phase 5.0: process-batch subcommand
+    if args.command == "process-batch":
+        from process_batch import process_batch
+        summary = process_batch(
+            input_tsv=args.list,
+            progress_tsv=args.progress,
+            db_path=args.db,
+            biomass_template=args.biomass_template,
+            skip_checkm2=args.skip_checkm2,
+            skip_mebipred=args.skip_mebipred,
+            verbose=args.verbose,
+            parallel=args.parallel,
+            gapseq_output_dir_pattern=args.gapseq_output_dir_pattern,
+            skip_gapseq=args.skip_gapseq,
+        )
+        sys.exit(0 if summary["failed"] == 0 else 1)
 
     # Phase 4.1: process subcommand
     if args.command == "process":
