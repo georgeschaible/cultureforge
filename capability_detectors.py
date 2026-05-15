@@ -98,7 +98,6 @@ CULTIVATION_MODE_GROUPS = {
     "anaerobic_respiratory": ["Dissimilatory sulfate reduction",
                                "Denitrification",
                                "Dissimilatory Fe(III) reduction",
-                               "Anaerobic ammonium oxidation",
                                "Reductive dehalogenation",
                                "Dissimilatory nitrate reduction to ammonium"],
     "methanogenic": ["Methanogenesis"],
@@ -110,6 +109,7 @@ CULTIVATION_MODE_GROUPS = {
                               "Sulfur/sulfide/thiosulfate oxidation",
                               "Acidophilic Fe(II) oxidation",
                               "Aerobic nitrite oxidation"],
+    "anammox": ["Anaerobic ammonium oxidation"],
     "acetogenic": ["Acetogenesis"],
     "halophilic_with_rhodopsin": ["Bacteriorhodopsin"],
 }

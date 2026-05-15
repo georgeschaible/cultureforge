@@ -613,6 +613,124 @@ def _compose_anme_recipe(context: RecipeContext,
     return recipe
 
 
+def _compose_anammox_recipe(context: RecipeContext,
+                             conn: Optional["sqlite3.Connection"] = None) -> Recipe:
+    """Recipe for anammox bacteria — anaerobic ammonium oxidation.
+
+    Atmosphere: anaerobic N2 + CO2 (autotrophic via Wood-Ljungdahl-like CO2
+    fixation). Distinct from aerobic AOB (Phase 3.5) which uses air + CO2.
+    Donor: NH4+ at low concentration (substrate-inhibited above ~100 mM).
+    Acceptor: NO2- at low concentration (substrate-inhibited above ~100 mM).
+    Carbon: bicarbonate (autotrophic).
+
+    Anammox cultivation is slow (doubling time 10-14 days for enrichment,
+    longer for pure culture). Most pure-culture studies use enrichment from
+    wastewater anammox reactors; only a few species (Brocadia, Kuenenia)
+    have been brought to laboratory cultivation. Marine Scalindua species
+    require seawater salinity.
+
+    Signature markers: hzsA (hydrazine synthase α-subunit, unique to anammox)
+    and hdh (hydrazine dehydrogenase) — these are diagnostic and have no
+    eukaryotic or non-anammox bacterial homologs above ~30% identity.
+    """
+    recipe = _new_recipe_skeleton(context, "anammox")
+    recipe.composition_rationale.append(
+        "Anaerobic ammonium oxidation (anammox): NH4+ is oxidized to N2 via "
+        "the hydrazine (N2H4) intermediate, with NO2- as the terminal electron "
+        "acceptor. The hydrazine synthase (hzsA) catalyzes the unique N-N bond "
+        "formation; hydrazine dehydrogenase (hdh) then oxidizes hydrazine "
+        "to N2. Anammox is strict anaerobe (mcrA-like O2 sensitivity in "
+        "hydrazine machinery) and autotrophic (CO2 fixation via Wood-Ljungdahl- "
+        "like path coupled to inverse electron transport)."
+    )
+
+    # Atmosphere — N2/CO2 anaerobic
+    recipe.gas_phase = GasPhase(
+        composition={"N2": 0.90, "CO2": 0.10},
+        pressure_atm=1.0,
+        rationale=("N2/CO2 90:10 anaerobic atmosphere. CO2 is the carbon "
+                   "source via autotrophic Wood-Ljungdahl-like fixation. N2 "
+                   "fills headspace without supplying O2 — anammox is strictly "
+                   "anaerobic. Trace O2 above ~2 µM inhibits hydrazine "
+                   "synthase activity."),
+    )
+
+    # Electron donor — NH4+ at low concentration
+    recipe.ingredients.append(Ingredient(
+        name="NH4Cl", chemical_formula="NH4Cl",
+        concentration=50.0, concentration_unit="mg/L",
+        category=IngredientCategory.ELECTRON_DONOR,
+        rationale=("Ammonium chloride (~1 mM, 50 mg/L) as electron donor. "
+                   "Concentrations above ~100 mM inhibit hzsA. For enrichment "
+                   "or continuous cultivation, increase to 5 mM (270 mg/L) but "
+                   "stay below 200 mg/L to avoid substrate inhibition."),
+        confidence=0.85,
+        derived_from=["anammox electron donor", "hzsA marker detected"],
+    ))
+
+    # Electron acceptor — NO2- at matched low concentration
+    recipe.ingredients.append(Ingredient(
+        name="NaNO2", chemical_formula="NaNO2",
+        concentration=70.0, concentration_unit="mg/L",
+        category=IngredientCategory.ELECTRON_ACCEPTOR,
+        rationale=("Sodium nitrite (~1 mM, 70 mg/L) as terminal electron "
+                   "acceptor. Stoichiometry: 1 NH4+ + 1.32 NO2- → 1.02 N2 "
+                   "+ 0.26 NO3- + 2 H2O. Replenish nitrite as it is consumed. "
+                   "Concentrations above ~150 mg/L inhibit hdh."),
+        confidence=0.85,
+        derived_from=["anammox electron acceptor", "stoichiometry from Strous 1998"],
+    ))
+
+    # Carbon source — bicarbonate (autotrophic)
+    recipe.ingredients.append(Ingredient(
+        name="NaHCO3", chemical_formula="NaHCO3",
+        concentration=2.0, concentration_unit="g/L",
+        category=IngredientCategory.CARBON_SOURCE,
+        rationale=("Sodium bicarbonate (~24 mM) as sole carbon source. "
+                   "Anammox bacteria fix CO2 via a Wood-Ljungdahl-like pathway "
+                   "(acetyl-CoA synthase with anammox-specific variants). "
+                   "NaHCO3 also buffers media to pH 7.5-8.0."),
+        confidence=0.85,
+        derived_from=["anammox autotrophy", "Wood-Ljungdahl-like CO2 fixation"],
+    ))
+
+    # No reducing agent — anammox doesn't tolerate sulfide
+    # (deliberately omitted; resazurin indicator is OK)
+    recipe.ingredients.append(Ingredient(
+        name="Resazurin", chemical_formula="C12H6NNaO4",
+        concentration=0.5, concentration_unit="mg/L",
+        category=IngredientCategory.SUPPLEMENT,
+        rationale=("Oxygen indicator. Note: do NOT add sulfide reducing agents "
+                   "(Na2S, cysteine) — sulfide inhibits anammox even at low "
+                   "concentrations. Anammox itself maintains anaerobic conditions."),
+        confidence=0.90,
+        derived_from=["anammox sulfide sensitivity"],
+    ))
+
+    # Marine vs freshwater note. RecipeContext has no cultivation_context
+    # attribute; context.species carries the organism string (genome notes),
+    # which contains "Scalindua" for the marine lineage.
+    notes = []
+    if context.species and ("scalindua" in context.species.lower()
+                            or "marine" in context.species.lower()):
+        notes.append("Marine Scalindua species: add NaCl at 25-35 g/L (seawater salinity). "
+                      "Freshwater Brocadia/Kuenenia: NaCl baseline 1-5 g/L is sufficient.")
+    if notes:
+        recipe.composition_rationale.extend(notes)
+
+    # Growth-rate warning
+    recipe.composition_rationale.append(
+        "Anammox doubling time is exceptionally slow: 10-14 days under optimal "
+        "enrichment, 20+ days in pure culture. Use enrichment reactors with "
+        "biomass retention (sequencing-batch reactor, granular sludge, or "
+        "membrane bioreactor) for routine cultivation. Pure-culture cultivation "
+        "of Brocadia, Kuenenia, and Scalindua species is described in van der "
+        "Star 2007 (Brocadia) and Awata 2013 (Scalindua)."
+    )
+
+    return recipe
+
+
 def _compose_methanotrophy_recipe(context: RecipeContext) -> Recipe:
     """Aerobic methanotrophy recipe (Methylococcus / Methylosinus / Methylocystis class).
 
@@ -932,7 +1050,7 @@ def _classify_anaerobic_subtype(context: RecipeContext,
                 ("DNRA", "dnra"),
                 ("Denitrification", "nitrate"),
                 ("Dissimilatory sulfate reduction", "sulfate"),
-                ("Anaerobic ammonium oxidation", "anammox"),
+                ("Anaerobic ammonium oxidation", "anammox"),  # Phase 5.1 P3: superseded by top-level anammox mode; kept for defensive fallback only
             ]
             best_conf = 0.0
             best_sub = None
@@ -1405,6 +1523,7 @@ _MODE_COMPOSERS = {
     "methanogenic": _compose_methanogenic_recipe,
     "methanotrophic": _compose_methanotrophy_recipe,
     "anme_reverse_methanogenic": _compose_anme_recipe,
+    "anammox": _compose_anammox_recipe,
     "aerobic_chemotrophic": _compose_aerobic_chemotrophic_recipe,
     "anaerobic_respiratory": _compose_anaerobic_respiratory_recipe,
     "phototrophic": _compose_phototrophic_recipe,
@@ -1432,6 +1551,7 @@ _SPECIFIC_MODES_PRIORITY = [
     # the capability profile while routing the recipe to anaerobic methane
     # oxidation cultivation. F.2 mitigation.
     "anme_reverse_methanogenic",
+    "anammox",
     "methanogenic",
     "methanotrophic",
     "acetogenic",
@@ -1455,6 +1575,7 @@ _GENERIC_MODES = {"aerobic_chemotrophic", "anaerobic_respiratory", "fermentative
 # single diagnostic marker.
 _MARKER_REQUIRED_MODES = {
     "methanogenic", "methanotrophic", "anme_reverse_methanogenic",
+    "anammox",
     "acetogenic", "lithotrophic_aerobic",
     "phototrophic", "halophilic_with_rhodopsin",
 }
@@ -1466,6 +1587,7 @@ _MODE_DIAGNOSTIC_MARKERS = {
     "methanogenic":              ["mcrA", "mcrBG"],
     "methanotrophic":            ["pmoA", "mmoX"],
     "anme_reverse_methanogenic": ["mcrA"],  # mcrA + acceptor signature is the discriminator
+    "anammox":                   ["hzsA", "hdh", "hao"],
     "acetogenic":                ["acsB_cdhC", "cooS_cdhA"],
     "lithotrophic_aerobic":      ["amoA", "hao", "soxB", "cyc2", "nxrA",
                                   "tqoDoxD", "tqoDoxA", "tetH", "sor"],
