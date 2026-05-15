@@ -1,0 +1,32 @@
+marker	accession	claimed_desc	uniprot_organism	uniprot_protein	status
+acsB_cdhC	P27988	Carbon monoxide dehydrogenase/acetyl-CoA synthase subunit alpha OS=Neomoorella thermoacetica OX=1525	Neomoorella thermoacetica	Carbon monoxide dehydrogenase/acetyl-CoA synthase subunit alpha	OK
+amoA	O85076	Ammonia monooxygenase subunit AmoA OS=Nitrosospira multiformis OX=1231 GN=amoA PE=4 SV=1	Nitrosospira multiformis	?	OK
+aprAB	T2G6Z9	Adenylylsulfate reductase subunit alpha OS=Megalodesulfovibrio gigas (strain ATCC 19364 / DSM 1382 /	Megalodesulfovibrio gigas (strain ATCC 19364 / DSM 1382 / NCIMB 9332 / VKM B-1759)	Adenylylsulfate reductase subunit alpha	OK
+autotrophy	P54205	Ribulose bisphosphate carboxylase large chain OS=Synechocystis sp. (strain ATCC 27184 / PCC 6803 / K	Synechocystis sp. (strain ATCC 27184 / PCC 6803 / Kazusa)	Ribulose bisphosphate carboxylase large chain	OK
+cooS_cdhA	P31896	Carbon monoxide dehydrogenase OS=Rhodospirillum rubrum OX=1085 GN=cooS PE=1 SV=1	Rhodospirillum rubrum	Carbon monoxide dehydrogenase	OK
+cyc2	A0A060UV08	Cytochrome c OS=Acidithiobacillus ferrivorans OX=160808 GN=cyc2 PE=4 SV=1	Acidithiobacillus ferrivorans	?	OK
+dsrAB	Q59109	Sulfite reductase, dissimilatory-type subunit alpha OS=Archaeoglobus fulgidus (strain ATCC 49558 / D	Archaeoglobus fulgidus (strain ATCC 49558 / DSM 4304 / JCM 9628 / NBRC 100126 / VC-16)	Sulfite reductase, dissimilatory-type subunit alpha	OK
+hao	M5DCM0	Hydroxylamine oxidoreductase OS=Nitrosococcus oceani OX=1229 GN=hao PE=4 SV=1	Nitrosococcus oceani	Hydroxylamine oxidoreductase	OK
+hdh	Q1PW30	Hydrazine dehydrogenase OS=Kuenenia stuttgartiensis OX=174633 GN=kustc0694 PE=1 SV=2	Kuenenia stuttgartiensis	Hydrazine dehydrogenase	OK
+hzsA	Q1Q0T2	Hydrazine synthase subunit alpha OS=Kuenenia stuttgartiensis OX=174633 GN=kuste2861 PE=1 SV=1	Kuenenia stuttgartiensis	Hydrazine synthase subunit alpha	OK
+mcrA	P11558	Methyl-coenzyme M reductase I subunit alpha OS=Methanothermobacter marburgensis (strain ATCC BAA-927	Methanothermobacter marburgensis (strain ATCC BAA-927 / DSM 2133 / JCM 14651 / NBRC 100331 / OCM 82 / Marburg)	Methyl-coenzyme M reductase I subunit alpha	OK
+mcrBG	P11560	Methyl-coenzyme M reductase I subunit beta OS=Methanothermobacter marburgensis (strain ATCC BAA-927 	Methanothermobacter marburgensis (strain ATCC BAA-927 / DSM 2133 / JCM 14651 / NBRC 100331 / OCM 82 / Marburg)	Methyl-coenzyme M reductase I subunit beta	OK
+mmoX	P22869	Methane monooxygenase component A alpha chain OS=Methylococcus capsulatus (strain ATCC 33009 / NCIMB	Methylococcus capsulatus (strain ATCC 33009 / NCIMB 11132 / Bath)	Methane monooxygenase component A alpha chain	OK
+mtrC_omcB	P0DSN4	Multiheme cytochrome MtrC OS=Shewanella baltica (strain OS185) OX=402882 GN=mtrC PE=1 SV=1	Shewanella baltica (strain OS185)	Multiheme cytochrome MtrC	OK
+nifH	P00459	Nitrogenase iron protein 1 OS=Azotobacter vinelandii OX=354 GN=nifH1 PE=1 SV=2	Azotobacter vinelandii	Nitrogenase iron protein 1	OK
+nosZ	P19573	Nitrous-oxide reductase OS=Stutzerimonas stutzeri OX=316 GN=nosZ PE=1 SV=1	Stutzerimonas stutzeri	Nitrous-oxide reductase	OK
+nrfA	Q9S1E5	Cytochrome c-552 OS=Wolinella succinogenes (strain ATCC 29543 / DSM 1740 / CCUG 13145 / JCM 31913 / 	Wolinella succinogenes (strain ATCC 29543 / DSM 1740 / CCUG 13145 / JCM 31913 / LMG 7466 / NCTC 11488 / FDC 602W)	Cytochrome c-552	OK
+nxrA	A0A0S4KRS1	Nitrite oxidoreductase, alpha subunit OS=Candidatus Nitrospira inopinata OX=1715989 GN=nxrA PE=4 SV=	Candidatus Nitrospira inopinata	?	OK
+pmoA	Q607G3	Particulate methane monooxygenase beta subunit OS=Methylococcus capsulatus (strain ATCC 33009 / NCIM	Methylococcus capsulatus (strain ATCC 33009 / NCIMB 11132 / Bath)	Particulate methane monooxygenase beta subunit	OK
+psaA_psbA	P29254	Photosystem I P700 chlorophyll a apoprotein A1 OS=Synechocystis sp. (strain ATCC 27184 / PCC 6803 / 	Synechocystis sp. (strain ATCC 27184 / PCC 6803 / Kazusa)	Photosystem I P700 chlorophyll a apoprotein A1	OK
+pscA_fmoA	Q46393	Bacteriochlorophyll a protein OS=Chlorobaculum tepidum (strain ATCC 49652 / DSM 12025 / NBRC 103806 	Chlorobaculum tepidum (strain ATCC 49652 / DSM 12025 / NBRC 103806 / TLS)	Bacteriochlorophyll a protein	OK
+pufLM	P0C0Y8	Reaction center protein L chain OS=Cereibacter sphaeroides OX=1063 GN=pufL PE=1 SV=2	Cereibacter sphaeroides	Reaction center protein L chain	OK
+qmoA	Q7X167	QmoA OS=Desulfovibrio desulfuricans OX=876 GN=qmoA PE=4 SV=1	Desulfovibrio desulfuricans	?	OK
+rdhA	Q8L172	Tetrachloroethene reductive dehalogenase OS=Desulfitobacterium hafniense (strain Y51) OX=138119 GN=p	Desulfitobacterium hafniense (strain Y51)	Tetrachloroethene reductive dehalogenase	OK
+rhodopsin	Q5UXY6	Bacteriorhodopsin-I OS=Haloarcula marismortui (strain ATCC 43049 / DSM 3752 / JCM 8966 / VKM B-1809)	Haloarcula marismortui (strain ATCC 43049 / DSM 3752 / JCM 8966 / VKM B-1809)	Bacteriorhodopsin-I	OK
+sor	P29082	Sulfur oxygenase/reductase OS=Acidianus ambivalens OX=2283 GN=sor PE=1 SV=3	Acidianus ambivalens	Sulfur oxygenase/reductase	OK
+soxB	P72177	SoxB protein OS=Paracoccus denitrificans OX=266 GN=soxB PE=3 SV=2	Paracoccus denitrificans	?	OK
+terminal_oxidases	P82543	Cytochrome c oxidase polypeptide 2A OS=Thermus thermophilus (strain ATCC 27634 / DSM 579 / HB8) OX=3	Thermus thermophilus (strain ATCC 27634 / DSM 579 / HB8)	Cytochrome c oxidase polypeptide 2A	OK
+tetH	G8YXZ9	Tetrathionate hydrolase OS=Acidianus ambivalens OX=2283 GN=tth1 PE=1 SV=1	Acidianus ambivalens	Tetrathionate hydrolase	OK
+tqoDoxA	P97224	Thiosulfate dehydrogenase [quinone] small subunit OS=Acidianus ambivalens OX=2283 GN=doxA PE=1 SV=1	Acidianus ambivalens	Thiosulfate dehydrogenase [quinone] small subunit	OK
+tqoDoxD	P97207	Thiosulfate dehydrogenase [quinone] large subunit OS=Acidianus ambivalens OX=2283 GN=doxD PE=1 SV=1	Acidianus ambivalens	Thiosulfate dehydrogenase [quinone] large subunit	OK

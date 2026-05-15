@@ -1,0 +1,5 @@
+accession	file_path	notes
+GCF_001280255.1	data/genomes/audit_corrections/GCF_001280255.1.fna	AUDIT CORRECTION: re-process for gid=9 (was T. thermophilus HB8 from start). biomass=Gram_neg
+GCF_000012965.1	data/genomes/audit_corrections/GCF_000012965.1.fna	AUDIT CORRECTION: re-process for gid=17 (was Sulfurovum NBC37-1 from start). biomass=Gram_neg
+GCF_000008265.1	data/genomes/audit_corrections/GCF_000008265.1.fna	AUDIT CORRECTION: re-process for gid=26 (was Brevibacillus brevis NBRC 100599 from start). biomass=Archaea
+GCF_002443295.1	data/genomes/audit_corrections/GCF_002443295.1.fna	AUDIT CORRECTION: re-process for gid=30 (was Salmonella enterica from start; substituting Scalindua japonica for unavailable S. profunda). biomass=Gram_neg

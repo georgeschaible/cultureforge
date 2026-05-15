@@ -179,3 +179,13 @@ vendor/GenomeSPOT/genome_spot.egg-info/
 # --- Misc generated documents ---
 data/release/*.tmp
 *.bak
+
+# --- Phase 5.0 additions ---
+# Pre-* DB backups (created before high-risk operations; rebuildable from main DB)
+data/cultureforge.db.pre_*
+
+# Cluster gapseq outputs (2.2 GB; regenerable via SLURM jobs on Pod, see docs/phase5_0/cluster_run_log.md)
+data/cluster_gapseq_outputs/
+
+# NCBI datasets CLI binary (downloadable from NCBI)
+/datasets

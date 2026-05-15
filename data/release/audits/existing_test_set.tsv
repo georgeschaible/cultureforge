@@ -1,0 +1,30 @@
+7	NC_002937.3	Nitratidesulfovibrio vulgaris
+8	NC_000909.1	Validation organism: Methanococcus_jannaschii
+9	NC_006461.1	Thermus aquaticus
+10	NC_004567.2	Validation organism: Lactobacillus_plantarum
+11	NC_011761.1	Acidithiobacillus ferrooxidans
+12	NC_003030.1	Clostridium acetobutylicum
+13	NC_002939.5	Geobacter sulfurreducens subsp. ethanolicus
+14	NC_007181.1	Sulfolobus acidocaldarius
+15	NC_002163.1	Campylobacter jejuni
+16	NC_007626.1	Validation organism: Magnetospirillum_magneticum
+17	NC_009663.1	Sulfurimonas denitrificans
+18	NC_004757.1	Blind validation: Nitrosomonas_europaea
+19	NC_005296.1	Blind validation: Rhodopseudomonas_palustris
+20	NC_002607.1	Blind validation: Halobacterium_salinarum
+21	NC_008346.1	Blind validation: Syntrophomonas_wolfei
+22	NC_016894.1	Blind validation: Acetobacterium_woodii
+23	GCF_001273775.1	Blind v2: Nitrospira_moscoviensis
+24	GCF_000018865.1	Blind v2: Chloroflexus_aurantiacus
+25	GCF_000011905.1	Blind v2: Dehalococcoides_mccartyi
+26	GCF_000010165.1	Blind v2: Picrophilus_torridus
+27	GCF_000008545.1	Blind v2: Thermotoga_maritima
+28	GCA_000315995.1	Blind v2: Candidatus_Methanoperedens_nitroreducens
+29	GCA_900196725.1	Blind v2: Candidatus_Prometheoarchaeum_syntrophicum
+30	GCA_008000775.1	Blind v2: Candidatus_Scalindua_profunda
+31	GCF_000025485.1	Allochromatium vinosum
+32	NC_000913.3	Validation organism: Escherichia_coli (restored Phase 4.1 after blind-test load_gapseq.py mishap)
+900	GCF_000008325.1	SENTINEL: Methylococcus capsulatus Bath (Phase 3.5 sentinel validation; NOT included in V12 validation pass; remove or relabel after validation)
+901	GCF_000196135.1	SENTINEL: Wolinella succinogenes DSM 1740 (Phase 3.7 DNRA validation)
+902	GCF_000012725.1	SENTINEL: Nitrobacter winogradskyi Nb-255 (Phase 3.7 NOB Type B clade validation)
+903	GCF_000007345.1	SENTINEL: Methanosarcina acetivorans C2A (Phase 3.6 ANME negative control)

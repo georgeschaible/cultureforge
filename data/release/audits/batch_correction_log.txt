@@ -1,0 +1,23 @@
+=== CultureForge process-batch ===
+  Input list:  data/release/audits/audit_correction_batch.tsv  (4 entries)
+  Progress:    data/release/audits/audit_correction_batch_progress.tsv
+  Database:    /home/george/cultureforge/data/cultureforge.db
+  Parallel:    1
+  Default biomass: Gram_neg
+
+Resuming: 3 pending, 1 skipped, 0 prior successes
+
+[1/3] GCF_000012965.1 — AUDIT CORRECTION: re-process for gid=17 (was Sulfurovum NBC3 ...
+=== CultureForge process pipeline ===
+  Input genome: /home/george/cultureforge/data/genomes/audit_corrections/GCF_000012965.1.fna
+  Accession:    GCF_000012965.1
+  Output dir:   /home/george/cultureforge/data/user_genomes/GCF_000012965.1
+  Biomass:      Gram_neg
+  Database:     /home/george/cultureforge/data/cultureforge.db
+
+Registered gid=1002
+
+[1/6] Predicting proteins with prodigal...
+      Predicted 2166 proteins → proteome.faa
+[2/6] Running gapseq (this takes 30-60 minutes)...
+      gapseq find -p all ...

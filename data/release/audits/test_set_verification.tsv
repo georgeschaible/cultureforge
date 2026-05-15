@@ -1,0 +1,31 @@
+gid	accession	organism_returned	db_notes
+7	NC_002937.3	Nitratidesulfovibrio vulgaris str. Hildenborough	Nitratidesulfovibrio vulgaris
+8	NC_000909.1	Methanocaldococcus jannaschii DSM 2661	Validation organism: Methanococcus_jannaschii
+9	NC_006461.1	Thermus thermophilus HB8	Thermus aquaticus
+10	NC_004567.2	Lactiplantibacillus plantarum WCFS1	Validation organism: Lactobacillus_plantarum
+11	NC_011761.1	Acidithiobacillus ferrooxidans ATCC 23270	Acidithiobacillus ferrooxidans
+12	NC_003030.1	Clostridium acetobutylicum ATCC 824	Clostridium acetobutylicum
+13	NC_002939.5	Geobacter sulfurreducens PCA	Geobacter sulfurreducens subsp. ethanolicus
+14	NC_007181.1	Sulfolobus acidocaldarius DSM 639	Sulfolobus acidocaldarius
+15	NC_002163.1	Campylobacter jejuni subsp. jejuni NCTC 11168 = ATCC 700819	Campylobacter jejuni
+16	NC_007626.1	Paramagnetospirillum magneticum AMB-1	Validation organism: Magnetospirillum_magneticum
+17	NC_009663.1	Sulfurovum sp. NBC37-1	Sulfurimonas denitrificans
+18	NC_004757.1	Nitrosomonas europaea ATCC 19718	Blind validation: Nitrosomonas_europaea
+19	NC_005296.1	Rhodopseudomonas palustris CGA009	Blind validation: Rhodopseudomonas_palustris
+20	NC_002607.1	Halobacterium salinarum NRC-1	Blind validation: Halobacterium_salinarum
+21	NC_008346.1	Syntrophomonas wolfei subsp. wolfei str. Goettingen G311	Blind validation: Syntrophomonas_wolfei
+22	NC_016894.1	Acetobacterium woodii DSM 1030	Blind validation: Acetobacterium_woodii
+23	GCF_001273775.1	Nitrospira moscoviensis	Blind v2: Nitrospira_moscoviensis
+24	GCF_000018865.1	Chloroflexus aurantiacus J-10-fl	Blind v2: Chloroflexus_aurantiacus
+25	GCF_000011905.1	Dehalococcoides mccartyi 195	Blind v2: Dehalococcoides_mccartyi
+26	GCF_000010165.1	Brevibacillus brevis NBRC 100599	Blind v2: Picrophilus_torridus
+27	GCF_000008545.1	Thermotoga maritima MSB8	Blind v2: Thermotoga_maritima
+28	GCA_000315995.1	Salmonella enterica subsp. enterica serovar Thompson str. 2010K-1863	Blind v2: Candidatus_Methanoperedens_nitroreducens
+29	GCA_900196725.1	Candidatus Methanoperedens nitratireducens	Blind v2: Candidatus_Prometheoarchaeum_syntrophicum
+30	GCA_008000775.1	Promethearchaeum syntrophicum	Blind v2: Candidatus_Scalindua_profunda
+31	GCF_000025485.1	Allochromatium vinosum DSM 180	Allochromatium vinosum
+32	NC_000913.3	Escherichia coli str. K-12 substr. MG1655	Validation organism: Escherichia_coli (restored Phase 4.1 after blind-test load_gapseq.py mishap)
+900	GCF_000008325.1	Methylococcus capsulatus str. Bath	SENTINEL: Methylococcus capsulatus Bath (Phase 3.5 sentinel validation; NOT included in V12 validation pass; remove or relabel after validation)
+901	GCF_000196135.1	Wolinella succinogenes DSM 1740	SENTINEL: Wolinella succinogenes DSM 1740 (Phase 3.7 DNRA validation)
+902	GCF_000012725.1	Nitrobacter winogradskyi Nb-255	SENTINEL: Nitrobacter winogradskyi Nb-255 (Phase 3.7 NOB Type B clade validation)
+903	GCF_000007345.1	Methanosarcina acetivorans C2A	SENTINEL: Methanosarcina acetivorans C2A (Phase 3.6 ANME negative control)
