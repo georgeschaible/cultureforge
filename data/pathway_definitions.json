@@ -439,7 +439,7 @@
     ],
     "negative_markers": [],
     "known_limitations": ["E.1"],
-    "limitation_summary": "Scalindua-type hzsA too divergent for BLAST or HMM detection. Deep-branching anammox lineages may be missed entirely (E.1). See LIMITATIONS.md.",
+    "limitation_summary": "E.1 stale-claim corrected in Phase 6 A4: Scalindua-type hzsA and hdh ARE detectable by curated-marker BLAST cross-clade (hzsA ~60-64% identity, bitscore ~1070; hdh ~76-78% identity, bitscore ~970 vs Brocadia/Kuenenia references) — well above the positive-call threshold. The earlier 'too divergent for BLAST or HMM' wording was a fossil of the pre-2026-05-05 gid-30 Salmonella-contaminated MAG and no longer applies at HEAD; gid 30 (Scalindua japonica) and gid 1105 (Scalindua brodae) detect anammox at 0.95. E.1 is now a genuine-incompleteness guard only (escalates when anammox is asserted but hzsA AND hdh are both below positive-call threshold — a real incomplete-MAG signature). Deep-branching anammox lineages with no detectable hzsA/hdh may still be missed. See LIMITATIONS.md.",
     "description": "Anaerobic ammonium oxidation (anammox), ammonium + nitrite to dinitrogen via hydrazine"
   },
 

@@ -1,0 +1,75 @@
+A4: replace stale Scalindua species-name guard with evidence-based check
+
+What was wrong:
+  compose_recipe.py:2005-2020 ("E.1 — Scalindua MAG completeness"), invoked
+  from _apply_limitations_flags, force-escalated ANY species whose name
+  contained "scalindua", unconditionally, with a hardcoded rationale
+  ("predicted proteome lacks hzsA/hdh"). That rationale was a defensive
+  fossil from the pre-2026-05-05 gid-30 state (when gid 30 held
+  Salmonella-contaminated data). After the audit-corrected MAG re-download,
+  the guard became stale: gid 30 (Ca. Scalindua japonica husup-a2) and
+  gid 1105 (Ca. Scalindua brodae) are correctly detected as anammox at
+  capability 0.95 with strong positive_call hzsA (~64% id, bs~1070) and hdh
+  (~77% id, bs~970) hits, _compose_anammox_recipe builds the correct
+  anaerobic recipe — and the guard then discarded that correct recipe with
+  a reason the marker evidence directly contradicts.
+
+What changed:
+  The species-name predicate is replaced with a marker-evidence predicate:
+  escalate ONLY when the anammox capability/mode is asserted AND both hzsA
+  and hdh lack a positive_call=1 row in genome_diagnostic_markers (the
+  genomic signature of a genuinely incomplete anammox MAG). The defensive
+  intent is preserved honestly — the escalation reason now states the
+  evidence that actually triggered it instead of a false hardcoded claim.
+  Marker presence uses the codebase's existing positive_call convention,
+  mirroring the _compose_anme_recipe pattern (compose_recipe.py:471-482).
+  conn is threaded into _apply_limitations_flags (its sole call site,
+  line 222); no other limitation-flag rule is changed. The anammox-asserted
+  gate is essential: _apply_limitations_flags runs for all genomes, so an
+  ungated hzsA/hdh-absence check would falsely escalate every non-anammox
+  organism.
+
+  Also (documentation only): data/pathway_definitions.json anammox
+  limitation_summary rewritten — the "Scalindua-type hzsA too divergent for
+  BLAST or HMM detection" claim is contradicted by ~60-77% identity hits at
+  HEAD and was corrected to describe the current evidence-based guard.
+
+Verification (docs/phase5_0/a4_verification.md):
+  - Flips: gid 30 and gid 1105 escalate -> compose, primary mode anammox,
+    overall conf 0.85.
+  - Baseline held: gids 1001/1002/1090 still compose anammox, conf 0.86 /
+    overall 0.80, no regression.
+  - Sentinels held: gid 18 (Nitrosomonas europaea, AOB) stays
+    lithotrophic_aerobic; gid 8 (Methanococcus jannaschii) stays
+    methanogenic — no anammox leak, no behavior change.
+  - No fail-loud condition triggered.
+
+  Safety-net behavior (escalation when an anammox-asserted genome lacks
+  hzsA + hdh markers) is verified by code logic; a live synthetic
+  hzsA/hdh-negative MAG was deliberately not fabricated (out of scope
+  per A4 DB-write constraints). See docs/phase5_0/a4_verification.md.
+
+Audit-staleness finding:
+  Audit P3 ("composer has no anammox mode; mapping is mechanical") was
+  already obsolete — the anammox mode/composer/dispatch/corroboration were
+  completed in Phase 5.1, and gids 1001/1002/1090 already PASSed pre-A4
+  (not the PARTIAL fallback P3 claims). The real blocker (the stale E.1
+  species-name guard) was not mentioned in P3 at all. This mirrors the
+  A1/P4 audit-staleness pattern. A P3 errata was appended to
+  docs/phase5_0/predictions_audit.md, and a dedicated audit-refresh task
+  is queued for the next session to systematically reconcile the audit
+  doc against HEAD.
+
+  Deferred to the next session's audit-refresh task: (i) the
+  Scalindua_profunda_recipe.json example snapshot at docs/recipe_examples/
+  still shows the pre-A4 escalation text and should be regenerated;
+  (ii) compose_recipe.py:712-716 retains a benign species-name heuristic
+  ("scalindua" -> marine NaCl recipe enhancement) that is correctness-safe
+  but uses the same proxy-based reasoning pattern A4 retired; worth a
+  principled review during the audit-refresh pass.
+
+Scope: no marker DB / FASTA / BLAST-threshold changes; no
+capability_detectors.py or run_marker_blast.py changes; no anammox
+pathway-step/weight/marker-list changes; _compose_anammox_recipe untouched.
+
+Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>

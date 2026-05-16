@@ -1394,6 +1394,37 @@ Pattern is identical to the fermentation primary-mode bug fixed 2026-05-13 (d4e9
 
 **Impact:** 2 FAILs (gids 30, 1105 — both escalate) + 3 PARTIALs (1001, 1002, 1090 — mode falls back to `lithotrophic_aerobic` with wrong oxygen profile). **Biological rationale:** The capability detector already scores Anammox at 0.95 with hzsA + hdh + hao markers ✓; the gap is at the composer end. Anammox needs: anaerobic atmosphere, NH4+ as electron donor, NO2- as electron acceptor, NaHCO3/CO2 as C source, no organic carbon. Mapping is mechanical once the cultivation mode is registered.
 
+> **P3 errata (added during Phase 6 A4 implementation, 2026-05-15):**
+> The P3 recommendation framing is **stale**. The anammox cultivation mode,
+> its composer (`_compose_anammox_recipe`), mode→composer dispatch, priority
+> entry, and marker corroboration were **all already implemented in Phase
+> 5.1** — P3's central premise ("composer has no anammox mode; mapping is
+> mechanical once registered") was already false at HEAD before A4 started.
+> Of the five organisms P3 frames as PARTIAL/FAIL: gids **1001, 1002, 1090
+> already PASSed at HEAD pre-A4** (primary mode `anammox`, anaerobic N2/CO2,
+> overall conf 0.80 — not the `lithotrophic_aerobic` fallback P3 describes,
+> so the "+3 PARTIALs" line is obsolete); gids **30 and 1105 now PASS
+> post-A4**. The actual remaining blocker — **not mentioned anywhere in
+> P3** — was a stale defensive guard at `compose_recipe.py:2005–2020`
+> ("E.1 — Scalindua MAG completeness") that force-escalated *any* species
+> whose name contained "scalindua", with a hardcoded "predicted proteome
+> lacks hzsA/hdh" rationale the detection data contradicts (gid 30/1105
+> both have positive_call hzsA ~64% bs~1070 and hdh ~77% bs~970). That guard
+> was a fossil of the pre-2026-05-05 gid-30 Salmonella-contaminated MAG.
+> A4 replaced the species-name predicate with an evidence-based one
+> (escalate only when anammox is asserted AND hzsA AND hdh are both below
+> positive-call threshold), preserving the incomplete-MAG safety net
+> honestly. Verification: 2 Scalindua targets flipped escalate→compose, the
+> anammox baseline (1001/1002/1090) held, and non-anammox sentinels (gid 18
+> Nitrosomonas, gid 8 Methanococcus) were unaffected. Details:
+> `docs/phase5_0/a4_inspection_report.md` and `a4_verification.md`.
+>
+> This audit's staleness (P3 describing already-completed Phase 5.1 work and
+> missing the real post-audit blocker) was discovered during A4 inspection,
+> mirroring the A1/P4 pattern. A dedicated **audit-refresh task is queued
+> for the next session** to systematically reconcile this document against
+> HEAD rather than patching errata recommendation-by-recommendation.
+
 ### P4 — Add an `archaeal_AOA_amoA` marker entry covering Thaumarchaeota / Nitrososphaerales lineages.
 
 **Impact:** 3 FAILs (gids 1049 Nitrosopumilus, 1102 Nitrososphaera, 1106 Nitrosocosmicus). **Biological rationale:** Bacterial AMO and archaeal AMO share <30% sequence identity. The current marker BLAST database is loaded only with bacterial AMO references, so AOA escalate to Tier 2 even though every AOA in the test set has a textbook physiology. UniProt accessions Q5JIJ3 (Nitrosopumilus AmoA-1), Q57F89 (Nitrososphaera AmoA), and equivalents make a complete reference set. Comammox Nitrospira inopinata (gid 1114) succeeds because *bacterial-lineage* amoA detection works, so the cultivation-mode profile is fine — only the marker references need extending.

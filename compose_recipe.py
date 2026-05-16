@@ -219,7 +219,7 @@ def compose_recipe(genome_id: int, conn: sqlite3.Connection,
     _apply_thermodynamic_check(recipe, context, primary_mode, conn=conn)
 
     # Limitations flags
-    _apply_limitations_flags(recipe, context)
+    _apply_limitations_flags(recipe, context, conn=conn)
 
     # Final confidence
     recipe.overall_confidence = _compute_recipe_confidence(recipe, context)
@@ -1955,8 +1955,14 @@ def _apply_thermodynamic_check(recipe: Recipe, context: RecipeContext,
 # Limitations catalog flags
 # ---------------------------------------------------------------------------
 
-def _apply_limitations_flags(recipe: Recipe, context: RecipeContext) -> None:
-    """Map detected capabilities + recipe state to docs/LIMITATIONS.md categories."""
+def _apply_limitations_flags(recipe: Recipe, context: RecipeContext,
+                              conn: Optional["sqlite3.Connection"] = None) -> None:
+    """Map detected capabilities + recipe state to docs/LIMITATIONS.md categories.
+
+    `conn` is used only by the E.1 anammox-MAG-completeness guard, which needs
+    to consult diagnostic-marker positive calls (hzsA / hdh); all other flag
+    rules are unchanged and ignore it.
+    """
     primary = recipe.primary_cultivation_mode.lower()
     cap_text = " ".join(context.primary_cultivation_modes).lower()
     notes = " ".join(context.cultivation_mode_notes).lower()
@@ -2002,22 +2008,55 @@ def _apply_limitations_flags(recipe: Recipe, context: RecipeContext) -> None:
     if "sulfate reduction" in primary:
         recipe.limitations_referenced.append("C.2")
 
-    # E.1 — Scalindua MAG completeness — escalate, recipe is wrong
-    if context.species and "scalindua" in context.species.lower():
-        recipe.limitations_referenced.append("E.1")
-        recipe.uncertainty_flags.append(
-            "Scalindua-clade detection failure is a MAG completeness limitation: "
-            "predicted proteome lacks hzsA / hdh, so anammox could not be "
-            "detected. The composed recipe is for the highest-confidence "
-            "DETECTED mode but does NOT reflect the organism's true biology. "
-            "Treat as ESCALATE_STRUCTURAL."
-        )
-        recipe.escalated = True
-        recipe.escalation_reason = (
-            "Scalindua MAG lacks hzsA/hdh in predicted proteome. The composed "
-            "recipe routes to the next-best detected mode but is not biologically "
-            "correct. Manual annotation or improved MAG required."
-        )
+    # E.1 — anammox MAG completeness. Evidence-based guard (Phase 6 A4):
+    # escalate ONLY when the anammox capability/mode is asserted but BOTH
+    # diagnostic markers (hzsA, hdh) are absent / below positive-call
+    # threshold — the genomic signature of an incomplete anammox MAG.
+    #
+    # This replaces the former unconditional species-name ("scalindua") match,
+    # whose hardcoded "lacks hzsA/hdh" rationale was a fossil from the
+    # pre-2026-05-05 gid-30 state and is contradicted by the marker evidence
+    # for the current Scalindua MAGs (gid 30, gid 1105: hzsA ~64% id,
+    # hdh ~77% id, both positive_call=1). The guard now keys on the evidence
+    # it claims to check, not on the organism name. Marker presence uses the
+    # codebase's positive_call convention (mirrors _compose_anme_recipe).
+    anammox_asserted = "anammox" in primary or "anammox" in cap_text
+    if anammox_asserted and conn is not None:
+        # On any DB error, markers stay absent → guard escalates (safe
+        # default). Mirrors the _compose_anme_recipe pattern (L470-492).
+        hzsA_present = False
+        hdh_present = False
+        try:
+            row = conn.execute(
+                "SELECT 1 FROM genome_diagnostic_markers "
+                "WHERE genome_id = ? AND marker_name = 'hzsA' AND positive_call = 1 LIMIT 1",
+                (context.genome_id,)
+            ).fetchone()
+            hzsA_present = bool(row)
+            row = conn.execute(
+                "SELECT 1 FROM genome_diagnostic_markers "
+                "WHERE genome_id = ? AND marker_name = 'hdh' AND positive_call = 1 LIMIT 1",
+                (context.genome_id,)
+            ).fetchone()
+            hdh_present = bool(row)
+        except Exception:
+            pass
+        if not hzsA_present and not hdh_present:
+            recipe.limitations_referenced.append("E.1")
+            recipe.uncertainty_flags.append(
+                "Anammox capability asserted but diagnostic markers hzsA and "
+                "hdh are both absent or below positive-call threshold — the "
+                "signature of an incomplete anammox MAG. The composed recipe "
+                "is for the highest-confidence DETECTED mode but may not "
+                "reflect the organism's true biology. Treat as "
+                "ESCALATE_STRUCTURAL."
+            )
+            recipe.escalated = True
+            recipe.escalation_reason = (
+                "Anammox capability asserted but diagnostic markers (hzsA and "
+                "hdh) absent or below threshold — likely incomplete MAG. "
+                "Manual annotation or improved MAG required."
+            )
 
     # F.1 — capability detected via override
     # (Detected by checking if any capability has the override flag)
