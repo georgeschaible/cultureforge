@@ -1589,7 +1589,8 @@ _MODE_DIAGNOSTIC_MARKERS = {
     "anme_reverse_methanogenic": ["mcrA"],  # mcrA + acceptor signature is the discriminator
     "anammox":                   ["hzsA", "hdh", "hao"],
     "acetogenic":                ["acsB_cdhC", "cooS_cdhA"],
-    "lithotrophic_aerobic":      ["amoA", "hao", "soxB", "cyc2", "nxrA",
+    "lithotrophic_aerobic":      ["amoA", "amoA_archaeal", "hao", "soxB",
+                                  "cyc2", "nxrA",
                                   "tqoDoxD", "tqoDoxA", "tetH", "sor"],
     "phototrophic":              ["pufLM", "pscA_fmoA", "psaA_psbA", "rhodopsin"],
     "halophilic_with_rhodopsin": ["rhodopsin"],

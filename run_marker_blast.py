@@ -49,12 +49,19 @@ HIT_THRESHOLDS = {
 
 # Per-marker threshold overrides (Phase 1.5c).
 # amoA/pufLM: broader thresholds for phylogenetically diverse markers.
-#   amoA spans AOB (beta-proteobacteria), comammox (Nitrospirota), AOA (Thaumarchaeota).
+#   amoA covers bacterial AOB (beta-proteobacteria) + comammox (Nitrospirota)
+#   ONLY. Archaeal ammonia oxidizers (AOA / Thaumarchaeota) are NOT covered by
+#   amoA — their amoA is too divergent from the beta-proteobacterial/comammox
+#   references and is handled by the separate `amoA_archaeal` marker (Phase 6
+#   A1; own reference set + stricter 50/70 threshold + ammonia_oxidation
+#   diagnostic_marker_override). Keeping the two clades as separate markers
+#   preserves the Phase-3.5 pmoA×amoA cross-reactivity calibration.
 #   pufLM spans purple bacteria and FAP-type reaction centers (Chloroflexi).
 #   Both are integral membrane proteins with conserved structure but variable loops.
 # mcrA: tighter threshold — highly conserved across all methanogens/ANME.
 MARKER_THRESHOLDS = {
     "amoA":    {"evalue": 1e-20, "pident": 25.0, "qcov": 60.0},
+    "amoA_archaeal": {"evalue": 1e-20, "pident": 50.0, "qcov": 70.0},
     "pufLM":   {"evalue": 1e-20, "pident": 25.0, "qcov": 60.0},
     "mcrA":    {"evalue": 1e-30, "pident": 35.0, "qcov": 70.0},
     "hzsA":    {"evalue": 1e-30, "pident": 30.0, "qcov": 70.0},

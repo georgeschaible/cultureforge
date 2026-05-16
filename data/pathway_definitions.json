@@ -119,8 +119,17 @@
       {"name": "heme biosynthesis", "patterns": ["heme.*biosynthesis", "hemA", "hemB"]}
     ],
     "negative_markers": [],
+    "diagnostic_marker_override": {
+      "enabled": true,
+      "marker": "amoA_archaeal",
+      "min_pident": 50.0,
+      "min_qcov": 70.0,
+      "min_evalue": 1e-30,
+      "override_confidence": 0.70,
+      "rationale": "Ammonia-oxidizing archaea (AOA / Thaumarchaeota: Nitrosopumilus, Nitrososphaera, Nitrosocosmicus) cannot be detected by pathway-integrity scoring: their amoA/amoB/amoC is too divergent for gapseq pattern annotation (pathway_score = 0.00), and they genuinely lack the bacterial-type hydroxylamine oxidoreductase (hao) and the c554/cM552 cytochrome steps (AOA use a distinct, still-debated NH2OH/NO route). Archaeal AMO shares <30% identity with the bacterial/comammox AMO in the `amoA` reference set, so it is curated as a SEPARATE marker `amoA_archaeal` (own reference set + 50% pident / 70% qcov threshold) — mirroring the proven dual-clade split used for nxrA (Type A/B) and pmoA (Type I/II/III) rather than diluting the empirically tuned bacterial `amoA` set. This single-marker override fires only when pathway scoring rejects the call (capability_detectors.py L503/L523), so bacterial AOB and comammox (Nitrosomonas, Nitrosospira-class, Nitrospira inopinata) are unaffected — their detection is carried by pathway-step scoring and never reaches this override. Stricter 50/70 thresholds (vs. bacterial amoA 25/60) keep the small archaeal reference set high-confidence and guard the Phase-3.5 pmoA×amoA cross-reactivity separation (sentinel: gid 900 Methylococcus capsulatus must stay methanotrophic-only). override_confidence 0.70 matches the pmoA override floor."
+    },
     "known_limitations": ["A.2"],
-    "limitation_summary": "Comammox amoA (Nitrospirota) too divergent from beta-proteobacterial references; may be missed entirely (A.2). See LIMITATIONS.md.",
+    "limitation_summary": "AOA gap (audit P4) closed in Phase 6 A1: archaeal ammonia oxidizers are detected via the separate `amoA_archaeal` marker + diagnostic_marker_override (Nitrosopumilus / Nitrososphaera / Nitrosocosmicus lineages). A.2 remains open and is bacterial-side: comammox amoA (Nitrospirota) is too divergent from the beta-proteobacterial `amoA` references and may be missed entirely — gid 1114 Nitrospira inopinata passes only because its own amoA fragment is literally a reference (circular/overfit); a novel comammox without that would still be missed. See LIMITATIONS.md.",
     "description": "Aerobic ammonia oxidation (nitrification step 1)"
   },
 

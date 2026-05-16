@@ -147,6 +147,8 @@ data/diagnostic_markers/blastdb_*.pdb
 data/diagnostic_markers/blastdb_*.pot
 data/diagnostic_markers/blastdb_*.ptf
 data/diagnostic_markers/blastdb_*.pto
+data/diagnostic_markers/blastdb_*.pog
+data/diagnostic_markers/blastdb_*.pos
 
 # BLAST databases for sentinel proteomes
 data/sentinel/*/genome_db.*

@@ -1398,6 +1398,29 @@ Pattern is identical to the fermentation primary-mode bug fixed 2026-05-13 (d4e9
 
 **Impact:** 3 FAILs (gids 1049 Nitrosopumilus, 1102 Nitrososphaera, 1106 Nitrosocosmicus). **Biological rationale:** Bacterial AMO and archaeal AMO share <30% sequence identity. The current marker BLAST database is loaded only with bacterial AMO references, so AOA escalate to Tier 2 even though every AOA in the test set has a textbook physiology. UniProt accessions Q5JIJ3 (Nitrosopumilus AmoA-1), Q57F89 (Nitrososphaera AmoA), and equivalents make a complete reference set. Comammox Nitrospira inopinata (gid 1114) succeeds because *bacterial-lineage* amoA detection works, so the cultivation-mode profile is fine — only the marker references need extending.
 
+> **P4 errata (added during Phase 6 A1 implementation, 2026-05-15):**
+> The UniProt accessions originally listed for P4 (Q5JIJ3, Q57F89) were
+> verified incorrect during inspection — Q5JIJ3 is a *Thermococcus
+> kodakarensis* uncharacterized protein (TK1987, a hyperthermophile, not an
+> AOA) and Q57F89 is a *Brucella abortus* endo-α-1,4-polygalactosaminidase.
+> Verified archaeal amoA accessions used in the A1 implementation are
+> D9J260 (*Nitrosopumilus maritimus*), A0A060HNG6 (*Nitrososphaera viennensis*
+> EN76), and A0A654M1Z2 (*Ca.* Nitrosocosmicus oleophilus), plus genus
+> outgroups D9J261, A0A5B8ZQK3, F4N9Y5 — assembled as a separate
+> `amoA_archaeal` marker (split, not additive into bacterial `amoA`) with an
+> `ammonia_oxidation` `diagnostic_marker_override`. The "validate against
+> gid=21 Methylococcus capsulatus" instruction in P4 was also off — gid 21 is
+> *Syntrophomonas wolfei*; *Methylococcus capsulatus* Bath is gid 900, which
+> is the cross-reactivity sentinel used in A1 verification.
+> The original P4 recommendation also implied a multi-marker override
+> structure (`markers: [amoA, amoA_archaeal]`). The codebase's
+> `diagnostic_marker_override` consumer supports only a single-marker schema
+> (capability_detectors.py L519–550, queried as `marker_name = ?`), matching
+> the existing `aerobic_methanotrophy → pmoA` pattern. A1 therefore uses
+> single-marker `amoA_archaeal`; bacterial AOB/comammox detection is
+> unaffected because it flows through pathway-step scoring and never reaches
+> the override branch.
+
 ### P5 — Add a microaerophile primary-mode label (or 1-3% O2 atmosphere modifier) for organisms with cydAB without low-affinity ctaABCDE.
 
 **Impact:** ~10 PARTIALs across categories (gids 15, 16, 1014, 1020, 1040, 1068, 1072, 1083, 1098, 1108) — Campylobacter jejuni, Aquifex aeolicus, multiple Magnetospirillum / Magnetococcus / Magnetospira, Mariprofundus ferrooxydans, Gallionella capsiferriformans, Beggiatoa alba. **Biological rationale:** All of these are well-characterized microaerophiles; recipe-as-composed uses 21% O2 which is lethal or strongly inhibitory at standard partial pressures. Detection is genomically tractable (high-affinity cytochrome bd oxidase as sole terminal oxidase) and the recipe-output already supports a `Pressure / Gas phase` field — only need a modifier that lowers O2 to ~3-5% when the microaerophile flag is set.
