@@ -1452,6 +1452,30 @@ Pattern is identical to the fermentation primary-mode bug fixed 2026-05-13 (d4e9
 > unaffected because it flows through pathway-step scoring and never reaches
 > the override branch.
 
+> **C1 / Picrophilus erratum (added during Phase 6, 2026-05-16):**
+> The audit's original C1 recommendation specified "DSMZ 1146 Picrophilus
+> medium" as the medium to link for gid 26 Picrophilus torridus. DSMZ 1146 is
+> actually "Venenivibrio stagnispumantis medium." The correct Picrophilus media
+> (JCM J233 PICROPHILUS MEDIUM and JCM J1267 MODIFIED PICROPHILUS MEDIUM) were
+> already in the catalog and have now been linked. Two of the four C1 target
+> organisms (gids 9 Thermus, 17 Sulfurimonas) were also found to already have
+> correct BacDive linkages; their low V12 scores are recipe-content issues, not
+> linkage issues, and are outside C1's scope. See
+> docs/phase5_0/c1_inspection_report.md.
+>
+> Provenance nuance: the only BacDive strain record for the gid-26 genome
+> (GCF_000008265.1 = Picrophilus torridus DSM 9790) is BacDive 11901, whose
+> primary species field reads "Picrophilus oshimae" — BacDive classifies the
+> P. torridus type strain under P. oshimae (LPSN synonym view). Strain identity
+> is nonetheless certain: record 11901 is DSM 9790 / KAW 2/3 and BacDive's own
+> genome cross-reference inside it reads "Picrophilus torridus DSM 9790". The
+> match was therefore recorded as match_method='manual' (not 'species_name_exact',
+> which would be factually untrue given the species-string mismatch),
+> match_confidence=0.95. The upstream-mirrored bacdive_cache row for 11901 was
+> left unchanged (faithful to BacDive); the rationale is documented here and in
+> docs/phase5_0/c1_picrophilus_commit_message.txt rather than in a DB column
+> (organism_to_bacdive has no notes field).
+
 ### P5 — Add a microaerophile primary-mode label (or 1-3% O2 atmosphere modifier) for organisms with cydAB without low-affinity ctaABCDE.
 
 **Impact:** ~10 PARTIALs across categories (gids 15, 16, 1014, 1020, 1040, 1068, 1072, 1083, 1098, 1108) — Campylobacter jejuni, Aquifex aeolicus, multiple Magnetospirillum / Magnetococcus / Magnetospira, Mariprofundus ferrooxydans, Gallionella capsiferriformans, Beggiatoa alba. **Biological rationale:** All of these are well-characterized microaerophiles; recipe-as-composed uses 21% O2 which is lethal or strongly inhibitory at standard partial pressures. Detection is genomically tractable (high-affinity cytochrome bd oxidase as sole terminal oxidase) and the recipe-output already supports a `Pressure / Gas phase` field — only need a modifier that lowers O2 to ~3-5% when the microaerophile flag is set.

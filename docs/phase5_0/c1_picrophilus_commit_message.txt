@@ -1,0 +1,61 @@
+C1: link gid 26 Picrophilus torridus to JCM media (J233/J1267)
+
+What was done:
+  Added the single actionable piece of Phase 6 item C1 — a BacDive
+  strain match and two direct published-media linkages for gid 26
+  (Picrophilus torridus DSM 9790, genome GCF_000008265.1):
+    - organism_to_bacdive:        (26, 11901, 'manual', 0.95)
+    - organism_to_published_media:(26, 'J233',  'direct', 1.0, 11901)
+    - organism_to_published_media:(26, 'J1267', 'direct', 1.0, 11901)
+  No bacdive_cache insert was needed (11901 already cached). No code,
+  marker-DB, FASTA, or BLAST changes. DB backed up first to
+  data/cultureforge.db.pre_c1_picrophilus_20260516_2139.
+
+Corrected medium choice:
+  The audit's original C1 recommendation named "DSMZ 1146 Picrophilus
+  medium." DSMZ 1146 is actually "Venenivibrio stagnispumantis medium."
+  The correct Picrophilus media were already in the catalog as JCM
+  entries: J233 PICROPHILUS MEDIUM (media.id 1986) and J1267 MODIFIED
+  PICROPHILUS MEDIUM (media.id 3248). Those are what were linked.
+
+Provenance nuance (why match_method='manual', not 'species_name_exact'):
+  The only BacDive strain record for this genome is 11901, whose primary
+  species field reads "Picrophilus oshimae" — BacDive files the
+  P. torridus type strain under P. oshimae (an LPSN synonym view).
+  Strain identity is nonetheless certain: 11901 is DSM 9790 / KAW 2/3,
+  and BacDive's own genome cross-reference inside record 11901 reads
+  "Picrophilus torridus DSM 9790" (= GCF_000008265.1, gid 26). Recording
+  this as 'species_name_exact' would be factually untrue (the species
+  strings differ), so it is recorded as 'manual' at confidence 0.95. The
+  upstream-mirrored bacdive_cache row for 11901 was deliberately left
+  unchanged (a faithful BacDive mirror); the rationale lives in the audit
+  erratum and this message because organism_to_bacdive has no notes
+  column.
+
+C1 audit-staleness context (this commit covers only the actionable piece):
+  The overnight C1 inspection found the "refresh four stale linkages"
+  premise was largely obsolete. Of the four targets: gids 9 (Thermus
+  aquaticus) and 17 (Sulfurimonas denitrificans) ALREADY had correct
+  BacDive-direct linkages (BacDive 16714 / 6113, verified to the right
+  species) — their low V12 scores are recipe-content issues, not linkage
+  issues, and are out of C1 scope; gid 26 (Picrophilus) was the one
+  genuine quick win and is fixed here; gid 30 (Scalindua japonica) is
+  blocked — uncultured, no BacDive strain, needs a literature-curated
+  medium plus a linkage-convention decision (deferred, see inspection
+  report). This mirrors the A1/A4 audit-staleness pattern.
+
+Verification:
+  - inspect 26 --section published-media now reports DIRECT MATCH,
+    2 reference media (J233, J1267) via 1 BacDive strain.
+  - run_phase2d_validation.py code-read (lines 63-93): gid 26's
+    relationship='direct' query is now non-empty, so V12 takes the
+    direct branch instead of the functional_neighbor fallback (not
+    executed — slow/writes artifacts).
+  - Row accounting: organism_to_published_media 81 -> 83; exactly 2 new
+    rows, both gid 26; non-gid-26 rows unchanged at 81.
+
+See docs/phase5_0/c1_inspection_report.md for the full C1 inspection and
+docs/phase5_0/predictions_audit.md (C1 / Picrophilus erratum) for the
+audit correction.
+
+Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
