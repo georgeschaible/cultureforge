@@ -284,7 +284,7 @@ User provides:
 7. Barnum et al. (2024) bioRxiv — GenomeSPOT, growth condition prediction from genomes
 8. van Kempen et al. (2023) Nature Biotech — Foldseek, fast structural search
 9. Lin et al. (2023) Science — ESMFold, language model protein structure prediction
-10. Joachimiak et al. (2025) ScienceDirect — Explainable rule-based media prediction with KG-Microbe
+10. Máša et al. (2025) ScienceDirect — Explainable rule-based media prediction with KG-Microbe
 # CultureForge CLAUDE.md Addendum — Thermodynamic Energetics & Metal-Binding Prediction
 
 ---

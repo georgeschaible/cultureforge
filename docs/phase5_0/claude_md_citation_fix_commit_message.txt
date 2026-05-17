@@ -1,0 +1,24 @@
+docs: fix citation — Máša et al. (not Joachimiak et al.) for CSBJ KG-Microbe rule-based paper
+
+The inconsistency was found during manuscript reference verification
+while reviewing docs/phase5_0/limitations.md against docs/RELATED_WORK.md.
+Both of those correctly cite the CSBJ 2025 KG-Microbe rule-based paper
+as "Máša et al. 2025"; docs/CLAUDE.md:287 incorrectly attributed the
+same paper to "Joachimiak et al."
+
+The paper is a single three-author paper:
+  Petr Máša, Tomáš Kliegr, Marcin P. Joachimiak,
+  "Explainable rule-based prediction of cultivation media for microbes,"
+  Computational and Structural Biotechnology Journal, Vol 27, 2025,
+  pp. 5194-5206. DOI: 10.1016/j.csbj.2025.10.014.
+Máša is the first author and Joachimiak the senior/last author; the
+standard "et al." form is first-author-based, i.e. "Máša et al." Only
+the author attribution on line 287 was changed; the DOI-free
+descriptive structure of the line is preserved.
+
+The separate Joachimiak-led citation at docs/CLAUDE.md:281 — the
+KG-Microbe knowledge graph preprint (Joachimiak et al. 2025 bioRxiv,
+DOI 10.1101/2025.02.24.639989) — is a different paper and is correct;
+it was deliberately left unchanged.
+
+Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
