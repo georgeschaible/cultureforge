@@ -1,0 +1,47 @@
+docs: Phase 6 overnight inspection deliverables (A3, B1, D1)
+
+Four documents from the 2026-05-16 overnight inspection run, committed
+together because they form a single analytical deliverable. NOTE:
+these are INSPECTION REPORTS describing future work, NOT implementation
+commits. A3 and B1 are scoped and ready for separate implementation
+commits when approved; D1 is the limitations doc for manuscript review.
+
+Contents:
+
+- a3_inspection_report.md — Microaerophile gas-phase modifier (audit
+  P5). Establishes that the detection signal (cbb3 vs bo3 oxidase
+  booleans) is already computed in capability_detectors.py and then
+  discarded; recommended architecture is a modifier flag on existing
+  aerobic modes, not a new mode. Surfaces that audit P5 bundles two
+  separable problems: 8 gids need only the O2 modifier; gids 1068
+  Gallionella and 1072 Mariprofundus are also misclassified Fe(II)-
+  oxidizing autotrophs needing a separate fix. NOT IMPLEMENTED.
+
+- b1_inspection_report.md — Heliobacterial photosynthesis marker
+  (audit S2, codebase B.5). Confirms gid 1051 Heliomicrobium
+  modesticaldum is misclassified anaerobic_respiratory at HEAD due
+  to absent pshA reference coverage. Verified candidate UniProt
+  accessions (skepticism-applied after A1's hallucinated-accession
+  catch). Recommended A1-shape implementation: new pshA marker +
+  override + phototrophic_heliobacterial composer mode; cyanobacterial
+  sentinels gids 1017/1018/1025/1028/1092. NOT IMPLEMENTED.
+
+- limitations.md — Manuscript-reviewer-facing limitations document
+  synthesizing findings from the audit, V12 validation, A1/A4 errata,
+  and this run's overnight reports. Seven sections, every limitation
+  tagged [REAL BUG] / [SCOPE GAP] / [DATA-INFRA]. Includes an audit-
+  vs-HEAD reconciliation table. ~2200 words.
+
+- overnight_inspection_summary.md — Meta-summary of the four-item
+  overnight run with cross-cutting findings (audit staleness now
+  documented as a recurring class problem; two-id-space namespace
+  hazard; reference-set circularity pattern; new-mode vs modifier-flag
+  architectural distinction) and the morning decision queue.
+
+Cross-cutting finding documented in these reports: the predictions
+audit (predictions_audit.md) has now been shown to have stale or
+imprecise framing in four independent instances (P3, P4, C1's task
+framing, P5's bundled scope). A dedicated audit-refresh task is
+queued for Phase 6.5.
+
+Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
