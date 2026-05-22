@@ -196,3 +196,7 @@ data/cluster_gapseq_outputs/
 data/sentinel/*/genes.gff
 data/sentinel/*/genomespot.features.json
 data/sentinel/*/genomespot.predictions.tsv
+
+# --- Phase 6.5 identity verification reference DBs (downloadable; multi-GB) ---
+data/mash/
+data/sourmash/
