@@ -454,4 +454,73 @@ columns:
 - Any pre-correction snapshot
 - Git repository (no commits)
 
+---
+
+## Erratum 2026-05-21
+
+This erratum is appended to the report — §3.3 and the supplementary TSV
+are left as originally committed (methodology-record documents get
+errata, not silent corrections).
+
+### What §3.3 said vs. what was actually true
+
+§3.3 reported that 11 of the 13 KNOWN_TAXONOMIC_RENAME entries were
+"curator-flagged" in `genomes.notes`. **This overstated the existing
+annotation.** At the time the report was committed (commit `a767b29`),
+only **2** of the 13 had a formal
+`[TAXONOMIC RENAME: ... → ...; genome unchanged; ...]` bracket marker
+(gids 10 and 16). Of the remaining 11 that §3.3 counted as
+"curator-flagged":
+
+- **gid 7** (*Desulfovibrio* → *Nitratidesulfovibrio*): had an inline
+  parenthetical (`Desulfovibrio (Nitratidesulfovibrio) vulgaris …`) but
+  no formal bracket marker.
+- **gid 1061** (*Methylorubrum* → *Methylobacterium*): notes used the
+  post-2018-split name *Methylorubrum* with no annotation that GTDB
+  lumps it back into *Methylobacterium*.
+- **gids 8, 1017, 1030, 1043, 1092, 1107, 1112, 1133**: no rename
+  annotation in notes at all — the curator's working name was the only
+  identity recorded.
+
+### Why §3.3 overstated
+
+The classifier script `data/validation/classify_sourmash_results.py`
+carries a `KNOWN_RENAMES` dict in which each entry's third tuple field
+records whether the rename is `"curator-flagged"` or
+`"discovered-this-analysis"`. **That field was hardcoded at script-
+authoring time, not derived from re-reading `genomes.notes` to check
+for the actual bracket marker.** The classifier populated the
+`rename_source` column of the supplementary TSV (and the §3.3 table)
+directly from that hardcoded field. Two of the eleven entries (gids 10
+and 16) happened to be correct; the other nine were not.
+
+### Action taken in the 2026-05-21 curation pass
+
+This curation pass (recorded in this same commit) adds the missing
+`[TAXONOMIC RENAME: ... → ...; genome unchanged; annotation added by
+Phase 6.5 audit 2026-05-21]` markers to all 9 previously-bracket-free
+gids (8, 1017, 1030, 1043, 1061, 1092, 1107, 1112, 1133), adds the
+same marker to gid 7 (complementing its existing parenthetical), and
+adds the 2 discovered-this-analysis markers (gids 31, 1066) plus the
+gid 26 species clarification and gid 1000 resolved-identity
+annotations.
+
+**After this pass, 13 of 13 KNOWN_TAXONOMIC_RENAME entries carry a
+formal `[TAXONOMIC RENAME]` marker in `genomes.notes`.** This brings
+the cohort into consistency with the report's original (premature)
+claim — not by rewriting the report (the report stands as the
+historical record of what the classifier said), but by updating the
+cohort to match what the classifier should have been checking.
+
+### What this means for the supplementary TSV
+
+`docs/phase6_5/sourmash_identity_verification.tsv` carries the same
+`rename_source = curator-flagged` misattribution for the 9 under-
+annotated rows. The TSV file is left as originally committed (it
+remains the report-of-record for the 2026-05-21 sourmash run) and is
+superseded for the `rename_source` column by this erratum and by the
+2026-05-21 curation pass.
+
+End of erratum.
+
 End of report.
