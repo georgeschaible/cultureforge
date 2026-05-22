@@ -48,3 +48,24 @@ is complete and the manuscript is in submission.
   when experimental cultivation validation data exists. Frame as: BacterAI-style loop
   applied to CultureForge predictions.
 
+## inspect display-layer rendering of genomes.notes
+
+The cultureforge.py inspect tool's display layer strips underscores
+from genomes.notes when rendering (e.g., 'g__Picrophilus' renders
+as 'g  Picrophilus'; file paths with underscores like
+'.pre_audit_correction_20260504' become '.pre audit correction
+20260504'; new bracket markers added by the 2026-05-21 curation
+pass display with the same mangling).
+
+The underlying DB content is correct (verified via direct SQL
+read-back during the curation pass — see commit d610eaa).
+This is a display-only rendering issue.
+
+**Action**: audit whether any downstream consumer parses the
+rendered output rather than reading the DB directly. If yes,
+fix the display layer to preserve underscores. If no (all
+consumers read the DB), document the rendering quirk and move on.
+
+**Priority**: low — display issue, not data integrity.
+**Surfaced**: 2026-05-21 curation pass (Phase 6.5 follow-up).
+
