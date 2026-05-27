@@ -234,6 +234,40 @@
     "description": "Sulfur/sulfide/thiosulfate oxidation (bacterial SOX + archaeal TQO/TetH/SOR)"
   },
 
+  "anaerobic_archaeal_sulfur_respiration": {
+    "steps": [
+      {"name": "Tetrathionate hydrolase (archaeal/acidophilic)", "gapseq_patterns": ["tetrathionate.*hydrolase"], "ec_numbers": [], "weight": 1.5, "diagnostic_marker": "tetH"},
+      {"name": "Thiosulfate:quinone oxidoreductase DoxD (archaeal)", "gapseq_patterns": ["thiosulfate.*quinone", "doxD"], "ec_numbers": [], "weight": 1.5, "diagnostic_marker": "tqoDoxD"},
+      {"name": "Thiosulfate:quinone oxidoreductase DoxA (archaeal)", "gapseq_patterns": ["thiosulfate.*quinone", "doxA"], "ec_numbers": [], "weight": 1.5, "diagnostic_marker": "tqoDoxA"},
+      {"name": "Dissimilatory sulfur reduction (sulfhydrogenase / NSR / polysulfide reductase)", "gapseq_patterns": ["sulfur reduction.*III", "sulfur reduction.*II.*polysulfide", "sulfhydrogenase"], "ec_numbers": [], "weight": 2.0},
+      {"name": "Autotrophy / carbon fixation signature", "gapseq_patterns": ["reductive citric", "reductive acetyl coenzyme A pathway II.*autotrophic", "carbon dioxide fixation", "rubisco", "ribulose"], "ec_numbers": [], "weight": 0.5, "diagnostic_marker": "autotrophy"}
+    ],
+    "required_transporters": [],
+    "product_transporters": [],
+    "cofactor_biosyntheses": [],
+    "negative_markers": ["mcrA", "pmoA", "mmoX", "sor", "qmoA", "acsB_cdhC", "cooS_cdhA"],
+    "essential_marker_OR": [
+      "tetH",
+      "tqoDoxA",
+      "tqoDoxD",
+      {"type": "pathway_pattern", "pattern": "sulfur reduction III", "min_completeness": 100, "require_predicted": true, "label": "sulfur_reduction_III_thermococcales"}
+    ],
+    "essential_marker_rationale": "Anaerobic archaeal sulfur respiration requires AT LEAST ONE archaeal-S-cycle signal: (a) any of tetH/tqoDoxA/tqoDoxD markers (Sulfolobales/Caldivirga archaeal S-cycle enzymes — Phase 3.2 reference set), or (b) gapseq 'sulfur reduction III' pathway at 100% predicted (Thermococcales sulfhydrogenase / NSR / HydDABCG-class). Without these, confidence is capped at 0.40 — gapseq pathway-step scoring alone is insensitive to the archaeal enzyme variants. negative_markers exclude (i) methanogens (mcrA), (ii) methanotrophs (pmoA/mmoX), (iii) aerobic S-cyclers with sulfur oxygenase reductase (sor — Picrophilus / Ferroplasma), (iv) canonical sulfate reducers (qmoA — Archaeoglobus / Desulfovibrio-class), (v) WL-pathway autotrophs / acetogens (acsB_cdhC + cooS_cdhA — Acetobacterium / Archaeoglobus's WL machinery). The diagnostic_marker_override below uses autotrophy as a tertiary lift, gated by both essential_marker_OR and negative_markers.",
+    "diagnostic_marker_override": {
+      "enabled": true,
+      "marker": "autotrophy",
+      "min_pident": 30.0,
+      "min_qcov": 80.0,
+      "min_evalue": 1e-40,
+      "override_confidence": 0.65,
+      "rationale": "autotrophy marker (rTCA, reductive acetyl-CoA pathway II, archaeal RuBisCO variants) fires for archaeal chemolithoautotrophic anaerobic sulfur respirers. When essential_marker_OR is satisfied AND no negative_marker fires, autotrophy presence corroborates the lifestyle and lifts the call past the 0.50 detection threshold even when gapseq pathway-step scoring is weak (typical of divergent archaeal enzymes). Stricter-than-default thresholds (pident≥30, qcov≥80, evalue≤1e-40) avoid over-firing on weakly-autotrophic bacteria; targeted cohort clears: Pyrococcus 38.5/99/1.5e-93, Thermococcus 38.7/97/7.1e-92, Caldivirga 35.4/97/5.3e-63, Stygiolobus 77.9/99/0. override_confidence 0.65 matches the DNRA / organohalide_respiration / amoA_archaeal override floor.",
+      "phase6_note": "Added Phase 6 C2 R2 (2026-05-26) as composition-layer workaround for the gapseq archaeal-enzyme recognition gap (limitations.md L118-121); does not modify gapseq itself."
+    },
+    "known_limitations": ["C.4"],
+    "limitation_summary": "Composition-layer workaround for archaeal anaerobic sulfur respiration (Thermococcales / Sulfolobales-anaerobic / Caldivirga). Marker-corroborated; gapseq archaeal-enzyme recognition gap (limitations.md L118-121) remains open for other archaeal niches (aerobic thermoacidophilic heterotrophs — Picrophilus / Sulfolobus aerobic side — to be addressed by R3). NOTE on intentional cross-pathway design: the marker `sor` appears both as a STEP in pathway `sulfur_oxidation` (positive role: aerobic archaeal S0 oxidation by cytoplasmic sulfur oxygenase reductase, e.g. Sulfolobus / Picrophilus / Ferroplasma) AND as a NEGATIVE marker here (excludes those aerobic S-oxidizers from the anaerobic mode). This is deliberate: sor is uniquely diagnostic of AEROBIC archaeal S-cycling (cytoplasmic SOR uses O2 directly), so its presence rules an organism OUT of the anaerobic-S-respiration cohort. Not a schema accident.",
+    "description": "Anaerobic archaeal sulfur respiration"
+  },
+
   "denitrification": {
     "steps": [
       {"name": "nitrate reduction (denitrification)", "gapseq_patterns": ["nitrate reduction.*denitrification", "nitrate reduction VII", "nitrate reduction I"], "ec_numbers": ["1.7.5.1", "1.9.6.1"], "weight": 1.5},

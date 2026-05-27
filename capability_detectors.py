@@ -110,6 +110,7 @@ CULTIVATION_MODE_GROUPS = {
                               "Acidophilic Fe(II) oxidation",
                               "Aerobic nitrite oxidation"],
     "anammox": ["Anaerobic ammonium oxidation"],
+    "anaerobic_archaeal_sulfur_respiration": ["Anaerobic archaeal sulfur respiration"],
     "acetogenic": ["Acetogenesis"],
     "halophilic_with_rhodopsin": ["Bacteriorhodopsin"],
 }

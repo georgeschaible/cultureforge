@@ -731,6 +731,349 @@ def _compose_anammox_recipe(context: RecipeContext,
     return recipe
 
 
+def _compose_anaerobic_archaeal_sulfur_respiration_recipe(
+    context: RecipeContext,
+    conn: Optional["sqlite3.Connection"] = None,
+) -> Recipe:
+    """Anaerobic archaeal sulfur respiration recipe.
+
+    Branches on predicted pH (GenomeSPOT):
+      - pH < 5.0  → thermoacidophilic anaerobic S0 reducer (Stygiolobus,
+        Caldivirga, Sulfolobales-anaerobic). H2/CO2 atmosphere, mineral
+        autotrophic base, pH 3-4 with H2SO4 buffer, S0 as e-acceptor.
+        Modeled on DSMZ 6296 (Stygiolobus azoricus medium —a modified
+        DSMZ 88 Sulfolobus base) and Caldivirga literature reports.
+      - pH ≥ 5.0 → hyperthermophilic peptide-fermenter / S0-respirer
+        (Pyrococcus, Thermococcus). N2/CO2 atmosphere, peptone + yeast
+        extract, NaCl scaled by GenomeSPOT salinity, S0 as e-acceptor,
+        pH 6.5-7.0. Modeled on DSMZ 376 (Pyrococcus medium) family.
+
+    NaCl concentration is scaled by the GenomeSPOT salinity_optimum
+    prediction (queried from genome_growth_predictions); composer
+    rationale cites the predicted % NaCl value (Q3 refinement, C2 R2).
+
+    Added Phase 6 C2 R2 (2026-05-26) as composition-layer workaround
+    for the gapseq archaeal-enzyme recognition gap documented at
+    docs/phase5_0/limitations.md L118-121.
+    """
+    recipe = _new_recipe_skeleton(context, "anaerobic_archaeal_sulfur_respiration")
+
+    cond = context.conditions
+    pH = cond.ph_optimum if cond and cond.ph_optimum is not None else 6.5
+    T_opt = (cond.temperature_optimum_c
+             if cond and cond.temperature_optimum_c is not None else 80.0)
+
+    # Q3 refinement: cond.salinity_g_per_l is populated only by user
+    # override or extreme_halophile detection. For archaeal anaerobic
+    # sulfur respirers neither path applies, so query GenomeSPOT
+    # salinity_optimum directly from genome_growth_predictions.
+    # (Queue item: consider populating cond.salinity_g_per_l from
+    # GenomeSPOT by default in context-loading code; would let other
+    # composers avoid this workaround. Out of R2 scope.)
+    sal_pct = None
+    if conn is not None:
+        try:
+            row = conn.execute(
+                "SELECT numeric_value FROM genome_growth_predictions "
+                "WHERE genome_id = ? AND lower(target) = 'salinity_optimum' "
+                "LIMIT 1",
+                (context.genome_id,)
+            ).fetchone()
+            if row and row[0] is not None:
+                sal_pct = float(row[0])
+        except Exception:
+            pass
+
+    recipe.composition_rationale.append(
+        "Anaerobic archaeal sulfur respiration: elemental sulfur (S0) is "
+        "the terminal electron acceptor. Two physiological sub-types are "
+        "discriminated by predicted pH: thermoacidophilic "
+        "chemolithoautotrophs (Sulfolobales-anaerobic / Caldivirga, pH "
+        "< 5.0, H2 donor) versus hyperthermophilic peptide-fermenter-with-"
+        "S0-respiration (Thermococcales, pH ≥ 5.0, peptide donor). Added "
+        "Phase 6 C2 R2 as composition-layer workaround for the gapseq "
+        "archaeal-enzyme recognition gap (limitations.md L118-121)."
+    )
+
+    if pH < 5.0:
+        # THERMOACIDOPHILIC branch (Stygiolobus / Caldivirga / Sulfolobales-anaerobic)
+        recipe.primary_cultivation_mode = (
+            "anaerobic_archaeal_sulfur_respiration "
+            "(thermoacidophilic / H2-autotrophic / S0-reducing)"
+        )
+        recipe.gas_phase = GasPhase(
+            composition={"H2": 0.80, "CO2": 0.20},
+            pressure_atm=1.0,
+            rationale=(
+                "H2/CO2 80:20 anaerobic atmosphere at 1.0 atm. H2 is the "
+                "electron donor (chemolithoautotrophic S0 reducers in the "
+                "Sulfolobales-anaerobic / Caldivirga lineage oxidize H2 "
+                "with S0 as terminal acceptor); CO2 is the carbon source "
+                "AND headspace balance for the acidic medium. Modeled on "
+                "DSMZ 6296 (Stygiolobus azoricus medium —a modified DSMZ "
+                "88 Sulfolobus base)."
+            ),
+        )
+        for ing in [
+            Ingredient(
+                name="(NH4)2SO4", chemical_formula="(NH4)2SO4",
+                concentration=1.3, concentration_unit="g/L",
+                category=IngredientCategory.NITROGEN_SOURCE,
+                rationale=("Inorganic N source (DSMZ 6296 base; supplies both "
+                           "NH4+ and SO4^2-)."),
+                confidence=0.85,
+                derived_from=["DSMZ 6296 / DSMZ 88 base"],
+            ),
+            Ingredient(
+                name="KH2PO4", chemical_formula="KH2PO4",
+                concentration=0.28, concentration_unit="g/L",
+                category=IngredientCategory.BUFFER,
+                rationale="K/P source; weak acidic buffer (DSMZ 6296 base).",
+                confidence=0.85,
+                derived_from=["DSMZ 6296 / DSMZ 88 base"],
+            ),
+            Ingredient(
+                name="MgSO4·7H2O", chemical_formula="MgSO4·7H2O",
+                concentration=0.25, concentration_unit="g/L",
+                category=IngredientCategory.SALT,
+                rationale="Mg2+ source (DSMZ 6296 base).",
+                confidence=0.85,
+                derived_from=["DSMZ 6296 / DSMZ 88 base"],
+            ),
+            Ingredient(
+                name="CaCl2·2H2O", chemical_formula="CaCl2·2H2O",
+                concentration=0.07, concentration_unit="g/L",
+                category=IngredientCategory.SALT,
+                rationale="Ca2+ source (DSMZ 6296 base).",
+                confidence=0.85,
+                derived_from=["DSMZ 6296 / DSMZ 88 base"],
+            ),
+            Ingredient(
+                name="Elemental sulfur (S0)", chemical_formula="S",
+                concentration=5.0, concentration_unit="g/L",
+                category=IngredientCategory.ELECTRON_ACCEPTOR,
+                rationale=("Elemental sulfur as terminal electron acceptor "
+                           "(reduced to H2S). Standard for archaeal anaerobic "
+                           "S0 reducers (Stygiolobus, Caldivirga)."),
+                confidence=0.90,
+                derived_from=["anaerobic archaeal sulfur respiration",
+                              "tetH / tqoDoxA / tqoDoxD marker hits"],
+            ),
+            Ingredient(
+                name="H2SO4 (for pH adjustment)", chemical_formula="H2SO4",
+                concentration=0.0,
+                concentration_unit="adjust to pH 3.0-4.0",
+                category=IngredientCategory.BUFFER,
+                rationale=(
+                    f"Adjust pH to 3.0-4.0 with H2SO4. Thermoacidophilic "
+                    f"branch —GenomeSPOT-predicted pH = {pH:.1f} drives "
+                    f"this branch (cutoff pH < 5.0, C2 R2 Q1)."
+                ),
+                confidence=0.90,
+                derived_from=["GenomeSPOT pH < 5.0 branch"],
+            ),
+            Ingredient(
+                name="Na2S·9H2O", chemical_formula="Na2S·9H2O",
+                concentration=0.5, concentration_unit="mM",
+                category=IngredientCategory.REDUCING_AGENT,
+                rationale="Establishes strict anaerobiosis.",
+                confidence=0.95,
+                derived_from=["anaerobic mode"],
+            ),
+            Ingredient(
+                name="Resazurin", chemical_formula="C12H6NNaO4",
+                concentration=1.0, concentration_unit="mg/L",
+                category=IngredientCategory.SUPPLEMENT,
+                rationale="Oxygen indicator.",
+                confidence=0.95,
+                derived_from=["anaerobic culture"],
+            ),
+        ]:
+            recipe.ingredients.append(ing)
+
+        sal_note = (f"GenomeSPOT salinity_optimum = "
+                    f"{sal_pct:.2f}% NaCl" if sal_pct is not None
+                    else "GenomeSPOT salinity_optimum unavailable")
+        recipe.composition_rationale.append(
+            f"Thermoacidophilic branch (GenomeSPOT pH = {pH:.1f} < 5.0; "
+            f"T = {T_opt:.1f} °C; {sal_note}). Autotrophic — no organic "
+            "carbon. Standard for Stygiolobus azoricus DSM 6296, "
+            "Caldivirga maquilingensis IC-167, and other Sulfolobales-"
+            "anaerobic / acidic-thermophilic crenarchaeote S0 reducers. "
+            "Cultivation requires anaerobic gas manifold with H2 handling, "
+            "tolerance for low pH + high T (75–85 °C); use thick-walled "
+            "Hungate tubes or pressure bottles with butyl-rubber stoppers "
+            "and aluminum crimp seals."
+        )
+    else:
+        # HYPERTHERMOPHILIC NEAR-NEUTRAL branch (Pyrococcus / Thermococcus)
+        recipe.primary_cultivation_mode = (
+            "anaerobic_archaeal_sulfur_respiration "
+            "(hyperthermophilic / peptide-fermentative / S0-respiring)"
+        )
+        recipe.gas_phase = GasPhase(
+            composition={"N2": 0.80, "CO2": 0.20},
+            pressure_atm=1.0,
+            rationale=(
+                "N2/CO2 80:20 anaerobic atmosphere. No H2 in headspace —"
+                "Thermococcales are peptide fermenters that oxidize "
+                "peptides/amino acids and respire S0 to H2S via "
+                "sulfhydrogenase (HydDABCG / NSR), not strict H2 "
+                "autotrophs. Modeled on DSMZ 376 (Pyrococcus furiosus "
+                "medium) and the Thermococcus lineage equivalent."
+            ),
+        )
+
+        # Q3 refinement: NaCl scaled by GenomeSPOT salinity_optimum;
+        # rationale string reports the specific predicted value.
+        if sal_pct is not None and sal_pct > 0.5:
+            nacl_g_per_l = min(25.0, sal_pct * 10.0)
+            nacl_rationale = (
+                f"NaCl {nacl_g_per_l:.1f} g/L based on GenomeSPOT salinity "
+                f"prediction {sal_pct:.2f}% NaCl ({sal_pct*10:.1f} g/L). "
+                "Hyperthermophilic Thermococcales include both marine "
+                "(Pyrococcus, ~25 g/L) and lower-salinity (Thermococcus "
+                "kodakarensis ~20 g/L) species; concentration is scaled "
+                "from the predicted value, capped at 25 g/L."
+            )
+        else:
+            nacl_g_per_l = 5.0
+            sal_disp = (f"{sal_pct:.2f}% NaCl" if sal_pct is not None
+                        else "unavailable")
+            nacl_rationale = (
+                f"NaCl {nacl_g_per_l:.1f} g/L (default low-salt baseline; "
+                f"GenomeSPOT salinity_optimum {sal_disp}, below 0.5% "
+                "scaling floor). Note: Pyrococcus furiosus is biologically "
+                "marine (DSMZ 376 uses ~25 g/L) —GenomeSPOT under-"
+                "predicts for it. Raise NaCl manually if the isolation "
+                "source is known to be marine."
+            )
+        recipe.ingredients.append(Ingredient(
+            name="NaCl", chemical_formula="NaCl",
+            concentration=nacl_g_per_l, concentration_unit="g/L",
+            category=IngredientCategory.SALT,
+            rationale=nacl_rationale,
+            confidence=0.85,
+            derived_from=["GenomeSPOT salinity_optimum prediction"],
+        ))
+        for ing in [
+            Ingredient(
+                name="Peptone", chemical_formula="(mixed peptides)",
+                concentration=5.0, concentration_unit="g/L",
+                category=IngredientCategory.ELECTRON_DONOR,
+                rationale=(
+                    "Peptone —canonical electron donor for Thermococcales "
+                    "(Pyrococcus, Thermococcus). Peptides and amino acids "
+                    "are fermented with S0 as terminal acceptor "
+                    "(sulfhydrogenase / NSR catalyzes S0 → H2S). Modeled "
+                    "on DSMZ 376 Pyrococcus medium (peptone 5 g/L)."
+                ),
+                confidence=0.90,
+                derived_from=["Thermococcales peptide-fermentation literature",
+                              "DSMZ 376 family"],
+            ),
+            Ingredient(
+                name="Yeast extract", chemical_formula="(complex)",
+                concentration=1.0, concentration_unit="g/L",
+                category=IngredientCategory.CARBON_SOURCE,
+                rationale=("Yeast extract (1 g/L) —vitamins + cofactors + "
+                           "peptides (Thermococcales standard)."),
+                confidence=0.90,
+                derived_from=["DSMZ 376 family"],
+            ),
+            Ingredient(
+                name="MgSO4·7H2O", chemical_formula="MgSO4·7H2O",
+                concentration=3.0, concentration_unit="g/L",
+                category=IngredientCategory.SALT,
+                rationale=("Mg2+ source (DSMZ 376 base; higher than the "
+                           "thermoacidophilic branch —reflects marine-"
+                           "style mineral composition)."),
+                confidence=0.85,
+                derived_from=["DSMZ 376 family"],
+            ),
+            Ingredient(
+                name="CaCl2·2H2O", chemical_formula="CaCl2·2H2O",
+                concentration=0.3, concentration_unit="g/L",
+                category=IngredientCategory.SALT,
+                rationale="Ca2+ source (DSMZ 376 base).",
+                confidence=0.85,
+                derived_from=["DSMZ 376 family"],
+            ),
+            Ingredient(
+                name="KCl", chemical_formula="KCl",
+                concentration=0.3, concentration_unit="g/L",
+                category=IngredientCategory.SALT,
+                rationale="K+ source (DSMZ 376 base).",
+                confidence=0.85,
+                derived_from=["DSMZ 376 family"],
+            ),
+            Ingredient(
+                name="K2HPO4", chemical_formula="K2HPO4",
+                concentration=0.3, concentration_unit="g/L",
+                category=IngredientCategory.BUFFER,
+                rationale="Phosphate buffer near pH 6.8 (DSMZ 376 base).",
+                confidence=0.85,
+                derived_from=["DSMZ 376 family"],
+            ),
+            Ingredient(
+                name="Elemental sulfur (S0)", chemical_formula="S",
+                concentration=5.0, concentration_unit="g/L",
+                category=IngredientCategory.ELECTRON_ACCEPTOR,
+                rationale=(
+                    "Elemental sulfur as terminal electron acceptor (reduced "
+                    "to H2S by sulfhydrogenase / NSR / polysulfide "
+                    "reductase). Standard for Thermococcales —corroborated "
+                    "by gapseq 'sulfur reduction III' pathway at 100% "
+                    "predicted (the essential_marker_OR signal for the "
+                    "Thermococcales sub-cohort)."
+                ),
+                confidence=0.90,
+                derived_from=["anaerobic archaeal sulfur respiration",
+                              "gapseq sulfur reduction III @ 100%"],
+            ),
+            Ingredient(
+                name="Na2S·9H2O", chemical_formula="Na2S·9H2O",
+                concentration=0.5, concentration_unit="mM",
+                category=IngredientCategory.REDUCING_AGENT,
+                rationale="Establishes strict anaerobiosis.",
+                confidence=0.95,
+                derived_from=["anaerobic mode"],
+            ),
+            Ingredient(
+                name="Cysteine·HCl", chemical_formula="C3H7NO2S·HCl",
+                concentration=0.5, concentration_unit="g/L",
+                category=IngredientCategory.REDUCING_AGENT,
+                rationale=("Reducing agent + amino acid + cysteine "
+                           "auxotrophy supplement. Standard in Thermococcales "
+                           "media (DSMZ 376 includes cysteine·HCl 0.5 g/L)."),
+                confidence=0.90,
+                derived_from=["DSMZ 376 family"],
+            ),
+            Ingredient(
+                name="Resazurin", chemical_formula="C12H6NNaO4",
+                concentration=1.0, concentration_unit="mg/L",
+                category=IngredientCategory.SUPPLEMENT,
+                rationale="Oxygen indicator.",
+                confidence=0.95,
+                derived_from=["anaerobic culture"],
+            ),
+        ]:
+            recipe.ingredients.append(ing)
+
+        sal_note = (f"{sal_pct:.2f}% NaCl ({sal_pct*10:.1f} g/L)"
+                    if sal_pct is not None else "unavailable")
+        recipe.composition_rationale.append(
+            f"Hyperthermophilic peptide-fermenter / S0-respirer branch "
+            f"(GenomeSPOT pH = {pH:.1f} ≥ 5.0, T = {T_opt:.1f} °C, "
+            f"salinity_optimum = {sal_note}). Modeled on DSMZ 376 "
+            f"(Pyrococcus furiosus medium) family. Peptide-fermentation "
+            f"lifestyle + S0 respiration via sulfhydrogenase (HydDABCG). "
+            f"Pressure-bottle or Hungate-tube cultivation required."
+        )
+
+    return recipe
+
+
 def _compose_methanotrophy_recipe(context: RecipeContext) -> Recipe:
     """Aerobic methanotrophy recipe (Methylococcus / Methylosinus / Methylocystis class).
 
@@ -1524,6 +1867,7 @@ _MODE_COMPOSERS = {
     "methanotrophic": _compose_methanotrophy_recipe,
     "anme_reverse_methanogenic": _compose_anme_recipe,
     "anammox": _compose_anammox_recipe,
+    "anaerobic_archaeal_sulfur_respiration": _compose_anaerobic_archaeal_sulfur_respiration_recipe,
     "aerobic_chemotrophic": _compose_aerobic_chemotrophic_recipe,
     "anaerobic_respiratory": _compose_anaerobic_respiratory_recipe,
     "phototrophic": _compose_phototrophic_recipe,
@@ -1556,6 +1900,16 @@ _SPECIFIC_MODES_PRIORITY = [
     "methanotrophic",
     "acetogenic",
     "syntrophic",
+    # anaerobic_archaeal_sulfur_respiration must come AFTER syntrophic.
+    # gid 29 (Candidatus Prometheoarchaeum syntrophicum) has the sulfur
+    # reduction III pathway at 100% predicted + autotrophy POSITIVE,
+    # which would route it to anaerobic_archaeal_sulfur_respiration via
+    # the essential_marker_OR pathway_pattern. The negative_marker qmoA
+    # fires at bs=239 —below the hardcoded 300 threshold at
+    # capability_detectors.py:376, so the veto is bypassed. Priority
+    # ordering ensures syntrophic (bio-correct) wins.
+    # DO NOT REORDER without understanding the Prometheoarchaeum case.
+    "anaerobic_archaeal_sulfur_respiration",
     "halophilic_with_rhodopsin",
     "phototrophic",
     "lithotrophic_aerobic",
@@ -1575,7 +1929,7 @@ _GENERIC_MODES = {"aerobic_chemotrophic", "anaerobic_respiratory", "fermentative
 # single diagnostic marker.
 _MARKER_REQUIRED_MODES = {
     "methanogenic", "methanotrophic", "anme_reverse_methanogenic",
-    "anammox",
+    "anammox", "anaerobic_archaeal_sulfur_respiration",
     "acetogenic", "lithotrophic_aerobic",
     "phototrophic", "halophilic_with_rhodopsin",
 }
@@ -1588,6 +1942,7 @@ _MODE_DIAGNOSTIC_MARKERS = {
     "methanotrophic":            ["pmoA", "mmoX"],
     "anme_reverse_methanogenic": ["mcrA"],  # mcrA + acceptor signature is the discriminator
     "anammox":                   ["hzsA", "hdh", "hao"],
+    "anaerobic_archaeal_sulfur_respiration": ["tetH", "tqoDoxA", "tqoDoxD", "autotrophy"],
     "acetogenic":                ["acsB_cdhC", "cooS_cdhA"],
     "lithotrophic_aerobic":      ["amoA", "amoA_archaeal", "hao", "soxB",
                                   "cyc2", "nxrA",

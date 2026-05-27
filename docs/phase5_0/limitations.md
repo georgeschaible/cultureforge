@@ -116,9 +116,17 @@ recipe-quality metric (V12). The audit is the headline metric; §6 explains why.
   24.5°C vs ~42°C avian-host optimum, verified at HEAD). Recipes inherit this
   bias unless a user override is supplied.
 - **gapseq archaeal-enzyme recognition gaps — [SCOPE GAP].** Pathway
-  recognition is weaker for archaeal enzyme variants, contributing to the low
-  extreme_archaea cohort score. Mitigations (eggNOG-mapper, DRAM, AlphaFold
-  annotation rescue) are next-paper backlog, not in scope.
+  recognition is weaker for archaeal enzyme variants. Composition-layer
+  workarounds in `compose_recipe.py` (added 2026-05-26, commit
+  `<C2-R2-SHA>`) mitigate this for the anaerobic archaeal sulfur respirers
+  (Thermococcales, Sulfolobales/Caldivirga anaerobic S⁰ reducers) by
+  routing on marker-corroborated overrides without modifying gapseq
+  itself — see `docs/phase6/c2_extreme_archaea_inspection.md` and the
+  C2 R₂ erratum in `docs/phase5_0/predictions_audit.md`. Other archaeal
+  enzyme classes (aerobic thermoacidophilic heterotrophs — Picrophilus /
+  Sulfolobus aerobic side; archaeal methanogen variants; etc.) remain
+  affected. Full gapseq-level annotation rescue (eggNOG-mapper, DRAM,
+  AlphaFold) is next-paper backlog.
 
 ## 6. Audit and validation methodology limitations
 
