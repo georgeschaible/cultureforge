@@ -46,7 +46,7 @@ Read-out:
 - Best-performing cohorts: **sulfate_reduction** (100% PASS) and **acetogenesis** (100% PASS) — gapseq+marker library is well-tuned for these textbook anaerobic respiratory & WL pathways.
 - **methane_metabolism** is 81% but all four FAILs are concentrated in ANME archaea (one rule fix would lift it to 100%).
 - Worst-performing cohorts (pre-R₂ baseline): **cable_bacteria** (0%, 2/2 FAIL — no mode), **syntrophy** (29% PASS), **iron_metals** (33%), **carbon_fixation** (33%), **extreme_archaea** (38%), **heavy_metal_respiration** (40%). These share the property of relying on physiologies that gapseq doesn't model end-to-end and that lack a capability-detector entry.
-- **R₂ update (2026-05-26, commit `<C2-R2-SHA>`):** extreme_archaea lifted from 38% → 75% via composition-layer `anaerobic_archaeal_sulfur_respiration` mode (does not modify gapseq itself; see `docs/phase6/c2_extreme_archaea_inspection.md` and the erratum at the bottom of this doc). gids 1019/1047/1129 FAIL → PASS; gid 1012 PASS-via-rdhA-override → PASS-via-principled-mode. Cohort moves out of the worst-performing list. gid 26 Picrophilus remains FAIL (R₃ scope).
+- **R₂ update (2026-05-26, commit `4c0743d`):** extreme_archaea lifted from 38% → 75% via composition-layer `anaerobic_archaeal_sulfur_respiration` mode (does not modify gapseq itself; see `docs/phase6/c2_extreme_archaea_inspection.md` and the erratum at the bottom of this doc). gids 1019/1047/1129 FAIL → PASS; gid 1012 PASS-via-rdhA-override → PASS-via-principled-mode. Cohort moves out of the worst-performing list. gid 26 Picrophilus remains FAIL (R₃ scope).
 
 ## 3. Per-gid findings (grouped by category)
 
@@ -971,7 +971,7 @@ Read-out:
   - Rationale: obligate syntrophic aromatics degrader; classified acetogenic — WRONG; same systematic issue as 1126 (syntrophy mode lost to WL false-positive)
   - Source: DSMZ 17771; Nobu et al. 2015 Environ Microbiol
 
-### extreme_archaea  (8 genomes — PASS 6 / PARTIAL 1 / FAIL 1 / INSUFFICIENT 0; R₂ landed 2026-05-26, commit `<C2-R2-SHA>`; pre-R₂ was PASS 3 / PARTIAL 1 / FAIL 4 / INSUFFICIENT 0)
+### extreme_archaea  (8 genomes — PASS 6 / PARTIAL 1 / FAIL 1 / INSUFFICIENT 0; R₂ landed 2026-05-26, commit `4c0743d`; pre-R₂ was PASS 3 / PARTIAL 1 / FAIL 4 / INSUFFICIENT 0)
 
 - **gid 9 — Thermus aquaticus YT-1** — **PASS**
   - CultureForge: primary `aerobic_chemotrophic`; alt `fermentative`; recipe `composed`; O2 tolerant; pH 7.6; T 67.7°C; salinity 0.0%
@@ -1001,28 +1001,28 @@ Read-out:
   - Rationale: hyperthermophilic fermenter; fermentative ✓ (true 80°C — predicted T blank in output)
   - Source: DSMZ 3109; Nelson et al. 1999 Nature
 
-- **gid 1012 — Pyrococcus furiosus DSM 3638** — **PASS** _(post-R₂: re-routed via principled mode, commit `<C2-R2-SHA>`)_
+- **gid 1012 — Pyrococcus furiosus DSM 3638** — **PASS** _(post-R₂: re-routed via principled mode, commit `4c0743d`)_
   - Pre-R₂ state: primary `anaerobic_respiratory`; recipe `composed`; Detected caps (≥0.50) Organohalide respiration=0.65 via rdhA marker override (34.7% pident, bs=99). PASS-by-coarse-mode-correct but mechanism-incorrect — Pyrococcus does NOT perform organohalide respiration; rdhA hit accepted at the override threshold but biologically false-positive.
   - Post-R₂ state: primary `anaerobic_archaeal_sulfur_respiration (hyperthermophilic / peptide-fermentative / S0-respiring)`; recipe `composed`; detected via autotrophy marker override (bs=280, pident=38.5%, qcov=99) + essential_marker_OR pathway_pattern `sulfur reduction III` @100% predicted. Routes through the new principled Thermococcales sub-branch; rdhA override on anaerobic_respiratory remains for true organohalide respirers (Dehalococcoides class).
   - Positive markers (HEAD): autotrophy, rdhA
   - Rationale: hyperthermophilic peptide/sugar fermenter with S0 respiration; T 90.8°C ✓; biology now matches the detected mode.
   - Source: DSMZ 3638; Robb et al. 2001 Methods Enzymol
 
-- **gid 1019 — Thermococcus kodakarensis KOD1** — **FAIL → PASS post-R₂ (commit `<C2-R2-SHA>`)**
+- **gid 1019 — Thermococcus kodakarensis KOD1** — **FAIL → PASS post-R₂ (commit `4c0743d`)**
   - Pre-R₂ state: primary `(none)`; alt `—`; recipe `escalated`; O2 n/a; pH 6.3; T 81.0°C; salinity 2.31%; no caps above 0.50; ESCALATED — no primary mode detected (unlike Pyrococcus furiosus, no rdhA hit available to trigger an override).
   - Post-R₂ state: primary `anaerobic_archaeal_sulfur_respiration (hyperthermophilic / peptide-fermentative / S0-respiring)`; recipe `composed`; lift via autotrophy marker override (bs=276, pident=38.7%, qcov=97) + essential_marker_OR pathway_pattern `sulfur reduction III` @100% predicted. NaCl 23.1 g/L scaled from GenomeSPOT salinity 2.31% (Q3 refinement).
   - Positive markers (HEAD): autotrophy
   - Rationale: hyperthermophilic S0-respiring fermenter; same biology as Pyrococcus furiosus, now both route to the principled mode instead of one PASSing via rdhA quirk and the other FAILing.
   - Source: JCM 12380; Fukui et al. 2005 Genome Res
 
-- **gid 1047 — Caldivirga maquilingensis IC-167** — **FAIL → PASS post-R₂ (commit `<C2-R2-SHA>`)**
+- **gid 1047 — Caldivirga maquilingensis IC-167** — **FAIL → PASS post-R₂ (commit `4c0743d`)**
   - Pre-R₂ state: primary `(none)`; alt `—`; recipe `escalated`; O2 n/a; pH 3.8; T 75.3°C; salinity 0.0%; no caps above 0.50; ESCALATED with dsrAB+aprAB+autotrophy+tetH markers but no mode resolved (sulfate_reduction capped at 0.40 by qmoA essential_marker absence; sulfur_oxidation pathway_score 0.16 below the 0.40 gate).
   - Post-R₂ state: primary `anaerobic_archaeal_sulfur_respiration (thermoacidophilic / H2-autotrophic / S0-reducing)`; recipe `composed`; lift via essential_marker_OR signal `tetH` (bs=405, pident=53.5%) + autotrophy override (bs=194, pident=35.4%, qcov=97). Thermoacidophilic branch (predicted pH 3.8 < 5.0): H2/CO2 atmosphere, mineral autotrophic base, pH 3-4 with H2SO4, S0 as electron acceptor.
   - Positive markers (HEAD): aprAB, autotrophy, dsrAB, tetH
   - Rationale: thermoacidophilic facultatively anaerobic crenarchaeote (S0/thiosulfate reduction). The aprAB+dsrAB-marker presence is preserved for future sulfate-reduction-via-archaeal-Apr-Dsr inspection; primary biology (anaerobic S⁰ reduction) is correctly captured by the new mode.
   - Source: DSMZ 13496; Itoh et al. 1999 IJSEM
 
-- **gid 1129 — Stygiolobus azoricus DSM 6296** — **FAIL → PASS post-R₂ (commit `<C2-R2-SHA>`)**
+- **gid 1129 — Stygiolobus azoricus DSM 6296** — **FAIL → PASS post-R₂ (commit `4c0743d`)**
   - Pre-R₂ state: primary `(none)`; alt `—`; recipe `escalated`; O2 n/a; pH 4.0; T 80.6°C; salinity 0.0%; no caps above 0.50 (sulfur_oxidation at 0.457 — just below 0.50 — was the closest-to-threshold rejection of any FAIL); ESCALATED — no anaerobic crenarchaeote sulfur reduction mode existed; pH 4.0 ✓.
   - Post-R₂ state: primary `anaerobic_archaeal_sulfur_respiration (thermoacidophilic / H2-autotrophic / S0-reducing)`; recipe `composed`; lift via essential_marker_OR signals `tetH` (bs=453, pident=57.6%), `tqoDoxA` (bs=285, pident=81.1%), `tqoDoxD` (bs=316, pident=82.2%). Strongest archaeal-S marker pattern of any C2 target. Detection via pathway-step scoring (no override needed). Thermoacidophilic branch (predicted pH 4.0 < 5.0): H2/CO2 atmosphere, DSMZ 6296 (modified DSMZ 88) mineral base.
   - Positive markers (HEAD): autotrophy, tetH, tqoDoxA, tqoDoxD
@@ -1477,7 +1477,7 @@ Pattern is identical to the fermentation primary-mode bug fixed 2026-05-13 (d4e9
 > docs/phase5_0/c1_picrophilus_commit_message.txt rather than in a DB column
 > (organism_to_bacdive has no notes field).
 
-> **C2 R₂ / anaerobic archaeal sulfur respiration erratum (added during Phase 6, 2026-05-26, commit `<C2-R2-SHA>`):**
+> **C2 R₂ / anaerobic archaeal sulfur respiration erratum (added during Phase 6, 2026-05-26, commit `4c0743d`):**
 > Composition-layer workaround landed for archaeal anaerobic sulfur respirers
 > (Thermococcales hyperthermophilic peptide-fermenters + S⁰ respirers; and
 > Sulfolobales-anaerobic / Caldivirga thermoacidophilic chemolithoautotrophic

@@ -118,7 +118,7 @@ recipe-quality metric (V12). The audit is the headline metric; §6 explains why.
 - **gapseq archaeal-enzyme recognition gaps — [SCOPE GAP].** Pathway
   recognition is weaker for archaeal enzyme variants. Composition-layer
   workarounds in `compose_recipe.py` (added 2026-05-26, commit
-  `<C2-R2-SHA>`) mitigate this for the anaerobic archaeal sulfur respirers
+  `4c0743d`) mitigate this for the anaerobic archaeal sulfur respirers
   (Thermococcales, Sulfolobales/Caldivirga anaerobic S⁰ reducers) by
   routing on marker-corroborated overrides without modifying gapseq
   itself — see `docs/phase6/c2_extreme_archaea_inspection.md` and the
