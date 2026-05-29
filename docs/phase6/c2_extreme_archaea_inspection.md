@@ -159,6 +159,61 @@ Proposed fix shape:
 Estimated effort: 1-2 evenings. Lifts: 26 → PASS. May upgrade 14 PARTIAL→PASS if the mode wires through (depends on whether S. acidocaldarius corroborates a S-marker — currently it does not, so 14 may stay PARTIAL).
 Risk: medium. The "Domain=Archaea + autotrophy + low pH" trigger could false-fire on a hypothetical heterotrophic archaeon. Regression check on Halobacterium / Thermoplasma / Sulfolobus-like organisms.
 
+> **2026-05-28 — STOP: R₃ design unsound at the composition layer.**
+> Implementation attempted, no code shipped (file 1 inserted into
+> `data/pathway_definitions.json` and reverted; files 2–5 never applied;
+> no commits). Root-cause findings from the cohort scan:
+>
+> 1. The trigger keys a heterotroph niche on archaeal sulfur-oxidation
+>    markers (`tetH` / `tqoDoxA` / `tqoDoxD`). *Picrophilus* (gid 26)
+>    carries individual markers strongly (tetH bs 545, tqoDoxD bs 229)
+>    but does NOT complete the gapseq R₃ pathway — its pathway-integrity
+>    score is sub-threshold, and the mode only reaches PASS via the
+>    `autotrophy`-marker override at 33.0% pident — the weakest override
+>    hit in the R₂+R₃ family (all R₂ targets clear pident ≥ 35; Stygiolobus
+>    reaches 77.9). PASS for the intended target therefore depends on a
+>    cross-reactive marker hit, not on detected pathway integrity.
+> 2. Genuine archaeal sulfur-oxidizing chemolithoautotrophs complete
+>    the pathway directly. *Metallosphaera sedula* (gid 1111) has tetH
+>    (61.0% / bs 606), tqoDoxA (100% / bs 338), tqoDoxD (100% / bs 365)
+>    AND gapseq's "sulfur disproportionation II (aerobic)" at 100%
+>    predicted — scoring R₃ at conf **0.872** via pathway integrity
+>    alone and **bypassing the override path entirely**.
+> 3. The proposed override-level condition gate (`biomass_template` +
+>    `ph_optimum_max`) therefore does NOT protect *Metallosphaera*-class
+>    organisms, because they don't *need* the override to clear the
+>    0.50 threshold. The gate only protects organisms whose detection
+>    depends on the override (e.g., gid 26 itself, and the Domain arm
+>    alone excludes four cohort bacteria with tetH POSITIVE at low
+>    predicted pH: *Acidithiobacillus ferrooxidans* gids 11 + 1055,
+>    *A. thiooxidans* gid 1128, and *Leptospirillum ferrooxidans*
+>    gid 1089). It is necessary but not sufficient.
+> 4. No principled marker-level discriminator separates *Picrophilus*
+>    from Sulfolobales chemolithoautotrophs in this cohort. A single
+>    Picrophilus-tuned composer (pH 0.7 / glucose / yeast extract per
+>    Schleper et al. 1996 IJSB 46:814-816 + DSMZ Medium 88 strain-
+>    modified) is biologically wrong for *Metallosphaera* (pH optimum
+>    2.5-3.5; cannot use glucose; chemolithoautotroph on reduced
+>    inorganic compounds).
+> 5. Tightening via an `autotrophy`-strength threshold to overfit
+>    *Picrophilus* would compromise the blind-test goal (Phase 6
+>    workarounds must not be calibrated to specific named organisms).
+>
+> **Rethink at inspection level required before any implementation.**
+> Possible directions: (a) make R₃ a shared mode with `lithotrophic_aerobic`
+> that forks on carbon-source markers (sugar/peptide vs. reduced-inorganic);
+> (b) accept *Picrophilus* as a single-organism documented gap rather than
+> a workaround-eligible target. The blind-test cohort design (see
+> `blind_test_cohort_design.md`) should drive the choice between (a) and
+> (b) — if blind-test organisms include further aerobic-thermoacidophilic
+> heterotrophs, (a) is needed; if not, (b) is honest.
+>
+> Bonus finding surfaced during this attempt: gid 1111 *Metallosphaera*
+> is misclassified by R₂ (commit `4c0743d`) as anaerobic-archaeal-S-
+> respiration and assigned an H₂/CO₂/S⁰ anaerobic recipe despite being
+> an obligate aerobic chemolithoautotroph. Pre-existing R₂ bug, out of
+> R₃ scope. Tracked in `docs/PHASE_6_BACKLOG.md`.
+
 ### Category R₄ — Pre-documented scope gap (defer per limitations.md)
 The underlying gapseq archaeal-pathway recognition gap is explicitly out-of-scope per `limitations.md` L118-121. R₂ and R₃ are workarounds at the composition layer that do *not* attempt to fix gapseq itself. A full rescue would require eggNOG-mapper / DRAM / AlphaFold-based annotation integration and is "next-paper backlog."
 
