@@ -169,3 +169,213 @@ P5 bundles **two separable problems**:
 
 This is documented here and rolled into the overnight summary's morning queue.
 No fix improvised.
+
+---
+
+## 7. STOP block — 2026-05-29 A3 implementation attempt (reverted, no code shipped)
+
+The §4 design above is preserved unchanged as the original
+morning-review recommendation. This §7 appends what the
+implementation attempt on 2026-05-29 found when the design was
+verified against current HEAD (`eff4db5`) before any code change.
+**No code changes were made. Working tree at end of attempt matches
+`eff4db5` modulo the carried-over
+`data/validation/sourmash_identity_verification/` untracked dir.**
+
+### 7.1 Discriminator-vs-targets drift
+
+The proposed discriminator `cbb3_cc AND NOT bo3_cc` (§4 step 1)
+fires on **4 of 10** named §1 targets and misses **6 of 10** at HEAD:
+
+- **Fires** (4): gids 15 *Campylobacter jejuni*, 16 *Magnetospirillum
+  magneticum*, 1020 *Paramagnetospirillum magneticum* AMB-1, 1108
+  *Magnetospira* sp. QH-2.
+- **Misses — both bo3 and cbb3 complete** (the trigger excludes by
+  construction): gids 1083 *Beggiatoa alba* B18LD, 1098
+  *Magnetospirillum gryphiswaldense* MSR-1.
+- **Misses — neither bo3 nor cbb3 complex complete** (organism's
+  terminal oxidase is detected only via the `terminal_oxidases` BLAST
+  hit list, not via the cbb3/bo3 complex-complete booleans): gids
+  1014 *Aquifex aeolicus* VF5, 1040 *Magnetococcus marinus* MC-1.
+- **Misses — bo3 complete, cbb3 absent** (Group B Fe-oxidizers; their
+  microaerophily is encoded in a different oxidase profile entirely):
+  gids 1068 *Gallionella capsiferriformans* ES-2, 1072 *Mariprofundus
+  ferrooxydans* PV-1.
+
+This is the same shape of drift that killed the C2 R₃ §5 design (a
+discriminator that silently excludes its own intended targets). Even
+if everything else were correct, the lift would not deliver the
+eight Group A organisms the §5 effort estimate scoped.
+
+### 7.2 Cohort-wide false-fire scan
+
+`cbb3_cc AND NOT bo3_cc` fires on **42 of 164 genomes with reaction
+markers (25.6 % of the dev cohort)**. The fire set includes 8
+oxygenic cyanobacteria (*Nostoc*, *Synechocystis*, *Microcystis*,
+*Prochlorococcus*, *Synechococcus*, *Crocosphaera*, *Trichormus*,
+*Anabaena*), ~18 normal aerobic heterotrophs and lithotrophs
+(*Bradyrhizobium*, *Pelagibacter*, *Rhodobacter*, *Nitrobacter*,
+*Nitrosomonas*, *Pseudomonas putida*, *Halothiobacillus*, *Frankia*,
+*Aurantimonas*, *Roseobacter*, *Bacillus* SG-1, *Cupriavidus*,
+*Halomonas*, *Pseudorhizobium*, *Thiobacillus denitrificans*,
+*Paracoccus*, *Leptothrix*, *Methylocaldum*), **one strict anaerobic
+SRB** (*Desulfotignum phosphitoxidans* gid 1095 — assigning ~5 % O₂
+to a strict anaerobe is biologically catastrophic), and 4
+validation/sentinel/blind-test records (gids 17, 19, 20, 1000) that
+should not be touched by a feature lift at all. A 25.6 % cohort-wide
+touch rate makes the discriminator structurally unfit for purpose.
+
+### 7.3 GenomeSPOT O₂ source — structurally non-load-bearing
+
+Across all 165 genomes with growth predictions,
+`genome_growth_predictions WHERE target='oxygen'` takes only two
+values: `tolerant` and `not tolerant`. There is no `microaerophile`
+value in the cohort. The path at `derive_recipe_context.py:132` that
+reads `genomespot_oxygen == "microaerophile"` is **dead code** in
+practice.
+
+For the 10 named A3 targets, GenomeSPOT calls 9 / 10 "tolerant" —
+including every Group A microaerophile (*Campylobacter*, both
+*Magnetospirilla*, *Magnetococcus*, *Beggiatoa*, *Magnetospira*) and
+both Group B microaerophilic Fe-oxidizers (*Gallionella*,
+*Mariprofundus*). The one "not tolerant" call (*Aquifex aeolicus*
+gid 1014) is also wrong — *Aquifex* is a hyperthermophilic
+microaerophile, not a strict anaerobe. **GenomeSPOT's binary
+O₂-tolerance signal cannot discriminate microaerophiles from full
+aerobes in this cohort, in either direction.** This is the analogue
+of R₃'s "GenomeSPOT O₂ unreliable for archaea" caveat — here the
+unreliability shape is different (no microaerophile class exists at
+all) but the upshot is the same: the O₂-source fallback path is not
+load-bearing for A3.
+
+### 7.4 Pre-existing detection — the real gap is wiring, not detection
+
+The §3 paragraph "no microaerophile pathway exists" is half-true. By
+the literal names `cydAB` / `ctaABCDE` it holds; by the functional
+equivalent it does not. Substantial pre-existing detection lives in
+the codebase at HEAD and the §4 recommendation did not surface it:
+
+- `synthesize_denovo.py:1284-1407` — `determine_atmosphere()` already
+  implements the cbb3/bo3 discriminator end-to-end. Comments at
+  L1294-1296 read: *"aa3/bo3 complex_complete → aerobic /
+  cbb3/bd complex_complete only → microaerophilic / no terminal
+  oxidases → anaerobic / both high and low affinity → facultative."*
+- `derive_recipe_context.py:109-113` — when both `lithotrophic_aerobic`
+  and `anaerobic_respiratory` appear in the cultivation-modes set,
+  `Atmosphere.MICROAEROBIC` is already chosen as primary, with
+  `[AEROBIC, ANAEROBIC]` set as alternatives.
+- `derive_recipe_context.py:131-137` — backup path: `genomespot_oxygen
+  == "microaerophile"` (dead — see 7.3) OR `(primary == AEROBIC and
+  cbb3 cap and not bo3 cap)` (this is the report's discriminator,
+  already wired into RecipeContext-primary selection, with the same
+  false-fire problem as 7.2).
+- `derive_recipe_context.py:735-754` — when `is_microaerophile =
+  ("lithotrophic_aerobic" in modes and "anaerobic_respiratory" in
+  modes)`, a `SpecialRequirement("microaerophile", "Microaerophilic
+  conditions recommended. Use reduced O2 (2-5%) with N2/CO2 balance,
+  or CampyGen sachets…")` is already appended. This is why gids
+  1098 and 1108 already print *SPECIAL REQUIREMENTS: microaerophile*
+  in current `inspect` output.
+- `media_format.py:122-127`, `capability_vector.py:126`,
+  `recipe_comparison.py:387-390` — downstream consumers already
+  branch on the microaerophile token.
+
+**At HEAD, gids 1098 and 1108 already have `Atmosphere.MICROAEROBIC`
+as their RecipeContext primary atmosphere and a `microaerophile`
+special requirement.** What's missing is wiring at the gas-phase
+composer: the three `GasPhase(...)` sites in `compose_recipe.py`
+(L847-849, L1124-1125, L1237-1238) hardcode their composition string
+and never consult `cond.microaerophile` or any equivalent. The
+existing detection has no effect on the final Recipe §10 gas-phase
+output.
+
+### 7.5 The "wire the existing flag through" path is NOT safe by inspection alone
+
+The co-occurrence trigger backing `derive_recipe_context.py:737`'s
+`SpecialRequirement` was scanned cohort-wide (production code path:
+`profile_capabilities(gid, conn)` → `_mode_names`, evaluating
+`"lithotrophic_aerobic" in modes AND "anaerobic_respiratory" in modes`).
+**It fires on 19 of 165 genomes.** Categorisation by biology
+(full per-gid list in `docs/PHASE_6_BACKLOG.md`, entry "A3
+microaerophile modifier — rethink before re-attempt", subsection
+"Narrow lift candidate"):
+
+- **2 genuine A3 named targets**: 1098 *Magnetospirillum
+  gryphiswaldense* MSR-1 and 1108 *Magnetospira* sp. QH-2 (both
+  obligately microaerophilic magnetotactic Alphaproteobacteria).
+- **3 plausibly genuine** (microaerophilic Aquificales or
+  Campylobacterota, not in A3 targets; one is an audit-correction
+  record and should not be feature-touched regardless).
+- **2 lethal false fires — strict anaerobic green-sulfur
+  phototrophs**: 1010 *Chlorobaculum tepidum* TLS, 1117
+  *Chlorobaculum limnaeum* DSM 1677. For obligate anaerobes a 5 % O₂
+  recipe is **lethal** — Chlorobi do not survive air-level oxygen
+  exposure beyond brief transients, and ~5 % O₂ is well above
+  tolerance. This fails more actively than the existing air-100 %
+  bug: it does not merely produce a no-growth recipe, it produces a
+  kill-the-inoculum recipe.
+- **10 clear false fires** — facultatives wrongly downgraded to
+  microaerophilic (free-living rhizobia, purple non-sulfur
+  phototrophs, textbook facultative denitrifiers).
+- **2 validation/audit records** — should not be feature-touched by
+  any lift regardless.
+
+The current state of `cond.microaerophile` at HEAD is **safe but
+cosmetic**: the flag currently affects only the
+`RecipeContext.atmosphere.primary` label and the
+`SpecialRequirement("microaerophile", …)` advisory note printed in
+the inspect SPECIAL REQUIREMENTS section. It does NOT touch
+`recipe.gas_phase.composition` — the gas phase is determined per-mode
+by the composers at `compose_recipe.py:847-849, 1124-1125,
+1237-1238`, which never read `cond.microaerophile`. So the 13 false
+fires above currently surface only as a display/advisory mismatch,
+not as a wrong recipe. The narrow-lift idea ("Path A") would wire
+`cond.microaerophile` into the gas-phase composer; that wiring would
+turn a harmless 13-organism mislabel into a 13-organism wrong recipe,
+including the 2 lethal *Chlorobaculum* cases. It is therefore not
+shippable as a standalone change. See the backlog entry referenced
+above for the full per-gid list and the guard work required before
+this wiring could be safe.
+
+### 7.6 Root cause and decision
+
+A3 as designed in §4 cannot be implemented this session because:
+
+1. The proposed discriminator misses 60 % of its own named targets.
+2. The proposed discriminator false-fires on 25.6 % of the dev
+   cohort, including biologically incompatible categories (strict
+   anaerobes, oxygenic phototrophs).
+3. The GenomeSPOT O₂ fallback is structurally non-load-bearing in
+   this cohort.
+4. The "wire the existing flag through" alternative is not safe to
+   enable without further gating — its underlying co-occurrence
+   trigger also false-fires on 13/19 organisms including 2 strict
+   anaerobic phototrophs where a microaerobic recipe would be
+   actively lethal to the inoculum.
+5. The actual gap at HEAD is the gas-phase composer ignoring already-
+   computed microaerophile flags — but enabling that pipe without
+   first redesigning the upstream discriminator turns a now-cosmetic
+   mismatch into a wrong recipe.
+
+**Action**: take A3 back to inspection. No code shipped. The §4
+recommendation is preserved above as the original morning-review
+proposal; this §7 is the implementation-attempt audit. Both stay in
+the doc per the methodology-record discipline. Redesign and the
+narrow-lift option are tracked together as a single A3-rethink
+backlog item in `docs/PHASE_6_BACKLOG.md` (with the narrow lift as a
+subordinate subsection marked not independently shippable).
+
+**Cohort-scan numbers (this session)**:
+
+- cbb3 ∧ ¬bo3 trigger: 42 / 164 genomes (25.6 %)
+- co-occurrence trigger (`lithotrophic_aerobic` ∧ `anaerobic_respiratory`
+  in primary modes): 19 / 165 genomes (11.5 %)
+- 10 named §1 A3 targets, fires by each trigger: cbb3∧¬bo3 = {15, 16,
+  1020, 1108}; co-occurrence = {1098, 1108}.
+
+**Files touched this attempt**: none. Working tree matches HEAD
+`eff4db5` modulo the carried-over untracked
+`data/validation/sourmash_identity_verification/`.
+
+**Surfaced**: 2026-05-29 A3 microaerophile-modifier implementation
+attempt (no code shipped).

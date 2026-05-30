@@ -177,3 +177,194 @@ scan for R₃ regression candidates).
 `compose_recipe.py:1945` (R₂ diagnostic marker list);
 `compose_recipe.py:1908` (qmoA threshold note).
 
+
+## A3 microaerophile modifier — rethink before re-attempt
+
+The §4 design in `docs/phase5_0/a3_inspection_report.md` attempted to
+lift ~5–6 microaerophile gids (P5: gids 15, 16, 1014, 1020, 1040,
+1083, 1098, 1108 — Group A; 1068, 1072 — Group B; see report §1)
+from FAIL/PARTIAL → PASS via a post-composition gas-phase modifier
+triggered by `cbb3_cc AND NOT bo3_cc`.
+
+Implementation attempt 2026-05-29: no code shipped; verification
+against HEAD `eff4db5` revealed (full root cause in
+`docs/phase5_0/a3_inspection_report.md` §7 STOP block):
+
+- The discriminator `cbb3_cc AND NOT bo3_cc` fires on **4 of 10**
+  named targets and **misses 6 of 10** (1014, 1040, 1068, 1072,
+  1083, 1098). Causes: 1083 and 1098 have BOTH bo3 and cbb3
+  complete; 1014 and 1040 have NEITHER complex complete (terminal
+  oxidase detected only via the `terminal_oxidases` BLAST hit
+  list); 1068 and 1072 have bo3 but no cbb3.
+- The same discriminator **false-fires on 42 of 164 dev-cohort
+  genomes (25.6 %)**, including 8 oxygenic cyanobacteria, 1 strict
+  anaerobic SRB (*Desulfotignum phosphitoxidans* gid 1095), ~18
+  textbook aerobic heterotrophs/lithotrophs, and 4 validation/
+  sentinel/blind-test records.
+- GenomeSPOT's `oxygen` field is binary `{tolerant, not_tolerant}`
+  in this cohort — never `microaerophile`. The fallback path at
+  `derive_recipe_context.py:132` that reads
+  `genomespot_oxygen == "microaerophile"` is dead in practice. 9 of
+  10 A3 targets are called "tolerant"; *Aquifex* (1014) is wrongly
+  called "not tolerant". GenomeSPOT cannot discriminate
+  microaerophiles in this cohort in either direction.
+- Substantial pre-existing microaerophile detection already exists
+  at HEAD in `synthesize_denovo.py:1284-1407` (cbb3/bo3
+  discriminator) and `derive_recipe_context.py:109-137,735-754`
+  (co-occurrence trigger sets `Atmosphere.MICROAEROBIC` primary and
+  `SpecialRequirement("microaerophile")`). The §4 recommendation
+  did not surface this. **At HEAD, gids 1098 and 1108 already have
+  microaerophile flags set in RecipeContext.** The actual gap is at
+  the gas-phase composer: the three `GasPhase(...)` sites in
+  `compose_recipe.py` (L847-849, L1124-1125, L1237-1238) hardcode
+  the composition string and never read `cond.microaerophile`.
+  Existing detection therefore has no effect on the final
+  Recipe §10 gas-phase output.
+
+**Action**: redesign A3 at the inspection level before any
+implementation attempt. A real microaerophile discriminator needs
+(at minimum) an oxidase combination (cbb3 OR a strong-affinity
+`terminal_oxidases` hit pattern WITHOUT a complete bo3/aa3) **plus**
+a co-signal (lithotrophy/autotrophy pattern, or a denitrification-
+style anaerobic-respiratory secondary capacity that genuinely
+co-occurs with low-O₂ niches) **plus** a taxonomic guard that
+explicitly excludes oxygenic phototrophs (cyanobacteria via
+`psaA_psbA` markers) and strict anaerobic phototrophs (Chlorobi via
+`pscA_fmoA`), with a way to distinguish biologically-genuine
+microaerophiles from textbook facultative denitrifiers. The Group B
+case (Fe-oxidizing microaerophiles 1068, 1072) is a separate
+discriminator entirely — their microaerophily lives in the
+neutrophilic Fe-oxidation pathway (`pathway_definitions.json:361`
+already flags this as documented gap A.4: "Neutrophilic/
+microaerophilic iron oxidation (mtoA pathway) not covered"); A3
+redesign should align with whatever lands for A.4 rather than
+overlap it.
+
+The blind-test cohort composition should inform the redesign: if
+the blind set is dominated by Aquificales / Campylobacterota
+microaerophiles, the discriminator priorities differ from a blind
+set dominated by magnetotactic Alphaproteobacteria or Sulfolobales.
+
+### Narrow lift candidate — NOT independently shippable
+
+A scoped alternative considered during the 2026-05-29 attempt:
+wire the existing `cond.microaerophile` flag (from
+`derive_recipe_context.py:737`, triggered when
+`"lithotrophic_aerobic" in modes AND "anaerobic_respiratory" in
+modes`) through to the gas-phase composer in `compose_recipe.py`
+(touch points: L847-849, L1124-1125, L1237-1238). Detection layer
+untouched — uses what's already in place.
+
+**Intended lift**: 2 organisms — gid 1098 *Magnetospirillum
+gryphiswaldense* MSR-1 and gid 1108 *Magnetospira* sp. QH-2. Both
+are obligately microaerophilic magnetotactic Alphaproteobacteria;
+both already get `Atmosphere.MICROAEROBIC` primary and a
+`microaerophile` SpecialRequirement at HEAD, so the lift would
+deliver the already-detected reality for these two organisms.
+
+**Blocker — co-occurrence-trigger cohort scan (2026-05-29)**: the
+underlying trigger fires on **19 of 165 dev-cohort genomes**, not
+just the 2 intended. Full list with biology:
+
+- **Genuine microaerophiles** (5 of 19, of which 2 are A3 targets):
+  17 *Sulfurovum* NBC37-1 (audit-correction record), 1022
+  *Hydrogenobacter thermophilus* TK-6, 1058 *Persephonella marina*
+  EX-H1, **1098 *Magnetospirillum gryphiswaldense* MSR-1**, **1108
+  *Magnetospira* sp. QH-2**.
+- **Lethal false fires — strict anaerobic green-sulfur
+  phototrophs** (2): 1010 *Chlorobaculum tepidum* TLS, 1117
+  *Chlorobaculum limnaeum* DSM 1677. For obligate anaerobes a 5 %
+  O₂ recipe is lethal — Chlorobi do not survive air-level oxygen
+  exposure beyond brief transients, and ~5 % O₂ is well above
+  tolerance. This fails more actively than the existing air-100 %
+  bug: it does not produce a no-growth recipe, it produces a
+  kill-the-inoculum recipe.
+- **Clear false fires — facultatives wrongly downgraded** (10):
+  19 *Rhodopseudomonas palustris* (blind-validation record), 1023
+  *Bradyrhizobium diazoefficiens*, 1033 *Anaeromyxobacter
+  dehalogenans*, 1036 *Stutzerimonas stutzeri* A1501, 1059
+  *Rhodobacter capsulatus* SB 1003, 1073 *Roseobacter litoralis*
+  Och 149 (aerobic anoxygenic phototroph), 1077 *Rhodopseudomonas
+  palustris* CGA009, 1078 *Cupriavidus metallidurans* CH34, 1093
+  *Thioalkalivibrio nitratireducens*, 1096 *Thiobacillus
+  thioparus*, 1115 *Thiobacillus denitrificans* RG, 1124
+  *Paracoccus denitrificans*.
+- **Validation/audit records** (2): 17, 19 (also counted above).
+
+> **CAUTION — the existing co-occurrence flag is currently
+> cosmetic; Path A would make it consequential.**
+> `cond.microaerophile` and the `Atmosphere.MICROAEROBIC` primary
+> it sets affect only the `RecipeContext.atmosphere.primary` label
+> and the `SpecialRequirement("microaerophile", …)` advisory note
+> printed in the inspect SPECIAL REQUIREMENTS section. They do NOT
+> touch `recipe.gas_phase.composition` — the gas phase is
+> determined per-mode by the composers in `compose_recipe.py`. So
+> the 13 false fires above currently surface only as a display/
+> advisory mismatch (harmless). The narrow lift would wire
+> `cond.microaerophile` into the composer; that wiring would turn
+> the 13-organism display mismatch into a 13-organism wrong
+> recipe, including the 2 *Chlorobaculum* strains where the
+> resulting 5 % O₂ atmosphere would be lethal to the obligate-
+> anaerobic inoculum.
+
+**What a viable narrow lift would require** (and why it is not
+independently shippable):
+
+1. A negative-marker guard: veto microaerophile-flag application
+   when any of `pscA_fmoA` (green-sulfur photosynthesis) or
+   `psaA_psbA` (oxygenic photosynthesis) is present at strong
+   bitscore. Drops 1010 and 1117. Possibly also veto on `pufLM`
+   (purple bacteria) to drop 19, 1059, 1073, 1077 — but this
+   requires a separate decision because anoxygenic photoheterotrophs
+   and microaerophiles are not strictly mutually exclusive in
+   literature.
+2. A second guard for textbook facultative denitrifiers: organisms
+   with both strong aerobic respiration AND strong denitrification
+   that are not biologically microaerophilic. The marker shape is
+   harder to define and may require a per-organism allow-list —
+   which the R₃ "no overfit discriminators" guardrail explicitly
+   disallows.
+3. After both guards are in place, re-run the cohort scan and
+   confirm only true microaerophiles remain.
+
+This guard-design work is the A3 redesign in the parent entry above
+— there is no independent path. Tackle only after the A3 redesign
+has produced a defensible discriminator, at which point the narrow
+lift likely falls out of the broader redesign anyway.
+
+**Priority**: medium — 8 to 10 PARTIAL/FAIL gids would lift if a
+real discriminator is built; affects manuscript headline for the
+microaerophile cohort. Narrow-lift subsection on its own: not
+independently shippable.
+**Surfaced**: 2026-05-29 A3 implementation attempt (reverted, no
+code shipped).
+**Reference**: `docs/phase5_0/a3_inspection_report.md` §7
+(2026-05-29 STOP block appended in this pass);
+`synthesize_denovo.py:1284-1407` (existing parallel cbb3/bo3
+discriminator); `derive_recipe_context.py:109-113, 131-137,
+735-754` (existing co-occurrence detection wiring);
+`compose_recipe.py:847-849, 1124-1125, 1237-1238` (gas-phase
+composer touch points where the wiring would land);
+`pathway_definitions.json:361` (A.4 Fe-oxidation gap, related to
+Group B).
+
+
+## Display-only inconsistency — *Chlorobaculum* strains print microaerophile advisory despite anaerobic gas phase
+
+At HEAD, gids 1010 *Chlorobaculum tepidum* TLS and 1117
+*Chlorobaculum limnaeum* DSM 1677 (both strict anaerobic
+green-sulfur phototrophs) print
+`SPECIAL REQUIREMENTS: - microaerophile: Microaerophilic conditions
+recommended. Use reduced O2 (2-5%) with N2/CO2 balance…` in the
+`cultureforge.py inspect` output, while their actual GAS PHASE
+section correctly reads `Anaerobic atmosphere required — anoxygenic
+photosynthesis.` The recipe is correct; only the advisory tag is
+wrong. Same root cause as the A3-rethink entry above: the
+co-occurrence trigger at `derive_recipe_context.py:737` fires for
+these gids without a phototrophy veto.
+
+**Priority**: low — display-only; not a recipe bug. Will resolve as
+a side-effect when the A3 redesign's phototroph guard lands. No
+separate fix required.
+**Surfaced**: 2026-05-29 (during A3 co-occurrence cohort scan).
+
