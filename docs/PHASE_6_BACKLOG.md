@@ -332,6 +332,39 @@ This guard-design work is the A3 redesign in the parent entry above
 has produced a defensible discriminator, at which point the narrow
 lift likely falls out of the broader redesign anyway.
 
+### Audit-doc P5 recommendation reasoning also stale (surfaced 2026-05-29 during predictions-audit refresh)
+
+`docs/phase5_0/predictions_audit.md` §5 P5 (L1525-1527) reads:
+*"P5 — Add a microaerophile primary-mode label (or 1-3% O2 atmosphere
+modifier) for organisms with cydAB without low-affinity ctaABCDE … **Biological
+rationale**: All of these are well-characterized microaerophiles; recipe-as-
+composed uses 21% O2 which is lethal or strongly inhibitory at standard partial
+pressures. Detection is genomically tractable (high-affinity cytochrome bd
+oxidase as sole terminal oxidase) and the recipe-output already supports a
+`Pressure / Gas phase` field — only need a modifier that lowers O2 to ~3-5%
+when the microaerophile flag is set."*
+
+This session's A3 verification (commit `05255b6`) demonstrated that the
+analogous `cbb3_cc AND NOT bo3_cc` discriminator misses 6 of 10 named
+targets and false-fires on 25.6 % of the cohort (including 8 oxygenic
+cyanobacteria and one strict anaerobic SRB). The `cydAB` framing in P5's
+biological rationale is similarly non-specific and would have the same
+shape of failure. P5's *verdicts* (PARTIAL for gids 15, 16, 1014, 1020,
+1040, 1068, 1072, 1083, 1098, 1108) are still correct at HEAD — A3 did
+not lift them — so this is reasoning-staleness only, not verdict-
+staleness. **No edit applied to P5 in the 2026-05-29 audit-refresh
+pass** (scope was the four documented errata, not the recommendation
+reasoning sections).
+
+**Action**: when the A3 redesign in the parent entry above lands, also
+update P5's "Biological rationale" line in the predictions_audit doc to
+reflect the redesigned discriminator (or to point to the redesign
+inspection report if the lift is documented elsewhere).
+
+**Priority**: low — reasoning-only; verdicts unchanged; will roll up
+naturally with the A3 redesign.
+**Surfaced**: 2026-05-29 (during predictions-audit refresh session).
+
 **Priority**: medium — 8 to 10 PARTIAL/FAIL gids would lift if a
 real discriminator is built; affects manuscript headline for the
 microaerophile cohort. Narrow-lift subsection on its own: not
@@ -367,4 +400,31 @@ these gids without a phototrophy veto.
 a side-effect when the A3 redesign's phototroph guard lands. No
 separate fix required.
 **Surfaced**: 2026-05-29 (during A3 co-occurrence cohort scan).
+
+
+## "DSMZ 1146" stale reference outside the audit doc (found-while-reconciling)
+
+`docs/phase5_0/v12_revalidation.md:72` still carries an outdated
+*"DSMZ 1146 Picrophilus medium"* line as a target instruction. The
+C1 erratum at `docs/phase5_0/predictions_audit.md:1456-1478` (and
+the 2026-05-29 cross-reference added to it) reconciles the medium
+references for Picrophilus DSM 9789 / DSM 9790 to JCM J233 /
+J1267 (catalog) and DSMZ Medium 88 strain-modified (literature) —
+both valid; DSMZ 1146 is wrong (it is *Venenivibrio
+stagnispumantis* medium).
+
+**Action**: in a separate doc-sweep session, update `v12_revalidation.md:72`
+to the corrected references (likely add `[AUDIT CORRECTION
+YYYY-MM-DD: ...]` annotation preserving the original, mirroring the
+audit-doc methodology-record discipline). Also worth sweeping
+`docs/phase5_0/limitations.md` and
+`docs/phase5_0/overnight_inspection_summary.md` for the same
+residual "DSMZ 1146" references that the 2026-05-29 grep surfaced.
+
+**Out of scope** for the 2026-05-29 predictions-audit refresh session
+(that session was scoped to `docs/phase5_0/predictions_audit.md` only).
+**Priority**: low — outdated reference, not a recipe bug; corrected
+references are already documented in the audit-doc C1 erratum.
+**Surfaced**: 2026-05-29 (DSMZ-1146 grep sweep during predictions-
+audit refresh).
 

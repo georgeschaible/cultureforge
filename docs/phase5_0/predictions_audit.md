@@ -5,23 +5,23 @@
 **Scope:** All 168 genomes in `data/cultureforge.db` — 136 Phase 5.0 main load, 26 validation/blind organisms (gids 7-32), 4 sentinels (gids 900-903), 1 PacBio bin MAG (gid 1000), 1 Phase 5.0 smoke test (gid 1001).  
 **Method:** Ran `cultureforge.py inspect <gid>` for each genome, parsed predictions, compared to known biology (BacDive, DSMZ, primary literature). **No code was modified.**  
 
-**Headline:** 106 PASS / 31 PARTIAL / 30 FAIL / 1 INSUFFICIENT — pass rate **63%**, directional-or-better rate (PASS+PARTIAL) **82%**.
+**Headline:** 117 PASS / 28 PARTIAL / 22 FAIL / 1 INSUFFICIENT — pass rate **70%**, directional-or-better rate (PASS+PARTIAL) **86%**. _[AUDIT CORRECTION 2026-05-29: was 106/31/30/1 (63%/82%) — original pre-R₂ baseline; reconciled to 117/28/22/1 (70%/86%) per HEAD `05255b6` after propagating Phase 5.1 P3 (`a5a96c7` anammox composer), A4 (`2b637ae` Scalindua guard), A1 (`4be3d23` archaeal amoA), R₂ (`4c0743d` anaerobic_archaeal_sulfur_respiration). Intermediate post-R₂-only headline was 109/31/27/1 (65%/83%), preserved in the OVERALL row annotation at §2.]_
 
 ---
 
 ## 1. Executive summary
 
 - **ANME-1/2a/3 archaea (gids 1005, 1006, 1007) are classified as forward methanogens.** All three encode mcrA and the C1 pathway with acsB+cooS, but they perform anaerobic oxidation of methane (reverse methanogenesis) in nature. Gid 28 (Methanoperedens nitratireducens) is correctly classified as `anme_reverse_methanogenic`; the same logic must extend to ANME-1/2a/3. **Three of 17 methane-category FAILs trace to this single missing classifier rule.**
-- **Ammonia-oxidizing archaea (Nitrosopumilus 1049, Nitrososphaera 1102, Nitrosocosmicus 1106) always escalate** — only the `autotrophy` and `terminal_oxidases` markers hit; no capability detector recognizes archaeal-lineage `amoA` (it is too divergent from bacterial AMO). Bacterial AOB and the comammox Nitrospira inopinata (gid 1114) succeed cleanly, so this is an AOA-specific marker gap.
+- **Ammonia-oxidizing archaea (Nitrosopumilus 1049, Nitrososphaera 1102, Nitrosocosmicus 1106) all escalated at audit time.** _[AUDIT CORRECTION 2026-05-29: addressed by A1 (commit `4be3d23`) — `amoA_archaeal` marker + BLAST DB added (split from bacterial `amoA`), and an `ammonia_oxidation` `diagnostic_marker_override` mirroring `aerobic_methanotrophy → pmoA` lifts confidence to 0.70. All three now PASS at primary mode `lithotrophic_aerobic (ammonia oxidation)`. Per-gid bullets at §3 nitrogen_metabolism record the lift.]_ At audit time only the `autotrophy` and `terminal_oxidases` markers hit; no capability detector recognized archaeal-lineage `amoA` (it is too divergent from bacterial AMO). Bacterial AOB and the comammox Nitrospira inopinata (gid 1114) succeeded cleanly via pathway-step scoring, so this was an AOA-specific marker gap.
 - **Wood-Ljungdahl is over-detected on non-acetogens and pulls primary mode to `acetogenic`.** Six diverse organisms — Geobacter metallireducens (1031), Rhodospirillum rubrum (1032), Azotobacter vinelandii (1056), Acetoanaerobium sticklandii (1079), Pelotomaculum schinkii (1126), Syntrophorhabdus aromaticivorans (1130) — share the pattern: acsB / cooS / CODH hits push WL ≈ 0.65–0.76, ranking above the organism's real primary mode (Fe(III) respiration, anoxygenic phototrophy, aerobic N-fixation, Stickland fermentation, syntrophy). This is structurally analogous to the fermentation primary-mode bug fixed 2026-05-13 (commit d4e9587), but in the *acetogenesis* lane.
-- **Anammox bacteria detect Anammox capability at 0.95 but the recipe composer has no `anammox` cultivation mode**, so gids 30 (Scalindua japonica) and 1105 (Scalindua brodae) escalate, while gids 1001/1002/1090 fall back to `lithotrophic_aerobic` with a misleadingly aerobic recipe. The capability layer works; the composer-side mapping is the gap.
-- **Hyperthermophilic / thermoacidophilic anaerobic archaea escalate as a class.** Thermococcus kodakarensis (1019), Ignicoccus hospitalis (1046), Caldivirga maquilingensis (1047), Stygiolobus azoricus (1129), Ferroplasma acidarmanus (1070), and Picrophilus torridus (26) all have `autotrophy` and assorted sulfur markers but no detector resolves to a primary mode. Cable bacteria (gids 1004, 1008) and vent ε-proteobacteria (Caminibacter 1127) fail for the same reason — the cultivation-mode library has no entry for their physiology.
+- **Anammox bacteria detected Anammox capability at 0.95 but, at audit time, the recipe composer had no `anammox` cultivation mode.** _[AUDIT CORRECTION 2026-05-29: addressed by Phase 5.1 P3 (commit `a5a96c7`) which promoted anammox to a top-level cultivation mode with `_compose_anammox_recipe` (lifted 1001/1002/1090 from PARTIAL to PASS by replacing the lithotrophic_aerobic fallback with the correct anaerobic N2/CO2 recipe), and by A4 (commit `2b637ae`) which replaced a stale Scalindua species-name escalation guard in `_apply_limitations_flags` with an evidence-based hzsA/hdh marker-presence check (lifted 30/1105 from FAIL to PASS). All 5 gids now PASS at primary mode `anammox`, overall conf 0.80-0.85. Per-gid bullets at §3 nitrogen_metabolism updated.]_ At audit time gids 30 and 1105 escalated, while gids 1001/1002/1090 fell back to `lithotrophic_aerobic` with a misleadingly aerobic recipe. The capability layer worked; the composer-side mapping was the gap.
+- **Hyperthermophilic / thermoacidophilic anaerobic archaea escalated as a class at audit time.** _[AUDIT CORRECTION 2026-05-29: R₂ (commit `4c0743d`) lifted Thermococcus kodakarensis (1019), Caldivirga maquilingensis (1047), and Stygiolobus azoricus (1129) to PASS via the new `anaerobic_archaeal_sulfur_respiration` composition-layer mode (see C2 R₂ erratum at §5 P5/secondaries area). Remaining escalating extreme_archaea at HEAD: 1046 Ignicoccus hospitalis (no H2/S0 anaerobic chemolithoautotrophy mode yet), 1070 Ferroplasma acidarmanus (no acidophilic archaeal Fe oxidation mode), and 26 Picrophilus torridus (R₃ scope; R₃ attempt reverted 2026-05-28, commit `eff4db5`).]_ At audit time, Thermococcus kodakarensis (1019), Ignicoccus hospitalis (1046), Caldivirga maquilingensis (1047), Stygiolobus azoricus (1129), Ferroplasma acidarmanus (1070), and Picrophilus torridus (26) all had `autotrophy` and assorted sulfur markers but no detector resolved to a primary mode. Cable bacteria (gids 1004, 1008) and vent ε-proteobacteria (Caminibacter 1127) fail for the same reason — the cultivation-mode library has no entry for their physiology.
 
 ## 2. Per-category pass rates
 
 | Category | PASS | PARTIAL | FAIL | INSUFFICIENT | total | PASS% | (PASS+PARTIAL)% |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| nitrogen_metabolism | 19 | 7 | 8 | 0 | 34 | 56% | 76% |
+| nitrogen_metabolism | 27 | 4 | 3 | 0 | 34 | 79% | 91% |  _[AUDIT CORRECTION 2026-05-29: was 19/7/8/0 (56%/76%) — original baseline; reconciled to 27/4/3/0 (79%/91%) per HEAD `05255b6` after A1 (1049/1102/1106 FAIL→PASS), A4 (30/1105 FAIL→PASS), and Phase 5.1 P3 (1001/1002/1090 PARTIAL→PASS — anammox composer was in place pre-A4 per the P3 erratum at §5 P3).]_
 | methane_metabolism | 17 | 0 | 4 | 0 | 21 | 81% | 81% |
 | sulfur_metabolism | 14 | 3 | 1 | 0 | 18 | 78% | 94% |
 | phototrophy | 12 | 1 | 1 | 0 | 14 | 86% | 93% |
@@ -40,7 +40,7 @@
 | phosphate_metabolism | 1 | 1 | 0 | 0 | 2 | 50% | 100% |
 | cable_bacteria | 0 | 0 | 2 | 0 | 2 | 0% | 0% |
 | unknown_MAG | 0 | 0 | 0 | 1 | 1 | 0% | 0% |
-| **OVERALL** | **109** | **31** | **27** | **1** | **168** | **65%** | **83%** |  _(post-R₂; pre-R₂ was 106/31/30/1 = 63% / 82%)_
+| **OVERALL** | **117** | **28** | **22** | **1** | **168** | **70%** | **86%** |  _[AUDIT CORRECTION 2026-05-29: was 109/31/27/1 (65%/83%) post-R₂; pre-R₂ was 106/31/30/1 (63%/82%); reconciled to 117/28/22/1 (70%/86%) per HEAD `05255b6` after propagating A1 (`4be3d23`) + A4 (`2b637ae`) + Phase 5.1 P3 (`a5a96c7`) verdict flips into the nitrogen_metabolism row above.]_
 
 Read-out:
 - Best-performing cohorts: **sulfate_reduction** (100% PASS) and **acetogenesis** (100% PASS) — gapseq+marker library is well-tuned for these textbook anaerobic respiratory & WL pathways.
@@ -73,11 +73,11 @@ Read-out:
   - Rationale: canonical NOB; lithotrophic_aerobic ✓; but acetogenesis (0.605) flagged as alt mode is a false positive — Nitrospira has rTCA carbon fixation, not WL
   - Source: DSMZ 10035; Ehrich et al. 1995 Arch Microbiol
 
-- **gid 30 — Candidatus Scalindua japonica** — **FAIL**
-  - CultureForge: primary `(none)`; alt `—`; recipe `escalated`; O2 n/a; pH 7.0; T 31.1°C; salinity 2.94%
-  - Detected caps (≥0.50): Anammox=0.95, Fermentation=0.65, Aerobic ammonia oxidation=0.621
-  - Positive markers: acsB_cdhC, aprAB, cooS_cdhA, hao, hdh, hzsA
-  - Rationale: anammox bacterium; Anammox capability detected at 0.95 ✓ but recipe escalates because composer has no anammox cultivation-mode → mapping; should compose with NH4+/NO2- as electron donor/acceptor
+- **gid 30 — Candidatus Scalindua japonica** — **FAIL → PASS post-A4 (commit `2b637ae`)** _[AUDIT CORRECTION 2026-05-29]_
+  - Pre-A4 state: primary `(none)`; alt `—`; recipe `escalated`; O2 n/a; pH 7.0; T 31.1°C; salinity 2.94%; Anammox cap detected at 0.95 with hzsA+hdh+hao+aprAB markers ✓ but recipe escalated by a false `_apply_limitations_flags` E.1 guard at `compose_recipe.py:2005-2020` — a species-name predicate that force-escalated any "scalindua" with a hardcoded "lacks hzsA/hdh" reason (a fossil of the pre-2026-05-05 Salmonella-contaminated MAG state); hzsA (~64% id, bs ~1070) and hdh (~77% id, bs ~970) were actually present at positive_call=1.
+  - Post-A4 state: primary `anammox` cap conf 0.95; overall conf 0.85; recipe composes; gas phase N2/CO2 90:10 anaerobic; NH4+/NO2- as electron donor/acceptor; CO2 carbon source (autotrophic); `strict_anaerobe` special requirement flagged. A4 replaced the species-name predicate with an evidence-based hzsA/hdh marker-presence check (positive_call=1 satisfied for both at HEAD). See `docs/phase5_0/a4_verification.md`.
+  - Positive markers (HEAD): acsB_cdhC, aprAB, cooS_cdhA, hao, hdh, hzsA
+  - Rationale: anammox bacterium; A4 fixed the stale species-name escalation guard; biology now correctly captured by anammox composer.
   - Source: Oshiki et al. 2016 Environ Microbiol
 
 - **gid 901 — Wolinella succinogenes DSM 1740** — **PASS**
@@ -94,18 +94,18 @@ Read-out:
   - Rationale: type-B NOB; lithotrophic_aerobic ✓; nxrA + cyc2 + autotrophy markers ✓
   - Source: DSMZ 10237; Starkenburg et al. 2006 AEM
 
-- **gid 1001 — Candidatus Brocadia sinica JPN1 (smoke test)** — **PARTIAL**
-  - CultureForge: primary `lithotrophic_aerobic`; alt `anaerobic_respiratory`; recipe `composed`; O2 n/a; pH 6.8; T 40.8°C; salinity 1.14%
-  - Detected caps (≥0.50): Anammox=0.86, Aerobic ammonia oxidation=0.621
-  - Positive markers: acsB_cdhC, aprAB, cooS_cdhA, hao, hdh, hzsA
-  - Rationale: anammox; primary mode lithotrophic_aerobic is misleading (anammox is anaerobic NH4+/NO2-); recipe composed but using aerobic profile
+- **gid 1001 — Candidatus Brocadia sinica JPN1 (smoke test)** — **PARTIAL → PASS post-Phase-5.1-P3 (commit `a5a96c7`)** _[AUDIT CORRECTION 2026-05-29 — already PASS at HEAD pre-A4 per P3 erratum at §5 P3]_
+  - Pre-P3 state: primary `lithotrophic_aerobic`; alt `anaerobic_respiratory`; recipe `composed` but with wrong-oxygen profile; Anammox cap detected at 0.86 ✓ but the composer had no `anammox` mode → mapping at audit time, so the recipe fell back to a lithotrophic_aerobic profile with 21% O2 (lethal to anammox).
+  - Post-P3 state: primary `anammox` cap conf 0.86; overall conf 0.80; recipe composes; gas phase N2/CO2 90:10 anaerobic; NH4+/NO2- as electron donor/acceptor; CO2 carbon source (autotrophic); `strict_anaerobe` special requirement flagged. Phase 5.1 P3 promoted anammox to a top-level cultivation mode and added `_compose_anammox_recipe`; the lift was already in place at HEAD pre-A4 (A4 fixed a separate Scalindua-specific guard, not this case).
+  - Positive markers (HEAD): acsB_cdhC, aprAB, cooS_cdhA, hao, hdh, hzsA
+  - Rationale: anammox bacterium; Phase 5.1 P3 anammox composer delivers the correct anaerobic NH4+/NO2- recipe.
   - Source: Hira et al. 2012 Int J Syst Evol Microbiol
 
-- **gid 1002 — Candidatus Brocadia fulgida** — **PARTIAL**
-  - CultureForge: primary `lithotrophic_aerobic`; alt `anaerobic_respiratory, fermentative`; recipe `composed`; O2 n/a; pH 6.7; T 40.8°C; salinity 2.35%
-  - Detected caps (≥0.50): Anammox=0.86, Fermentation=0.65, Aerobic ammonia oxidation=0.621
-  - Positive markers: acsB_cdhC, aprAB, cooS_cdhA, hao, hdh, hzsA
-  - Rationale: anammox; primary mode lithotrophic_aerobic — wrong oxygen handling (should be anaerobic); recipe composed
+- **gid 1002 — Candidatus Brocadia fulgida** — **PARTIAL → PASS post-Phase-5.1-P3 (commit `a5a96c7`)** _[AUDIT CORRECTION 2026-05-29 — already PASS at HEAD pre-A4 per P3 erratum at §5 P3]_
+  - Pre-P3 state: primary `lithotrophic_aerobic`; alt `anaerobic_respiratory, fermentative`; recipe `composed` with wrong-oxygen profile; Anammox cap detected at 0.86 ✓ but composer had no `anammox` mode at audit time; recipe fell back to lithotrophic_aerobic with 21% O2 (lethal).
+  - Post-P3 state: primary `anammox` cap conf 0.86; overall conf 0.80; recipe composes; gas phase N2/CO2 90:10 anaerobic; NH4+/NO2- electron donor/acceptor; CO2 autotrophic carbon; `strict_anaerobe` flag. Phase 5.1 P3 anammox composer.
+  - Positive markers (HEAD): acsB_cdhC, aprAB, cooS_cdhA, hao, hdh, hzsA
+  - Rationale: anammox bacterium; correctly captured by the Phase 5.1 P3 anammox composer.
   - Source: Kartal et al. 2008 Environ Microbiol
 
 - **gid 1017 — Nostoc sp. PCC 7120 (Anabaena PCC 7120)** — **PASS**
@@ -164,11 +164,11 @@ Read-out:
   - Rationale: diazotrophic unicellular cyanobacterium; phototrophic ✓
   - Source: ATCC 51142; Welsh et al. 2008 PNAS
 
-- **gid 1049 — Nitrosopumilus maritimus SCM1** — **FAIL**
-  - CultureForge: primary `(none)`; alt `—`; recipe `escalated`; O2 n/a; pH 7.1; T 38.2°C; salinity 6.13%
-  - Detected caps (≥0.50): none above 0.50
-  - Positive markers: autotrophy, terminal_oxidases
-  - Rationale: model ammonia-oxidizing archaeon; ESCALATED — only autotrophy + terminal_oxidases hit; archaeal amoA not in marker set or sequence too divergent from bacterial AMO
+- **gid 1049 — Nitrosopumilus maritimus SCM1** — **FAIL → PASS post-A1 (commit `4be3d23`)** _[AUDIT CORRECTION 2026-05-29]_
+  - Pre-A1 state: primary `(none)`; alt `—`; recipe `escalated`; O2 n/a; pH 7.1; T 38.2°C; salinity 6.13%; no caps above 0.50; ESCALATED — only autotrophy + terminal_oxidases hit; archaeal amoA not in the marker set (bacterial AMO refs <30% identical to archaeal AmoA).
+  - Post-A1 state: primary `lithotrophic_aerobic (ammonia oxidation)` cap conf 0.70; overall conf 0.70; recipe composes; gas phase air 98% / CO2 2% aerobic; NH4+ electron donor + O2 acceptor; CO2 autotrophic carbon. Lift via the new `amoA_archaeal` marker (95.8% pident, bs=410) firing the `ammonia_oxidation` `diagnostic_marker_override` (single-marker schema, override_confidence 0.70). Pathway-step score stays 0.00 (gapseq still blind to archaeal amo, as expected); detection carried entirely by the override.
+  - Positive markers (HEAD): amoA_archaeal, autotrophy, terminal_oxidases
+  - Rationale: model AOA; A1 split archaeal amoA from bacterial amoA (separate marker + BLAST DB) and added a diagnostic_marker_override mirroring `aerobic_methanotrophy → pmoA`. See `docs/phase5_0/a1_verification.md`.
   - Source: DSMZ 28326; Walker et al. 2010 PNAS
 
 - **gid 1056 — Azotobacter vinelandii DJ** — **FAIL**
@@ -192,11 +192,11 @@ Read-out:
   - Rationale: heterocyst-forming diazotrophic cyanobacterium; phototrophic ✓
   - Source: ATCC 29413
 
-- **gid 1090 — Candidatus Jettenia caeni** — **PARTIAL**
-  - CultureForge: primary `lithotrophic_aerobic`; alt `anaerobic_respiratory, fermentative`; recipe `composed`; O2 n/a; pH 6.9; T 44.5°C; salinity 2.7%
-  - Detected caps (≥0.50): Anammox=0.86, Fermentation=0.637, Aerobic ammonia oxidation=0.621
-  - Positive markers: acsB_cdhC, aprAB, cooS_cdhA, hao, hdh, hzsA
-  - Rationale: anammox bacterium; classified lithotrophic_aerobic — anammox is anaerobic NH4+/NO2- (should be its own anammox mode); recipe composed but aerobic profile wrong
+- **gid 1090 — Candidatus Jettenia caeni** — **PARTIAL → PASS post-Phase-5.1-P3 (commit `a5a96c7`)** _[AUDIT CORRECTION 2026-05-29 — already PASS at HEAD pre-A4 per P3 erratum at §5 P3]_
+  - Pre-P3 state: primary `lithotrophic_aerobic`; alt `anaerobic_respiratory, fermentative`; recipe `composed` with wrong-oxygen profile; Anammox cap detected at 0.86 ✓ but composer had no `anammox` mode at audit time; recipe fell back to aerobic profile (lethal).
+  - Post-P3 state: primary `anammox` cap conf 0.86; overall conf 0.80; recipe composes; gas phase N2/CO2 90:10 anaerobic; NH4+/NO2- electron donor/acceptor; CO2 autotrophic carbon; `strict_anaerobe` flag. Phase 5.1 P3 anammox composer.
+  - Positive markers (HEAD): acsB_cdhC, aprAB, cooS_cdhA, hao, hdh, hzsA
+  - Rationale: anammox bacterium; correctly captured by the Phase 5.1 P3 anammox composer.
   - Source: Ali et al. 2015 Environ Microbiol Rep
 
 - **gid 1091 — Klebsiella michiganensis M5al (K. oxytoca canonical nif strain)** — **PASS**
@@ -220,25 +220,25 @@ Read-out:
   - Rationale: marine NOB; ESCALATED — zero positive markers, no caps detected; nxrA likely too divergent from reference for BLAST hit (Nitrospina nxrA differs from Nitrospira/Nitrobacter)
   - Source: DSMZ 6680; Lücker et al. 2013 Front Microbiol
 
-- **gid 1102 — Nitrososphaera viennensis EN76** — **FAIL**
-  - CultureForge: primary `(none)`; alt `—`; recipe `escalated`; O2 n/a; pH 6.7; T 36.9°C; salinity 2.21%
-  - Detected caps (≥0.50): none above 0.50
-  - Positive markers: terminal_oxidases
-  - Rationale: soil AOA; ESCALATED — same systematic issue as gid 1049, archaeal amoA not detected
+- **gid 1102 — Nitrososphaera viennensis EN76** — **FAIL → PASS post-A1 (commit `4be3d23`)** _[AUDIT CORRECTION 2026-05-29]_
+  - Pre-A1 state: primary `(none)`; alt `—`; recipe `escalated`; O2 n/a; pH 6.7; T 36.9°C; salinity 2.21%; no caps above 0.50; ESCALATED — same systematic issue as gid 1049, archaeal amoA not detected by bacterial-AMO marker set.
+  - Post-A1 state: primary `lithotrophic_aerobic (ammonia oxidation)` cap conf 0.70; overall conf 0.70; recipe composes; gas phase air 98% / CO2 2% aerobic; NH4+ electron donor + O2 acceptor; CO2 autotrophic carbon. Lift via `amoA_archaeal` hit at 100.0% pident (bs=430) firing the `ammonia_oxidation` `diagnostic_marker_override` (reference self-hit for the *N. viennensis* ref A0A060HNG6 — circularity noted in A1 verification, robustness preserved by genus outgroups).
+  - Positive markers (HEAD): amoA_archaeal, terminal_oxidases
+  - Rationale: soil AOA; A1's `amoA_archaeal` marker + override lifts archaeal-lineage AmoA detection. See `docs/phase5_0/a1_verification.md`.
   - Source: DSMZ 26422; Kerou et al. 2016 PNAS
 
-- **gid 1105 — Candidatus Scalindua brodae** — **FAIL**
-  - CultureForge: primary `(none)`; alt `—`; recipe `escalated`; O2 n/a; pH 7.5; T 34.4°C; salinity 3.05%
-  - Detected caps (≥0.50): Anammox=0.95, Acetogenesis (Wood-Ljungdahl)=0.75, Fermentation=0.65, Aerobic ammonia oxidation=0.621
-  - Positive markers: acsB_cdhC, cooS_cdhA, hao, hdh, hzsA
-  - Rationale: anammox bacterium; Anammox cap detected at 0.95 with hzsA+hdh+hao ✓ but recipe ESCALATED — same composer→mode mapping gap as gid 30
+- **gid 1105 — Candidatus Scalindua brodae** — **FAIL → PASS post-A4 (commit `2b637ae`)** _[AUDIT CORRECTION 2026-05-29]_
+  - Pre-A4 state: primary `(none)`; alt `—`; recipe `escalated`; O2 n/a; pH 7.5; T 34.4°C; salinity 3.05%; Anammox cap at 0.95 with hzsA+hdh+hao markers ✓ but recipe ESCALATED by the same false `_apply_limitations_flags` E.1 Scalindua species-name guard that bit gid 30 — hzsA (~64% id, bs ~1068) and hdh (~78% id, bs ~987) were actually present at positive_call=1.
+  - Post-A4 state: primary `anammox` cap conf 0.95; overall conf 0.85; recipe composes; gas phase N2/CO2 90:10 anaerobic; NH4+/NO2- electron donor/acceptor; CO2 autotrophic carbon; `strict_anaerobe` special requirement flagged. A4 replaced the species-name predicate with evidence-based hzsA/hdh marker-presence check.
+  - Positive markers (HEAD): acsB_cdhC, cooS_cdhA, hao, hdh, hzsA
+  - Rationale: anammox bacterium; A4 fixed the stale species-name escalation guard; biology correctly captured by anammox composer.
   - Source: Speth et al. 2015 Standard Genomic Sci
 
-- **gid 1106 — Candidatus Nitrosocosmicus oleophilus MY3** — **FAIL**
-  - CultureForge: primary `(none)`; alt `—`; recipe `escalated`; O2 n/a; pH 6.4; T 18.5°C; salinity 7.74%
-  - Detected caps (≥0.50): none above 0.50
-  - Positive markers: terminal_oxidases
-  - Rationale: soil AOA; ESCALATED — archaeal amoA not detected; same systematic issue
+- **gid 1106 — Candidatus Nitrosocosmicus oleophilus MY3** — **FAIL → PASS post-A1 (commit `4be3d23`)** _[AUDIT CORRECTION 2026-05-29]_
+  - Pre-A1 state: primary `(none)`; alt `—`; recipe `escalated`; O2 n/a; pH 6.4; T 18.5°C; salinity 7.74%; no caps above 0.50; ESCALATED — archaeal amoA not detected; same systematic issue as 1049/1102.
+  - Post-A1 state: primary `lithotrophic_aerobic (ammonia oxidation)` cap conf 0.70; overall conf 0.70; recipe composes; gas phase air 98% / CO2 2% aerobic; NH4+ electron donor + O2 acceptor; CO2 autotrophic carbon. Lift via `amoA_archaeal` hit at 100.0% pident (bs=431) firing the `ammonia_oxidation` `diagnostic_marker_override`. T 18.5°C predicted optimum matches the cool-soil *Nitrosocosmicus* niche.
+  - Positive markers (HEAD): amoA_archaeal, terminal_oxidases
+  - Rationale: cool-soil AOA; A1's `amoA_archaeal` marker + override lifts detection. See `docs/phase5_0/a1_verification.md`.
   - Source: Jung et al. 2016 ISME J
 
 - **gid 1114 — Candidatus Nitrospira inopinata** — **PASS**
@@ -1275,13 +1275,17 @@ Cross-reference of recurring patterns to specific gids. Each issue is named, sco
 - **gid 1006 Candidatus Methanophaga sp. (ANME-1)** — primary `methanogenic`; recipe `composed` — ANME-1 SHOULD be anme_reverse_methanogenic; classified as forward methanogenic — systematic miss
 - **gid 1007 Candidatus Methanovorans sp. (ANME-3)** — primary `methanogenic`; recipe `composed` — ANME-3 SHOULD be anme_reverse_methanogenic; classified as forward methanogenic — systematic miss
 
-### Ammonia-oxidizing archaea (AOA) always escalate
+### Ammonia-oxidizing archaea (AOA) always escalated (RESOLVED post-A1)
+
+_[AUDIT CORRECTION 2026-05-29: A1 (commit `4be3d23`) added the `amoA_archaeal` marker (separate from bacterial `amoA`) + a single-marker `diagnostic_marker_override` on `ammonia_oxidation`. All three gids now PASS at primary mode `lithotrophic_aerobic (ammonia oxidation)`, overall conf 0.70 (override_confidence floor). Per-gid bullets at §3 nitrogen_metabolism record the lift in detail; the bullets below are preserved as the historical pre-A1 record.]_
 
 - **gid 1049 Nitrosopumilus maritimus SCM1** — primary `(none)`; recipe `escalated` — model ammonia-oxidizing archaeon; ESCALATED — only autotrophy + terminal_oxidases hit; archaeal amoA not in marker set or sequence too divergent from bacterial AMO
 - **gid 1102 Nitrososphaera viennensis EN76** — primary `(none)`; recipe `escalated` — soil AOA; ESCALATED — same systematic issue as gid 1049, archaeal amoA not detected
 - **gid 1106 Candidatus Nitrosocosmicus oleophilus MY3** — primary `(none)`; recipe `escalated` — soil AOA; ESCALATED — archaeal amoA not detected; same systematic issue
 
-### Hyperthermophilic / thermoacidophilic anaerobic archaea escalate
+### Hyperthermophilic / thermoacidophilic anaerobic archaea escalated (PARTIALLY RESOLVED post-R₂)
+
+_[AUDIT CORRECTION 2026-05-29: R₂ (commit `4c0743d`) lifted gids 1019, 1047, 1129 to PASS via the new `anaerobic_archaeal_sulfur_respiration` composition-layer mode — see C2 R₂ erratum below at §5. The R₃ session (2026-05-28) attempted to lift 26 Picrophilus torridus via a `thermoacidophilic_aerobic_heterotroph` mode but reverted before any code change because the proposed detector was non-specific — see `docs/phase6/c2_extreme_archaea_inspection.md` §5 R₃ STOP block, commit `eff4db5`. **Remaining escalating at HEAD**: gids 26 (R₃ scope, deferred), 1046 (no anaerobic H2/S0 chemolithoautotrophy mode), 1070 (no acidophilic archaeal Fe oxidation mode). The bullets below are preserved as the historical pre-R₂ record; the lifted gids' per-gid bullets at §3 extreme_archaea record the post-R₂ state.]_
 
 - **gid 26 Picrophilus torridus DSM 9790** — primary `(none)`; recipe `escalated` — thermoacidophilic heterotroph (pH 0-3.5, T 60°C); ESCALATED — no aerobic_chemotrophic-acidophile profile; predicted pH 2.6 ✓ at least; markers sor+tetH+tqoDoxD detected but did not compose recipe
 - **gid 1019 Thermococcus kodakarensis KOD1** — primary `(none)`; recipe `escalated` — hyperthermophilic S0-respiring fermenter; ESCALATED — no primary mode detected; like Pyrococcus furiosus should map to anaerobic_respiratory
@@ -1290,7 +1294,9 @@ Cross-reference of recurring patterns to specific gids. Each issue is named, sco
 - **gid 1129 Stygiolobus azoricus DSM 6296** — primary `(none)`; recipe `escalated` — thermoacidophilic anaerobic S0 reducer (Sulfolobales); ESCALATED — no anaerobic crenarchaeote sulfur reduction mode; pH 4.0 ✓
 - **gid 1070 Ferroplasma acidarmanus Fer1** — primary `(none)`; recipe `escalated` — acidophilic Fe(II)-oxidizing archaeon (Thermoplasmatales); ESCALATED — no acidophilic archaeal Fe oxidation mode in detector library; pH 2.7 ✓
 
-### Anammox bacteria — cap detected but recipe-composer has no anammox mode
+### Anammox bacteria — cap detected but recipe-composer had no anammox mode (RESOLVED post-Phase 5.1 P3 + A4)
+
+_[AUDIT CORRECTION 2026-05-29: addressed by Phase 5.1 P3 (commit `a5a96c7`) which promoted anammox to a top-level cultivation mode with `_compose_anammox_recipe`, and by A4 (commit `2b637ae`) which replaced a stale Scalindua species-name escalation guard with evidence-based hzsA/hdh marker-presence check. All 5 gids now PASS at primary mode `anammox`. Per-gid bullets at §3 nitrogen_metabolism record the lift in detail; the bullets below are preserved as the historical pre-Phase-5.1-P3 record.]_
 
 - **gid 30 Candidatus Scalindua japonica** — primary `(none)`; recipe `escalated` — anammox bacterium; Anammox capability detected at 0.95 ✓ but recipe escalates because composer has no anammox cultivation-mode → mapping; should compose with NH4+/NO2- as electron donor/acceptor
 - **gid 1105 Candidatus Scalindua brodae** — primary `(none)`; recipe `escalated` — anammox bacterium; Anammox cap detected at 0.95 with hzsA+hdh+hao ✓ but recipe ESCALATED — same composer→mode mapping gap as gid 30
@@ -1476,6 +1482,8 @@ Pattern is identical to the fermentation primary-mode bug fixed 2026-05-13 (d4e9
 > left unchanged (faithful to BacDive); the rationale is documented here and in
 > docs/phase5_0/c1_picrophilus_commit_message.txt rather than in a DB column
 > (organism_to_bacdive has no notes field).
+>
+> _[AUDIT CORRECTION 2026-05-29: see also DSMZ Medium 88 (strain-modified) for Picrophilus DSM 9789 / DSM 9790 per the 2026-05-29 C2 R₃ session — the JCM linkage above remains the catalog reference; DSMZ Medium 88 strain-modified is the literature-described cultivation medium. Both are valid; this cross-reference reconciles the catalog (JCM) and literature (DSMZ Medium 88) references.]_
 
 > **C2 R₂ / anaerobic archaeal sulfur respiration erratum (added during Phase 6, 2026-05-26, commit `4c0743d`):**
 > Composition-layer workaround landed for archaeal anaerobic sulfur respirers
@@ -1594,8 +1602,8 @@ These are the highest-risk false negatives for downstream users: CultureForge pr
 - *gid 15 — Campylobacter jejuni — predicted primary `aerobic_chemotrophic`; expected `aerobic_chemotrophic`*
 - *gid 17 — Sulfurimonas denitrificans — predicted primary `lithotrophic_aerobic`; expected `lithotrophic_aerobic/anaerobic_respiratory`*
 - *gid 23 — Nitrospira moscoviensis — predicted primary `lithotrophic_aerobic`; expected `lithotrophic_aerobic`*
-- *gid 1001 — Candidatus Brocadia sinica JPN1 (smoke test) — predicted primary `lithotrophic_aerobic`; expected `anammox`*
-- *gid 1002 — Candidatus Brocadia fulgida — predicted primary `lithotrophic_aerobic`; expected `anammox`*
+- *gid 1001 — Candidatus Brocadia sinica JPN1 (smoke test) — predicted primary `lithotrophic_aerobic`; expected `anammox`* _[AUDIT CORRECTION 2026-05-29: lifted PARTIAL → PASS post-Phase-5.1-P3 (commit `a5a96c7`); primary mode at HEAD is now `anammox`. Bullet preserved as historical pre-P3 record.]_
+- *gid 1002 — Candidatus Brocadia fulgida — predicted primary `lithotrophic_aerobic`; expected `anammox`* _[AUDIT CORRECTION 2026-05-29: lifted PARTIAL → PASS post-Phase-5.1-P3 (commit `a5a96c7`); primary mode at HEAD is now `anammox`. Bullet preserved as historical pre-P3 record.]_
 - *gid 1003 — Candidatus Phosphitivorax anaerolimi — predicted primary `fermentative`; expected `anaerobic_respiratory/fermentative`*
 - *gid 1023 — Bradyrhizobium diazoefficiens USDA 110 — predicted primary `lithotrophic_aerobic`; expected `lithotrophic_aerobic/aerobic_chemotrophic`*
 - *gid 1027 — Pelagibacter ubique HTCC1062 — predicted primary `halophilic_with_rhodopsin`; expected `aerobic_chemotrophic/halophilic_with_rhodopsin`*
@@ -1615,7 +1623,7 @@ These are the highest-risk false negatives for downstream users: CultureForge pr
 - *gid 1078 — Cupriavidus metallidurans CH34 — predicted primary `lithotrophic_aerobic`; expected `aerobic_chemotrophic/lithotrophic_aerobic`*
 - *gid 1083 — Beggiatoa alba B18LD — predicted primary `lithotrophic_aerobic`; expected `lithotrophic_aerobic/aerobic_chemotrophic`*
 - *gid 1089 — Leptospirillum ferrooxidans C2-3 — predicted primary `lithotrophic_aerobic`; expected `lithotrophic_aerobic`*
-- *gid 1090 — Candidatus Jettenia caeni — predicted primary `lithotrophic_aerobic`; expected `anammox`*
+- *gid 1090 — Candidatus Jettenia caeni — predicted primary `lithotrophic_aerobic`; expected `anammox`* _[AUDIT CORRECTION 2026-05-29: lifted PARTIAL → PASS post-Phase-5.1-P3 (commit `a5a96c7`); primary mode at HEAD is now `anammox`. Bullet preserved as historical pre-P3 record.]_
 - *gid 1098 — Magnetospirillum gryphiswaldense MSR-1 — predicted primary `lithotrophic_aerobic`; expected `aerobic_chemotrophic`*
 - *gid 1101 — Gemmatimonas phototrophica — predicted primary `phototrophic`; expected `phototrophic/aerobic_chemotrophic`*
 - *gid 1108 — Magnetospira sp. QH-2 — predicted primary `lithotrophic_aerobic`; expected `aerobic_chemotrophic`*
