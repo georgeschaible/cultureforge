@@ -768,3 +768,163 @@ affirmative (Refinement B), and where strict-MIxS reading
 mis-rejected environmental records on depositor field misuse
 (Refinement C). §13's scope boundary and shortfall rule are
 unchanged.
+
+---
+
+## 15. Pre-assembly amendment 2026-05-31 — Option 1 taxonomic-domain restriction (Bacteria + Archaea)
+
+**Status:** Pre-assembly amendment. Assembly status remains NOT
+begun. No cohort candidate has been identified or recorded; no
+genome has been downloaded; no scoring or inspection path has been
+run on any candidate. This amendment is recorded BEFORE assembly
+begins, consistent with §10 and following the same authority basis
+as §13 and §14.
+
+### 15.1 — Why this amendment exists
+
+§13.2 pinned the Option 1 discovery query parameters
+(`--assembly-source GenBank`, `--released-after 2026-01-01`,
+`--mag only`) but left the taxonomic domain of the broad query to
+a per-run command invocation. The 2026-05-31 run executed the
+query as two parallel `datasets summary genome` calls with
+`taxon "bacteria"` and `taxon "archaea"` respectively, enforcing
+a prokaryote-only candidate pool by construction (150,024 raw
+hits = 141,783 Bacteria + 8,241 Archaea, zero eukaryotic MAGs).
+Nothing in §13.2 or §14 itself forced that taxon scoping, however
+— it lived only in the operator's per-run command record.
+
+The prokaryote-only domain of CultureForge is already stated at
+the project-vision level: `docs/CLAUDE.md` opens with *"AI
+platform that predicts cultivation media for novel uncultured
+bacteria and archaea …"*. The §13.2 environmental-scope reasoning
+cites that vision sentence indirectly as one of its four
+supporting signals. The cohort design doc itself, however, does
+not contain a top-level scope clause naming the taxonomic domain;
+the prokaryote restriction is implicit in the §7 category list
+(every category — methanogenesis, anammox, ANME, comammox, cable
+bacteria, sulfate reduction, syntrophy, hyperthermophile, etc. —
+is a prokaryotic guild) but is nowhere stated as a discovery-query
+clause.
+
+This amendment closes that documentation gap. It records the
+already-applied taxonomic scoping into the locked discovery
+methodology so that every future batch's broad query is bound by
+it, rather than the restriction continuing to live only in
+per-run commands.
+
+### 15.2 — The clause
+
+**Option 1 discovery query — taxonomic domain (locked).** The
+Option 1 broad NCBI `datasets summary genome` query is
+restricted to:
+
+- **Bacteria** (NCBI taxid `2`)
+- **Archaea** (NCBI taxid `2157`)
+
+Eukaryotic MAGs (fungi, protists, microalgae, eukaryotic phototrophs,
+metazoan MAGs of any kind) are OUT of scope for CultureForge and
+therefore out of scope for the blind-test cohort. This restriction
+applies uniformly across all batches of the multi-batch cohort
+assembly. The taxonomic-domain restriction is added alongside —
+not in place of — the other locked discovery-query parameters from
+§13.2 (`--assembly-source GenBank`, `--released-after 2026-01-01`,
+`--mag only`).
+
+**Operational form.** Because `datasets summary genome` requires
+either a taxon or an accession subcommand, the broad query is
+issued as two parallel invocations (`taxon "bacteria"` and
+`taxon "archaea"`) with the §13.2 / §14 flags identical between
+them, and the JSONL outputs are concatenated downstream as a
+single combined hit list. This is the same operational form used
+on 2026-05-31 and is the form that all future batches must
+follow.
+
+### 15.3 — Direction of change
+
+**Documentation-only.** This amendment does not change what ran
+on 2026-05-31, does not change the §13.2 scope filter, does not
+change the §14 refinements, and does not change the §3/§4
+mechanical filter. The 2026-05-31 broad query was already
+prokaryote-only by construction (141,783 + 8,241 = 150,024 raw
+hits, zero eukaryotes); this amendment merely records that the
+constraint applies to all future batches as a locked
+methodological clause rather than as a per-run operator choice.
+
+The CultureForge applicability domain (Bacteria + Archaea,
+eukaryotes excluded) is unchanged — it was already the project
+scope per `docs/CLAUDE.md`. The cohort-design enforcement of
+that scope is what §15 newly records.
+
+### 15.4 — What this amendment does NOT change
+
+- §1, §2, §3, §4, §6, §7, §8, §9, §10 of the cohort design — all
+  unchanged.
+- §13 discovery-channel methodology — unchanged (§15 adds one
+  locked parameter to the §13.2 broad-query specification; it
+  does not modify any of the §13.2 parameters already pinned).
+- §14 scope-filter operational refinements — unchanged.
+- The 2026-05-31 funnel numbers (150,024 raw → 89,687 scope →
+  89,665 mechanical) — unchanged (the broad query was already
+  prokaryote-only).
+- Documented batch-1 shortfalls per §14.7 (comammox 0, cable
+  bacteria 2) — unchanged.
+- §13.3 Option 2 operationalization — unchanged. Option 2 has
+  not begun. (Option 2 is a literature-search channel; the
+  taxonomic-domain restriction applies there too, by the same
+  CultureForge-applicability reasoning, but operationalization
+  of that restriction for Option 2 is deferred to when Option 2
+  runs.)
+- 30–40 cohort target, ~50/50 mix, >95% ANI held-out threshold,
+  dev-cohort reference, no-peeking rule — all unchanged.
+
+### 15.5 — State of the cohort at amendment time
+
+- **Assembly status:** NOT begun. No candidate identified, no
+  candidate recorded, no genome downloaded, no scoring or
+  inspect path run.
+- **2026-05-31 broad-query state:** Bacteria + Archaea JSONL
+  dumps under `data/validation/blind_test_batch1/` (untracked);
+  scope-survivor / mechanical-survivor counts as recorded in
+  §14.6. No re-run is required — the query already conformed to
+  the §15 clause.
+- **Open repo-side artifacts** (all doc/data-setup, no scoring):
+  - Dev-cohort comparison reference (manifest + sketch zip)
+    under `data/validation/` (untracked)
+  - `.gitignore` rule for `data/blind_test/` (uncommitted,
+    carried for the eventual Task 4 batch commit)
+  - Backlog entries appended to `docs/PHASE_6_BACKLOG.md`
+    (uncommitted, carried for the eventual Task 4 batch commit)
+  - §13 amendment committed 2026-05-30 (SHA `3e098bb`, on
+    origin/main)
+  - §14 amendment + `scripts/blind_test/filter_option1.py`
+    committed 2026-05-31 (locally HEAD; not yet pushed at the
+    time of §15 drafting)
+  - This §15 amendment
+
+### 15.6 — Authority
+
+§10 of this document permits amendments before assembly begins.
+This amendment is recorded before assembly begins — no candidate
+has been sampled from the cleaned pool to fill any §7 quota, no
+manifest has been written. The drafted-then-committed-before-
+execution model from §13 and §14 is preserved.
+
+**Drafted:** 2026-05-31 (immediately after §14 commit, before
+any §7 quota sampling).
+
+**Trigger:** during pre-sampling review, the manuscript author
+noted that the prokaryote-only constraint — already enforced
+on 2026-05-31 by the operator's per-run taxon-argument choice
+and stated at the project-vision level in `docs/CLAUDE.md` — was
+not written into the cohort discovery methodology. §15 closes
+that documentation gap.
+
+**Relationship to §13 and §14.** §13 specified WHAT the
+discovery channel is and §14 recorded HOW the scope filter was
+operationalized on first contact with real data. §15 records
+the TAXONOMIC DOMAIN to which both apply, completing the
+discovery-methodology specification so that future batches'
+queries are bound by the same domain the 2026-05-31 query was
+bound by in practice. None of §13's scope boundary, §14's
+direction-of-change framing, or the project Vision's
+applicability claim is changed.
