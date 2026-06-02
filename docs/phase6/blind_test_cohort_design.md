@@ -1363,3 +1363,329 @@ Together §13 (discovery), §14 (scope filter), §15
 §17 (held-out alignment-fraction floor) form the locked
 sampling-discovery-verification methodology for the
 blind-test cohort.
+
+---
+
+## 18. Pre-assembly amendment 2026-06-01 — completeness pre-filter + CheckM2 binding-gate rule
+
+**Status:** Pre-assembly amendment. No candidate has been
+recorded in `docs/phase6/blind_test_cohort.tsv`. The §16-compliant
+2026-06-01 8-candidate batch verified to 3 PASS / 5 FAIL on
+completeness under §3, prompting the 2026-06-01 descriptive
+ablation of the 89,665-survivor pool
+(`data/validation/blind_test_batch1/completeness_ablation.tsv`).
+This amendment locks the two-part rule into methodology BEFORE
+the pool re-filtering and the next batch draw. Recorded in the
+drafted-then-committed-before-it-binds sequence used for §13–§17.
+
+### 18.1 — Why this amendment exists
+
+The principle: a blind-test cohort's quality column must be a
+real, uniform measurement — one tool, one version, applied
+identically to every recorded member — not a patchwork of
+depositor self-reports made with different versions that
+disagree systematically. And the upstream pool must not
+discard MAGs simply for being unmeasured, because "no published
+quality data" is not itself a quality signal.
+
+§3 and §6 pre-register a completeness / contamination threshold
+(≥ 70% complete, ≤ 5% contamination) but leave two operational
+questions under-specified: (a) what role published depositor
+quality data plays in pool curation, and (b) whose measurement
+is the binding one for recording a candidate into the cohort.
+
+The questions surfaced when the §16-compliant 8-candidate batch
+verified to 3 PASS / 5 FAIL on completeness under §3. The
+2026-06-01 descriptive ablation established four evidence points:
+
+1. **62.40% of the pool (55,953 / 89,665 MAGs) carries
+   published completeness/contamination in BioSample
+   metadata; 37.60% (33,712) has none.** The "partial data"
+   case is empty in practice — depositors who publish
+   completeness also publish contamination (CheckM produces
+   both together).
+
+2. **Published numbers are tool-version-heterogeneous.** Ten
+   tool labels appear, dominated by unversioned `CheckM`
+   (37,281 records) and `Anvio 7.1` (9,345 records, which wraps
+   CheckM); `CheckM v1.1.3` (7,169), `CheckM2` (1,052),
+   `CheckM2_v1.0.1` (581), and other variants make up the rest.
+   Only ~3% cite a CheckM2 variant. CheckM and CheckM2 disagree
+   systematically on some lineages — Patescibacteria,
+   AAI-divergent archaea — so recording on published numbers
+   would make the cohort's quality column an internally
+   incomparable patchwork.
+
+3. **A strict published-≥70% pre-filter (excluding all no-data
+   MAGs) would structurally empty the hard categories.** Per
+   the ablation: ANME (n=8) → 0 strict-passing; cable bacteria
+   (n=2) → 0; extreme archaea (n=272) → 1; lithoautotrophic
+   iron (n=35) → 0. These are the categories where the pool is
+   dominated by no-data MAGs, not by failing MAGs. The batch-1
+   ANME candidate `GCA_057266155.1` is the worked example —
+   no published completeness, measured by CheckM2 v1.1.0 at
+   82.79% / 2.51%, passes §3 cleanly.
+
+4. **CheckM2 cost is negligible at cohort scale.** The
+   2026-06-01 batch-1 verification measured 6 candidates in 69
+   seconds on 12 threads (~5 minutes projected for a full
+   30–40-organism cohort). The "measure on draw" alternative to
+   a strict pool pre-filter is operationally trivial.
+
+The two-part rule below flows directly from these four
+findings: drop MAGs already known to fail quality (the only
+role published data should play), keep MAGs that are passing
+or unmeasured (the unmeasured-but-good case is real and
+concentrated in the hard categories), and measure every
+recorded candidate uniformly with the project's pinned CheckM2
+so the cohort's quality column is internally consistent across
+all recorded members. The rule is principled at the level of
+"what is the quality column" and applies uniformly to every
+candidate in every batch.
+
+§18 supersedes the implicit "trust whatever quality data
+exists" assumption that §3 / §6 read as before this amendment.
+That assumption produces a tool-heterogeneous column on the
+record side and an over-strict cut on the pool side; §18
+replaces it with one binding tool on the record side and a
+purely-corrective cut on the pool side.
+
+### 18.2 — The clause: two parts
+
+#### 18.2.A — Pool pre-filter (upstream, conservative)
+
+A MAG is EXCLUDED from the §16 draw pool iff its BioSample
+attributes report:
+
+- `published_completeness < 70.0%`, OR
+- `published_contamination > 5.0%`
+
+Where `published_completeness` and `published_contamination`
+are values of any BioSample attribute whose name
+case-insensitively contains "completeness" or "contamination"
+respectively, excluding attributes whose name also contains
+"software" — i.e. the same field-name search the 2026-06-01
+ablation used, which surfaced `completeness score` /
+`contamination score` (55,915 records) and `Completeness (%)`
+/ `Contamination (%)` (38 records) as the only naming
+conventions in use.
+
+A MAG is RETAINED if either:
+
+- it has published completeness ≥ 70% AND published
+  contamination ≤ 5% (published-passing), OR
+- it has no published completeness OR contamination attribute
+  (no-data — kept; measured at recording time per 18.2.B).
+
+Rationale: "no published quality data" is not a quality
+signal. The pre-filter's role is to drop MAGs the depositor
+has self-flagged as failing, not to discard unmeasured ones.
+The strict alternative — require published-≥70% — would empty
+ANME, cable bacteria, extreme archaea, and lithoautotrophic
+iron from the draw pool, the same categories §7 already
+identifies as the hardest to fill.
+
+Operationally, 18.2.A runs strictly downstream of all upstream
+filters (§14 scope, §3 / §4 mechanical, §15 domain). Its
+output is the new survivor pool the §16 draw operates on.
+
+#### 18.2.B — CheckM2 binding quality gate (every recorded member)
+
+Every candidate that will be RECORDED into
+`docs/phase6/blind_test_cohort.tsv` MUST be verified by this
+project's pinned CheckM2 install (currently version 1.1.0,
+with the bundled DIAMOND reference DB
+`uniref100.KO.1.dmnd` at the path resolved by
+`checkm2 database --current`) and MUST clear:
+
+- `checkm2_completeness ≥ 70.0%`, AND
+- `checkm2_contamination ≤ 5.0%`
+
+on the CheckM2-reported numbers. The depositor's published
+quality numbers are used ONLY for the upstream pre-filter
+exclusion in 18.2.A. They are NEVER used as the quality of
+record, and they NEVER substitute for a CheckM2 measurement
+on a candidate proposed for recording.
+
+The CheckM2 version is pinned for cohort uniformity. A future
+version bump (e.g. CheckM2 v1.2.x) requires its own
+pre-assembly amendment specifying the new version and the
+rationale; it does not silently propagate from a
+`conda update`. Within a single recorded cohort, every member
+is measured by the same CheckM2 version.
+
+The CheckM2 numbers and the tool version are recorded in the
+per-batch verification artifact (e.g.
+`verification_batch1.tsv` and `checkm2_quality_report.tsv`),
+so the rule's application is auditable from the artifacts
+alone.
+
+### 18.3 — Direction of change
+
+**Stricter on what counts as the quality of record; neutral
+on the pool's category coverage; corrective on the pool's
+known-failing exclusions.** §18 does not move the scope
+boundary or alter any §14 / §15 / §16 / §17 rule. It
+pre-filters the pool to drop known-failing MAGs while
+preserving the no-data MAGs that strict-mode would empty hard
+categories of, and it elevates this project's CheckM2 as the
+binding quality measurement so the cohort's quality column is
+internally consistent.
+
+Direction relative to the original §3 + the implicit
+"trust whatever quality data exists" assumption: the
+trust-whatever assumption is replaced by a uniform
+measurement rule. Direction relative to the §6 verification
+step as amended by §17: §6.C already accepted CheckM2 or
+BioSample-published CheckM; §18 makes CheckM2 mandatory and
+specifies the published role precisely (pre-filter only,
+never recording).
+
+Same "declare-then-apply-uniformly" model as §14 / §15 / §16
+/ §17.
+
+### 18.4 — Effect on the 2026-05-31 funnel and on the §16-compliant batch
+
+The 2026-05-31 funnel (141,783 Bacteria + 8,241 Archaea raw →
+89,687 scope → 89,665 mechanical) is unchanged at the scope
+and mechanical stages. §18.2.A applies AFTER §14 / §3 / §4 /
+§15 and BEFORE the §16 draw — the pool the draw operates on
+is now the §18-pre-filtered version of `survivors_v3.tsv`.
+
+The §16-compliant 2026-06-01 8-candidate batch was drawn from
+the pre-§18 pool. Of those 8, 3 PASS the §18.2.B binding gate
+(CheckM2 ≥ 70% / ≤ 5%): `GCA_054919905.1` (Methanohalophilus
+halophile, 96.38% / 0.12%), `GCA_055897235.1` (Thermotogota
+hyperthermophile, 84.17% / 0.28%), `GCA_057266155.1`
+(Methanophagales archaeon ANME, 82.79% / 2.51%). The other 5
+FAIL under §18.2.B and §3. Recording a cohort under §18
+requires a re-draw against the §18.2.A-pre-filtered pool —
+see 18.7.
+
+### 18.5 — Amended §3 and §6 operational form
+
+§3's threshold values (completeness ≥ 70%, contamination
+≤ 5%) are unchanged. What §18 amends is what the thresholds
+are measured ON, and at which step.
+
+**Amended §3 — quality thresholds, in operational form:**
+
+  - **Quality of record** (value used to admit a candidate
+    into the cohort): CheckM2 (pinned project version) on the
+    locally staged FASTA — never the depositor's published
+    number.
+  - **Pool eligibility** (value used to exclude a MAG from
+    the draw pool): depositor's published completeness /
+    contamination when present (excluded if <70% / >5%);
+    MAGs with no published data are pool-eligible and have
+    their quality measured at recording time per the binding
+    gate.
+
+**Amended §6 — verification pipeline, in operational form
+(extends the §17-amended form):**
+
+  - **Step 6.0 — Pool pre-filter (§18.2.A).** Before any §16
+    draw, the survivor pool is filtered to exclude MAGs with
+    `published_completeness < 70%` or
+    `published_contamination > 5%`. The output is the
+    §18-pre-filtered survivor pool, recorded as a new artifact
+    (e.g. `survivors_v4.tsv`) with its own per-category bin
+    counts.
+  - **Step 6.A** — unchanged (held-out ANI via `skani dist`).
+  - **Step 6.B** — unchanged (§17 alignment-fraction floor).
+  - **Step 6.C — Quality (§18.2.B).** Run CheckM2 (pinned
+    project version) on the staged candidate genome. Record
+    the CheckM2 completeness, contamination, model used, and
+    CheckM2 version. Apply the §3 thresholds. Depositor-
+    published numbers from the BioSample are recorded for
+    transparency but are NOT used as the quality of record.
+  - **Step 6.D** — unchanged (overall verdict combining
+    held-out + quality).
+
+§3's and §6's original text is preserved; the amended form
+above is the operational §3 / §6 in force from §18 forward,
+the same append-only supersession pattern §14 / §15 / §16 /
+§17 use.
+
+### 18.6 — Shortfalls
+
+§13.2's category-pool shortfalls, §16's BioProject-exhaustion
+shortfalls, §17-induced FAIL / INCONCLUSIVE classifications,
+and §18-induced shortfalls (a category whose §18-pre-filtered
+pool is too small, or where a draw's CheckM2 verification
+yields no PASS-ing candidate) are all treated identically at
+the cohort-composition level: documented under-fill, no
+backfill from another category, no relaxation of any rule.
+
+### 18.7 — Operational consequences (tracked separately from this commit)
+
+§18 triggers two implementation actions, recorded as TO-DO at
+amendment time:
+
+1. **Re-filter the 89,665-survivor pool under §18.2.A.** The
+   §18-pre-filtered pool will be written as a new artifact
+   (e.g. `survivors_v4.tsv`) with its own per-category bin
+   counts. The resulting pool size and per-category counts are
+   recorded at implementation time, NOT pre-committed in this
+   amendment — the binding number is what the actual re-filter
+   run produces.
+
+2. **Re-run the §16 draw against the §18-pre-filtered pool.**
+   The 2026-06-01 8-candidate `proposed_batch1.tsv` is
+   superseded: it was drawn from the pre-§18 pool and its
+   strong tier is empty under §18.2.B. The next draw uses the
+   same committed `scripts/blind_test/draw_batch.py` against
+   the §18-pre-filtered pool, with a fresh recorded seed
+   (per §16's reproducibility contract).
+
+### 18.8 — Related-but-separate opportunity (NOT part of §18)
+
+CheckM2 v1.1.0 is now installed and is the binding tool for
+§18.2.B. The dev-cohort `genome_quality` table — historically
+empty per the phase-6 backlog — could be backfilled using the
+same install, which would close a long-standing gap and make
+the dev-cohort quality column comparable to the blind-test
+cohort's. This is flagged as a related opportunity, NOT part
+of §18 and NOT a §18-induced action: it touches the dev
+cohort, not the blind-test pool, and is recorded as its own
+task on the project backlog.
+
+### 18.9 — Unchanged
+
+§7 category coverage targets; §13.2 broad-query parameters
+and discovery channel; §14 scope-filter clauses; §15
+Bacteria + Archaea domain; §16 one-per-BioProject sampling
+constraint; §17 alignment-fraction floor; §4 mechanical
+filter; §3's threshold values (the threshold values
+themselves are unchanged — §18 governs what they are
+measured on, not what they are).
+
+### 18.10 — State at amendment time
+
+- No candidate is recorded in `docs/phase6/blind_test_cohort.tsv`.
+- No `cultureforge.py inspect` / scoring / prediction path has
+  been run on any candidate.
+- The §16-compliant 8-candidate `proposed_batch1.tsv` is
+  preserved as the pre-§18 draw record, NOT recorded into the
+  cohort manifest; it is superseded by the §18-compliant
+  re-draw that follows.
+- The §17-amended `verification_batch1.tsv` records the
+  8-candidate verification (3 PASS / 5 FAIL). Its
+  CheckM2-derived rows are §18-consistent and can be reused;
+  the 2 depositor-CheckM-derived rows (#2, #3) are FAIL under
+  both §3 and §18.2.B.
+- CheckM2 v1.1.0 is installed in the `checkm2` conda env; the
+  DIAMOND DB
+  `/home/george/databases/CheckM2_database/uniref100.KO.1.dmnd`
+  (3.08 GB) is verified and registered.
+
+### 18.11 — Authority
+
+§18 amends §3 (quality thresholds — clarifies what they are
+measured on) and §6 (verification methodology — adds Step 6.0
+and refines Step 6.C). Together §13 (discovery), §14 (scope
+filter), §15 (Bacteria + Archaea domain), §16 (sampling
+constraint), §17 (held-out alignment-fraction floor), and §18
+(completeness pre-filter + CheckM2 binding-gate rule) form
+the locked sampling-discovery-verification methodology for
+the blind-test cohort.
