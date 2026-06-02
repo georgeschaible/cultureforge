@@ -1124,3 +1124,242 @@ random-sampling from the cleaned pool without further constraint),
 this amendment controls for sampling within a single batch.
 §13, §14, §15, and §16 together form the locked
 sampling-and-discovery methodology for the blind-test cohort.
+
+---
+
+## 17. Pre-assembly amendment 2026-06-01 — verification-step refinement: held-out ANI requires meaningful alignment
+
+**Status:** Pre-assembly amendment. No candidate is recorded in
+`docs/phase6/blind_test_cohort.tsv`. No `cultureforge.py inspect`
+/ scoring / prediction path has been run on any candidate. The
+2026-06-01 first-contact verification produced a per-candidate
+skani table that surfaced the alignment-fraction question; this
+amendment locks the AF floor into the §6 verification methodology
+BEFORE the verification re-evaluation that follows. Recorded in
+the drafted-then-committed-before-execution sequence used for
+§13–§16.
+
+### 17.1 — Why this amendment exists
+
+The principle: an ANI ≥95% claim is an organism-level claim only
+when ANI is computed over a meaningful fraction of either
+genome. ANI estimated from a vanishing alignment is not a noisy
+ANI — it is an undefined ANI, dominated by sketch noise on a
+handful of universally-conserved k-mers (ribosomal proteins,
+rRNA fragments) across genomes that may share nothing else. §4
+and §13.2 lock the held-out rule at "any candidate ≥95% ANI to
+a dev-cohort organism FAILS the held-out check" but are silent
+on the alignment-fraction precondition that makes the ANI metric
+interpretable in the first place. §17 closes that
+under-specification.
+
+The question surfaced operationally. A 2026-06-01 skani run of
+the 8 §16-compliant candidates against the 168 dev-cohort FASTAs
+produced one ANI ≥95% hit: candidate `GCA_055112295.1`
+(*Thermacetogenium phaeum*, batch-1 acetogenesis) vs. dev gid
+1029 (*Carboxydothermus hydrogenoformans*, Phase 5.0 main
+acetogenesis) at **96.47% ANI** with `AF_query = 0.08%` and
+`AF_ref = 0.05%`. All seven of that candidate's dev-Firmicutes
+hits sit in the same regime — *Thermoanaerobacter kivui* 94.51%
+at 0.05% / 0.09%, *Pelotomaculum schinkii* 94.51% at 0.03% /
+0.09%, *Sporomusa ovata* 93.37% at 0.02% / 0.08%, *Neomoorella
+thermoacetica* 90.07% at 0.05% / 0.08% — phylogenetically
+dispersed Firmicutes in distinct families, all returning ANI
+~87–96% on alignment fractions of 0.02–0.09%. The pattern is
+diagnostic of a sketch artifact, not organism-level similarity:
+*Thermacetogenium phaeum* and *Carboxydothermus hydrogenoformans*
+are organisms in different families.
+
+For contrast, the only ANI hit in the same run with non-trivial
+alignment was candidate `GCA_057266155.1` (*Candidatus
+Methanophagales archaeon*, batch-1 ANME) vs. dev gid 1006
+(*Candidatus Methanophaga* sp. AG-394-G06, also ANME) at
+**93.42% ANI** with `AF_query = 28.78%` and `AF_ref = 39.11%`.
+Roughly a third of both genomes aligned, ANI computed over real
+shared content: a genuine genus-level signal that correctly
+passes the 95% rule on its own merit (below threshold). The
+contrast is the worked example: 0.05% AF is the noise floor;
+~30% AF is the signal floor. The 95% ANI rule needs an AF floor
+to distinguish them.
+
+The 15% AF threshold is independently justified, not a
+candidate-specific rescue:
+
+- skani's own documentation states that the ANI estimate is
+  reliable only above ~15% alignment fraction; below that, the
+  metric is dominated by k-mer noise from conserved cores rather
+  than aligned content.
+- Standard MAG-vs-MAG ANI practice treats ANI hits with AF
+  below ~15% as not interpretable for species-level inference.
+
+The clause is therefore principled at two levels — the metric's
+own reliability domain and field convention — and is applied
+uniformly to every candidate in every batch, not selectively to
+the candidate that surfaced the question. Under the same rule, a
+future candidate with `AF = 0.04%` / `99.9% ANI` to some dev
+organism would be correctly classified as "no meaningful
+alignment, ANI artifact, held-out PASS"; a future candidate with
+`AF = 25%` / `95.2% ANI` would be correctly classified as
+held-out FAIL. The 2026-06-01 candidate is an instance of the
+rule's first case, not its rationale.
+
+Surgically excepting `GCA_055112295.1` from the held-out rule
+would be unrecorded post-hoc curation — the failure mode §10
+exists to prevent. Declaring the AF floor as a rule, applying
+it uniformly, and recording it BEFORE the verification
+re-evaluation runs preserves the integrity of the pre-registered
+methodology and binds every future batch's verification step
+the same way.
+
+### 17.2 — The clause: alignment-fraction floor on the held-out ANI rule
+
+The §4 / §13.2 held-out check binds only on skani-reported ANI
+hits that satisfy BOTH of the following conditions, computed by
+`skani dist` (default learned-ANI mode):
+
+- ANI ≥ 95.0%, AND
+- AF_query ≥ 15.0% AND AF_ref ≥ 15.0%
+
+(`AF_query` is the fraction of the candidate genome that
+aligned to the dev reference; `AF_ref` is the fraction of the
+dev reference that aligned to the candidate. skani column
+names: `Align_fraction_query`, `Align_fraction_ref`.)
+
+A candidate FAILS the held-out check (and is dropped per §4 /
+§13.2) iff at least one of its skani hits against the dev
+cohort satisfies BOTH thresholds. ANI hits with ANI ≥ 95% but
+with `AF_query < 15%` OR `AF_ref < 15%` are recorded for
+transparency in the per-batch verification artifact but do NOT
+trigger exclusion — such hits are sketch artifacts on a tiny
+shared fragment (typically universally-conserved markers), not
+organism-level similarity.
+
+The reasoning is not "ANI ≥ 95% sometimes lies." It is "ANI is
+not defined when alignment is vanishing." Below 15% AF, the
+metric the rule depends on is itself unreliable; the rule
+therefore does not have authority to bind. The 95% ANI threshold
+is unchanged.
+
+Operationally:
+
+```
+held_out_FAIL ⇔ ∃ dev_ref : ANI(candidate, dev_ref) ≥ 95%
+                              AND AF_query(candidate, dev_ref) ≥ 15%
+                              AND AF_ref(candidate, dev_ref) ≥ 15%
+```
+
+The per-batch verification artifact (e.g.
+`data/validation/blind_test_batch1/verification_batch1.tsv`)
+records, for each candidate, the maximum-ANI dev hit AND its
+AF values AND a textual flag indicating which of the two
+thresholds the hit satisfies, so the rule's application is
+auditable from the artifact alone.
+
+### 17.3 — Direction of change: verification-step refinement, applied uniformly
+
+**Neutral on novel candidates; stricter on classification
+rigor.** §17 does not move the scope boundary, change the
+89,665-survivor pool, alter the §16-compliant 8-candidate batch,
+or relax the 95% ANI threshold. The 95% rule still binds; §17
+gates whether the ANI metric is reliable in the first place.
+The set of candidates that pass held-out under §17 is a superset
+of the set that would pass without it only when the
+not-passed-without-§17 candidates are precisely those with ANI
+≥ 95% on alignment fractions too small for the metric to be
+interpretable — which is the artifact case the field excludes by
+convention.
+
+Same "declare-then-apply-uniformly" model as §14 / §15 / §16.
+
+### 17.4 — Effect on the 2026-05-31 funnel and on the §16-compliant batch
+
+No effect on the funnel, the survivor pool, the §16-compliant
+sampling procedure, or the 8 §16-compliant candidates. The
+artifacts `survivors_v3.tsv` and `proposed_batch1.tsv` are
+unchanged.
+
+§17 applies to the §6 verification step that runs after
+sampling. The 2026-06-01 first-contact verification table
+`verification_batch1.tsv` is a pre-amendment artifact; the
+§17-amended re-evaluation that follows supersedes it.
+
+### 17.5 — §6 verification methodology, as amended
+
+The §6 verification pipeline is, with §17 in force:
+
+  **Step 6.A — Held-out ANI.** Run `skani dist` for each
+  candidate against the dev-cohort FASTAs listed in
+  `data/validation/dev_cohort_fasta_manifest.tsv`. For each
+  candidate, record the maximum-ANI hit: `ANI`, `AF_query`,
+  `AF_ref`, dev `gid`, dev `accession`, dev organism note.
+
+  **Step 6.B — Apply the §17.2 floor.** A candidate is
+  `held_out_FAIL` iff at least one hit satisfies ANI ≥ 95% AND
+  `AF_query` ≥ 15% AND `AF_ref` ≥ 15%. Otherwise
+  `held_out_PASS`, recorded with the raw skani values for
+  transparency.
+
+  **Step 6.C — Quality.** Apply the §3 thresholds (completeness
+  ≥ 70%, contamination ≤ 5%). If depositor-published CheckM /
+  CheckM2 data is present in the BioSample attributes, use it;
+  otherwise run CheckM2 locally on the staged candidate
+  genome. Without CheckM2 and without BioSample-published data,
+  the candidate is recorded as `quality_INCONCLUSIVE` and
+  cannot enter the cohort until completeness / contamination
+  data is obtained.
+
+  **Step 6.D — Overall verdict.** `PASS` only if
+  `held_out_PASS` AND `quality_PASS`. `FAIL` if either
+  `held_out_FAIL` or `quality_FAIL`. `INCONCLUSIVE` if
+  `held_out_PASS` but quality has not been measured; in that
+  state the candidate cannot be recorded into the cohort
+  manifest until the quality measurement is supplied.
+
+§6's original text is preserved; the methodology above is its
+operational form in force from §17 forward, the same way §14 /
+§15 / §16 supersede portions of §3 / §4 / §5 / §13.2 without
+rewriting the original sections.
+
+### 17.6 — Shortfalls
+
+§13.2's category-pool shortfalls, §16's BioProject-exhaustion
+shortfalls, and §17-induced `FAIL` or `INCONCLUSIVE`
+classifications are all treated identically at the
+cohort-composition level: documented under-fill, no backfill
+from another category, no relaxation of any rule.
+
+### 17.7 — Unchanged
+
+§7 category coverage targets; §13.2 broad-query parameters
+and discovery channel; §14 scope-filter clauses; §15
+Bacteria + Archaea domain; §16 one-per-BioProject sampling
+constraint; §3 / §4 mechanical filter and the 95% ANI
+threshold (the ANI threshold is unchanged — §17 governs when
+it binds, not what it is); all upstream filter artifacts.
+
+### 17.8 — State at amendment time
+
+- No candidate is recorded in `docs/phase6/blind_test_cohort.tsv`.
+- No `cultureforge.py inspect` / scoring / prediction path has
+  been run on any candidate.
+- The §16-compliant 8-candidate batch is locked at
+  `data/validation/blind_test_batch1/proposed_batch1.tsv`
+  (committed-script @ `4389db7` + seed `20260601` + quotas
+  `2/4/2` reproduce it).
+- The 2026-06-01 first-contact verification table
+  `verification_batch1.tsv` is a pre-amendment artifact and is
+  superseded by the §17-amended re-evaluation that follows.
+- CheckM2 is not installed on this host; resolving the
+  `quality_INCONCLUSIVE` rows in the re-evaluation requires
+  either installing CheckM2 or surfacing BioSample-published
+  CheckM data not detected in the first-contact pass.
+
+### 17.9 — Authority
+
+§17 amends §6 (verification methodology) and refines the
+operational form of §4 / §13.2 (the held-out rule).
+Together §13 (discovery), §14 (scope filter), §15
+(Bacteria + Archaea domain), §16 (sampling constraint), and
+§17 (held-out alignment-fraction floor) form the locked
+sampling-discovery-verification methodology for the
+blind-test cohort.
