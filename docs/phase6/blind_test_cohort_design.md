@@ -928,3 +928,199 @@ queries are bound by the same domain the 2026-05-31 query was
 bound by in practice. None of §13's scope boundary, §14's
 direction-of-change framing, or the project Vision's
 applicability claim is changed.
+
+---
+
+## 16. Pre-assembly amendment 2026-06-01 — sampling-procedure constraint: at most one MAG per BioProject
+
+**Status:** Pre-assembly amendment. Batch 1 assembly has NOT begun
+— no candidate has been recorded in
+`docs/phase6/blind_test_cohort.tsv`, no genome has been downloaded,
+no skani / ANI / CheckM2 / inspect / scoring path has been run on
+any candidate. This amendment is recorded BEFORE the batch-1
+sampling step that it governs, consistent with the §10
+pre-registration commitment that the protocol cannot be altered
+after assembly begins without an amendment record, and consistent
+with the drafted-then-committed-before-execution sequence used for
+§13, §14, and §15.
+
+### 16.1 — Why this amendment exists
+
+The §13.2 discovery-channel methodology and the §14 scope-filter
+refinements specify HOW candidates are identified and which records
+pass the scope and mechanical filters, but they leave the per-batch
+sampling step (the random draw from the cleaned survivor pool onto
+§7 category quotas) under-specified beyond "random sample from each
+category's binned survivors with a recorded seed."
+
+A 2026-06-01 first-contact draw against the cleaned 89,665-survivor
+pool (seed `20260601`, tier quotas strong=2 / mid=4 / weak=2)
+surfaced the gap: the strong-acetogenesis pick (`GCA_055112295.1`,
+*Thermacetogenium phaeum*) and the weak-ANME pick
+(`GCA_055141645.1`, *Candidatus Methanophagales archaeon
+ANME-1-THS*) both came from BioProject `PRJNA308326` — the same
+Subsurface-shale hydraulically-fractured-fluid study, different
+geographic sites but a single depositor study. A quarter of an
+8-MAG batch from one BioProject undercuts the independence a
+blind-test cohort needs: one study's MAG-calling pipeline,
+sample-handling artifacts, geochemistry, and metadata conventions
+become a shared exposure across the affected candidates rather
+than independent test signals.
+
+The criteria must drive the draw uniformly. Surgically removing the
+second-drawn shale MAG and replacing it would be unrecorded
+post-hoc curation — the exact failure mode the §10 pre-registration
+commitment is designed to prevent. Instead, the constraint is
+declared as a rule, applied uniformly to every category in the
+draw, and recorded here BEFORE the re-draw runs, so the committed
+methodology matches what ran and the rule binds every future
+batch's sampling step the same way. This follows the §14 model:
+discovered on first contact with real draw output, applied
+uniformly across all categories, recorded as a faithful refinement
+of the pre-registered procedure rather than as a one-off
+intervention.
+
+### 16.2 — The clause: at most one MAG per BioProject accession per batch
+
+Within a single batch, no two drawn candidates may share a
+BioProject accession. The binding identifier is the BioProject
+accession reported by NCBI on the Assembly record — specifically
+`assembly_info.biosample.bioproject_accession` (or, equivalently,
+the accession on the BioSample's `bioprojects[]` list) as it
+appears in the broad-query JSONL artifact.
+
+When a category's randomly-drawn survivor shares a BioProject with
+an already-drawn candidate **earlier in this batch's draw order**,
+the survivor is rejected and the category's draw is re-attempted
+against its survivor pool with the rejected accession excluded
+from the re-attempt. The re-attempt continues until either a
+non-conflicting survivor is drawn or the category's pool is
+exhausted. In the exhaustion case, the slot is left short and
+documented identically to a §13.2 shortfall (under-fill recorded,
+no backfill from another category, no relaxation of the §16
+constraint).
+
+Draw order is fixed and reproducible: tier `strong` first, then
+`mid`, then `weak`; within each tier, categories are processed in
+the alphabetical order of the category names that `random.sample`
+returned (i.e. `chosen_cats.sort()` after the tier-level
+`random.sample`, then iterated in sorted order for the
+per-category `random.choice`). This ordering is recorded in the
+draw output so the rule's application is reproducible from the
+recorded seed alone.
+
+Records with a missing or empty BioProject accession are treated
+as distinct from every other record (i.e. they do not conflict
+with anything via this rule). The rationale: BioProject is the
+binding signal for shared study provenance; absence of a
+BioProject is not itself evidence of shared exposure.
+
+Cross-batch carryover: this clause binds within a single batch. A
+future batch may draw from BioProjects that earlier batches drew
+from, but each batch's internal one-per-BioProject constraint
+still holds. Whether to extend a no-cross-batch-BioProject-overlap
+rule to the multi-batch cohort is a separate question, to be
+decided when batch 2 is sampled — not pre-empted here.
+
+### 16.3 — Direction of change: sampling-methodology refinement, applied uniformly
+
+**Stricter on within-batch independence; neutral on coverage.** §16
+does not move the scope boundary, change the 89,665-survivor pool,
+or shift any §7 category quota; it constrains how a batch is drawn
+from that fixed pool so that a single depositor study cannot
+dominate a batch. Any category can still be filled from its pool as
+long as that pool contains at least one BioProject not already
+represented earlier in the batch's draw order. Applied uniformly
+across all categories in every batch, not selectively to the
+categories where the conflict first surfaced — the same
+"declare-then-apply" model as §14's refinements and §15's domain
+restriction.
+
+### 16.4 — Effect on the 2026-05-31 funnel and on the 89,665-survivor pool
+
+None. The §13.2 broad query, the §14 scope filter, and the §3 / §4
+mechanical filter ran on 2026-05-31 and produced the locked
+141,783 Bacteria + 8,241 Archaea raw → 89,687 scope → 89,665
+mechanical pool documented in §14.6. §16 is a sampling-step
+constraint that applies AFTER the survivor pool is fixed; it does
+not re-open any earlier filter and does not require re-running the
+scope or mechanical steps. The same `survivors_v3.tsv` artifact
+remains the authoritative input to the draw; only the draw
+procedure changes.
+
+### 16.5 — Implementation: `scripts/blind_test/draw_batch.py`
+
+The executable form of §16.2 lives at
+`scripts/blind_test/draw_batch.py`, committed in the same commit as
+this amendment alongside `scripts/blind_test/filter_option1.py`
+(the §14 scope-filter authority). The script takes the random seed
+and per-tier quotas (`--seed`, `--strong`, `--mid`, `--weak`) as
+CLI parameters, reads the cleaned survivor pool produced by
+`filter_option1.py`, and writes the proposed-candidate TSV to a
+caller-specified path under
+`data/validation/blind_test_<batch>/`. Its `draw_batch()` function
+implements §16.2 — maintaining a running set of drawn BioProject
+accessions, rejecting and re-drawing on conflict, leaving slots
+short on pool exhaustion. The proposed-batch TSV records the
+seed, the tier quotas, the draw order, an explicit citation to
+§16, and the list of §16-rejected accessions (each annotated
+with the BioProject it conflicted against), so the rule's
+application is auditable from the artifact alone — and the
+batch is reproducible from the recorded seed + quotas + input
+artifacts.
+
+The §16.2 doc text controls; the script is the executable form,
+not an alternative authority. Any future batch must run through
+this script (or a successor under the same path) so the rule
+binds uniformly.
+
+### 16.6 — Shortfalls
+
+§13.2's shortfall rule (`comammox = 0`, `cable bacteria = 2` as
+documented batch-1 under-fills) remains in force as written. §16
+may additionally cause a category's slot to be left short if that
+category's pool contains only BioProjects already represented
+earlier in the batch's draw order. A §16-induced shortfall is
+documented identically to a §13.2 shortfall (under-fill recorded
+in the proposed-batch artifact, no backfill from another category,
+no relaxation of the §16 constraint). In the expected case for
+batch 1 — pool sizes well above the 8-slot draw for most
+categories — §16-induced shortfalls should be rare, but the
+small-pool weak-tier categories (ANME = 8, cable bacteria = 2)
+are the realistic places they could surface.
+
+### 16.7 — Unchanged
+
+§7 category coverage targets, §13.2 broad-query parameters and the
+A2-fallback-deferred default, §14 scope-filter clauses (Clause 4
+invertebrate-host, positive-environmental-signal gate, Clause 1
+env-host-value exemption), §15 Bacteria + Archaea taxon
+restriction, and all §3 / §4 mechanical filters all remain in
+force as written. §16 adds a constraint to the sampling step
+between "cleaned survivor pool" and "proposed batch"; nothing
+upstream of that step changes.
+
+### 16.8 — State at amendment time
+
+- No candidate is recorded in `docs/phase6/blind_test_cohort.tsv`.
+- No genome has been downloaded.
+- No skani / ANI / CheckM2 / inspect / scoring path has been run
+  on any candidate.
+- The 2026-06-01 first-contact draw at seed `20260601` produced a
+  proposed 8-candidate list that surfaced the BioProject-concentration
+  concern (candidates 1 and 7 both from `PRJNA308326`). That list
+  was held transiently in
+  `data/validation/blind_test_batch1/proposed_batch1.tsv` as a
+  pre-amendment artifact, was NOT recorded as the selected batch
+  in `docs/phase6/blind_test_cohort.tsv`, and is superseded by the
+  §16-compliant re-draw that follows this amendment. The
+  re-drawn `proposed_batch1.tsv` is the authoritative
+  proposed-batch-1 artifact going forward.
+
+### 16.9 — Authority
+
+Where this amendment conflicts with §5 (which calls for
+random-sampling from the cleaned pool without further constraint),
+this amendment controls for sampling within a single batch.
+§13, §14, §15, and §16 together form the locked
+sampling-and-discovery methodology for the blind-test cohort.
