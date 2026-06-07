@@ -1,0 +1,60 @@
+# Blind-test cohort manifest — CultureForge Phase 6
+#
+# STATUS: UNDER ASSEMBLY (batch 1 of N).
+#
+# Scope of this file:
+#   - Option 1 only (environmental MAG / plausibility cohort).
+#   - Batch 1: 7 verified candidates + 1 documented §13.2 shortfall (comammox).
+#   - The Option 2 scored half of the blind-test cohort is NOT yet drawn.
+#   - The Option-1-vs-Option-2 set structure (whether they form one cohort,
+#     two scored halves, scored disjoint, or some other arrangement) is
+#     DEFERRED to scoring-design time and is NOT prejudged by this file.
+#
+# Provenance chain — methodology and committed executable form:
+#   §13 discovery + §14 scope filter + §15 Bacteria+Archaea domain +
+#   §16 sampling-independence + §17 held-out ANI alignment-fraction floor +
+#   §18 pool pre-filter + CheckM2 binding gate, of
+#   docs/phase6/blind_test_cohort_design.md (§18 committed at f849881).
+#
+#   Committed executable form (in pipeline order):
+#     scripts/blind_test/filter_option1.py  §14 scope filter        (0d5a7b8)
+#     scripts/blind_test/refilter_v4.py     §18.2.A pool pre-filter (225a2b3)
+#     scripts/blind_test/draw_batch.py      §16 first-draw          (4389db7)
+#     scripts/blind_test/redraw_batch.py    §16-style redraw        (e42a294)
+#
+# Batch 1 reproducibility contract:
+#   pool      survivors_v4.tsv md5 42f65af83cbd48c91e331b36d6306787 (72796 records)
+#   draw      draw_batch.py @ seed 20260603, quotas strong=2 mid=4 weak=2
+#   redraw    redraw_batch.py @ seed 20260603, exclude {GCA_055108635.1, GCA_054608515.1},
+#             keep {GCA_964732075.1, GCA_982640665.1, GCA_982592295.1,
+#                   GCA_977678135.1, GCA_057266155.1}
+#   verify    §17 held-out skani 0.3.2 (-s 50 --min-af 0, 168 dev-cohort FASTAs)
+#             §18 CheckM2 v1.1.0 (DB uniref100.KO.1.dmnd)
+#
+# Carry-forward evidence (gitignored, not committed):
+#   data/validation/blind_test_batch1/proposed_batch1_v4.tsv          (first-draw)
+#   data/validation/blind_test_batch1/proposed_batch1_v4_repl.tsv     (redraw)
+#   data/validation/blind_test_batch1/verification_batch1_v4.tsv      (keepers + failed)
+#   data/validation/blind_test_batch1/verification_batch1_v4_repl.tsv (replacements)
+#   data/validation/blind_test_batch1/checkm2_quality_report_v4*.tsv
+#   data/validation/blind_test_batch1/ani_v4*/skani_results_full.tsv
+#
+# Column groups:
+#   Identity:              cohort_id, accession, organism_name, strain_isolate, taxid
+#   Selection provenance:  source_option, tier, category, draw_script, draw_seed, selection_note
+#   Verification (§17/§18): checkm2_completeness, checkm2_contamination,
+#                          heldout_top_ani, heldout_af_query, heldout_af_ref,
+#                          heldout_closest_dev, verification_verdict
+#   Descriptive:           scorability, provenance_type, biosample_provenance,
+#                          bioproject, release_date, geo_loc
+#   Status:                cohort_status
+#
+cohort_id	accession	organism_name	strain_isolate	taxid	source_option	tier	category	draw_script	draw_seed	selection_note	checkm2_completeness	checkm2_contamination	heldout_top_ani	heldout_af_query	heldout_af_ref	heldout_closest_dev	verification_verdict	scorability	provenance_type	biosample_provenance	bioproject	release_date	geo_loc	cohort_status
+BT001	GCA_964732075.1	Methylococcaceae bacterium	PELAGICS-MAG-m2-bin111894-MAJCE-SM-01sep20.	1933926	Option 1	strong	methane metabolism	draw_batch.py	20260603	original keeper	99.70	0.07	<50	NA	NA	(no hit at -s 50)	PASS	plausibility	in-situ	isolation_source=Majcz lake | env_broad_scale=freshwater ecosystem | env_medium=natural lake | geo_loc_name=Poland | package=Generic.1.0		2026-01-27	Poland	Option1_batch1_verified
+BT002	GCA_982640665.1	Rhodoluna sp.	HRS-bin0329-RIMVE-SM05-16aug23	1969481	Option 1	strong	phototrophy	draw_batch.py	20260603	original keeper	72.91	1.90	<50	NA	NA	(no hit at -s 50)	PASS	plausibility	in-situ	isolation_source=Rimov Reservoir | env_broad_scale=freshwater lake biome | env_medium=water sample | geo_loc_name=Czech Republic | package=Generic.1.0		2026-04-28	Czech Republic	Option1_batch1_verified
+BT003	GCA_982592295.1	Candidatus Kuenenia sp.	ASPL16-1_SAMN05150089_MAG_00000021	2499824	Option 1	mid	anammox	draw_batch.py	20260603	original keeper	98.44	0.62	80.73	0.04	0.06	gid:1117 Chlorobaculum limnaeum DSM 1677	PASS	plausibility	in-situ	isolation_source=marine metagenome | geo_loc_name=Sweden | package=Generic.1.0		2026-04-30	Sweden	Option1_batch1_verified
+BT004	GCA_054328135.1	Halobacteriota archaeon	SJ.T15_1_bin.29	3100168	Option 1	mid	halophile	redraw_batch.py	20260603	replacement after halophile §18/CheckM2 failure (excluded GCA_055108635.1; CheckM2 completeness 55.96 < §3 threshold)	85.97	3.35	<50	NA	NA	(no hit at -s 50)	PASS	plausibility	in-situ	isolation_source=permafrost soil | env_broad_scale=permafrost soil | env_local_scale=methane hotspot | env_medium=soil | geo_loc_name=China:Sanjiang Plain | package=MIMAG.soil.6.0	PRJNA1306690	2026-01-04	China:Sanjiang Plain	Option1_batch1_verified
+BT005	GCA_054603255.1	Acidithiobacillus sp.	ML34-015-32	1872118	Option 1	mid	lithoautotrophic iron	redraw_batch.py	20260603	replacement after lithoautotrophic iron §17/held-out ANI failure (excluded GCA_054608515.1; ANI 98.21% / AFq 78.34% / AFr 68.26% to dev gid 11 Acidithiobacillus ferrooxidans NC_011761.1)	99.91	0.35	98.52	0.04	0.03	gid:NA A. thiooxidans ATCC 19377 (skani artifact at <0.1% AF, §17 PASS — both AFs below 15% floor)	PASS	plausibility	in-situ	isolation_source=mine tailings from the ML34 core from the Strathcona impoundment | env_broad_scale=terrestrial biome [ENVO:00000446] | env_medium=mine tailing [ENVO:00000003] | geo_loc_name=Canada: Ontario | package=MIMAG.6.0	PRJNA1017420	2026-01-21	Canada: Ontario	Option1_batch1_verified
+BT006	GCA_977678135.1	Sulfurimonas xiamenensis	MarMAG_111072	2590021	Option 1	mid	sulfur oxidation	draw_batch.py	20260603	original keeper	99.99	0.30	96.16	0.08	0.06	gid:1085 Sulfurospirillum barnesii SES-3	PASS	plausibility	enrichment-derived	isolation_source=estuary sediment; 7% salinity (w/v NaCl) perchlorate enrichment | geo_loc_name=USA | package=Generic.1.0		2026-02-14	USA	Option1_batch1_verified
+BT007	GCA_057266155.1	Candidatus Methanophagales archaeon	SB58P22B56A3	2056316	Option 1	weak	ANME	draw_batch.py	20260603	original keeper	82.79	2.51	93.42	28.78	39.11	gid:1006 Candidatus Methanophaga sp. AG-394-G06	PASS	plausibility	in-situ	isolation_source=cold seep surface sediment | env_broad_scale=deep-sea sediment | env_local_scale=cold seep sediment | env_medium=sediment core | geo_loc_name=China:Sourth China Sea [sic] | package=MIMAG.sediment.6.0	PRJNA993397	2026-05-05	China:Sourth China Sea [sic]	Option1_batch1_verified
+BT008					Option 1	weak	comammox	draw_batch.py	20260603	§13.2 documented shortfall: 0 comammox survivors in v4 pool; slot intentionally left empty, NOT backfilled														Option1_batch1_shortfall
