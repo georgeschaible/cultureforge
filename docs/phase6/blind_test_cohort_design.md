@@ -1689,3 +1689,116 @@ constraint), §17 (held-out alignment-fraction floor), and §18
 (completeness pre-filter + CheckM2 binding-gate rule) form
 the locked sampling-discovery-verification methodology for
 the blind-test cohort.
+
+---
+
+## 19. Pre-assembly amendment 2026-06-07 — Option 2 channel operationalization of §14 scope + §16 independence
+
+**Status:** Pre-assembly amendment for the Option 2 literature channel. Option 2 has NOT begun: no PubMed query has been executed, no candidate paper has been surfaced, no candidate organism has been recorded. This amendment is recorded BEFORE Option 2 assembly begins, consistent with the §10 pre-registration commitment and the §15.4 explicit deferral: "operationalization of [the §15 / §14 / §16] restriction for Option 2 is deferred to when Option 2 runs." At the time of drafting, Option 1 batch 1 is recorded in `docs/phase6/blind_test_cohort.tsv` (7 verified candidates + 1 documented §13.2 comammox shortfall, commit `888047d` on `origin/main`).
+
+### 19.1 — Why this amendment exists
+
+§13 / §14 / §15 / §16 / §17 / §18 collectively pin the discovery, scope, sampling, and verification rules for the blind-test cohort. They were drafted and operationalized against the Option 1 pipeline shape — broad NCBI `datasets summary genome` query → BioSample MIxS metadata filter → mechanical §3 / §4 filter → category bin → seeded random sample → per-candidate verification — because that was the channel running at amendment time. The amendments were always intended to apply uniformly across discovery channels per the "declare-then-apply-uniformly" principle restated in §14.5, §15.3, §16.3, §17.3, and §18.3.
+
+But the operationalization is channel-shape-dependent. Two rules in particular do not translate cleanly:
+
+1. **§14 (scope filter — environmental, non-host-associated)** is written against BioSample MIxS fields (`env_broad_scale` / `env_local_scale` / `env_medium` MIxS terms, `host` / `host_taxid` / `host_scientific_name`, `isolation_source` text). The Option 2 literature channel surfaces papers, not BioSample records — provenance is described in the paper's prose, and the per-paper inclusion call is by §13.3 a human judgment. There is no structured metadata field for a script to operate on.
+
+2. **§16 (one MAG per BioProject per batch)** is written against the BioProject accession field on the NCBI assembly record. The Option 2 channel's "source" is not obviously the same atomic unit: a single paper (PMID) may describe one isolate cultivated from a single environment, or several isolates across several environments, or one isolate whose genome was deposited under a BioProject that contains many other unrelated MAGs. The relevant independence unit — and the threshold at which the rule binds — is not knowable until the search reveals the actual per-source distribution.
+
+§19 fills these two operationalization gaps. It does NOT touch §13.3 (the four verbatim PubMed queries, dedup, human-judgment inclusion call, verify-or-fall-back on cultivation conditions) — those are settled. It does NOT touch §8 (scoring methodology) — the Layer 1 plausibility audit + Layer 2 V12 recipe-agreement scoring split for Option 2 organisms is settled. It does NOT touch any per-candidate quality rule — §6 verification, §15 domain, §17 ANI AF floor, §18 CheckM2 binding gate apply to Option 2 organisms unchanged (§19.5 enumerates).
+
+### 19.2 — The clauses: two parts
+
+#### 19.2.A — §14 scope for the literature channel: per-paper human judgment with recorded scope rationale
+
+The §14 scope boundary — environmental (non-host-associated), Bacteria + Archaea per §15 — applies to Option 2 candidates. The boundary is the same; the determination method differs because the input shape differs.
+
+**The clause.** For each paper accepted into Option 2 per §13.3's inclusion call, the manuscript author MUST record an explicit one-line scope rationale on the paper's manifest row. The rationale states:
+
+- the organism's stated environmental origin as described in the paper (e.g., "deep-sea hydrothermal sediment from the Lau Basin"; "anoxic freshwater sediment, Lake Lugano"; "halite crust, Atacama Desert"); and
+- explicit confirmation that the organism is NOT host-associated, NOT clinical, and NOT eukaryotic (the §15 domain restriction).
+
+Format on the Option 2 manifest row: a `scope_rationale` column carrying free-text prose of the above form. The rationale is what the paper itself says, transcribed faithfully — it is NOT inferred, NOT extrapolated, and NOT softened to make a borderline organism pass. If the paper's stated environmental origin falls outside the §14 / §15 boundary — host-associated, clinical, or eukaryotic — the paper is rejected at the §13.3 inclusion step on scope grounds and a one-line `scope_rejection_note` is recorded against the PMID instead. The specific host categories that fall under "host-associated" are the ones enumerated in §14; §19.A does NOT re-list them, because the Option 2 determination is a human reading of the paper against the §14 boundary, not a token match against §14's list.
+
+**No scope-filter script for Option 2.** Unlike §14's `scripts/blind_test/filter_option1.py`, there is no `filter_option2.py` and no token-matching pass against MIxS fields, because there are no MIxS fields in the literature channel's input. The scope determination is folded into §13.3's existing per-paper human-judgment inclusion call — the inclusion call is now explicitly scope-aware, and the scope rationale is now a recorded artifact rather than an implicit "the manuscript author read it and judged."
+
+**Honest framing.** This is the same §14 scope boundary applied through human reading rather than a metadata filter, because the literature channel provides prose rather than structured BioSample metadata. The principle is unchanged; only the operationalization differs. The recorded scope rationale is the audit trail that lets a reviewer reconstruct each scope determination from the manifest alone, without having to re-read every paper.
+
+**Interaction with §13.3 verify-or-fall-back.** §13.3's "If the cultivation conditions cannot be confirmed from retrievable text […] record `cultivation_conditions = 'unverified — source not retrievable'`" rule continues to govern cultivation-condition extraction. The §19.A scope rationale is a separate field on a separate axis: the scope determination depends only on the paper's environmental-origin description (typically present in any paper's Methods section even when the cultivation recipe is paywalled or sparse), so it should rarely be "unverified." If the environmental origin is genuinely not retrievable from the abstract + available text, the paper is rejected at the §13.3 inclusion step (no scope rationale → no admission), not admitted-with-unknown-scope.
+
+#### 19.2.B — §16 independence for the literature channel: mechanical check, parameterized threshold
+
+The §16 anti-concentration principle — no single source dominates the sampled set — applies to Option 2 candidates. The independence unit and the binding threshold are parameterized to what the search reveals, not pre-committed, because the per-source distribution of the Option 2 corpus is not knowable until §13.3 has been executed.
+
+**The clause.** Once the §13.3-included Option 2 candidate set is assembled (post-inclusion-judgment, post-§19.A scope determination, but pre-verification), a recorded mechanical computation MUST run over the included set's accessions:
+
+- group the included organisms by **PMID** (the paper from which the organism was discovered);
+- group the included organisms by **BioProject accession** (the deposit umbrella under which the genome assembly lives);
+- record the per-PMID count and the per-BioProject count distributions inline with the Option 2 batch verification record.
+
+**Threshold N.** If any single PMID contributes more than N organisms to the included set, OR any single BioProject contributes more than N organisms to the included set, the §16 one-per-source rule binds for that group: one organism is kept (selected by the recorded tie-break rule below) and the remaining organisms in the over-represented group are either excluded from the batch, or — if exclusion would empty a §7 category that otherwise has no candidate — recorded as a documented over-representation note inline with the verification record (the same shortfall-style honesty as §13.2's category shortfall rule).
+
+The value of N is set at execution time and recorded then, NOT pre-committed in this amendment. Same "report-at-implementation, not pre-committed" model as §18.4's pool count: the threshold is a function of the actual distribution the search reveals. Concretely, if the corpus is many papers each contributing one organism (independence trivially satisfied — the modal per-PMID and per-BioProject count is 1 with no over-representation), N is recorded as "n/a — no group exceeded 1 organism" and no exclusion runs. If the corpus is few papers each describing several isolates (e.g., one paper describes a 5-organism syntrophic consortium), N is set with the per-source distribution visible — typically N = 1, unless an over-representation reflects a methodologically-relevant group structure that the manuscript author explicitly judges as worth preserving (e.g., a paper that defines a novel taxon family with several characterized members may warrant N = 2 with the rationale recorded). The choice of N and the rationale for it are recorded on the same row as the per-source distribution.
+
+**Tie-break (which one to keep within an over-represented group).** When more than one organism from the same PMID or same BioProject would be kept under the §13.3 inclusion call, the one retained for the batch is selected by this priority:
+
+1. The organism whose §7 category is otherwise empty or under-represented in the batch (preserves §7 coverage);
+2. If category-tied, the deterministic first by accession (lexicographic on `GCA_*` / `GCF_*`).
+
+The tie-break is deliberately neutral on scoring favorability. A documentation-completeness criterion (rank by how thoroughly the paper documents the cultivation recipe) was considered and rejected, because "most completely documented" correlates with "most favorably scoreable" on §8 Layer 2, and the cohort's defensibility rests on selection being provably uncorrelated with scoring outcome. The cost of dropping that criterion — that the retained organism may occasionally be the documentation-poorer of an over-represented group — is absorbed by §13.3's verify-or-fall-back rule: that organism contributes a Layer 1 plausibility score and records `cultivation_conditions = "unverified — source not retrievable"` for Layer 2 rather than failing the cohort. The selection rationale (which §7 category was preserved, which accession won lex order) is recorded on the manifest row alongside the scope rationale.
+
+**Both axes checked, not either-or.** The check runs on PMID-grouping AND BioProject-grouping independently. A paper and a BioProject are not the same atomic unit — a single paper may deposit under multiple BioProjects, and a single BioProject may underlie multiple unrelated papers — so source concentration on either axis warrants the check. The recorded distribution covers both.
+
+**Mechanical, not eyeball.** The check is a recorded computation — counts per PMID, counts per BioProject, sorted descending, recorded inline with the batch verification record — not a judgment-call read of the candidate list. This is the same "tilted lens vs. neutral mechanism" distinction §13.2 / §14 / §15 / §16 make: the mechanism's neutrality is what makes the result defensible, not the human's confidence in it.
+
+### 19.3 — Direction of change: pipeline-shape adaptation, applied uniformly
+
+**Neutral on scope and independence principles; adapts only the operationalization to the channel's input shape.** §19 does not move the §14 scope boundary, does not relax the §16 anti-concentration principle, and does not introduce any new candidate-property restriction. It specifies the mechanism by which §14 and §16 bind in a channel where the Option 1 pipeline's input fields (BioSample MIxS metadata, BioProject accession on a `datasets summary genome` record) are not the directly-available input fields.
+
+Same "declare-then-apply-uniformly" model as §14 / §15 / §16 / §17 / §18: the principle is declared once, the operationalization is honest about what is mechanical and what is human-judgment, and the per-candidate rules are channel-invariant.
+
+The asymmetry in §19's two parts — §19.A is human-judgment-with-recorded-rationale and §19.B is mechanical-with-parameterized-threshold — is deliberate and not arbitrary. It tracks the asymmetry of what the channel provides: prose for provenance (where the field doesn't exist to script against), accession identifiers for grouping (where mechanical counting is straightforward once the included set is assembled).
+
+### 19.4 — Effect on the recorded batch and on the survivor pool
+
+No effect on the recorded Option 1 batch 1 manifest (`docs/phase6/blind_test_cohort.tsv` @ `888047d`). No effect on the Option 1 §18.2.A survivor pool (`data/validation/blind_test_batch1/survivors_v4.tsv`, md5 `42f65af83cbd48c91e331b36d6306787`, 72,796 records). §19 governs only the Option 2 channel, which has not begun.
+
+### 19.5 — Per-candidate rules that apply to Option 2 unchanged
+
+Once an Option 2 candidate has been admitted by §13.3 + §19.A and survived the §19.B independence check, the per-candidate rules that govern recording into the cohort manifest apply unchanged:
+
+- **§6 verification protocol** (FASTA download, CheckM2 quality, deposit-date check, reference-set non-overlap, GTDB-Tk taxonomic assignment, AND the §6 step 6 Option-2-specific "verify cultivation paper, extract conditions" add-on) — applies to Option 2 candidates as written.
+- **§15 taxonomic domain (Bacteria + Archaea, no eukaryotes / viruses / archaeal-host-cells)** — applies to Option 2 candidates as written; the §19.A scope rationale explicitly confirms this for each paper, so it is also surfaced at the inclusion-judgment step.
+- **§17 held-out ANI alignment-fraction floor** — applies to Option 2 candidates as written. Each Option 2 candidate is sketched with skani at `-s 50 --min-af 0`, compared against the 168-genome dev-cohort reference at `data/validation/dev_cohort_sketches_k31_s1000.zip`, and held to the §17 alignment-fraction floor as well as the §13.4 95% ANI threshold.
+- **§18.2.B CheckM2 binding-gate rule** — applies to Option 2 candidates as written. Each Option 2 candidate has CheckM2 v1.1.0 (DB `/home/george/databases/CheckM2_database/uniref100.KO.1.dmnd`) run on its FASTA; published CheckM / CheckM2 values from the source paper are not recorded into the manifest in lieu of this measurement (per §18.2.B).
+
+These rules are listed here to make explicit that §19 does not touch them. They were always meant to apply to Option 2; §19's silence on them means "unchanged," not "deferred."
+
+### 19.6 — Shortfalls and interaction with the §13.2 / §14.7 shortfall rule
+
+If the §13.3 + §19.A + §19.B sieve produces fewer Option 2 organisms than the ~15-20 §5 target, OR fewer organisms in a §7 category than the category's quota, the shortfall rule from §13.2 / §14.7 still governs: document the shortfall inline with the Option 2 batch verification record; do NOT relax §19.A scope to admit host-associated papers, do NOT relax §19.B independence to admit over-represented groups, do NOT broaden §13.3's four query strings to category-named variants. The shortfall is information about what the cultivation-pair literature looks like in 2024–2026, not an obstacle to route around. Under-supply backfilled from Option 1, per §5's existing mix-target rule, remains the recorded fallback for cohort-level shortfalls.
+
+### 19.7 — Unchanged
+
+- §1, §2, §3, §4, §5 (the original Option 2 protocol and the 30-40 / ~50/50 mix target), §6, §7, §8, §9, §10 of the cohort design — all unchanged.
+- §13.3 Option 2 operationalization (four verbatim PubMed query strings, PMID dedup, human-judgment inclusion call, verify-or-fall-back on cultivation conditions) — unchanged. §19 sits adjacent to §13.3, not on top of it: §19.A and §19.B run alongside §13.3's existing per-paper workflow rather than replacing any of it.
+- §13.4 held-out threshold (>95% ANI to any dev-cohort genome) and dev-cohort sourmash sketch reference (`data/validation/dev_cohort_sketches_k31_s1000.zip`, k=31, scaled=1000) — unchanged.
+- §13.2 Option 1 operationalization (broad query parameters, scope filter, mechanical filter, category binning, shortfall rule) — unchanged.
+- §14 / §15 / §16 / §17 / §18 — all unchanged in their Option 1 operationalization. §19 does not retroactively re-operationalize any of them for Option 1.
+- The no-peeking rule — unchanged. No `cultureforge.py inspect` / scoring / prediction path runs on any Option 2 candidate prior to cohort lock, just as it has not run on any Option 1 candidate.
+
+### 19.8 — State at amendment time
+
+- **Option 1 batch 1:** recorded. `docs/phase6/blind_test_cohort.tsv` carries 7 verified candidates (BT001–BT007) + 1 documented §13.2 comammox shortfall (BT008), committed at `888047d` and pushed to `origin/main`. The full Option 1 draw provenance is reproducible via the four committed scripts at their recorded SHAs (`filter_option1.py` @ `0d5a7b8`, `refilter_v4.py` @ `225a2b3`, `draw_batch.py` @ `4389db7`, `redraw_batch.py` @ `e42a294`).
+- **Option 2:** NOT begun. No PubMed query executed. No candidate paper surfaced. No Option 2 candidate organism recorded. No FASTA downloaded for an Option 2 candidate. No skani / CheckM2 / inspect / scoring path run on any Option 2 candidate.
+- **Carry-forward artifacts:** none yet for Option 2. The dev-cohort sourmash sketch and manifest under `data/validation/` remain the reference standup for §13.4's held-out check and will be reused for Option 2 candidates without modification.
+- **Open repo-side artifact:** the §19 amendment text (this section, drafted before any Option 2 query runs).
+- **Manifest schema reconciliation pending.** The Option 2 manifest row will introduce columns not present in the committed Option 1 manifest (`docs/phase6/blind_test_cohort.tsv` @ `888047d`) — at minimum `scope_rationale` (per §19.A), `scope_rejection_note` (sibling-record axis for §13.3 / §19.A rejections), per-source distribution fields (`pmid_group_size`, `bioproject_group_size`), and the §19.B tie-break selection rationale. Reconciliation with the committed Option 1 25-column schema — either extend with Option-2-only columns left blank for Option 1 rows, or maintain the two channels as separate manifest TSVs joined on `cohort_id` — is a foreseeable join at recording time, flagged here so it is not rediscovered then.
+
+### 19.9 — Authority
+
+§10 of this document permits amendments before assembly begins. The relevant assembly scope for §19 is Option 2 assembly, which has not begun. §15.4 explicitly defers operationalization of the §15 / §14 / §16 principle for Option 2 to "when Option 2 runs" — §19 is recorded immediately before Option 2 runs, satisfying that deferral on its own terms and consistent with §10's pre-registration commitment for the Option 2 channel.
+
+**Drafted:** 2026-06-07 (post-Option-1-batch-1 commit `888047d`, pre-Option-2-query-execution).
+**Trigger:** the §15.4 explicit deferral now becomes live: with Option 1 batch 1 recorded and Option 2 next on the work plan, the operationalization of §14 scope and §16 independence for the literature channel can no longer remain unspecified without contradicting the "declare-then-apply-uniformly" model.
