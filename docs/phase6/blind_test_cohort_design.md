@@ -332,6 +332,8 @@ category-named variants — against PubMed via NCBI E-utilities
 - `"isolation following metagenomic analysis"`
 - `"axenic culture" AND "previously uncultured"`
 
+*Superseded by §20 (2026-06-08); the four original phrases above did not match field vocabulary in the 2024-2026 window — see §20 for the trigger, the replacement queries, and the diagnostic basis.*
+
 Date window: 2024-01-01 to present (per §5's "papers 2024-2026").
 
 **Per-hit processing.** Dedup the merged hit list by PMID. For
@@ -1802,3 +1804,124 @@ If the §13.3 + §19.A + §19.B sieve produces fewer Option 2 organisms than the
 
 **Drafted:** 2026-06-07 (post-Option-1-batch-1 commit `888047d`, pre-Option-2-query-execution).
 **Trigger:** the §15.4 explicit deferral now becomes live: with Option 1 batch 1 recorded and Option 2 next on the work plan, the operationalization of §14 scope and §16 independence for the literature channel can no longer remain unspecified without contradicting the "declare-then-apply-uniformly" model.
+
+## 20. Pre-assembly amendment 2026-06-08 — Option 2 §13.3 PubMed query strings revised after registered-phrase failure
+
+**Status:** Pre-assembly amendment for the Option 2 literature channel. Option 2 discovery has NOT begun under the amended queries: at the time of drafting, the four §13.3-registered query strings have been executed verbatim (2026-06-07, recorded at `data/validation/option2/pubmed_query_findings.md`) and returned 4/4 zero literal-phrase hits; no candidate paper has been admitted to Option 2; the replacement query set defined below has been mechanics-validated for literal-match safety against PubMed (2026-06-08, recorded at `data/validation/option2/phrase_safety_check_paired.tsv`) but has NOT been executed as discovery. This amendment is recorded BEFORE the amended queries run as discovery, consistent with §10's pre-registration commitment.
+
+This is the most selection-sensitive amendment in the project — it replaces the registered search terms that determine which papers can become Option 2 candidates, and it does so after a diagnostic revealed the originals failed. The framing below is correspondingly explicit about what keeps the replacement from being results-driven query-tuning: the replacement queries were chosen on a-priori field-vocabulary grounds before any candidate paper was inspected, the validation step retrieved hit counts only (no PMIDs, no titles, no abstracts), and the specific papers surfaced by the methods-validation diagnostic are quarantined and not used as a candidate pool.
+
+### 20.1 — Why this amendment exists
+
+**The trigger.** The four §13.3-registered PubMed query strings, executed verbatim 2026-06-07 against NCBI E-utilities (`esearch.fcgi`) with date window 2024/01/01 → 2026/06/07 and `datetype=pdat`, returned 4/4 zero literal-phrase hits. Recorded inline at `data/validation/option2/pubmed_query_findings.md`.
+
+Two of the four registered phrases were not present in PubMed's phrase index. PubMed silently auto-expanded them into broader token-AND booleans:
+
+- Query 1, `"MAG-guided cultivation"` — phrase not in index; auto-expanded to `"mag guided"[All Fields] AND (cultivation-stems)[All Fields]`; 0 hits even after broadening.
+- Query 3, `"isolation following metagenomic analysis"` — phrase not in index; auto-expanded to `(isolate-stems) AND (follow-stems) AND (metagenome) AND (analysis-stems)`; returned 394 hits, of which 0/394 contain the literal §13.3 phrase in title or abstract (case-insensitive substring verification recorded in the findings).
+
+The other two registered phrases (queries 2 and 4) are in PubMed's phrase index, ran as literal matches, and returned 0 hits each. The 0 results from queries 2 and 4 are honest literal-phrase results; the 0 from query 1 and the 394 from query 3 are PubMed's broader paraphrase, not the registered phrase. Under either reading, the literal §13.3 phrases matched nothing in the 2024-2026 window. The registered phrases did not match how the cultivation-pair literature in window describes the work.
+
+**Why amend rather than declare a §13.3 shortfall.** A methods-validation diagnostic, recorded at `data/validation/option2/diagnostic_probe.md` and explicitly labeled `METHODS-VALIDATION DIAGNOSTIC ONLY. NOT §13.3 DISCOVERY. THE RESULTS BELOW ARE NOT A CANDIDATE POOL AND WILL NOT BE DRAWN FROM. NO INCLUSION JUDGMENT IS APPLIED TO ANY HIT SURFACED HERE`, was run after the 4/4-zero result to determine whether the result reflects (a) a near-empty field, (b) bad proxy phrases, or (c) PubMed phrase-index mechanics.
+
+The diagnostic decisively ruled out (a). Broad probes returned non-zero populations (`cultivated AND "metagenome-assembled genome"` → 15 hits; `isolation AND "metagenome-assembled genome"` → 55 hits), confirming MAG+cultivation literature exists in the 2024-2026 window. A ground-truth check on a known cultivation-pair paper confirmed the same point decisively: PMID 40742112 (Kambara et al., *Applied and Environmental Microbiology* 2025-Aug, "First isolation of a methanotrophic Mycobacterium," from the JAMSTEC X-star institute) is in PubMed, in window, unambiguously a cultivation-pair paper in scope for Option 2, and contains NONE of the four §13.3 registered phrases anywhere in its title or abstract. The diagnosis was *predominantly (b) phrasing mismatch, with (c) phrase-index mechanics compounding for queries 1 and 3; (a) decisively ruled out*.
+
+Declaring a §13.3 shortfall under these circumstances would record a false finding. The 4/4-zero result, treated as the field's true state, would tell a reviewer "no cultivation-pair work exists in 2024-2026 PubMed under the registered phrasing" — true on its face but misleading as a finding about the field, because the diagnostic establishes that the field exists and uses different vocabulary. The amendment honors §10's pre-registration commitment by replacing the failed phrases under an amendment record rather than silently re-querying; it does so because the alternative (recording a 4/4-zero result as the field's emptiness) would itself violate the pre-registration's deeper commitment to accurate findings.
+
+### 20.2 — The clause: revised §13.3 PubMed query strings
+
+§13.3's four registered query strings are SUPERSEDED by the four paired query strings below. The four originals remain on the §13.3 record (preserved append-only as historical pre-registration text, marked superseded-by-§20 in place; cf. §20.10) but are no longer the active discovery queries. The new registered query strings, executed against PubMed via NCBI E-utilities with date window 2024/01/01 → 2026/06/07 (`datetype=pdat`):
+
+1. `"isolation and characterization"[Title/Abstract] AND ("metagenome-assembled genome"[Title/Abstract] OR "metagenomic"[Title/Abstract])`
+2. `"first isolation"[Title/Abstract] AND ("metagenome"[Title/Abstract] OR "uncultured"[Title/Abstract])`
+3. `("previously uncultured"[Title/Abstract] OR "previously uncultivated"[Title/Abstract]) AND ("isolation"[Title/Abstract] OR "cultivation"[Title/Abstract] OR "enrichment"[Title/Abstract])`
+4. `"enrichment culture"[Title/Abstract] AND ("metagenome-assembled genome"[Title/Abstract] OR "metagenomic"[Title/Abstract])`
+
+**Paired structure.** Each registered query combines a cultivation/isolation half with a metagenome/MAG/uncultured half — `AND`-joined across the pair, with within-half synonyms `OR`-joined. The pairing preserves §13.3's original "cultivation-PAIR" intent: a paper qualifies only if its title or abstract evidences both cultivation activity AND a genome-from-metagenomics relationship. The replacement is a vocabulary correction to the proxy strings; the underlying scope (cultivation papers anchored to MAG-from-metagenomics work in environmental, non-host Bacteria + Archaea) is unchanged.
+
+**`[Title/Abstract]` field-tag operationalization.** Every quoted phrase in the four new queries carries an explicit `[Title/Abstract]` field tag. This is the §20 operational addition that addresses the (c) component of the original failure: field-tagging suppresses PubMed's silent phrase-index auto-expansion. With `[Title/Abstract]` applied to every quoted phrase, PubMed treats the phrase as a literal title-or-abstract substring rather than a candidate for token-broadening; absence of the phrase from PubMed's `quotedphrasesnotfound` warning list in the `esearch` JSON response is the audit signal that auto-expansion was suppressed and the literal match ran. The §13.3 execution step under the §20-amended queries MUST verify `quotedphrasesnotfound` is empty for every executed query and record the result inline with the §13.3 carry-forward.
+
+### 20.3 — Diagnostic-hit quarantine
+
+The methods-validation diagnostic recorded at `data/validation/option2/diagnostic_probe.md` incidentally surfaced specific papers — the 15-hit `cultivated AND "metagenome-assembled genome"` probe, the 55-hit `isolation AND "metagenome-assembled genome"` probe, the 394-hit auto-expansion of query 3, the 12-hit `Imachi H[Author]` probe (of which one, PMID 40742112, is the ground-truth Kambara/Imachi cultivation-pair paper), and various smaller-count probes (`"first cultivated"` → 9, `"first isolate"` → 54, etc.).
+
+**These papers are QUARANTINED.** They are NOT a candidate pool. They were NOT used to select the §20 replacement queries. They WILL NOT be drawn from. The diagnostic's role was strictly to characterize whether the 4/4-zero result reflects a near-empty field or a phrasing mismatch; once that question was answered, the specific papers the diagnostic surfaced have no further role in the cohort.
+
+The §20 replacement queries will run fresh as locked §13.3 discovery after §20 commits. Whatever they return is the Option 2 corpus, even if it differs from what the diagnostic incidentally surfaced — even if PMID 40742112 is not among the §20 returns, even if §20 returns a paper the diagnostic missed, even if the overlap is total or empty. The §20 corpus is defined by what the §20 queries return when executed after §20 is committed, NOT by what the diagnostic happened to put in front of the manuscript author's eye while answering the prior methodological question.
+
+This quarantine is the substantive (not just rhetorical) guard against results-driven query-tuning. If §20 had allowed the replacement queries to be tuned to maximize capture of the diagnostic's specific hits, the amendment would be selecting the corpus by yield — the failure mode §13 was originally created to prevent (cf. §13.1's "generic web-search drift" framing). The quarantine makes the diagnostic methodological evidence, not a candidate sieve.
+
+### 20.4 — How the replacement queries were chosen
+
+The replacement queries were finalized on CONCEPTUAL / a-priori field-vocabulary grounds — the standard ways cultivation-pair work is described in microbiology and environmental microbiology prose. The phrasings predate the §20 amendment and predate the diagnostic; they are field-vocabulary terms — what microbiologists already write when describing this kind of work. Concretely:
+
+- `"isolation and characterization"` is the canonical title-construct of a strain-description paper. Pairing with metagenome / MAG terms targets the cultivation-pair subset.
+- `"first isolation"` is the canonical title-construct of a "first axenic culture of a previously uncultured group" paper. Pairing with metagenome / uncultured terms targets the MAG-anchored subset.
+- `"previously uncultured"` / `"previously uncultivated"` are the canonical adjectives applied to organisms that cultivation-pair work brings into pure culture. Pairing the OR'd pair with isolation / cultivation / enrichment terms targets the cultivation-pair subset.
+- `"enrichment culture"` is the canonical title-construct of an enrichment-derivation paper. Pairing with metagenome / MAG terms targets the genome-from-metagenomics subset.
+
+These are vocabulary judgments by the manuscript author. They are NOT reverse-engineered from the diagnostic's specific hits — they are statements of what the field calls this kind of work, made before any §20 candidate paper has been inspected.
+
+**Mechanics-only validation.** The four replacement queries were validated for MECHANICS ONLY against PubMed, recorded at `data/validation/option2/phrase_safety_check_paired.tsv` (executed 2026-06-08). The validation harness submitted each query with `retmax=0` — PubMed returned hit count, query translation, and the `quotedphrasesnotfound` warning list, but no PMIDs, titles, abstracts, journals, authors, or accession identifiers were returned on the wire, retrieved into Claude's context, or written to disk. The validation confirmed:
+
+- All four queries: literal-match YES (`quotedphrasesnotfound` empty for every query).
+- All four queries: no auto-expansion (the `[Title/Abstract]` tag suppressed PubMed's phrase-index broadening).
+- All four queries: PubMed's `querytranslation` echoed the submitted Boolean AND / OR structure verbatim, with the date window AND'd in at the end — no re-parenthesization, no token expansion of any quoted phrase, no field-tag dropping.
+
+The four queries returned **counts** only at validation: Q1 = 14, Q2 = 0, Q3 = 18, Q4 = 25. These counts are uncapped and undeduplicated across queries (dedup would require PMID retrieval and is deferred to the §13.3 discovery execution step under the amended queries). They are reported here as the mechanics-validation output, not as a candidate-corpus inventory.
+
+**Yield-blindness.** The query set was finalized BLIND to which specific papers each query would surface. Counts and mechanics only. No paper was inspected during the §20 design step. No title was read. No abstract was read. No accession was retrieved. The selection of these four queries was therefore concept-first and yield-blind — the structural guarantee that §20 is a vocabulary correction rather than results-driven curation.
+
+**Q2's zero is retained deliberately.** Query 2 — `"first isolation"[Title/Abstract] AND ("metagenome"[Title/Abstract] OR "uncultured"[Title/Abstract])` — returned 0 hits at mechanics validation. It is KEPT in the registered set anyway, on conceptual grounds: "first isolation" papers are a recognized class of cultivation-pair literature on their own merits, and pairing with metagenome / uncultured is the canonical metagenome-anchored qualifier; the query targets a distinct conceptual subset that the other three queries do not span. Dropping Q2 from the registered set on the grounds that it returned 0 at validation would be precisely the results-driven curation this amendment exists to avoid — dropping a zero-hit query because it returned zero is selection-by-yield, the failure mode in miniature. The 0 is recorded as the validated mechanics outcome — a real finding about this phrasing's literal-match yield in the 2024-2026 window — not a defect to curate away. The visible evidence that the registered set was NOT tuned to hit-yielding queries is that Q2 is in it. If §20 had been allowed to back-fit queries to a target yield, Q2 would not be there.
+
+### 20.5 — Direction of change: vocabulary correction, applied uniformly
+
+Neutral on scope and on the cultivation-PAIR principle. §20 is a phrase-set replacement at §13.3, and only at §13.3. The phrases that compose the discovery query are replaced because the original phrases failed to match how the literature in window describes the work; the principle the discovery query operationalizes — find papers documenting cultivation activity AND a MAG-from-metagenomics relationship within the §14 / §15 scope boundary — is unchanged, and no per-candidate quality rule is touched. §20.6 carries the per-section inventory of what is unchanged downstream of §13.3.
+
+Same "declare-then-apply-uniformly" model as §14 / §15 / §16 / §17 / §18 / §19: the replacement queries are declared in this amendment and applied uniformly to the entire 2024-01-01 → 2026-06-07 window. No retroactive re-querying of any prior window. No subset-of-window or category-named variants. No mid-execution adjustments to the query strings once §20 is committed.
+
+### 20.6 — What §20 does NOT change
+
+- **§13.3 workflow downstream of the queries.** PMID dedup, abstract + parseable-accessions retrieval via `efetch`, human-judgment inclusion call by the manuscript author, verify-or-fall-back on cultivation conditions — all unchanged. Claude's role under §13.3 remains execute-dedup-surface; the inclusion call remains the manuscript author's, not Claude's.
+- **§13.4 held-out threshold and dev-cohort reference standup.** Unchanged. The 168-genome dev-cohort sourmash sketch at `data/validation/dev_cohort_sketches_k31_s1000.zip` (k=31, scaled=1000) remains the reference for §13.4's > 95% ANI held-out check.
+- **§19 Option 2 channel operationalization.** §19.A (per-paper scope rationale recorded under human judgment, §14 boundary applied through reading) and §19.B (mechanical per-PMID / per-BioProject independence check with parameterized N at execution) apply unchanged to whatever the §20-amended queries return.
+- **§6 verification protocol** (including the §6-step-6 cultivation-paper add-on), **§15 domain restriction**, **§17 ANI alignment-fraction floor**, **§18.2.B CheckM2 binding gate.** All per-candidate quality rules apply to Option 2 candidates unchanged, as enumerated in §19.5.
+- **§5 mix-target and §13.2 / §14.7 shortfall rule.** Unchanged. If the §20-amended queries produce fewer Option 2 candidates than the ~15-20 §5 target, the shortfall rule still governs: document the shortfall inline with the Option 2 batch verification record, do not relax §19.A scope or §19.B independence to make up the gap, do not broaden the §20 queries to category-named variants or post-hoc add a fifth query.
+- **§10 pre-registration commitment.** Unchanged. §20 is itself the amendment record for the §13.3 query replacement, recorded before the amended queries run as discovery.
+- **No-peeking rule.** Unchanged. No `cultureforge.py inspect` / scoring / prediction path runs on any Option 2 candidate prior to cohort lock, just as it has not run on any Option 1 candidate. The §20 mechanics-validation step retrieved counts and query translations only — no PMIDs, no titles, no abstracts — and therefore introduced no peeking exposure.
+
+### 20.7 — Sequencing: §20 commits before discovery runs
+
+§20 commits BEFORE the §13.3 discovery step is re-executed under the amended queries. The amendment locks the replacement query set first; only after §20 is on `origin/main` does the §13.3 discovery step execute the §20 queries, retrieve PMIDs + abstracts + parseable accessions via `efetch`, dedup, and surface the candidate list to the manuscript author for the §13.3 inclusion judgment + §19.A scope rationale + §19.B mechanical independence computation.
+
+This is the same sequencing §13 / §14 / §15 / §16 / §17 / §18 / §19 followed: amend, commit, then run. A reviewer can verify by `git log` ordering that the §20 query strings landed on `origin/main` before any §13.3-amended carry-forward dated after this amendment was written.
+
+### 20.8 — State at amendment time
+
+- **Option 1 batch 1:** recorded. `docs/phase6/blind_test_cohort.tsv` carries 7 verified candidates (BT001–BT007) + 1 documented §13.2 comammox shortfall (BT008), committed at `888047d`, pushed to `origin/main`. Unaffected by §20.
+- **§19:** committed at `9f13704` on `origin/main`. The §14-scope / §16-independence operationalization for the Option 2 channel applies to whatever the §20-amended queries return. Unaffected by §20.
+- **Option 2 discovery (under §20-amended queries):** NOT begun. No §20 query has been executed as discovery. No Option 2 candidate paper has been surfaced under the §20 queries. No Option 2 candidate organism has been recorded. No FASTA downloaded for an Option 2 candidate. No skani / CheckM2 / `inspect` / scoring path run on any Option 2 candidate.
+- **Pre-amendment carry-forward audit trail.** Untracked under `data/validation/option2/` (gitignored, never committed, never staged): `pubmed_query_findings.md` (§13.3 verbatim-query execution record), `diagnostic_probe.md` (methods-validation diagnostic), `pubmed_query_counts.tsv` / `pubmed_query_pmids.tsv` / `pubmed_hits.tsv` / `efetch_raw.xml` (raw execution artifacts from the 2026-06-07 §13.3 verbatim run), and `phrase_safety_check_paired.tsv` (§20 mechanics-validation TSV from 2026-06-08, counts and mechanics only). These artifacts are the audit trail for the §20 trigger and validation; they are NOT the corpus.
+- **Diagnostic-hit quarantine reaffirmed.** Per §20.3, the diagnostic-surfaced material (the 15-hit / 55-hit / 394-hit sets, PMID 40742112, the Imachi-author hits, and all other diagnostic probe outputs) is QUARANTINED — not a candidate pool, not used to select the §20 replacement queries.
+- **Manifest schema reconciliation still pending,** per §19.8. The Option 2 manifest row will introduce columns not present in the committed Option 1 manifest at `888047d` (at minimum `scope_rationale`, `scope_rejection_note`, `pmid_group_size`, `bioproject_group_size`, §19.B tie-break selection rationale). §20 does not resolve this — it remains a foreseeable join at Option 2 recording time.
+
+### 20.9 — Authority
+
+§10 of this document permits amendments before assembly begins. The relevant assembly scope for §20 is Option 2 assembly, which has not begun: no Option 2 candidate paper has been admitted under the §13.3-registered queries (the 4/4-zero result is the entirety of Option 2's pre-§20 recorded state); no Option 2 candidate organism has been recorded; no FASTA has been downloaded. §15.4's "operationalization … deferred to when Option 2 runs" framing applies symmetrically to query-string replacement: the trigger for replacement (the 4/4-zero literal-phrase result) materialized in the same pre-discovery window §15.4 anticipated, and §20 is recorded immediately before Option 2 runs under the amended queries.
+
+**Drafted:** 2026-06-08 (post-§19 commit `9f13704`, post-2026-06-07 §13.3 verbatim-query execution returning 4/4 zero literal-phrase hits, post-methods-validation diagnostic, post-2026-06-08 mechanics-validation of the §20 replacement query set, pre-§20-amended discovery execution).
+
+**Trigger:** the 4/4-zero literal-phrase result from executing §13.3's registered queries verbatim 2026-06-07 (`data/validation/option2/pubmed_query_findings.md`), in combination with the methods-validation diagnostic's confirmation that cultivation-pair papers exist in the 2024-2026 window (`data/validation/option2/diagnostic_probe.md`, including the PMID 40742112 ground-truth check), made silent re-querying impossible (would violate §10) and shortfall declaration false (the diagnostic disproved the field-emptiness reading). The amendment replaces the registered phrases under amendment record rather than tuning silently or recording a finding the diagnostic contradicts.
+
+### 20.10 — Superseded §13.3 query strings (append-only record)
+
+For audit-trail continuity, the four pre-§20 §13.3 registered query strings — registered at §13.3 drafting (2026-05-30), executed verbatim 2026-06-07, returning 4/4 zero literal-phrase hits — are preserved here verbatim:
+
+1. `"MAG-guided cultivation"` — not in PubMed phrase index; auto-expanded to `"mag guided"[All Fields] AND (cultivability OR cultivable OR cultivate OR cultivated OR cultivates OR cultivating OR cultivation OR cultivations OR cultivator OR cultivators)[All Fields]`; 0 hits even after broadening.
+2. `"successfully cultured" AND "metagenome-assembled genome"` — both phrases in index, literal match ran as `"successfully cultured"[All Fields] AND "metagenome-assembled genome"[All Fields]`, 0 hits.
+3. `"isolation following metagenomic analysis"` — not in PubMed phrase index; auto-expanded to `(isolate-stems) AND (follow-stems) AND ("metagenome"[MeSH Terms] OR metagenome-stems)[All Fields] AND (analysis-stems)[All Fields]`; returned 394 broadened hits, 0/394 of which contain the literal phrase in title or abstract.
+4. `"axenic culture" AND "previously uncultured"` — both phrases in index, literal match ran as `"axenic culture"[All Fields] AND "previously uncultured"[All Fields]`, 0 hits.
+
+These four phrases are SUPERSEDED by the §20.2 replacement set. They are NOT deleted from §13.3, where they remain on the record as the pre-amendment registration; the in-place §13.3 supersession annotation (added in this same commit, immediately after the four phrases in §13.3) reads: *"Superseded by §20 (2026-06-08); the four original phrases above did not match field vocabulary in the 2024-2026 window — see §20 for the trigger, the replacement queries, and the diagnostic basis."*
+
+The pre-§20 carry-forward artifacts under `data/validation/option2/` (the verbatim-query execution records and the methods-validation diagnostic) remain the audit trail for the supersession trigger.
